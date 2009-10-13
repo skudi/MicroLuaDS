@@ -1,1 +1,2 @@
+#labels Deprecated
 This is the default page.
