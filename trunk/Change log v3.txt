@@ -1,0 +1,29 @@
+Corrected bugs:
+
+*- Double-click issue
+*- Jpg loading issue. You can now load .jpg and .jpeg files without problem
+*- Image loading optimisation. You can load and destroy images, font and maps indefinitely.
+*- No more "Oops unhandled error"
+*- Correct the Canvas ATTR_Y2 bug
+*- Correct the "non-permanent" scaling problem
+*- Correct the Stylus.newPress problem
+
+New features:
+
+*- Added Wifi support
+*- Added DateTime support
+*- Added rumble support
+*- Added motion support
+*- Sound syntax changed
+*- You can now play several mods in the same time
+*- SFX support (you can now play wave files)
+*- Added a new render() function, no need to use startDrawing() and stopDrawing(), but you can still use them.
+*- Added a MICROLUA_VERSION global variable
+*- You can now customize the shell in the shell.ini file
+*- Stylus support in the shell
+*- No more position limit for direct drawing and printing
+*- Added a new getStringWidth function
+
+Removed:
+
+*- Keyboard library removed but you can download it on the official website in open source. So you can modify it.
