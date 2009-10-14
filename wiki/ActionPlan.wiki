@@ -1,0 +1,79 @@
+#summary How we plan to use the GoogleCode project hosting / Comment nous prévoyons d'utiliser l'hébergeur de projet GoogleCode.
+#labels Featured
+
+<wiki:toc />
+
+= Introduction =
+
+== This page translated in all languages ==
+
+As we can't edit pages translated to French via the web interface yet and as there are more French people in the community, this page is in French (even if in the English section). If you can't translate yourself your ideas to French or English, somebody will hopefully do it for you.
+
+This will be the only page like that. [ActionPlan#English_translation See English translation below.]
+
+== Cette page contient sa propre traduction ==
+
+Puisque nous ne pouvons pas éditer les pages de traduction avec l'interface web pour le moment et qu'il y a plus de Français dans la communauté, cette page est en français (même si elle est dans la section anglaise). Si vous ne pouvez pas traduire vous même vos idées en français ou en anglais, quelqu'un pourra peut-être le faire pour vous.
+
+Ce sera la seule page dans ce cas.
+
+_Note pour les Français_: Veillez à écrire un français particulièrement simple et correct sur cette page pour le traducteur automatique.
+
+= But de cette page =
+
+Le but de cette page est de récapituler toutes les idées que l'on a à propos de l'utilisation de GoogleCode. Tant que la communauté n'a pas pris connaissance de cette page, y a rédigé ses idées et en a discuté, on ne touche à rien.
+
+= Wiki =
+
+== Guide stylistique ==
+
+La syntaxe du wiki est [http://code.google.com/p/support/wiki/WikiSyntax décrite ici].
+
+Pas d'abbréviations, pas de sms-style, pas de smileys, on essaie d'être pros (ou au moins de faire semblant).
+
+On saute des lignes dès qu'on peut (autour des titres, des blocs de code...) et on met des espaces autour du texte du titre (c'est plus lisible).
+
+{{{
+= Wiki =
+
+== Guide de style ==
+}}}
+
+== Contenu ==
+
+Le wiki contiendra toute la doc de MicroLua. Depuis la doc officielle jusqu'aux vieux tutoriels du site officiel, les FAQ... Ce qui est vraiment bien, c'est que le contenu du wiki est stocké sous forme de fichiers dans le dépôt SVN. Ça nous permettra de générer des fichiers html ou pdf automatiquement.
+
+Reste à trouver un modèle pratique et clair d'arborescence...
+
+== Édition ==
+
+On n'édite que si l'on peut *améliorer* la page. Si on sent que la modification que l'on veut faire va soulever un débat, on ne la fait pas avant que le débat aie été lancé. Pas de guéguerre d'édition, merci.
+
+Pour débattre, on peut commenter directement la page ou créer un fil de discution dans le MicroLuaForum.
+
+== Commit log ==
+
+Il est important de renseigner le champs *commit log* afin de décrire brièvement l'amélioration apportée. Vous pouvez vous inspirer des [http://code.google.com/p/microlua/source/list messages que vous voyez ici].
+
+== Commentaires ouverts ==
+
+Google Code ne nous laisse pas ouvrir l'édition des pages aux inconnus.
+Ce qu'ils conseillent de faire, c'est d'ouvrir les commentaires.
+
+N'importe qui peut donc ajouter un commentaire en bas de page, même les non contributeurs. Cela permet de faciliter les contributions. De temps en temps, on effacera certains commentaires et spams, et on incorporera les bonnes idées.
+
+= Issues =
+
+Pas grand chose à dire, on verra à l'usage.
+
+= Source =
+
+Peu seront committers. Pour proposer un changement dans le code, on ouvre une *issue*. Suivant les réactions de la communauté, les committers commiteront.
+
+Pour proposer un changement, vous pourrez joindre un patch ou indiquer un lien vers une révision dans votre copie de travail, qu'il vous faudra publier sur Internet grâce à votre gestionnaire de versions préféré.
+
+= English translation =
+
+Only automatic for the moment. Sorry.
+
+http://translate.google.com/translate?u=http%3A%2F%2Fcode.google.com%2Fp%2Fmicrolua%2Fwiki%2FActionPlan&sl=fr&tl=en
