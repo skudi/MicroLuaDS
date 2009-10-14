@@ -7,13 +7,13 @@
 
 == This page translated in all languages ==
 
-As we can't edit pages translated to French via the web interface yet and as there are more French people in the community, this page is in French (even if in the English section). If you can't translate yourself your ideas to French or English, somebody will hopefully do it for you.
+As we can't edit pages translated to French via the web interface yet ([http://code.google.com/p/support/issues/detail?id=3176 an issue has been filed]) and as there are more French people in the community, this page is in French (even if in the English section). If you can't translate yourself your ideas to French or English, somebody will hopefully do it for you.
 
 This will be the only page like that. [ActionPlan#English_translation See English translation below.]
 
 == Cette page contient sa propre traduction ==
 
-Puisque nous ne pouvons pas éditer les pages de traduction avec l'interface web pour le moment et qu'il y a plus de Français dans la communauté, cette page est en français (même si elle est dans la section anglaise). Si vous ne pouvez pas traduire vous même vos idées en français ou en anglais, quelqu'un pourra peut-être le faire pour vous.
+Puisque nous ne pouvons pas éditer les pages de traduction avec l'interface web pour le moment ([http://code.google.com/p/support/issues/detail?id=3176 une "issue" a été créée]) et qu'il y a plus de Français dans la communauté, cette page est en français (même si elle est dans la section anglaise). Si vous ne pouvez pas traduire vous même vos idées en français ou en anglais, quelqu'un pourra peut-être le faire pour vous.
 
 Ce sera la seule page dans ce cas.
 
