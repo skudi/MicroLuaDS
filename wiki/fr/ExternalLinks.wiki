@@ -5,7 +5,7 @@
 
 == Micro Lua ==
 
-  * Site web officiel (needs update): http://microlua.risike.com/
+  * Site web officiel (ayant besoin d'une mise à jour): http://microlua.risike.com/
   * Forum officiel (surtout en français avec une section anglaise): http://microlua.xooit.fr/
 
 
