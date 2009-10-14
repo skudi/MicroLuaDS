@@ -1,0 +1,28 @@
+#summary List of external links about Lua.
+
+= Official links =
+
+  * Official web site: http://www.lua.org/
+  * Manual: http://www.lua.org/manual/5.1/manual.html
+
+= Community links =
+
+  * users wiki: http://lua-users.org/wiki/
+
+= Tutorials =
+
+== English ==
+
+  * Tutorial directory on the users wiki: http://lua-users.org/wiki/TutorialDirectory
+
+== French ==
+
+  * Lua in C code: http://mdeverdelhan.developpez.com/tutoriel/lua/tutoriel1/
+
+= Misc, articles, news =
+
+== Wikipedia ==
+
+  * English Wikipedia page: http://en.wikipedia.org/wiki/Lua_(programming_language)
+  * French Wikipedia page: http://fr.wikipedia.org/wiki/Lua
+  * disambiguation page at Wikipedia: http://en.wikipedia.org/wiki/Lua
