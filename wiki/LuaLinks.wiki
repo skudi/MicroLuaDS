@@ -8,6 +8,7 @@
 = Community links =
 
   * users wiki: http://lua-users.org/wiki/
+  * searchable archive of the *lua-l* mailing-list: http://lua-users.org/lists/lua-l/
 
 = Tutorials =
 
