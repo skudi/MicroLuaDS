@@ -14,7 +14,7 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * LibRpg
   * LuaEditor
   * MarioSokoban
-  * MicroDemineurDs ()
+  * MicroDemineurDs (Minesweeper)
   * PingPong
   * PpcDs (Pierre-Papier-Ciseaux / Rock-Paper-Scissors)
   * PokemonMiniGame
