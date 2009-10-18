@@ -1,0 +1,7 @@
+#summary Describing CamelCase.
+
+This allows us to automaticly make a link to a wiki page with a single word. MicroLua is a link, Microlua is not because of the lower 'l'.
+
+From [http://en.wikipedia.org/wiki/CamelCase this Wikipedia article]:
+
+!CamelCase (also spelled "camel case") or medial capitals is the practice of writing compound words or phrases in which the elements are joined without spaces, with each element's initial letter capitalized within the compound, and the first letter can be upper or lower case — as in !LaBelle, !BackColor, or !MacGyver. The name comes from the uppercase "bumps" in the middle of the compound word, suggestive of the humps of a camel. The practice is known by many other names.
