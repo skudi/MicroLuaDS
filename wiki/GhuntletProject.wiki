@@ -1,4 +1,5 @@
 #summary Gauntlet-like for Nintendo DS coded with Micro lua
+#labels Deprecated
 
 = Introduction =
 
