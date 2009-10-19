@@ -1,4 +1,4 @@
-#Gauntlet-like for Nintendo DS coded with Micro lua
+#summary Gauntlet-like for Nintendo DS coded with Micro lua
 
 = Introduction =
 
