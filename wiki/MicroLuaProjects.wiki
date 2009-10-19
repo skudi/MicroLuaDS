@@ -10,13 +10,21 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
 = Micro Lua Projects =
 
   * AloufsDs
-  * GhuntletProject[http://code.google.com/p/ghuntlet/]
+  * Calculatrice
+  * CarPlaying (Avoid them all)
+  * DSLaby (Labyrinth)
+  * GhuntletProject
   * LibRpg
   * LuaEditor
   * MarioSokoban
   * MicroDemineurDs (Minesweeper)
   * PingPong
+  * PlusOuMoins (More or Less)
   * PpcDs (Pierre-Papier-Ciseaux / Rock-Paper-Scissors)
   * PokemonMiniGame
+  * SeaquestRemake
+  * Spaceship
+  * StargateUniversDS
   * TankDs
   * TilesEngine
+  * TilesEngineEvolution
