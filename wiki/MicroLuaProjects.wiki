@@ -24,7 +24,7 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * PokemonMiniGame
   * SeaquestRemake
   * SpaceshipProject
-  * StargateUniversDS
+  * StargateUniversDSProject
   * TankDs
   * TilesEngine
   * TilesEngineEvolution
