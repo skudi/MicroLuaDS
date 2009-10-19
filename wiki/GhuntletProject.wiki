@@ -3,6 +3,8 @@
 
 = Introduction =
 
+Go to this page for further informations : [http://code.google.com/p/ghuntlet/ Ghuntlet]
+
 This page discribe what is already in function.
 
   # A hero sprite at the center of the screen
