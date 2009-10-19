@@ -19,7 +19,8 @@
 == French ==
 
   * Lua in C code: http://mdeverdelhan.developpez.com/tutoriel/lua/tutoriel1/
-
+  * Bases of Lua : http://www.xtreamlua.com/wiki/doku.php?id=pc_tutos_lua
+  * Documentation : http://www.luteus.biz/Download/LoriotPro_Doc/LUA/LUA_Training_FR/Introduction_Programmation.html
 = Misc, articles, news =
 
 == Wikipedia ==
