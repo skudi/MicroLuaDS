@@ -4,21 +4,3 @@
 = Introduction =
 
 Go to this page for further informations : [http://code.google.com/p/ghuntlet/ Ghuntlet]
-
-This page discribe what is already in function.
-
-  # A hero sprite at the center of the screen
-  # A map which scrolls around (with two levels, Background + Foreground)
-  # A tile management (passable or not) 
-  # Item management
-   # Items laying on the floor
-   # Items in the inventory
-  # Monster Management:
-   # Monsters generator.
-   # Rudimentary AI.
-   # Drop management.
-  # The status of hero and mobs which "floats" below him ("OK", "Wonded", "Near Death") and their life points.
-  # A weapon (press A) which doesn't do anything important (it moves and lowers the mobs' health)
-  # A collision system (the status turns to "HIT" when the object is touched and loses HP)
-  # You use spells with L
-  # Implementation of menus.
