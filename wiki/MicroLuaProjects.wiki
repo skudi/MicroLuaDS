@@ -10,7 +10,7 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
 = Micro Lua Projects =
 
   * AloufsDs
-  * Calculatrice
+  * CalculatriceProject
   * CarPlaying (Avoid them all)
   * DSLaby (Labyrinth)
   * GhuntletProject
@@ -23,7 +23,7 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * PpcDs (Pierre-Papier-Ciseaux / Rock-Paper-Scissors)
   * PokemonMiniGame
   * SeaquestRemake
-  * Spaceship
+  * SpaceshipProject
   * StargateUniversDS
   * TankDs
   * TilesEngine
