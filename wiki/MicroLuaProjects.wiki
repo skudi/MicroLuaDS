@@ -12,7 +12,7 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * AloufsDs
   * CalculatriceProject
   * CarPlaying (Avoid them all)
-  * DSLabyProject (Labyrinth)
+  * DsLaby (Labyrinth)
   * GhuntletProject
   * LibRpg
   * LuaEditor
