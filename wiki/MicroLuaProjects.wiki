@@ -10,7 +10,7 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
 = Micro Lua Projects =
 
   * AloufsDs
-  * CalculatriceProject
+  * CalculatriceProject (Calculator)
   * CarPlaying (Avoid them all)
   * DsLaby (Labyrinth)
   * GhuntletProject
