@@ -1,0 +1,10 @@
+#summary TOC to display as sidebar or at the root of the wiki.
+
+<wiki:comment>
+http://www.xaprb.com/blog/2009/07/01/how-to-add-a-wiki-homepage-sidebar-and-toc-in-google-code/
+</wiki:comment>
+
+  * [MicroLua Wiki Home]
+  * [UserLinks Links for users]
+  * [DevLinks Links for developpers]
+  * [ExternalLinks External links]
