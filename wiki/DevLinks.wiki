@@ -1,4 +1,4 @@
-#summary Useful links for developpers.
+#summary Useful links for game developpers.
 
 = APIs =
 
@@ -7,5 +7,4 @@
 
 = Tools =
 
-  * HowToCompile
   * MicroLuaSimulator
