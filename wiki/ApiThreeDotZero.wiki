@@ -10,36 +10,34 @@ Be aware that what you will read here may be defined in the Lua libraries (_libs
 
 = API =
 
-Micro LUA DS 3.0 Documentation
+== Variables ==
 
+MICROLUA_VERSION (_libs_): version of Micro Lua (String)
+SCREEN_WIDTH, SCREEN_HEIGHT (_libs_): width and height of the screens
+NB_FPS (_?_): number of frame per second automatically updated each second. You can display it with a screen.print between screen.startDrawing() and screen.stopDrawing(). Don’t display it in the debug console
+SCREEN_UP, SCREEN_DOWN (_libs_): screen number where to draw. See examples for more details
+RAM and VRAM (_libs_): destination where to load some object. See examples for more details
+ATTR_X1, ATTR_Y1, ATTR_X2, ATTR_Y1, ATTR_X3, ATTR_Y3, ATTR_COLOR, ATTR_COLOR1, ATTR_COLOR2, ATTR_COLOR3, ATTR_COLOR4, ATTR_TEXT, ATTR_VISIBLE, ATTR_FONT, ATTR_IMAGE (_libs_): attributes used in canvas
 
+<wiki:comment>not documented: PLAY_LOOP, PLAY_ONCE, mustCountFPS</wiki:comment>
 
-Some useful variables
+== Functions and their table ==
 
+=== screen ===
 
-MICROLUA_VERSION: version of Micro Lua (String)
-SCREEN_WIDTH: width of the screens 
-SCREEN_HEIGHT: height of the screens
-NB_FPS: number of frame per second automatically updated each second. You can display it with a screen.print between screen.startDrawing() and screen.stopDrawing(). Don’t display it in the debug console
-SCREEN_UP, SCREEN_DOWN: screen number where to draw. See examples for more details
-RAM and VRAM: destination where to load some object. See examples for more details
-ATTR_X1, ATTR_Y1, ATTR_X2, ATTR_Y1, ATTR_X3, ATTR_Y3, ATTR_COLOR, ATTR_COLOR1, ATTR_COLOR2, ATTR_COLOR3, ATTR_COLOR4, ATTR_TEXT, ATTR_VISIBLE, ATTR_FONT, ATTR_IMAGE: attributes used in canvas
+`Void render()` (_libs_)
 
-
-The screen
-
-(All methods are shared)
-
-Void render()
 Refresh the screen.
 
-Void startDrawing() & stopDrawing()	OBSOLETE
+`Void startDrawing() & stopDrawing()` (_libs_, _deprecated_)
+
 All your drawing instructions must be between these two functions
 
-Void screen.switch()
+`Void screen.switch()` (_nds_)
+
 Switch the screens
 
-Void screen.print(screen, x, y, text [, color])
+`Void screen.print(screen, x, y, text [, color])` (_nds_)
 Print a text on the screen
 screen (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
 x (Number): x-coordinate where to draw
@@ -47,7 +45,8 @@ y (Number): y-coordinate where to draw
 text (String): text to print
 color (Color): color of the text
 
-Void screen.printFont(screen, x, y, text , color, font)
+`Void screen.printFont(screen, x, y, text , color, font)` (_nds_)
+
 Print a text on the screen
 screen (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
 x (Number): x-coordinate where to draw
@@ -56,8 +55,8 @@ text (String): text to print
 color (Color): color of the text
 font (Font) : special font
 
+`Void screen.blit(screen, x, y, image, [, sourcex, sourcey] [, width, height])` (_nds_)
 
-Void screen.blit(screen, x, y, image, [, sourcex, sourcey] [, width, height])
 Blit an image on the screen
 screen (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
 x (Number): x-coordinate where to draw
@@ -66,268 +65,292 @@ image (Image): image to blit
 sourcex, sourcey (Number): coordinates in the source image to draw
 width, height (Number): width and height of the rectangle to draw
 
-Void screen.drawLine(screen, x0, y0, x1, y1, color)
+`Void screen.drawLine(screen, x0, y0, x1, y1, color)` (_nds_)
+
 Draw a line on the screen
 screen (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
 x0, y0, x1, y1 (Number): coordinates of the line
 color (Color): color of the line
 
-Void screen.drawRect(screen, x0, y0, x1, y1, color)
+`Void screen.drawRect(screen, x0, y0, x1, y1, color)` (_nds_)
+
 Draw a rectangle on the screen
 screen (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
 x0, y0, x1, y1 (Number): coordinates of the rectangle
 color (Color): color of the rectangle
 
-Void screen.drawFillRect(screen, x0, y0, x1, y1, color)
+`Void screen.drawFillRect(screen, x0, y0, x1, y1, color)` (_nds_)
+
 Draw a fill rectangle on the screen
 screen (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
 x0, y0, x1, y1 (Number): coordinates of the rectangle
 color (Color): color of the rectangle
 
-Void drawGradientRect(screen, x0, y0, x1, y1, color1, color2, color3, color4)
+`Void screen.drawGradientRect(screen, x0, y0, x1, y1, color1, color2, color3, color4)` (_nds_)
+
 Draw a gradient rectangle on the screen
 screen (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
 x0, y0, x1, y1 (Number): coordinates of the rectangle
 color1, color2, color3, color4 (Color): colors of the rectangle
 
-Void drawTextBox(screen, x0, y0, x1, y1, text [, color])
+`Void screen.drawTextBox(screen, x0, y0, x1, y1, text [, color])` (_nds_)
+
 Draw a text box on the screen
 screen (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
 x0, y0, x1, y1 (Number): coordinates of the text box
 text (String): text to print
 color (Color): color of the text box
 
+<wiki:comment>not documented: screen.init, screen_getMainLcd, screen_startDrawing2D, screen_endDrawing, screen_waitForVBL, screen.setSpaceBetweenScreens</wiki:comment>
 
+== Colors ==
 
+`Color Color.new(r, g, b)` (_nds_)
 
-Colors
-
-
-Color Color.new(r, g, b)
 Create a new color
 r (Number): red mask
 g (Number): green mask
 b (Number): blue mask
 
+== Controls ==
 
-Controls
+`Void Controls.read()` (_libs_)
 
+Read the controls and update all control structures.
 
-Void Controls.read()
-Read the controls and update all control structures
+=== Stylus ===
 
-Stylus:
+These are numbers or booleans. Everything here is defined in the _libs_.
 
-Stylus.X: x-coordinate of the stylus
-Stylus.Y: y-coordinate of the stylus
-Stylus.held: is the stylus held on the screen
-Stylus.released: is the stylus released
-Stylus.doubleClick: true if stylus do a double click
-Stylus.deltaX: delta x of the stylus movement
-Stylus.deltaY: delta y of the stylus movement
-Stylus.newPress: true if stylus do a new press
+`Stylus.X`: x-coordinate of the stylus
 
-Keys:
+`Stylus.Y`: y-coordinate of the stylus
 
-([KEY] can take the following values :
-A B X Y L Start Select Up Down Left Right)
+`Stylus.held`: is the stylus held on the screen
 
-Keys.held.[KEY]: is the key held
-Keys.released.[KEY]: is the key released
-Keys.newPress.[KEY]: true if key do a new press
+`Stylus.released`: is the stylus released
 
+`Stylus.doubleClick`: true if stylus do a double click
 
+`Stylus.deltaX`: delta x of the stylus movement
 
+`Stylus.deltaY`: delta y of the stylus movement
 
-Images
+`Stylus.newPress`: true if stylus do a new press
 
+=== Keys ===
 
-Image Image.load(path, destination)
+These are booleans. Everything here is defined in the _libs_.
+
+(`[KEY]` can take the following values :
+`A B X Y L Start Select Up Down Left Right`)
+
+`Keys.held.[KEY]`: is the key held
+
+`Keys.released.[KEY]`: is the key released
+
+`Keys.newPress.[KEY]`: true if key do a new press
+
+== Images ==
+
+`Image Image.load(path, destination)` (_nds_)
+
 Create a new image in memory from an image file (PNG, JPG or GIF)
 path (String): path of the image to load
 destination (Number): destination of the image in memory (can be RAM of VRAM)
 
-Void Image.destroy(image)
+`Void Image.destroy(image)` (_nds_)
+
 Desotroy the image
 To completely destroy an image, do :
 myImage:destroy()
 myImage = nil
 image (Image): image to destroy
 
-Number Image.width(image)
+`Number Image.width(image)` (_nds_)
+
 Get the width of the image
 image (Image): image to use
 
-Number Image.height(image)
+`Number Image.height(image)` (_nds_)
+
 Get the height of the image
 image (Image): image to use
 
-Void Image.scale(image, width, height)
+`Void Image.scale(image, width, height)` (_nds_)
+
 Scale the image
 image (Image): image to scale
 width (Number): new width of the image
 height (Number): new height of the image
 
-Void Image.rotate(image, angle [, centerx, centery])
+`Void Image.rotate(image, angle [, centerx, centery])` (_nds_)
+
 Rotate the image around rotation center
 image (Image): image to rotate
 angle (Number): angle of roattion (between 0 and 511)
 centerx (Number): x-coordinate of the new rotation center
 centery (Number): y-coordinate of the new rotation center
 
-Void Image.rotateDegree(image, angle [, centerx, centery])
+`Void Image.rotateDegree(image, angle [, centerx, centery])` (_nds_)
+
 Rotate the image around rotation center, the angle is given in degree
 image (Image): image to rotate
 angle (Number): angle of rotation in degree (between 0 and 360)
 centerx (Number): x-coordinate of the new rotation center
 centery (Number): y-coordinate of the new rotation center
 
-Void Image.mirrorH(image)
+`Void Image.mirrorH(image)` (_nds_)
+
 Mirror the image horizontally
 image (Image): image to mirror
 
-Void Image.mirrorV(image)
+`Void Image.mirrorV(image)` (_nds_)
+
 Mirror the image vertically
 image (Image): image to mirror
 
-Void Image.setTint(image, color)
+`Void Image.setTint(image, color)` (_nds_)
+
 Set the tint of the image
 image (Image): image to tint
 color (Color): color of the image
 
+== Millisecond Timers ==
 
+`Timer Timer.new()` (_libs_)
 
-
-Millisecond Timers
-
-
-Timer Timer.new()
 Create a new timer, you can start it
 
-Number timer:time()
+Number timer:time() (_libs_)
 Return the time of the timer
 
-Void timer:start()
+`Void timer:start()` (_libs_)
+
 Start a timer
 
-Void timer:stop()
+`Void timer:stop()` (_libs_)
+
 Stop a timer
 
-Void timer:reset()
+`Void timer:reset()` (_libs_)
+
 Reset a timer
 
+== Sprites ==
 
+`Sprite Sprite.new(path, frameWidth, frameHeight, dest)` (_libs_)
 
-Sprites
-
-
-Sprite Sprite.new(path, frameWidth, frameHeight, dest)
 Create a sprite from an image file
 path (String): path of the file which contains the sprite
 frameWidth (Number): width of the frames
 frameHeight (Number): height of the frames
 dest (Number): destination (RAM or VRAM)
 
-Void sprite:drawFrame(screen, x, y, nbFrame)
+`Void sprite:drawFrame(screen, x, y, nbFrame)` (_libs_)
+
 Draw a frame of the sprite
 screen (Number): screen (SCREEN_UP or SCREEN_DOWN)
 x (Number): X-coordinate where to draw the frame
 y (Number): Y-coordinate where to draw the frame
 nbFrame (Number): number of the frame to draw
 
-Void sprite:addAnimation(tabAnim, delay)
+`Void sprite:addAnimation(tabAnim, delay)` (_libs_)
+
 Create an animation
 tabAnim (Table): the table of the animation frames
 delay (Number): delay between each frame
 
-Void sprite:playAnimation(screen, x, y, nbAnim)
+`Void sprite:playAnimation(screen, x, y, nbAnim)` (_libs_)
+
 Play an animation on the screen
 screen (Number): screen (SCREEN_UP or SCREEN_DOWN)
 x (Number): X-coordinate where to draw the frame
 y (Number): Y-coordinate where to draw the frame
 nbAnim (Number): number of the animation to play
 
+`Void sprite:resetAnimation(nbAnim)` (_libs_)
 
-Void sprite:resetAnimation(nbAnim)
 Reset an animation
 nbAnim (Number): number of the animation
 
-Void sprite:startAnimation(nbAnim)
+`Void sprite:startAnimation(nbAnim)` (_libs_)
+
 Start an animation
 nbAnim (Number): number of the animation
 
-Void sprite:stopAnimation(nbAnim)
+`Void sprite:stopAnimation(nbAnim)` (_libs_)
+
 Stop an animation
 nbAnim (Number): number of the animation
 
-Boolean sprite:isAnimationAtEnd(nbAnim)
+`Boolean sprite:isAnimationAtEnd(nbAnim)` (_libs_)
+
 Return true if the animation has drawn the last frame
 nbAnim (Number): number of the animation
 
+<wiki:comment>not documented: SpriteAnimation</wiki:comment>
 
+== Debug ==
 
+`Void Debug.ON()` (_libs_)
 
-Debug
-
-
-(All methods are shared)
-
-Void Debug.ON()
 Activate the debug mode
 
-Void Debug.OFF()
+`Void Debug.OFF()` (_libs_)
+
 Desactivate the debug mode
 
-Void Debug.print(text)
+`Void Debug.print(text)` (_libs_)
+
 Print a debug line
 text (String): text to print
 
-Void Debug.clear()
+`Void Debug.clear()` (_libs_)
+
 Clear the debug console
 
-Void Debug.setColor(color)
+`Void Debug.setColor(color)` (_libs_)
+
 Set the debug text color
 color (Color): color of the text
 
+<wiki:comment>not documented: isDebugOn, debugText, debugColor</wiki:comment>
 
+== System ==
 
+`String System.currentDirectory()` (_libs_)
 
-System
-
-
-(Al methods are shared)
-
-
-String System.currentDirectory()
 Get the current working directory
 
-Void System.changeDirectory(path)
+`Void System.changeDirectory(path)` (_libs_)
+
 Change the current working directory
 path (String): path of the directory
 
-Void System.remove(name)
+`Void System.remove(name)` (_libs_)
+
 Remove a file or an empty folder
 name (String): name of the file or directory to remove
 
-Void System.rename(oldName, newName)
+`Void System.rename(oldName, newName)` (_libs_)
+
 Rename file or an empty folder
 oldName (String): name of the file or directory to rename
 newName (String): new name of the file or directory
 
-Void System.makeDirectory(name)
+`Void System.makeDirectory(name)` (_libs_)
+
 Create a new directory
 name (String): path and name of the directory
 
-Table System.listDirectory(path)
+`Table System.listDirectory(path)` (_libs_)
+
 List all files and folders of a directory
 path (String): path of the directory to list
 (See examples for more details)
 
-
-
-
 Fonts
-
 
 Font Font.load(path)
 Create a new font from a font file (oslib and µLibrayr format)
@@ -351,10 +374,7 @@ Get the width of a text with a specific font
 font (Font): font to use
 text (String): text
 
-
-
 Maps
-
 
 Map Map.new(image, mapfile, width, height, tileWidth, tileHeight)
 Create a new map by giving a map file
@@ -403,11 +423,7 @@ map (Map): map to destroy
 x (Number): x-coordinate of the tile to get
 y (Number): y-coordinate of the tile to get
 
-
-
-
-ScrollMaps
-
+Scroll Maps
 
 ScrollMap ScrollMap.new(image, mapfile, width, height, tileWidth, tileHeight)
 image (Image): image which contains tiles
@@ -431,9 +447,7 @@ scrollmap (ScrollMap): ScrollMap to scroll
 x (Number): x scrolling in pixel
 y (Number): y scrolling in pixel
 
-
 Canvas
-
 
 Canvas Canvas.new()
 Create a new canvas
@@ -515,10 +529,7 @@ Get an attribute value. Return type depends of the attribute
 object (CanvasObject): object to use
 attName (Constant): attribute to get value. Must be ATTR_XXX. See “some useful variables” for more details
 
-
-
 Rumble
-
 
 Boolean Rumble.isInserted()
 Check if a rumble pack is inserted.
@@ -527,10 +538,7 @@ Void Rumble.set(status)
 Set the rumble status.
 status (Boolean): status of the rumble (true: ON, false: OFF)
 
-
-
 Motion
-
 
 Boolean Motion.init()
 Init the motion system if a motion device is detected. Return true if a motion device is detected.
@@ -562,25 +570,18 @@ Read the gyro value of the motion.
 Number Motion.rotation()
 Read the rotation value of the motion.
 
+== DateTime ==
 
-
-DateTime
-
-DateTime DateTime.new()
+DateTime DateTime.new() (_libs_)
 Create a new DateTime object.
 
-DateTime DateTime.getCurrentTime()
+DateTime DateTime.getCurrentTime() (_libs_)
 Create a new DateTime object with current time values.
 
-Attributes :
-year, month, day, hour, minute, second
-
-(See the example for more details)
-
-
+Attributes (numbers):
+year, month, day, hour, minute, second (_libs_)
 
 Wifi
-
 
 Void Wifi.connectWFC()
 Connect the DS to the Wifi connection. Use the firmware configurations. So, you need to configure your connection with an official DS game.
@@ -612,12 +613,9 @@ Receive data from a server using a socket.
 socket (Socket): Socket to use
 length (Number): size of the data to receive
 
+== Sound ==
 
-
-The sound
-
-
-Sound banks:
+=== Sound banks ===
 
 Void Sound.loadBank(filename)
 Load a soundbank from a file in memory.
@@ -626,8 +624,7 @@ filename (String): path of the file to load
 Void Sound.unloadBank()
 Unload the sound bank from the memory.
 
-
-Mods:
+=== Mods ===
 
 Void Sound.loadMod(id)
 Load a module in memory.
@@ -678,8 +675,7 @@ Void Sound.setModPitch(pitch)
 Set the pitch of the module player.
 pitch (Number): new pitch value
 
-
-SFX:
+=== SFX ===
 
 Void Sound.loadSFX(id)
 Load a SFX in the meory.
@@ -724,16 +720,14 @@ Set the scaling pitch ratio of a playing SFX.
 handle (Handle): handle of a SFX, given by the startSFX function
 scale (Number): new sclae pitch value
 
+== INI Files ==
 
-
-INI Files
-
-
-Table INI.load(filename)
+Table INI.load(filename) (_libs_)
 Load an INI file and create a table with it
 filename (String): file to load
 
-Void INI.save(filename, tab)
+`Void INI.save(filename, tab)` (_libs_)
+
 Save a table in an INI file
 filename (String): file to load
 tab  (Table): table to save
@@ -741,15 +735,17 @@ tab  (Table): table to save
 Exemple :
 
 An INI file contains :
+{{{
 [infos]
 name=toto
 age=25
-
+}}}
+{{{
 tab  = INI.load(“myfile.ini”)
 tab[“infos”][“name”] = “tata”
 INI.save(“myfile.ini”, tab)
-
+}}}
 This exemple change the line name=toto into name=tata.
 
-Tables can only contains Strings!!!
+These tables can only contains Strings!!!
 If you want to store integers convert them with the tostring function!
