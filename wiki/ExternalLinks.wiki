@@ -24,7 +24,14 @@
 
 == Misc, articles, news ==
 
+=== French ===
+
   * http://fr.wikipedia.org/wiki/Lua
+  * Micro Lua DS v1.0.1 beta announcement: http://www.xtreamlua.com/modules.php?name=News&file=article&sid=418
+
+=== English ===
+
+...
 
 = Other projects about interpreting Lua on an NDS =
 
