@@ -1,0 +1,8 @@
+_A tank wargame for two players on one DS (ver. beta5)_
+
+= Details =
+
+This game coded in MicroLua3 allow you to take the commands of a tank in a 2D wargame.<br>
+It is alway in his beta version : the _one player mode_ isn't playable (the CPU tank is not moving yet) but it can be played in _two players mode_ on one NDS only.<br>
+You can find the last version and a description of this open sources game by here :<br>
+http://sites.google.com/site/microlua/Home/projets/tankds
