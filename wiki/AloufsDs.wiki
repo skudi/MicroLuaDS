@@ -1,5 +1,3 @@
-*AloufDS.*
-
 _A game coded in Microlua3._
 
 
