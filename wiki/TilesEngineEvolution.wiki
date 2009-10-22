@@ -1,0 +1,8 @@
+_An exemple of evolution of the TilesEngine_
+
+= Details =
+
+This game is an exemple to show how to move a Character in a 2D map.<br>
+It is an evolution of the TilesEngine which allow you to move your Character in height direction (only four directions in the TilesEngine original). It propose more exception detections than the original game. (exceptions in function of the map and the character attributes).<br>
+There is not yet project page created for this open sources demonstration, but you can find it here :
+http://sites.google.com/site/microlua/Home/tiles-engine-evolution.rar?attredirects=0&d=1
