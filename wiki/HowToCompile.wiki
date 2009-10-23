@@ -1,9 +1,9 @@
-= How To Compile MicroLuaDs v3.0. =
+= How To Compile !MicroLuaDs v3.0. =
 
 == Introduction ==
 
 This page will guide you on how to setup the development environment
-for building the source of MicroLuaDs.  There are several steps and several
+for building the source of !MicroLuaDs.  There are several steps and several
 packages to install, but should be relatively straightforward.
 
 == Windows XP ==
@@ -20,17 +20,17 @@ packages to install, but should be relatively straightforward.
 
 == Details ==
 
-=== DevKitPro ===
-Start with DevKitPro.  You may use the web installer from the website, or our copy here.
+=== !DevKitPro ===
+Start with !DevKitPro.  You may use the web installer from the website, or our copy here.
 This package is the compiler and binary tools for compiling ARM source code.
 Recommend this install goto 'c:\devkitpro'.  Just don't use spaces in any folder names.
 
-=== DevARM-r24 ===
-Initially MicroLuaDs v3.0 requires to backdate the DevARM library.
-This is the ARM 7/9 hardware library.  Rename the DevKitPro DevArm folder, then unpack this pkg into 'c:\devkitpro'.
+=== !DevARM-r24 ===
+Initially !MicroLuaDs v3.0 requires to backdate the DevARM library.
+This is the ARM 7/9 hardware library.  Rename the !DevKitPro !DevArm folder, then unpack this pkg into 'c:\devkitpro'.
 
 === PAlib ===
-PAlib is a Nintendo DS hardware library.  This library provides access most of the features of the DS.   this package is in a zip form named '7z'.   Winzip does not handle this form, so use PeaZip Portable.  (jmr, we should repackage this as a help for US users.)  Install PAlib into 'c:\devkitpro'.
+PAlib is a Nintendo DS hardware library.  This library provides access most of the features of the DS.   this package is in a zip form named '7z'.   Winzip does not handle this form, so use !PeaZip Portable.  (jmr, we should repackage this as a help for US users.)  Install PAlib into 'c:\devkitpro'.
 
 === uLibrary ===
 uLibrary is a lib for low level 'OS' like stuff for ARM processors.
@@ -39,7 +39,7 @@ This is built next.  Unpack to 'c:\devkitpro'
 === fatlib ===
 This may need to be backdated. TBD. jmr
 
-=== MicroLuaDs Source ===
+=== !MicroLuaDs Source ===
 Get the v3.0 source from subversion.  Copy to c:\devkitpro\microluads\
 
  * Rename folder to 'luads'
