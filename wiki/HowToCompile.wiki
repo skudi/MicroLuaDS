@@ -10,7 +10,7 @@ packages to install, but should be relatively straightforward.
 
  * devkitpro
  * devarm-r24
- * PAlib  (may need PeaZip for 7z format)
+ * PAlib  (may need !PeaZip for 7z format)
  * uLibrary
  * fatlib
  * microluads source (svn)
@@ -25,7 +25,7 @@ Start with !DevKitPro.  You may use the web installer from the website, or our c
 This package is the compiler and binary tools for compiling ARM source code.
 Recommend this install goto 'c:\devkitpro'.  Just don't use spaces in any folder names.
 
-=== !DevARM-r24 ===
+=== DevARM-r24 ===
 Initially !MicroLuaDs v3.0 requires to backdate the DevARM library.
 This is the ARM 7/9 hardware library.  Rename the !DevKitPro !DevArm folder, then unpack this pkg into 'c:\devkitpro'.
 
