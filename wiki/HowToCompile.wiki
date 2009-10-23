@@ -8,10 +8,10 @@ packages to install, but should be relatively straightforward.
 
 == Windows XP ==
 
- * devkitpro
- * devarm-r24
- * PAlib  (may need !PeaZip for 7z format)
- * uLibrary
+ * devkitPro [http://sourceforge.net/projects/devkitpro/files/Automated%20Installer/devkitProUpdater-1.5.0.exe/download download]
+ * devkitARM-r24 [http://sourceforge.net/projects/devkitpro/files/devkitARM/previous/devkitARM%20release%2024/devkitARM_r24-win32.exe/download download]
+ * PAlib  (may need !PeaZip for 7z format) [http://palib.info/downloads/Stable/PAlib_080823_Installer.zip download]
+ * uLibrary [http://brunni.palib.info/new/dl/nds/uLibrary.7z download]
  * fatlib
  * microluads source (svn)
 
