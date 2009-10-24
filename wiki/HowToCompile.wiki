@@ -10,12 +10,13 @@ packages to install, but should be relatively straightforward.
 
  * devkitPro [http://sourceforge.net/projects/devkitpro/files/Automated%20Installer/devkitProUpdater-1.5.0.exe/download download]
  * devkitARM-r24 [http://sourceforge.net/projects/devkitpro/files/devkitARM/previous/devkitARM%20release%2024/devkitARM_r24-win32.exe/download download]
- * PAlib  (may need !PeaZip for 7z format) [http://palib.info/downloads/Stable/PAlib_080823_Installer.zip download]
+ * PAlib  [http://forum.palib.info/index.php?topic=7048.0 download]<br>
+  # Package is: PAlib090801.7z
+  # That download is a forum thread with links to many mirrors.
+  # If you don't have a decompressor for 7z get [http://portableapps.com/apps/utilities/peazip_portable PeaZip Portable].
  * uLibrary [http://brunni.palib.info/new/dl/nds/uLibrary.7z download]
  * fatlib 
  * microluads source (svn)
-
-(jmr, we should set this up in svn, either as a pkg set or a project.)
 
 
 == Details ==
@@ -30,14 +31,14 @@ Initially !MicroLuaDs v3.0 requires to backdate the DevARM library.
 This is the ARM 7/9 hardware library.  Rename the !DevKitPro !DevArm folder, then unpack this pkg into 'c:\devkitpro'.
 
 === PAlib ===
-PAlib is a Nintendo DS hardware library.  This library provides access most of the features of the DS.   this package is in a zip form named '7z'.   Winzip does not handle this form, so use !PeaZip Portable.  (jmr, we should repackage this as a help for US users.)  Install PAlib into 'c:\devkitpro'.
+PAlib is a Nintendo DS hardware library.  This library provides access most of the features of the DS.   this package is in a zip form named '7z'.   Winzip does not handle this form, so use !PeaZip Portable.  Install PAlib into 'c:\devkitpro'.
 
 === uLibrary ===
 uLibrary is a lib for low level 'OS' like stuff for ARM processors.
 This is built next.  Unpack to 'c:\devkitpro'
 
 === fatlib ===
-This may need to be backdated. TBD. jmr
+This may need to be backdated.
 
 === !MicroLuaDs Source ===
 Get the v3.0 source from subversion.  Copy to c:\devkitpro\microluads\
@@ -48,4 +49,4 @@ Get the v3.0 source from subversion.  Copy to c:\devkitpro\microluads\
 Use bat file to build.
 
 == Notes ==
-jmr, we should probably make a big package for win32 that contains all this stuff already done.  this way newbies can get just 1 package to unzip and go.  i will see how large all that would be.  same thing for linux.
+We should probably make a big package for win32 that contains all this stuff already done.  This way newbies can get just 1 package to unzip and go.  Such a pkg would be about 100Mb zipped.
