@@ -50,8 +50,8 @@ This is built next.  Unpack to 'c:\devkitpro'.
 This has to be backdated.  use the version listed above, 20080530.
 Extract the zip to a location.  
 
- * Copy the file '\libfat20080530\lib\libfat.a' to 'devkitPro\libnds\lib'
- * Copy the file '\libfat20080530\include\fat.h' to 'devkitPro\libnds\include'
+ * Copy the file '\libfat20080530\nds\lib\libfat.a' to 'devkitPro\libnds\lib'
+ * Copy the file '\libfat20080530\nds\include\fat.h' to 'devkitPro\libnds\include'
 
 ==== MicroLua Source ====
 
