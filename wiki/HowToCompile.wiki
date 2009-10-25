@@ -9,7 +9,7 @@ packages to install, but should be relatively straightforward.
 == Windows XP ==
 
  * devkitPro [http://sourceforge.net/projects/devkitpro/files/Automated%20Installer/devkitProUpdater-1.5.0.exe/download download]
- * devkitARM-r24 [http://sourceforge.net/projects/devkitpro/files/devkitARM/previous/devkitARM%20release%2024/devkitARM_r24-win32.exe/download download]
+ * devkitARM-`r24` [http://sourceforge.net/projects/devkitpro/files/devkitARM/previous/devkitARM%20release%2024/devkitARM_r24-win32.exe/download download]
  * PAlib  [http://forum.palib.info/index.php?topic=7048.0 download]<br>
   # Package is: PAlib090801.7z
   # That download is a forum thread with links to many mirrors.
@@ -26,7 +26,7 @@ Start with !DevKitPro.  You may use the web installer from the website, or our c
 This package is the compiler and binary tools for compiling ARM source code.
 Recommend this install goto 'c:\devkitpro'.  Just don't use spaces in any folder names.
 
-=== DevARM-r24 ===
+=== DevARM-`r24` ===
 Initially !MicroLuaDs v3.0 requires to backdate the DevARM library.
 This is the ARM 7/9 hardware library.  Rename the !DevKitPro !DevArm folder, then unpack this pkg into 'c:\devkitpro'.
 
