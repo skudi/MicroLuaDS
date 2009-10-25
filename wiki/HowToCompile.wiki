@@ -47,7 +47,11 @@ This is built next.  Unpack to 'c:\devkitpro'.
 
 ==== fatlib ====
 
-This may need to be backdated.
+This has to be backdated.  use the version listed above, 20080530.
+Extract the zip to a location.  
+
+ * Copy the file '\libfat20080530\lib\libfat.a' to 'devkitPro\libnds\lib'
+ * Copy the file '\libfat20080530\include\fat.h' to 'devkitPro\libnds\include'
 
 ==== MicroLua Source ====
 
@@ -58,4 +62,20 @@ Use `.bat` file to build.
 
 === Notes ===
 
+==== Environment variables ====
+DevkitPro uses 2 environment variables.
+They are: 
+{{{
+ DEVKITPRO=c:\devkitpro
+ DEVKITARM=c:\devkitpro\devkitarm
+}}}
+
+To do it manually: 
+ Start->Control Panel->System<br>
+ Then click on 'Advanced' tab<br> 
+ Then click the button at the bottom 'Environment Variables'<br> 
+ They should be in the bottom list, System Variables<br>
+
+
+==== Reference Package ====
 We should probably make a big package for win32 that contains all this stuff already done. This way newbies can get just one package to unzip and go. Such a package would be about 100Mb zipped.
