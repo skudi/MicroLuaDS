@@ -63,7 +63,7 @@ Use `.bat` file to build.
 === Notes ===
 
 ==== Environment variables ====
-DevkitPro uses 2 environment variables.
+DevKitPro uses 2 environment variables.
 They are: 
 {{{
  DEVKITPRO=c:\devkitpro
