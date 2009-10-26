@@ -1,0 +1,39 @@
+#summary How to use Subversion in graphical mode.
+
+= Introduction =
+
+Some will prefer to interact with our repository using a graphical interface.
+
+Thi page has to be set up. Choose a [http://subversion.tigris.org/links.html#clients Subverson client] and then start to mimic HowToUseSvn.
+
+= Client 1 =
+
+== Checkout the code ==
+
+== Fetch the newest version ==
+
+== Make changes ==
+
+Edit the code as you usually do, test it.
+
+=== See what changed ===
+
+status, diff, diff file
+
+=== Write a patch ==
+
+= Client 1 =
+
+== Checkout the code ==
+
+== Fetch the newest version ==
+
+== Make changes ==
+
+Edit the code as you usually do, test it.
+
+=== See what changed ===
+
+status, diff, diff file
+
+=== Write a patch ==
