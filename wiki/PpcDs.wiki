@@ -1,0 +1,42 @@
+#summary PPC-DS – a Rock-Paper-Scissors game on DS
+
+= Details =
+
+PPC-DS (also "Pierre-Papier-Ciseaux DS in French) is an adaptation of the well-known Rock-Paper-Scissors game on Nintendo DS, in French.
+It lets you to play against the console or a human.
+
+
+= Versions =
+
+ * _Version 0.1 (12/12/08)_
+  * Only human player vs. console
+  * Little simplistic AI
+
+ * _Version 1.0 (15/12/08)_
+  * Enhanced AI
+  * Showing console choice
+  * Graphical improvement
+
+ * _Version 1.1 (19/12/08)_
+  * Two players mode :
+   * Buttons "Up" (P1) and "B" (P2) : Rock
+   * Buttons "Right" (P1) and "Y" (P2) : Paper
+   * Buttons "Down" (P1) and "X" (P2) : Scissors
+   * Buttons "Left" (P1) and "A" (P2) : Continue (depending of the menu)
+   * Button "Start" : Quit (depending of the menu)
+
+ * _Version 1.2 (24/12/08)_
+  * Buttons available in Solo mode :
+   * Buttons "Left" and "Y" : Rock
+   * Buttons "Up" and "X" : Paper
+   * Buttons "Right" and "A" : Scissors
+   * Buttons "Down" and "B" : Continue (depending of the menu)
+   * Button "Start" : Quit (depending of the menu)
+  * Two seconds countdown before the choice of weapon in Two Players mode
+  * Showing players choice and winner by sliding from the edges of the screen
+
+
+= Links =
+
+  * Official thread on the MicroLua forum : http://microlua.xooit.fr/t112-PPC-DS.htm
+  * Download link (v 1.2) : http://www.toofiles.com/en/oip/documents/zip/ppc-dsv12.html
