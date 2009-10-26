@@ -58,7 +58,7 @@ cd my_working_copy
 svn diff path/to/the/file
 }}}
 
-=== Write a patch ==
+=== Write a patch ===
 
 If you don't have commit access, you can publish your changes pasting a patch somewhere or attaching a patch to an issue.
 
