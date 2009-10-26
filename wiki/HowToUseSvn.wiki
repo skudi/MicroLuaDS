@@ -42,16 +42,19 @@ Edit the code as you usually do, test it.
 
 To see what files were changed, use [http://svnbook.red-bean.com/en/1.5/svn.ref.svn.c.status.html svn status]:
 {{{
+cd my_working_copy
 svn status  # shortcut: svn st...
 }}}
 
 To see what changed in the files, use [http://svnbook.red-bean.com/en/1.5/svn.ref.svn.c.diff.html svn diff]:
 {{{
+cd my_working_copy
 svn diff
 }}}
 
 To see what changed in a particular file:
 {{{
+cd my_working_copy
 svn diff path/to/the/file
 }}}
 
