@@ -8,4 +8,5 @@ http://www.xaprb.com/blog/2009/07/01/how-to-add-a-wiki-homepage-sidebar-and-toc-
   * [UserLinks Links for users (gamers)]
   * [DevLinks Links for game developpers]
   * [MicroLuaDevLinks Links for MicroLua developpers]
+  * HowToContribute
   * [ExternalLinks External links]
