@@ -6,7 +6,7 @@
 
 Some will prefer to interact with our repository using a graphical interface.
 
-Thi page has to be set up. Choose a [http://subversion.tigris.org/links.html#clients Subverson client] and then start to mimic HowToUseSvn.
+This page has to be set up. Choose a [http://subversion.tigris.org/links.html#clients Subverson client] and then start to mimic HowToUseSvn.
 
 = Client 1 =
 
