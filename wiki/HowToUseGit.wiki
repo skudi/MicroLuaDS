@@ -124,6 +124,6 @@ git checkout faster_wifi
 git svn rebase
 }}}
 
-It will move your branch on top of the
+It will fetch the latest history in the remote repository and move your branch on top of the latest available code (`remotes/git-svn`).
 
 Beware not to change already published branches though.
