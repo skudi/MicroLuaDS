@@ -1,0 +1,129 @@
+#summary How to use Git.
+
+<wiki:toc />
+
+= Introduction =
+
+[http://git-scm.com/ Git] is _a free & open source, distributed version control system  designed to handle everything from small to very large projects with speed and efficiency. Every Git clone is a full-fledged repository with complete history and full revision tracking capabilities, not dependent on network access or a central server. Branching and merging are fast and easy to do._
+
+The main repository of the MicroLua project is hosted here at GoogleCode and is a Subversion one, but Git has a special subset of commands providing _bidirectional operation between a Subversion repository and git_: [http://www.kernel.org/pub/software/scm/git/docs/git-svn.html git-svn].
+
+= Details =
+
+This page will give you the basic commands to interact with our repository. If you want to use Git with a graphical interface, have a look at HowToUseGitGui.
+
+The best way to use Git on Windows seems to install [http://code.google.com/p/msysgit/ msysgit], which has a command line interface.
+
+For each git-svn command used here, you can refer to [http://www.kernel.org/pub/software/scm/git/docs/git-svn.html the official documentation].
+
+== Checkout the code and its history ==
+
+{{{
+cd /where/I/usually/work/with/microlua
+mkdir my_working_copy  # or anything else
+cd my_working_copy
+git svn clone https://microlua.googlecode.com/svn/ .
+# wait for the repository and the code to be downloaded
+}}}
+
+Waiting can be a bit long because you are downloading the whole history, not just the most recent version. 
+
+== Fetch the newest version ==
+
+{{{
+cd my_working_copy
+git svn fetch
+# wait a bit for the code to be updated in the remotes/git-svn branch
+}}}
+
+Now your `master` branch needs to be _fast-forwarded_.
+{{{
+git checkout master
+git merge remotes/git-svn
+}}}
+
+Because you changed nothing in the `master` branch of your working copy, you should not end with conflicts (see the [#Make_changes make changes section]). The merge should be a _fast-forward_ one.
+
+Note that you can do this two steps in one with `git svn rebase` (you must be in the `master` branch):
+{{{
+cd my_working_copy
+git checkout master
+git svn rebase
+}}}
+
+== Make changes ==
+
+You should never make changes to the `master` branch. As usual with git, create a topic branch with [http://www.kernel.org/pub/software/scm/git/docs/git-checkout.html git checkout] (which is more convenient than a `git branch faster_wifi` and then a `git checkout faster_wifi`):
+{{{
+git checkout -b faster_wifi
+}}}
+
+Edit the code as you usually do, test it.
+
+=== See what changed ===
+
+To see what files were changed, use [http://www.kernel.org/pub/software/scm/git/docs/git-status.html git status]:
+{{{
+cd my_working_copy
+git status  # shortcut: git st...
+}}}
+
+To see what changed in the files, use [http://www.kernel.org/pub/software/scm/git/docs/git-diff.html git diff]:
+{{{
+cd my_working_copy
+git diff
+}}}
+
+To see what changed in a particular file:
+{{{
+cd my_working_copy
+git diff path/to/the/file
+}}}
+
+=== Write a patch ===
+
+If you don't have commit access, you can publish your changes pasting a patch somewhere or attaching a patch to an issue.
+{{{
+cd my_working_copy
+git diff (path/to/the/file) > path/where/to/store/the/patch/reason_for_the_changes.diff
+}}}
+
+With Git, you can [#Commit_locally store this set of changes locally] to be able to work on another set of changes with a clean state to begin with.
+
+=== Commit locally ===
+
+Git is superior to Subversion here as you can commit locally to store and organize your changes. Maybe you will publish them, maybe not.
+
+So this is all about [http://www.kernel.org/pub/software/scm/git/docs/git-add.html git-add], [http://www.kernel.org/pub/software/scm/git/docs/git-diff.html git diff --cached] and [http://www.kernel.org/pub/software/scm/git/docs/git-commit.html git-commit], but remember to always commit in another branch than `master`. You will find thousand of tutorials about this process.
+
+=== Publish a branch ===
+
+There are several ways to publish a branch. You can use [http://github.com/ Github] or [http://gitorious.com/ Gitorious] to host a Git repository, or upload a repo to a personal server.
+
+The latter can be done like this:
+{{{
+# in your local repo
+git clone /path/to/the/repo/to/clone --bare microlua.git
+scp -r microlua.git me@ssh.example.com:/path/to/exposed/space/for/repositories
+
+# on the server example.com
+cd /path/to/exposed/space/for/repositories
+chmod +x microlua.git/hooks/post-update
+cd microlua.git
+git-update-server-info
+
+# then you can be cloned/tracked with something like
+git clone http://example.com/repositories/microlua.git/
+}}}
+
+=== Update changes to upstream source ===
+
+You can resync your topic branch with
+{{{
+git checkout faster_wifi
+git svn rebase
+}}}
+
+It will move your branch on top of the
+
+Beware not to change already published branches though.
