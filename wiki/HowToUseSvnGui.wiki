@@ -24,7 +24,7 @@ status, diff, diff file
 
 === Write a patch ==
 
-= Client 1 =
+= Client 2 =
 
 == Checkout the code ==
 
