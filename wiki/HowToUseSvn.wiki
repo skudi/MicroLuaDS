@@ -1,0 +1,64 @@
+#summary How to use Subversion.
+
+<wiki:toc />
+
+= Introduction =
+
+[http://subversion.tigris.org/ Subversion] is _An open-source revision control system, which aims to be a compelling replacement for CVS_. The main repository of the MicroLua project is hosted here at GoogleCode and is a Subversion one.
+
+= Details =
+
+This page will give you the basic commands to interact with our repository. If you want to use Subversion with a graphical interface, have a look at HowToUseSvnGui.
+
+The recommended way to use the command line interface on a Windows machine is to install [http://www.cygwin.com/ Cygwin]. See HowToUseCygwin for more details.
+
+== Checkout the code ==
+
+See [http://svnbook.red-bean.com/en/1.5/svn.ref.svn.c.checkout.html svn checkout] for more details.
+{{{
+cd /where/I/usually/work/with/microlua
+mkdir my_working_copy  # or anything else
+cd my_working_copy
+svn checkout http://microlua.googlecode.com/svn/ .  # shortcut: svn co ...
+# wait a bit for the code to be downloaded
+}}}
+
+== Fetch the newest version ==
+
+See [http://svnbook.red-bean.com/en/1.5/svn.ref.svn.c.update.html svn update] for more details.
+{{{
+cd my_working_copy
+svn update  # shortcut: svn up ...
+# wait a bit for the code to be updated
+}}}
+
+If you changed things in your working copy, you may end with conflicts.
+
+== Make changes ==
+
+Edit the code as you usually do, test it.
+
+=== See what changed ===
+
+To see what files were changed, use [http://svnbook.red-bean.com/en/1.5/svn.ref.svn.c.status.html svn status]:
+{{{
+svn status  # shortcut: svn st...
+}}}
+
+To see what changed in the files, use [http://svnbook.red-bean.com/en/1.5/svn.ref.svn.c.diff.html svn diff]:
+{{{
+svn diff
+}}}
+
+To see what changed in a particular file:
+{{{
+svn diff path/to/the/file
+}}}
+
+=== Write a patch ==
+
+If you don't have commit access, you can publish your changes pasting a patch somewhere or attaching a patch to an issue.
+
+{{{
+svn diff (path/to/the/file) > path/where/to/store/the/patch/reason_for_the_changes.diff
+}}}
