@@ -8,3 +8,7 @@
 = Tools =
 
   * MicroLuaSimulator
+
+= Tutorials =
+
+  * SoundTutorial
