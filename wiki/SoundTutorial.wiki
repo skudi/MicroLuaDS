@@ -6,70 +6,78 @@
 
 This page is directly taken from the sound tutorial of the 3.0 prerelease.
 
-= Details =
+= How to play sounds =
 
 Microlua 3 allows you to play module sounds and sound effects (SFX).
-Module supported files: MOD, XM, S3M, IT
-SFX supported files: WAV (wave files)
+  * Module supported files: MOD, XM, S3M, IT
+  * SFX supported files: WAV (wave files)
 
-You can't play these files directly with Micro Lua, you must create first a sound bank. To do this, you can use the Soundbank Maker tool included in the Micro Lua 3 package. Put all music files you want to play in the "in" directory and lauch convert.bat. The program will create 2 files : soundbank.bin and soudbank.h. The first one is the sound bank: a file which contains all mods and sfx files. The second one is not used by Micro Lua but it can help you to identify your modules and SFX with an ID.
+== Sound banks ==
 
-Example: soundbak.h
+You can't play these files directly with Micro Lua, you must first create a sound bank.
 
-#define SFX_AMBULANCE	0 // ID of he SFX ambulance
-#define SFX_BOOM	1 // ID of the SFX Boom
-#define MOD_KEYG_SUBTONAL	0 // ID of the the module Keyg Subtonal
-#define MOD_PURPLE_MOTION_INSPIRATION	1 // ID of the module Purple Motion
-#define MOD_REZ_MONDAY	2 // ID of the module Rez monday
-#define MSL_NSONGS	3
-#define MSL_NSAMPS	67
-#define MSL_BANKSIZE	70
+To do this, you can use the Soundbank Maker tool included in the Micro Lua 3 package. Put all music files you want to play in the `in` directory and lauch `convert.bat`. The program will create 2 files: `soundbank.bin` and `soundbank.h`. The first one is the sound bank: a file which contains all mods and sfx files, the second one is not used by Micro Lua but it can help you to identify your modules and SFX with their ID.
 
-These IDs are used in Micro Lua scripts to identify which sound we want to play.
+Example: soundbank.h
+{{{
+#define SFX_AMBULANCE                 0 // ID of he SFX ambulance
+#define SFX_BOOM                      1 // ID of the SFX Boom
+#define MOD_KEYG_SUBTONAL             0 // ID of the the module Keyg Subtonal
+#define MOD_PURPLE_MOTION_INSPIRATION 1 // ID of the module Purple Motion
+#define MOD_REZ_MONDAY                2 // ID of the module Rez monday
+#define MSL_NSONGS                    3
+#define MSL_NSAMPS                    67
+#define MSL_BANKSIZE                  70
+}}}
 
+== Using sound banks in a script ==
 
-The script:
+First, we must load the databank. The databank is never loaded fully in memory so the sound bank file can be very big.
 
-First, we must load the databank. The databank is never loaded fully in memory so the sound bank file can ba very big.
+To load a `soundbank.bin` file (or any other file name), you use
+{{{
+Sound.loadBank("soundbank.bin")
+}}}
 
-Sound.loadBank("soundbank.bin") -- Load the soundban.bin files, you can rename it as you want
+=== Modules ===
 
 Now, we want to play a module, for example the Purple Motion song (ID=1, see before).
-
+{{{
 Sound.loadMod(1) -- Load the module on memory
+Sound.startMod(1, PLAY_ONCE) -- Start to play the module once. We can also use PLAY_LOOP
+}}}
 
-The module is now loaded in memory, we can play it:
+You can stop, pause, resume, modify the volume level... Have look at the documentation for more details.
 
-Sound.startMod(1, PLAY_ONCE) -- Start to play the module one time. We can also use PLAY_LOOP
+Now, at the end of our script we must unload the module from memory with
+{{{
+Sound.unloadMod(1)
+}}}
 
-You can stop, pause, resume, modify volume... the module player, look at the documentation for more details.
-
-Now, in the end of our script we must to unload the module from memory:
-
-Sound.unloadMod(1) -- Unload module 1 from the memory
+=== Sound effects ===
 
 Then, playing a Sound effect (SFX) is a little different. First we need to load the effect in memory. We want to play the "Boom" (ID=1) effect:
-
-Sound.laodSFX(1) -- Load the effect in memory
+{{{
+Sound.loadSFX(1)
+}}}
 
 Now we can play it:
-
+{{{
 handle = Sound.startSFX(1) -- Start playing the effect and get a handle to this sound
+}}}
 
-The handle allow you to do some effects of the sound like changing volume. Look at the documentation and examples for more details.
+The handle allow you to do some effects of the sound like changing its volume level. Look at the documentation and examples for more details.
 
-Then, we must unload this sound from the memory at the end of the script:
+Then, we must unload this sound from the memory at the end of the script with
+{{{
+Sound.unloadSFX(1)
+}}}
 
-Sound.unloadSFX(1) -- Unload the SFX from the memory
+=== Unload the sound bank ===
 
 Finally, don't forget to unload the soundbank from the momory:
+{{{
+Sound.unloadBank()
+}}}
 
-Sound.unloadBank() -- Unload the sound bank from the memory
-
-You can now use another sound bank !
-
-
-
-
-
-
+You can now use another sound bank!
