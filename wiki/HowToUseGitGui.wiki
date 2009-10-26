@@ -1,0 +1,57 @@
+#summary How to use Git in graphical mode.
+
+<wiki:toc />
+
+= Introduction =
+
+Some will prefer to interact with our repository using a graphical interface.
+
+This page has to be set up. Choose a [http://git.or.cz/gitwiki/InterfacesFrontendsAndTools#GraphicalInterfaces Git client] and then start to mimic HowToUseGit.
+
+= Client 1 =
+
+== Checkout the code and its history ==
+
+== Fetch the newest version ==
+
+== Make changes ==
+
+Edit the code as you usually do, test it.
+
+=== See what changed ===
+
+status, diff, diff file
+
+=== Write a patch ===
+
+=== Commit locally ===
+
+=== Publish a branch ===
+
+=== Update changes to upstream source ===
+
+Beware not to change already published branches though.
+
+= Client 2 =
+
+== Checkout the code and its history ==
+
+== Fetch the newest version ==
+
+== Make changes ==
+
+Edit the code as you usually do, test it.
+
+=== See what changed ===
+
+status, diff, diff file
+
+=== Write a patch ===
+
+=== Commit locally ===
+
+=== Publish a branch ===
+
+=== Update changes to upstream source ===
+
+Beware not to change already published branches though.
