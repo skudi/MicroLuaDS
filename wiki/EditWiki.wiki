@@ -1,0 +1,9 @@
+#summary Describing the EditWiki permission.
+
+= Introduction =
+
+This permission allows some members of a GoogleCode project to _Create, edit, and delete wiki pages via web UI_.
+
+= Details =
+
+To request this permission, drop a personal message to Grahack on the [http://microlua.xooit.fr/index.php official forums].
