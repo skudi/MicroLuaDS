@@ -6,9 +6,14 @@
 
 [http://subversion.tigris.org/ Subversion] is _An open-source revision control system, which aims to be a compelling replacement for CVS_. The main repository of the MicroLua project is hosted here at GoogleCode and is a Subversion one.
 
+If you know what we are talking about and don't need details:
+{{{
+svn checkout http://microlua.googlecode.com/svn/ .
+}}}
+
 = Details =
 
-This page will give you the basic commands to interact with our repository. If you want to use Subversion with a graphical interface, have a look at HowToUseSvnGui.
+This page will give you the basic commands to interact with our repository. If you want to use Subversion with a graphical interface, have a look at HowToUseSvnGui. The common graphical client is [http://tortoisesvn.tigris.org/ TortoiseSVN].
 
 The recommended way to use the command line interface on a Windows machine is to install [http://www.cygwin.com/ Cygwin]. See HowToUseCygwin for more details.
 
