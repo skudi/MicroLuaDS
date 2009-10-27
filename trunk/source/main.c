@@ -55,6 +55,8 @@ int main()
 		ulDebug("Oops! Unhandled error!\n");
 		return 0;
 	}
+	
+	lua_close(l);
 		
 	return 0;
 }
