@@ -6,12 +6,14 @@
 
 Some will prefer to interact with our repository using a graphical interface.
 
-This page has to be set up. Choose a [http://subversion.tigris.org/links.html#clients Subverson client] and then start to mimic HowToUseSvn.
+This page is in continual progress. If none of the Subversion clients listed here suits you, choose one [http://subversion.tigris.org/links.html#clients here] and start to mimic HowToUseSvn.
 
-= Windows =
+= TortoiseSVN (Windows) =
+
 Get and install [http://tortoisesvn.net/ TortoiseSVN].
 
 == Checkout the code ==
+
  * Open the File Explorer and navigate to the work area.<br>  
    Usually 'devkitPro\microLuaDs\luads'.
  * Right click on the folder, select 'SVN Checkout'
@@ -20,6 +22,7 @@ Get and install [http://tortoisesvn.net/ TortoiseSVN].
  * Select 'HEAD Revision', click OK.
 
 == Fetch the newest version ==
+
  * Open the File Explorer and navigate to the work area.<br>  
    Usually 'devkitPro\microLuaDs\luads'.
  * Right click on the folder, select 'SVN Update'
@@ -29,11 +32,13 @@ Get and install [http://tortoisesvn.net/ TortoiseSVN].
 Edit the code as you usually do, test it.
 
 === See what changed ===
+
  * Right click on folder
  * Select 'TortoiseSVN' -> Check for Modification
  * Select 'TortoiseSVN' -> Revision
 
 === Write a patch ==
+
  * Right click on folder
  * Select 'TortoiseSVN' -> Make Patch
 
