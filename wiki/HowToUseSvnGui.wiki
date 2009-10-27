@@ -8,21 +8,34 @@ Some will prefer to interact with our repository using a graphical interface.
 
 This page has to be set up. Choose a [http://subversion.tigris.org/links.html#clients Subverson client] and then start to mimic HowToUseSvn.
 
-= Client 1 =
+= Windows =
+Get and install [http://tortoisesvn.net/ TortoiseSVN].
 
 == Checkout the code ==
+ * Open the File Explorer and navigate to the work area.<br>  
+   Usually 'devkitPro\microLuaDs\luads'.
+ * Right click on the folder, select 'SVN Checkout'
+ * Enter the URL to the SVN repository:<br>
+   http://microlua.googlecode.com/svn/trunk/
+ * Select 'HEAD Revision', click OK.
 
 == Fetch the newest version ==
+ * Open the File Explorer and navigate to the work area.<br>  
+   Usually 'devkitPro\microLuaDs\luads'.
+ * Right click on the folder, select 'SVN Update'
 
 == Make changes ==
 
 Edit the code as you usually do, test it.
 
 === See what changed ===
-
-status, diff, diff file
+ * Right click on folder
+ * Select 'TortoiseSVN' -> Check for Modification
+ * Select 'TortoiseSVN' -> Revision
 
 === Write a patch ==
+ * Right click on folder
+ * Select 'TortoiseSVN' -> Make Patch
 
 = Client 2 =
 
