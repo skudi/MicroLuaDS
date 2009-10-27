@@ -52,7 +52,8 @@ int main()
 	
 	if(lua_pcall(l,0,0,0))
 	{
-		ulDebug("Oops! Unhandled error!\n");
+		ulDebug(lua_tostring(l, -1));
+		lua_pop(l, 1)
 		return 0;
 	}
 	
