@@ -54,11 +54,11 @@ Extract the zip to a location.
  * Copy the file '\libfat20080530\nds\include\fat.h' to 'devkitPro\libnds\include'
 
 ==== MicroLua Source ====
- # I created a holding folder '\devkitPro\microLuaDs\'
- # Extract the microLua source there
- # Rename the resulting source folder 'Micro Lua DS v3.0\'(the one containing `Examples`, `Fat`...) to 'luads'
- # Copy '\devkitPro\microLuaDs\luads\img\fcsr.dldi' file to '\devkitpro\devkitarm\bin\dldi\' (make the dldi folder)
- # Use `\devkitPro\microLuaDs\luads\Compile All.bat` file to build.
+ * Create a holding folder '\devkitPro\microLuaDs\'
+ * Extract the microLua source there
+ * Rename the resulting source folder 'Micro Lua DS v3.0\'(the one containing `Examples`, `Fat`...) to 'luads'
+ * Copy '\devkitPro\microLuaDs\luads\img\fcsr.dldi' file to '\devkitpro\devkitarm\bin\dldi\' (make the dldi folder)
+ * Use `\devkitPro\microLuaDs\luads\Compile All.bat` file to build.
 
 === Notes ===
 
