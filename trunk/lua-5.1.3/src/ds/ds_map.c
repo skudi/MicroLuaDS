@@ -119,8 +119,8 @@ static int map_draw(lua_State *L){
             else decalex2 = 0;
             if(i == pixelHeight/map->tileHeight) decaley2 = map->tileHeight - resty;
             else decaley2 = 0;
-            blitTile(x+j*map->tileWidth, y+i*map->tileHeight, 
-                map->image, xx * map->tileWidth, yy * map->tileHeight, 
+            blitTile(x+j*map->tileWidth, y+i*map->tileHeight,
+                map->image, xx * map->tileWidth, yy * map->tileHeight,
                 map->tileWidth, map->tileHeight, decalex, decaley, decalex2, decaley2);
         }
     }*/
@@ -135,7 +135,7 @@ static int map_draw(lua_State *L){
             if(j != map->scrollX) spaceX = map->spaceX;
             if(i != map->scrollY) spaceY = map->spaceY;
             if(i >= 0 && i < map->height && j >= 0 && j < map->width){
-                blitTile(x+(j-map->scrollX)*(map->tileWidth+spaceX), y+(i-map->scrollY)*(map->tileHeight+spaceY), 
+                blitTile(x+(j-map->scrollX)*(map->tileWidth+spaceX), y+(i-map->scrollY)*(map->tileHeight+spaceY),
                     map->image, xx * map->tileWidth, yy * map->tileHeight,
                     map->tileWidth, map->tileHeight);
             }

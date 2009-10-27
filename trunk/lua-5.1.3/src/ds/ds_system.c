@@ -173,9 +173,6 @@ static const luaL_Reg systemlib[] = {
 ** Open infos library
 */
 LUALIB_API int luaopen_system (lua_State *L) {
-  luaL_register(L, LUA_SYSTEMLIBNAME, systemlib);
-  return 1;
+    luaL_register(L, LUA_SYSTEMLIBNAME, systemlib);
+    return 1;
 }
-
-
-

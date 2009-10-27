@@ -172,7 +172,7 @@ static int canvas_newTextFont(lua_State *L){
     char * text = (char *)luaL_checkstring(L, 3);
     int color = RGB15(31, 31, 31);
     if(lua_isnumber(L, 5)) color = (int)luaL_checknumber(L, 4);
-    UL_FONT * font = lua_touserdata(L, 5);    
+    UL_FONT * font = lua_touserdata(L, 5);
     assert(L, x1>=0, "x1 must be >= 0");
     assert(L, y1>=0, "y1 must be >= 0");
     assert(L, text != NULL, "Text can't be null");
@@ -445,7 +445,7 @@ static int canvas_draw(lua_State *L){
                 case CANVAS_TYPE_TEXT:
                     if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
                         ulSetTextColor(canvas->list[i]->color);
-                        ulDrawString(canvas->list[i]->x1+x, canvas->list[i]->y1+y, canvas->list[i]->text);                        
+                        ulDrawString(canvas->list[i]->x1+x, canvas->list[i]->y1+y, canvas->list[i]->text);
                     }
                     break;
                 // Draw TextFont
@@ -465,14 +465,14 @@ static int canvas_draw(lua_State *L){
                     }
                     break;
                 // Draw Image
-                case CANVAS_TYPE_IMAGE:                    
+                case CANVAS_TYPE_IMAGE:
                     if(canvas->list[i]->y3 != -1) ulSetImageTile(canvas->list[i]->image, canvas->list[i]->x2, canvas->list[i]->y2, canvas->list[i]->x2+canvas->list[i]->x3, canvas->list[i]->y2+canvas->list[i]->y3);
                     else{
                         if(canvas->list[i]->y2 != -1) ulSetImageTile(canvas->list[i]->image, canvas->list[i]->x2, canvas->list[i]->y2, canvas->list[i]->image->sizeX, canvas->list[i]->image->sizeY);
                     }
                     if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
                         ulDrawImageXY(canvas->list[i]->image, canvas->list[i]->x1+x+canvas->list[i]->image->centerX, canvas->list[i]->y1+y+canvas->list[i]->image->centerY);
-                        ulResetImageTile(canvas->list[i]->image);                        
+                        ulResetImageTile(canvas->list[i]->image);
                     }
                     break;
                 // Default

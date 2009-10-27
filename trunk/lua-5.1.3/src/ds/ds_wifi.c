@@ -107,7 +107,7 @@ static int wifi_receive(lua_State *L){
 		return 1;
 	}else{
 		return 0;
-	}	
+	}
 }
 
 static const luaL_Reg wifilib[] = {
@@ -127,11 +127,6 @@ static const luaL_Reg wifilib[] = {
 ** Open infos library
 */
 LUALIB_API int luaopen_wifi (lua_State *L) {
-  luaL_register(L, LUA_WIFILIBNAME, wifilib);
-  return 1;
+    luaL_register(L, LUA_WIFILIBNAME, wifilib);
+    return 1;
 }
-
-
-
-
-

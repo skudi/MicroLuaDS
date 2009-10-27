@@ -14,17 +14,16 @@
 #include <netinet/in.h>
 
 int main()
-{	
-
-	//Initialization of µlibrary
+{
+	// Initialization of µlibrary
 	ulInit(UL_INIT_ALL);
 	ulInitGfx();
 	ulInitText();
 
-	//Sucks banks C-D + drops at 30 fps
-	ulInitDualScreenMode();	
+	// Sucks banks C-D + drops at 30 fps
+	ulInitDualScreenMode();
 	
-	//Use bright pink as a transparent color
+	// Use bright pink as a transparent color
 	ulSetTransparentColor(RGB15(31, 0, 31));
 
 	//ulDebug("Starting Lua...\n");
@@ -34,7 +33,7 @@ int main()
 		ulDebug("\n\n\tFailed to create a Lua state - Push A to Exit\n");
 		return 0;
 	}
-	
+
 	luaL_openlibs(l);
 	if(!COMPILE_FOR_DS){
 		if(luaL_loadfile(l,"boot.lua.lua")){
@@ -58,7 +57,6 @@ int main()
 	}
 	
 	lua_close(l);
-		
+
 	return 0;
 }
-
