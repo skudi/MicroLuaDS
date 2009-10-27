@@ -17,7 +17,7 @@
 
 == Fan sites (French) ==
 
-  * Aurel2108: http://auetargames.e3b.org/index.php
+  * Aurel2108: http://microlua.fr.nf/
   * Quent42340: http://nanolua.fr.nf/
   * Reylak: http://www.microlua4ds.comxa.com/
   * Thermo_nono: http://sites.google.com/site/microlua/Home
@@ -32,7 +32,7 @@
 
 === English ===
 
-...
+  * http://en.wikipedia.org/wiki/Lua_(programming_language)
 
 = Other projects about interpreting Lua on an NDS =
 
