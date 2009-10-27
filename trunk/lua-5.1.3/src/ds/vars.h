@@ -2,8 +2,7 @@
 #define SCREEN_DOWN 1
 #define SCREEN_BOTH 2
 
-#define assert(l, cond, text)
-if(!(cond)){ luaL_error(l, text); return 0;}
+#define assert(l, cond, text) if(!(cond)){ luaL_error(l, text); return 0;}
 
 #define LUA_RAM  0
 #define LUA_VRAM  1
