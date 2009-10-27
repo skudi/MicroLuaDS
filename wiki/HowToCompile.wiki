@@ -54,11 +54,11 @@ Extract the zip to a location.
  * Copy the file '\libfat20080530\nds\include\fat.h' to 'devkitPro\libnds\include'
 
 ==== MicroLua Source ====
-
- * Rename the source folder (the one containing `Examples`, `Fat`...) to 'luads'
- * copy dldi file to c:\devkitpro\devkitarm\bin\dldi\
-
-Use `.bat` file to build.
+ # I created a holding folder '\devkitPro\microLuaDs\'
+ # Extract the microLua source there
+ # Rename the resulting source folder 'Micro Lua DS v3.0\'(the one containing `Examples`, `Fat`...) to 'luads'
+ # Copy '\devkitPro\microLuaDs\luads\img\fcsr.dldi' file to '\devkitpro\devkitarm\bin\dldi\' (make the dldi folder)
+ # Use `\devkitPro\microLuaDs\luads\Compile All.bat` file to build.
 
 === Notes ===
 
@@ -78,4 +78,4 @@ To do it manually:
 
 
 ==== Reference Package ====
-We should probably make a big package for win32 that contains all this stuff already done. This way newbies can get just one package to unzip and go. Such a package would be about 100Mb zipped.
+We should probably make a big package for win32 that contains all this stuff already done. This way newbies can get just one package to unzip and go. Such a package would be about 70Mb zipped.
