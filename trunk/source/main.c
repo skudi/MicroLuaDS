@@ -37,12 +37,12 @@ int main()
 	
 	luaL_openlibs(l);
 	if(!COMPILE_FOR_DS){
-		if(luaL_loadfile(l,"libs.lua")){
+		if(luaL_loadfile(l,"boot.lua.lua")){
 			ulDebug("Error Occured: Couldn't open libs.lua\n");
 			return 0;
 		}
 	}else{
-		if(luaL_loadfile(l,"/lua/libs/libs.lua")){
+		if(luaL_loadfile(l,"/lua/boot.lua")){
 			ulDebug("Error Occured: Couldn't open libs.lua\n");
 			return 0;
 		}
