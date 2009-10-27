@@ -14,7 +14,7 @@
 
 #include <ulib/ulib.h>
 
-//Stylus
+// Stylus
 
 static int controls_read(lua_State *L){
     ulReadKeys(0);
