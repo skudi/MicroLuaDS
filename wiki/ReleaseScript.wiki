@@ -1,0 +1,166 @@
+#summary Discussion page for the release script.
+
+<wiki:toc />
+
+= Introduction =
+
+A release script is meant to automate the process of bundling a .nds, Lua files, docs and utilities into an archive that will be proposed for download.
+
+= Details =
+
+== How ==
+
+Will we use an ugly .bat? Will we manage to use the main makefile (if any)?
+
+Will we send just one parameter: the version number?
+{{{
+./release_script.sh 3.1
+# or
+release_script.bat 3.1
+}}}
+
+== What ==
+
+First we could try to mimic the previous releases, but we are not forced to. This is the tree of 3.0 prerelease.
+
+{{{
+Documentation
+Examples
+lua
+microlua.ds.gba
+microlua.nds
+microlua.sc.nds
+readme.txt
+Utilities
+
+./Documentation:
+Micro Lua 3.0 documentation.doc
+Sound tutorial.doc
+
+./Examples:
+canvas
+controls
+DateTime
+debug
+fonts
+images
+maps
+Rumble
+Sound
+timers
+
+./Examples/canvas:
+image.png
+Max Images (Canvas and images).lua
+Thumbs.db
+
+./Examples/controls:
+Stylus delta, rotate and scale
+
+./Examples/controls/Stylus delta, rotate and scale:
+flag.png
+test_delta.lua
+Thumbs.db
+
+./Examples/DateTime:
+Current Time
+
+./Examples/DateTime/Current Time:
+current time.lua
+
+./Examples/debug:
+test_debug.lua
+
+./Examples/fonts:
+forte.bin
+test_fonts.lua
+
+./Examples/images:
+simple blit, stylus and keys
+sprite and keys
+
+./Examples/images/simple blit, stylus and keys:
+man.png
+test_images.lua
+Thumbs.db
+
+./Examples/images/sprite and keys:
+sprite.png
+test_sprites.lua
+
+./Examples/maps:
+map.map
+test_map.lua
+tiles.png
+
+./Examples/Rumble:
+Rumble.lua
+
+./Examples/Sound:
+Mods and SFX.lua
+not useful
+soundbank.bin
+
+./Examples/Sound/not useful:
+Ambulance.wav
+Boom.wav
+keyg-subtonal.xm
+purple_motion-inspiration.s3m
+rez-monday.mod
+soundbank.h
+
+./Examples/timers:
+test_timers.lua
+
+./lua:
+libs
+scripts
+
+./lua/libs:
+ini.lua
+libs.lua
+shell.ini
+shell.lua
+
+./lua/scripts:
+
+./Utilities:
+GBA Graphics to Micro Lua Map Converter.zip
+Lua compiler.zip
+no$gba Tester.zip
+OSLfonts.zip
+Soundbank Maker.zip
+UTILITIES.TXT
+}}}
+
+=== .nds ===
+
+This is just a basic copy, nothing hard. But there is also a `_fs.nds`, a `.ds.gba` and a `.sc.nds`. I guess it's for the no$gba tester and for the different types of linkers (those using the gba slot, and SuperCard ones). What should we do?
+
+=== readme ==
+
+The released `readme` in not the sources. There is one but it's different. We have to decide how to handle this.
+
+=== Documentation ===
+
+Since the content of this directory is now in the wiki (ApiThreeDotZero and SoundTutorial), we just have to find a way to convert the relevant `.wiki` pages to html and/or pdf.
+
+Suggestions:
+  * http://moinmo.in/MoinDump
+  * Building a simple bot or using wget in a smart way to use the `?show=content` suffix (try yourself to add this to the url of the page you are now reading: http://code.google.com/p/microlua/wiki/ReleaseScript?show=content).
+
+Now what pages? It could be the entire wiki, or it could be a selection. The version parameter to the release script will help us: 3.0 can easily be converted to ThreeDotZero and so on. We ca also include all pages that end with `Tutorial`.
+
+Don't forget translations.
+
+=== Examples ===
+
+A simple copy. This could go into `/lua/scripts`, or not. We could also add another directory to differentiate _examples_ and really usable _scripts_, and a subdir for the version (using the parameter), like `/lua/microlua-3.0/examples`. This would ease the update process.
+
+=== lua ===
+
+A simple copy. We could also add a subdir for the version (using the parameter), like `/lua/microlua-3.0/libs`.
+
+=== utilities ===
+
+A simple copy.
