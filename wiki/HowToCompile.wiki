@@ -30,37 +30,53 @@ First download everything here and then follow the instructions below.
 Start with DevKitPro.  You may use the web installer from the website, or our copy here.
 This package is the compiler and binary tools for compiling ARM source code.
 Recommend to install to 'c:\devkitpro'. Just don't use spaces in any folder names.
+Hereafter we refer to your devkitpro install folder as simply '\devkitpro'.
+
 
 ==== DevARM-`r24` ====
 
 Initially MicroLua v3.0 requires to backdate the DevARM library.
-This is the ARM 7/9 hardware library.  Rename or delete the DevKitPro `DevArm` folder, then unpack this package into 'c:\devkitpro'.
+This is the ARM 7/9 hardware library.  Rename or delete the DevKitPro `DevArm` folder, then unpack this package into '\devkitpro'.
 
 ==== PAlib ====
 
-PAlib is a Nintendo DS hardware library.  This library provides access most of the features of the DS. Install PAlib into 'c:\devkitpro'.
+PAlib is a Nintendo DS hardware library.  This library provides access most of the features of the DS. 
+
+ * Install PAlib into '\devkitpro'
+ * cd to '\devkitpro\PAlib\lib'
+ * Run 'build.bat'
 
 ==== uLibrary ====
 
 uLibrary is a lib for low level 'OS' like stuff for ARM processors.
-This is built next.  Unpack to 'c:\devkitpro'.
+This is built next.
+  
+ * Create a holding folder '\devkitpro\microLuaDs\'
+ * Unpack to '\devkitpro\microLuads\'.
+ * cd to '\devkitpro\microLuaDs\uLibrary-1.12\Source\'
+ * Run 'build.bat'
+ * Run 'Install.bat'
+ * cd .. to '\devkitpro\microLuaDs\uLibrary-1.12\'
+ * Run 'Install.bat' here also (yes they do 2 different tasks)!
 
 ==== fatlib ====
 
-This has to be backdated.  use the version listed above, 20080530.
+This has to be backdated.  Use the version listed above, 20080530.
 Extract the zip to a location.  
 
- * Copy the file '\libfat20080530\nds\lib\libfat.a' to 'devkitPro\libnds\lib'
- * Copy the file '\libfat20080530\nds\include\fat.h' to 'devkitPro\libnds\include'
+ * Copy the file '\libfat20080530\nds\lib\libfat.a' to '\devkitpro\libnds\lib'
+ * Copy the file '\libfat20080530\nds\include\fat.h' to '\devkitpro\libnds\include'
 
 ==== MicroLua Source ====
- * Create a holding folder '\devkitPro\microLuaDs\'
- * Extract the microLua source there
+ * Extract the microLua source to folder '\devkitpro\microLuaDs\'
  * Rename the resulting source folder 'Micro Lua DS v3.0\'(the one containing `Examples`, `Fat`...) to 'luads'
- * Copy '\devkitPro\microLuaDs\luads\img\fcsr.dldi' file to '\devkitpro\devkitarm\bin\dldi\' (make the dldi folder)
- * Use `\devkitPro\microLuaDs\luads\Compile All.bat` file to build.
+ * Copy '\devkitpro\microLuaDs\luads\img\fcsr.dldi' file to '\devkitpro\devkitarm\bin\dldi\' (make the dldi folder)
+ * Use `\devkitpro\microLuaDs\luads\Compile All.bat` file to build.
 
 === Notes ===
+
+==== Libs ====
+Once the DevKitPro, DevARM-`r24`, PAlib, uLibrary and fatlib are setup you don't have to recompile those unless one of these components is updated.  The setup is complete.
 
 ==== Environment variables ====
 DevKitPro uses 2 environment variables.
