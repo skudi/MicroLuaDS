@@ -51,12 +51,11 @@ PAlib is a Nintendo DS hardware library.  This library provides access most of t
 uLibrary is a lib for low level 'OS' like stuff for ARM processors.
 This is built next.
   
- * Create a holding folder '\devkitpro\microLuaDs\'
- * Unpack to '\devkitpro\microLuads\'.
- * cd to '\devkitpro\microLuaDs\uLibrary-1.12\Source\'
+ * Unpack to '\devkitpro\'
+ * cd to '\devkitpro\uLibrary-1.12\Source\'
  * Run 'build.bat'
  * Run 'Install.bat'
- * cd .. to '\devkitpro\microLuaDs\uLibrary-1.12\'
+ * cd .. to '\devkitpro\uLibrary-1.12\'
  * Run 'Install.bat' here also (yes they do 2 different tasks)!
 
 ==== fatlib ====
@@ -68,10 +67,34 @@ Extract the zip to a location.
  * Copy the file '\libfat20080530\nds\include\fat.h' to '\devkitpro\libnds\include'
 
 ==== MicroLua Source ====
- * Extract the microLua source to folder '\devkitpro\microLuaDs\'
+ * Extract the microLua source to folder '\devkitpro\'
  * Rename the resulting source folder 'Micro Lua DS v3.0\'(the one containing `Examples`, `Fat`...) to 'luads'
- * Copy '\devkitpro\microLuaDs\luads\img\fcsr.dldi' file to '\devkitpro\devkitarm\bin\dldi\' (make the dldi folder)
- * Use `\devkitpro\microLuaDs\luads\Compile All.bat` file to build.
+ * Copy '\devkitpro\luads\img\fcsr.dldi' file to '\devkitpro\devkitarm\bin\dldi\' (make the dldi folder)
+ * Use `\devkitpro\luads\Compile All.bat` file to build.
+
+=== Folders ===
+{{{
+\devkitPro
+	\devkitARM
+	\examples
+	\insight
+	\libfat20080530
+	\libgba
+	\libmirko
+	\libnds
+	\luads
+		\Examples
+		\Fat
+		\img
+		\lua-5.1.3
+		\source
+		\Utilities
+	\msys
+	\Other Libs
+	\PAlib
+	\Programmers Notepad
+	\uLibrary-1.12
+}}}
 
 === Notes ===
 
