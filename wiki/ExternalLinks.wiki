@@ -1,6 +1,8 @@
 #summary List of external links about Micro Lua.
 #labels Featured
 
+<wiki:toc />
+
 = Official links =
 
 == Micro Lua ==
