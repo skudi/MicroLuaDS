@@ -1,9 +1,11 @@
+#summary Basic steps for using MicroLua.
+
 = How to install MicroLua on your linker =
 
-  # Take the latest version of MicroLua and extract it ([http://code.google.compmicroluadownloads/list mirror]).
-    * Copy the lua folder and the correct .nds or .gba.
-    * Paste them on your linker(the lua folder must be at the root of your linker!)
-    * You can paste the lua scripts where you want, but the default directory when you launch microlua.nds is lua/script.So it will be easier to put the scripts in it.
+  # Take the [http://code.google.compmicroluadownloads/list latest version] of MicroLua and extract it.
+    * Copy the `lua` folder and the correct `.nds` or `.gba` file.
+    * Paste them on your linker (the `lua` folder must be at the root of your linker!).
+    * You can paste the Lua scripts where you want, but the default directory when you launch _microlua.nds_ is `/lua/script`, so it will be easier to put the scripts in it.
   # Power on your DS:
-    * Launch microLua.nds
-    * You can navigate in your linker's files and launch the lua scripts(A button).
+    * Launch _microLua.nds_.
+    * You can browse your linker and launch a Lua script (A button). Have a look at MicroLuaProjects to find one.
