@@ -9,6 +9,8 @@
 If you know what we are talking about and don't need details:
 {{{
 svn checkout http://microlua.googlecode.com/svn/ .
+# or better if you have the `Commit` permission
+svn checkout https://microlua.googlecode.com/svn/ .
 }}}
 
 = Details =
@@ -25,6 +27,8 @@ cd /where/I/usually/work/with/microlua
 mkdir my_working_copy  # or anything else
 cd my_working_copy
 svn checkout http://microlua.googlecode.com/svn/ .  # shortcut: svn co ...
+# or better if you have the `Commit` permission:
+svn checkout https://microlua.googlecode.com/svn/ .
 # wait a bit for the code to be downloaded
 }}}
 
@@ -70,3 +74,14 @@ If you don't have commit access, you can publish your changes pasting a patch so
 {{{
 svn diff (path/to/the/file) > path/where/to/store/the/patch/reason_for_the_changes.diff
 }}}
+
+=== Commit ===
+
+To commit code, use [http://svnbook.red-bean.com/en/1.1/re06.html svn commit].
+
+You'll need the Commit permission, ask Grahack if you want it.
+
+Here we feel the superiority of [HowToUseGit Git] which can commit only some changes among others, but in the same file. You'll have real pleasure using `git add -p` for this.
+Subversion cannot differentiate multiple changes in one same file.
+
+*NOTE*: Even if you have the Commit permission and typed the right password, you won't be able to authenticate if you checked out from `http` and not `https`.
