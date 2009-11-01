@@ -5,9 +5,8 @@
 
 == Micro Lua ==
 
-  * Site web officiel (ayant besoin d'une mise à jour): http://microlua.risike.com/
-  * Forum officiel (surtout en français avec une section anglaise): http://microlua.xooit.fr/
-
+  * Site web officiel (ayant besoin d'une mise à jour) : http://microlua.risike.com/
+  * Forum officiel (surtout en français avec une section anglaise) : http://microlua.xooit.fr/
 
 == Lua ==
 
@@ -18,16 +17,25 @@
 
 == Fan sites (en français) ==
 
-  * Aurel2108: http://auetargames.e3b.org/index.php
-  * Quent42340: http://sites.google.com/site/crazycollecmicrolua/
-  * Reylak: http://www.microlua4ds.comxa.com/
-  * Thermo_nono: http://sites.google.com/site/microlua/Home
+  * Aurel2108 : http://auetargames.e3b.org/index.php
+  * Quent42340 : http://sites.google.com/site/crazycollecmicrolua/
+  * Reylak: http ://www.microlua4ds.comxa.com/
+  * Thermo_nono : http://sites.google.com/site/microlua/Home
 
 == Divers, articles, news ==
 
+=== Français ===
+
   * http://fr.wikipedia.org/wiki/Lua
+  * http://fr.wikipedia.org/wiki/Micro_Lua_DS
+  * Annonce de Micro Lua DS v1.01 beta : http://www.xtreamlua.com/modules.php?name=News&file=article&sid=418
+  * Tutoriel sur "Le Site du Zér0" : http://www.siteduzero.com/tutoriel-3-174318-programmez-sur-votre-ds-avec-microlua.html
+
+=== Anglais ===
+
+  ...
 
 = Autres projets concernant Lua sur la NDS =
 
-  * Nano Lua: http://nanolua.fr.nf/
-  * DSLua: http://www.dslua.com/
+  * Nano Lua : http://nanolua.fr.nf/
+  * DSLua : http://www.dslua.com/
