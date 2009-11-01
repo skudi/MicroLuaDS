@@ -29,7 +29,7 @@
   * http://fr.wikipedia.org/wiki/Lua
   * http://fr.wikipedia.org/wiki/Micro_Lua_DS
   * Annonce de Micro Lua DS v1.01 beta : http://www.xtreamlua.com/modules.php?name=News&file=article&sid=418
-  * Tutoriel sur "Le Site du Zér0" : http://www.siteduzero.com/tutoriel-3-174318-programmez-sur-votre-ds-avec-microlua.html
+  * Tutoriel sur "Le Site du Zéro" : http://www.siteduzero.com/tutoriel-3-174318-programmez-sur-votre-ds-avec-microlua.html
 
 === Anglais ===
 
