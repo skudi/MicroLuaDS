@@ -12,17 +12,17 @@ Be aware that what you will read here may be defined in the Lua libraries (_libs
 
 == Variables ==
 
-`MICROLUA_VERSION` (_libs_): version of Micro Lua (String)
+`MICROLUA_VERSION` (_libs_): version of Micro Lua (String).
 
-`SCREEN_WIDTH, SCREEN_HEIGHT` (_libs_): width and height of the screens
+`SCREEN_WIDTH, SCREEN_HEIGHT` (_libs_): width and height of the screens.
 
-`NB_FPS` (_?_): number of frame per second automatically updated each second. You can display it with a screen.print between screen.startDrawing() and screen.stopDrawing(). Don’t display it in the debug console
+`NB_FPS` (_?_): number of frame per second automatically updated each second. You can display it with a `screen.print()` between `screen.startDrawing()` and `screen.stopDrawing()`. Don’t display it in the debug console.
 
-`SCREEN_UP, SCREEN_DOWN` (_libs_): screen number where to draw. See examples for more details
+`SCREEN_UP`, `SCREEN_DOWN` (_libs_): screen number where to draw. See examples for more details.
 
-`RAM and VRAM` (_libs_): destination where to load some object. See examples for more details
+`RAM` and `VRAM` (_libs_): destination where to load some object. See examples for more details.
 
-`ATTR_X1, ATTR_Y1, ATTR_X2, ATTR_Y1, ATTR_X3, ATTR_Y3, ATTR_COLOR, ATTR_COLOR1, ATTR_COLOR2, ATTR_COLOR3, ATTR_COLOR4, ATTR_TEXT, ATTR_VISIBLE, ATTR_FONT, ATTR_IMAGE` (_libs_): attributes used in canvas
+`ATTR_X1`, `ATTR_Y1`, `ATTR_X2`, `ATTR_Y1`, `ATTR_X3`, `ATTR_Y3`, `ATTR_COLOR`, `ATTR_COLOR1`, `ATTR_COLOR2`, `ATTR_COLOR3`, `ATTR_COLOR4`, `ATTR_TEXT`, `ATTR_VISIBLE`, `ATTR_FONT`, `ATTR_IMAGE` (_libs_): attributes used in canvas.
 
 <wiki:comment>not documented: PLAY_LOOP, PLAY_ONCE, mustCountFPS</wiki:comment>
 
@@ -34,7 +34,7 @@ Be aware that what you will read here may be defined in the Lua libraries (_libs
 
 Refresh the screen.
 
-`Void startDrawing() & stopDrawing()` (_libs_, _deprecated_)
+`Void startDrawing()` & `Void stopDrawing()` (_libs_, _deprecated_)
 
 All your drawing instructions must be between these two functions.
 
@@ -45,7 +45,7 @@ Switch the screens.
 `Void screen.print(screen, x, y, text [, color])` (_nds_)
 
 Print a text on the screen.
-*screen* (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
+*screen* (Number): screen where to draw (`SCREEN_UP` or `SCREEN_DOWN`)
 *x* (Number): x-coordinate where to draw
 *y* (Number): y-coordinate where to draw
 *text* (String): text to print
@@ -53,8 +53,8 @@ Print a text on the screen.
 
 `Void screen.printFont(screen, x, y, text , color, font)` (_nds_)
 
-Print a text on the screen.
-*screen* (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
+Print a text on the screen using a special font.
+*screen* (Number): screen where to draw (`SCREEN_UP` or `SCREEN_DOWN`)
 *x* (Number): x-coordinate where to draw
 *y* (Number): y-coordinate where to draw
 *text* (String): text to print
@@ -64,7 +64,7 @@ Print a text on the screen.
 `Void screen.blit(screen, x, y, image, [, sourcex, sourcey] [, width, height])` (_nds_)
 
 Blit an image on the screen.
-*screen* (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
+*screen* (Number): screen where to draw (`SCREEN_UP` or `SCREEN_DOWN`)
 *x* (Number): x-coordinate where to draw
 *y* (Number): y-coordinate where to draw
 *image* (Image): image to blit
@@ -74,57 +74,57 @@ width, height (Number): width and height of the rectangle to draw
 `Void screen.drawLine(screen, x0, y0, x1, y1, color)` (_nds_)
 
 Draw a line on the screen.
-*screen* (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
-x0, y0, x1, y1 (Number): coordinates of the line
+*screen* (Number): screen where to draw (`SCREEN_UP` or `SCREEN_DOWN`)
+*x0*, *y0*, *x1*, *y1* (Number): coordinates of the line
 *color* (Color): color of the line
 
 `Void screen.drawRect(screen, x0, y0, x1, y1, color)` (_nds_)
 
 Draw a rectangle on the screen.
-*screen* (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
-x0, y0, x1, y1 (Number): coordinates of the rectangle
+*screen* (Number): screen where to draw (`SCREEN_UP` or `SCREEN_DOWN`)
+*x0*, *y0*, *x1*, *y1* (Number): coordinates of the rectangle
 *color* (Color): color of the rectangle
 
 `Void screen.drawFillRect(screen, x0, y0, x1, y1, color)` (_nds_)
 
 Draw a fill rectangle on the screen.
-*screen* (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
-x0, y0, x1, y1 (Number): coordinates of the rectangle
+*screen* (Number): screen where to draw (`SCREEN_UP` or `SCREEN_DOWN`)
+*x0*, *y0*, *x1*, *y1* (Number): coordinates of the rectangle
 *color* (Color): color of the rectangle
 
 `Void screen.drawGradientRect(screen, x0, y0, x1, y1, color1, color2, color3, color4)` (_nds_)
 
 Draw a gradient rectangle on the screen.
-*screen* (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
-x0, y0, x1, y1 (Number): coordinates of the rectangle
+*screen* (Number): screen where to draw (`SCREEN_UP` or `SCREEN_DOWN`)
+*x0*, *y0*, *x1*, *y1* (Number): coordinates of the rectangle
 color1, color2, color3, color4 (Color): colors of the rectangle
 
 `Void screen.drawTextBox(screen, x0, y0, x1, y1, text [, color])` (_nds_)
 
 Draw a text box on the screen.
-*screen* (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
-x0, y0, x1, y1 (Number): coordinates of the text box
+*screen* (Number): screen where to draw (`SCREEN_UP` or `SCREEN_DOWN`)
+*x0*, *y0*, *x1*, *y1* (Number): coordinates of the text box
 *text* (String): text to print
 *color* (Color): color of the text box
 
 <wiki:comment>not documented: screen.init, screen_getMainLcd, screen_startDrawing2D, screen_endDrawing, screen_waitForVBL, screen.setSpaceBetweenScreens</wiki:comment>
 
-== Colors ==
+=== Colors ===
 
 `Color Color.new(r, g, b)` (_nds_)
 
 Create a new color.
-*r* (Number): red mask
-*g* (Number): green mask
-*b* (Number): blue mask
+*r* (Number): red mask (from 0 to 31)
+*g* (Number): green mask (from 0 to 31)
+*b* (Number): blue mask (from 0 to 31)
 
-== Controls ==
+=== Controls ===
 
 `Void Controls.read()` (_libs_)
 
 Read the controls and update all control structures.
 
-=== Stylus ===
+==== Stylus ====
 
 These are numbers or booleans. Everything here is defined in the _libs_.
 
@@ -144,20 +144,20 @@ These are numbers or booleans. Everything here is defined in the _libs_.
 
 `Stylus.newPress`: `true` if stylus do a new press
 
-=== Keys ===
+==== Keys ====
 
 These are booleans. Everything here is defined in the _libs_.
 
 (`[KEY]` can take the following values :
-`A B X Y L Start Select Up Down Left Right`)
+`A`, `B`, `X`, `Y`, `L`, `Start`, `Select`, `Up`, `Down`, `Left`, `Right`)
 
-`Keys.held.[KEY]`: is the key held
+`Keys.held.[KEY]`: is the key held?
 
-`Keys.released.[KEY]`: is the key released
+`Keys.released.[KEY]`: is the key released?
 
-`Keys.newPress.[KEY]`: `true` if key do a new press
+`Keys.newPress.[KEY]`: `true` if the key does a new press
 
-== Images ==
+=== Images ===
 
 `Image Image.load(path, destination)` (_nds_)
 
@@ -168,10 +168,13 @@ Create a new image in memory from an image file (PNG, JPG or GIF).
 `Void Image.destroy(image)` (_nds_)
 
 Destroy the image.
-To completely destroy an image, do :
+*image* (Image): image to destroy
+
+To completely destroy an image, do:
+{{{
 myImage:destroy()
 myImage = nil
-*image* (Image): image to destroy
+}}}
 
 `Number Image.width(image)` (_nds_)
 
@@ -222,7 +225,9 @@ Set the tint of the image.
 *image* (Image): image to tint
 *color* (Color): color of the image
 
-== Millisecond Timers ==
+=== Timers ===
+
+The unit is the millisecond.
 
 `Timer Timer.new()` (_libs_)
 
@@ -244,7 +249,7 @@ Stop a timer.
 
 Reset a timer.
 
-== Sprites ==
+=== Sprites ===
 
 `Sprite Sprite.new(path, frameWidth, frameHeight, dest)` (_libs_)
 
@@ -257,7 +262,7 @@ Create a sprite from an image file.
 `Void sprite:drawFrame(screen, x, y, nbFrame)` (_libs_)
 
 Draw a frame of the sprite.
-*screen* (Number): screen (SCREEN_UP or SCREEN_DOWN)
+*screen* (Number): screen (`SCREEN_UP` or `SCREEN_DOWN`)
 *x* (Number): X-coordinate where to draw the frame
 *y* (Number): Y-coordinate where to draw the frame
 *nbFrame* (Number): number of the frame to draw
@@ -271,7 +276,7 @@ Create an animation.
 `Void sprite:playAnimation(screen, x, y, nbAnim)` (_libs_)
 
 Play an animation on the screen.
-*screen* (Number): screen (SCREEN_UP or SCREEN_DOWN)
+*screen* (Number): screen (`SCREEN_UP` or `SCREEN_DOWN`)
 *x* (Number): X-coordinate where to draw the frame
 *y* (Number): Y-coordinate where to draw the frame
 *nbAnim* (Number): number of the animation to play
@@ -298,7 +303,7 @@ Return `true` if the animation has drawn the last frame.
 
 <wiki:comment>not documented: SpriteAnimation</wiki:comment>
 
-== Debug ==
+=== Debug ===
 
 `Void Debug.ON()` (_libs_)
 
@@ -324,7 +329,7 @@ Set the debug text color.
 
 <wiki:comment>not documented: isDebugOn, debugText, debugColor</wiki:comment>
 
-== System ==
+=== System ===
 
 `String System.currentDirectory()` (_libs_)
 
@@ -355,9 +360,10 @@ Create a new directory.
 
 List all files and folders of a directory.
 *path* (String): path of the directory to list
-(See examples for more details)
 
-== Fonts ==
+*NOTE*: See examples for more details.
+
+=== Fonts ===
 
 `Font Font.load(path)` (_nds_)
 
@@ -387,7 +393,7 @@ Get the width of a text with a specific font.
 
 <wiki:comment>not documented: destroy</wiki:comment>
 
-== Maps ==
+=== Maps ===
 
 `Map Map.new(image, mapfile, width, height, tileWidth, tileHeight)` (_nds_)
 
@@ -407,7 +413,7 @@ Destroy a map.
 `Void Map.draw(screen, map, x, y, width, height)` (_nds_)
 
 Draw a map.
-*screen* (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
+*screen* (Number): screen where to draw (`SCREEN_UP` or `SCREEN_DOWN`)
 *map* (Map): map to destroy
 *x* (Number): x-coordinate where to draw the map
 *y* (Number): y-coordinate where to draw the map
@@ -443,7 +449,7 @@ Get a tile value.
 *x* (Number): x-coordinate of the tile to get
 *y* (Number): y-coordinate of the tile to get
 
-== Scroll Maps ==
+=== Scroll Maps ===
 
 `ScrollMap ScrollMap.new(image, mapfile, width, height, tileWidth, tileHeight)` (_nds_)
 
@@ -473,7 +479,7 @@ Scroll a ScrollMap.
 
 <wiki:comment>not documented: setTile, getTile</wiki:comment>
 
-== Canvas ==
+=== Canvas ===
 
 `Canvas Canvas.new()` (_nds_)
 
@@ -552,7 +558,7 @@ Add a CanvasObject in a canvas.
 `Void Canvas.draw(screen, canvas, x, y)` (_nds_)
 
 Draw a canvas to the screen.
-*screen* (Number): screen where to draw (SCREEN_UP or SCREEN_DOWN)
+*screen* (Number): screen where to draw (`SCREEN_UP` or `SCREEN_DOWN`)
 *canvas* (Canvas): canvas to draw
 *x* (Number): x-coordinate where to draw
 *y* (Number): y-coordinate where to draw
@@ -570,7 +576,7 @@ Get an attribute value. Return type depends of the attribute (number, font or im
 *object* (CanvasObject): object to use
 *attName* (Constant): attribute to get value. Must be ATTR_XXX. See “some useful variables” for more details
 
-== Rumble ==
+=== Rumble ===
 
 `Boolean Rumble.isInserted()` (_nds_)
 
@@ -581,7 +587,7 @@ Check if a rumble pack is inserted.
 Set the rumble status.
 *status* (Boolean): status of the rumble (`true`: ON, `false`: OFF)
 
-== Motion ==
+=== Motion ===
 
 `Boolean Motion.init` (_nds_)
 
@@ -623,7 +629,7 @@ Read the gyro value of the motion.
 
 Read the rotation value of the motion.
 
-== DateTime ==
+=== DateTime ===
 
 This should be DEPRECATED soon, as there is the `os.date()` basic Lua function.
 
@@ -635,9 +641,11 @@ Create a new DateTime object.
 
 Create a new DateTime object with current time values.
 *Attributes* (numbers):
-year, month, day, hour, minute, second (_libs_)
+`year`, `month`, `day`, `hour`, `minute`, `second`
 
-== Wifi ==
+*NOTE*: See examples for more details.
+
+=== Wifi ===
 
 `Void Wifi.connectWFC()` (_nds_)
 
@@ -676,9 +684,9 @@ Receive data from a server using a socket.
 *socket* (Socket): Socket to use
 *length* (Number): size of the data to receive
 
-== Sound ==
+=== Sound ===
 
-=== Sound banks ===
+==== Sound banks ====
 
 `Void Sound.loadBank(filename)` (_nds_)
 
@@ -689,7 +697,7 @@ Load a soundbank from a file in memory.
 
 Unload the sound bank from the memory.
 
-=== Mods ===
+==== Mods ====
 
 `Void Sound.loadMod(id)` (_nds_)
 
@@ -705,7 +713,7 @@ Unload a module from the memory.
 
 Start playing a module already loaded in memory.
 *id* (Number): id of the module to play
-*playmode* (Number): playing mode (PLAY_ONCE or PLAY_LOOP)
+*playmode* (Number): playing mode (`PLAY_ONCE` or `PLAY_LOOP`)
 
 `Void Sound.pause()` (_nds_)
 
@@ -753,7 +761,7 @@ Set the tempo of the module player.
 Set the pitch of the module player.
 *pitch* (Number): new pitch value
 
-=== SFX ===
+==== SFX ====
 
 `Void Sound.loadSFX(id)` (_nds_)
 
@@ -808,7 +816,7 @@ Set the scaling pitch ratio of a playing SFX.
 *handle* (Handle): handle of a SFX, given by the startSFX function
 *scale* (Number): new scale pitch value
 
-== INI Files ==
+=== INI Files ===
 
 `Table INI.load(filename)` (_libs_)
 
@@ -834,7 +842,7 @@ tab = INI.load(“myfile.ini”)
 tab[“infos”][“name”] = “tata”
 INI.save(“myfile.ini”, tab)
 }}}
-This exemple change the line `name=toto` into `name=tata`.
+This exemple changes the line `name=toto` into `name=tata`.
 
 These tables can only contains Strings!!!
-If you want to store integers convert them with the `tostring` function!
+If you want to store integers convert them with the `tostring()` function!
