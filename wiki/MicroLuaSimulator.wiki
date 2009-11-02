@@ -1,0 +1,66 @@
+#summary Test your scripts without an NDS
+
+= Introduction =
+
+MicroLuaSimulator (or abbreviate _MLS_) is a very useful utility for MicroLua developers created by a member of our community, _Ced-le-pingouin_. It allows you to test your lua scripts for NDS directly on your computer.
+MicroLaSimulator also have a debug console!
+
+= Download =
+
+A good point is that you can use MicroLuaSimulator on Windows, Linux, and Mac OS X:
+  * Windows: http://www.cedlepingouin.com/mls/files/mls-0.4beta2-win.zip
+  * Linux: http://www.cedlepingouin.com/mls/files/mls-0.4beta2-linux.zip
+  * Mac OS X: http://www.cedlepingouin.com/mls/files/mls-0.4beta2-mac.zip
+  * Source: http://www.cedlepingouin.com/mls/files/mls-0.4beta2-src.zip
+
+The current version is _0.4 Beta2_.
+
+= Details =
+
+Launch _mls.exe_. In the taskbar, chose `file` and next `open`, you can browse your files and open lua scripts.
+
+=== Buttons ===
+
+Here is a comparative list between DS and keyboard button :
+
+|| *DS* || *Keyboard* ||
+|| Up || I or 8 ||
+|| Down || K or 5 or 2 ||
+|| Left || J or 4 ||
+|| Right || L or 6 ||
+|| A || D ||
+|| B || X ||
+|| X || E ||
+|| Y || S ||
+|| L  || A or R ||
+|| R  || Z or T ||
+|| START || Q or F ||
+|| SELECT || W or V ||
+|| Stylus || Mouse ||
+
+=== Shortcuts ===
+You can use some shortcuts in MicroLuaSimulator :
+
+|| *Shortcut* || *Effect* ||
+|| Ctrl+O || Open a script ||
+|| P || Pause the script ||
+|| B || Restart the script ||
+|| C || Show/Display the console ||
+|| DEL || Clear the console ||
+|| F1 || Reduce FPS ||
+|| F2 || increase FPS ||
+|| F3 || Reduce UPS ||
+|| F4 || increase UPS ||
+|| F5 || increase the log level ||
+|| Ctrl+Q || Quit MLS ||
+
+_Ctrl key_ is remplaced by _Command key_ ("Apple") on Mac OS X.
+
+=== Path ===
+The `.ini` and `.txt` files are load from the mls executable folder, but the images are load from the script folder. So, be carrefull to place the files in the right place.
+
+
+= Links =
+Changelogs:
+  * In english: http://microlua.xooit.fr/t180-Micro-Lua-Simulator.htm
+  * In french: http://microlua.xooit.fr/t179-Micro-Lua-Simulator.htm
