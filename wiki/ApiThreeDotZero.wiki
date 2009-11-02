@@ -63,8 +63,8 @@ Blit an image on the screen.
   * *x* (Number): x-coordinate where to draw
   * *y* (Number): y-coordinate where to draw
   * *image* (Image): image to blit
-sourcex, sourcey (Number): coordinates in the source image to draw
-width, height (Number): width and height of the rectangle to draw
+  * *sourcex*, *sourcey* (Number): coordinates in the source image to draw
+  * *width*, *height* (Number): width and height of the rectangle to draw
 
 *`Void screen.drawLine(screen, x0, y0, x1, y1, color)`* (_nds_)
 
@@ -92,7 +92,7 @@ Draw a fill rectangle on the screen.
 Draw a gradient rectangle on the screen.
   * *screen* (Number): screen where to draw (`SCREEN_UP` or `SCREEN_DOWN`)
   * *x0*, *y0*, *x1*, *y1* (Number): coordinates of the rectangle
-color1, color2, color3, color4 (Color): colors of the rectangle
+  * *color1*, *color2*, *color3*, *color4* (Color): colors of the rectangle
 
 *`Void screen.drawTextBox(screen, x0, y0, x1, y1, text [, color])`* (_nds_)
 
@@ -513,7 +513,7 @@ Create a new fill rectangle.
 
 Create a new gradient rectangle.
   * *x1*, *y1*, *x2*, *y2* (Number): coordinates of the rectangle
-color1, color2, color3, color4 (Color): colors of the fill rectangle
+  * *color1*, *color2*, *color3*, *color4* (Color): colors of the fill rectangle
 
 *`CanvasObject Canvas.newText(x1, y1, text [, color])`* (_nds_)
 
