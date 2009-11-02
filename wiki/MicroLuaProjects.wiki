@@ -20,8 +20,8 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * MicroDemineurDs (Minesweeper)
   * PingPong
   * PlusOuMoins (More or Less)
-  * PpcDs (Pierre-Papier-Ciseaux / Rock-Paper-Scissors)
   * PokemonMiniGame
+  * PpcDs (Pierre-Papier-Ciseaux / Rock-Paper-Scissors)
   * SeaquestRemake
   * SpaceshipProject
   * StargateUniversDs
