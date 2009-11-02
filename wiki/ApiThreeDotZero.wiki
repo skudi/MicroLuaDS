@@ -476,10 +476,10 @@ Scroll a ScrollMap.
 
 Change a tile value.
 
-    * scrollmap (ScrollMap): ScrollMap to modify
-    * x (Number): x-coordinate of the tile to change in the scrollmap table
-    * y (Number): y-coordinate of the tile to change in the scrollmap table
-    * tile (Number): new tile value 
+    * *scrollmap* (ScrollMap): ScrollMap to modify
+    * *x* (Number): x-coordinate of the tile to change in the scrollmap table
+    * *y* (Number): y-coordinate of the tile to change in the scrollmap table
+    * *tile* (Number): new tile value 
 
 *`Number ScrollMap.getTile(scrollmap, x, y)`* (_nds_)
 
