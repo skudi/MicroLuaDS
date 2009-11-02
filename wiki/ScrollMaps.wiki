@@ -1,0 +1,3 @@
+#summary Plural page for ScrollMap.
+
+See ScrollMap.
