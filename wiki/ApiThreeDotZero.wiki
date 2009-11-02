@@ -432,15 +432,15 @@ Set the space between each tiles of a map.
 *`Void Map.setTile(map, x, y, tile)`* (_nds_)
 
 Change a tile value.
-  * *map* (Map): map to destroy
+  * *map* (Map): map to modify
   * *x* (Number): x-coordinate of the tile to change in the map table
   * *y* (Number): y-coordinate of the tile to change in the map table
   * *tile* (Number): new tile value
 
-*`Number Map.getTile(map, x, y, tile)`* (_nds_)
+*`Number Map.getTile(map, x, y)`* (_nds_)
 
 Get a tile value.
-  * *map* (Map): map to destroy
+  * *map* (Map): map to read
   * *x* (Number): x-coordinate of the tile to get
   * *y* (Number): y-coordinate of the tile to get
 
@@ -472,7 +472,21 @@ Scroll a ScrollMap.
   * *x* (Number): x scrolling in pixel
   * *y* (Number): y scrolling in pixel
 
-<wiki:comment>not documented: setTile, getTile</wiki:comment>
+Void ScrollMap.setTile(scrollmap, x, y, tile) (nds)
+
+Change a tile value.
+
+    * scrollmap (ScrollMap): ScrollMap to modify
+    * x (Number): x-coordinate of the tile to change in the scrollmap table
+    * y (Number): y-coordinate of the tile to change in the scrollmap table
+    * tile (Number): new tile value 
+
+*`Number ScrollMap.getTile(scrollmap, x, y)`* (_nds_)
+
+Get a tile value.
+  * *scrollmap* (ScrollMap): ScrollMap to read
+  * *x* (Number): x-coordinate of the tile to get
+  * *y* (Number): y-coordinate of the tile to get
 
 === Canvas ===
 
