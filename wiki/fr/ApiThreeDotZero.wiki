@@ -8,6 +8,43 @@ Cette page est directement tirée de la documentation de la 3.0 prerelease, réd
 
 Notez bien que les fonctions décrites ici peuvent aussi bien être définies dans les bibliothèques écrites en Lua (tag _libs_) ou dans le code C (tag _nds_). Jusqu'à ce que quelqu'un examine le code attentivement pour déterminer où les choses sont définies, tout ce qui est marqué (_?_) ou non marqué devrait probablement être défini dans les bibliothèques Lua.
 
+
+= Notes du traducteur =
+
+== Clavier ==
+
+Il n’est plus fait mention du clavier, celui-ci ayant été enlevé des bibliothèques de base de MicroLua. Vous pouvez toujours trouver une version traduite et opérationnelle sur le forum.
+
+== Types de variables ==
+
+Les types de variables n'ont pas été traduits pour des raisons de compréhension générale. En programmation, on parlera plus facilement de « string » que de « chaîne de caractères ». Voici les correspondances françaises des types employés ici:
+
+`Void`: « vide » (utilisé par une fonction qui ne renvoie rien)
+
+`Number`: nombre
+
+`String`: chaîne de caractères
+
+`Color`: couleur
+
+`Image`: image
+
+`Font`: police d'écriture
+
+`Table`: table (ou tableau)
+
+`Map` & `ScrollMap`: carte et carte défilante
+
+`Canvas` & `CanvasObject`: canevas & objet de canevas
+
+`Constant`: constante
+
+`Boolean`: booléen (`true` – vrai, ou `false` – faux)
+
+`DateTime`: objet représentant une date
+
+`Handle`: référence d’un objet pour le gérer
+
 = API =
 
 == Variables ==
@@ -844,40 +881,3 @@ Cet exemple change la ligne `nom=toto` en `nom=tata`.
 
 Les tables de données des fichiers INI ne peuvent contenir que des Strings !
 Si vous voulez sauvegarder des nombres, vous devez d'abord les convertir en String grâce à `tostring()`.
-
-== Notes du traducteur ==
-
-=== Clavier ===
-
-Il n’est plus fait mention du clavier, celui-ci ayant été enlevé des bibliothèques de base de MicroLua. Vous pouvez toujours trouver une version traduite et opérationnelle sur le forum.
-
-=== Types de variables ===
-
-Les types de variables n'ont pas été traduits pour des raisons de compréhension générale. En programmation, on parlera plus facilement de « string » que de « chaîne de caractères ». Voici les correspondances françaises des types employés ici:
-
-`Void`: « vide » (utilisé par une fonction qui ne renvoie rien)
-
-`Number`: nombre
-
-`String`: chaîne de caractères
-
-`Color`: couleur
-
-`Image`: image
-
-`Font`: police d'écriture
-
-`Table`: table (ou tableau)
-
-`Map` & `ScrollMap`: carte et carte défilante
-
-`Canvas` & `CanvasObject`: canevas & objet de canevas
-
-`Constant`: constante
-
-`Boolean`: booléen (`true` – vrai, ou `false` – faux)
-
-`DateTime`: objet représentant une date
-
-`Handle`: référence d’un objet pour le gérer
-
