@@ -14,7 +14,7 @@ Be aware that what you will read here may be defined in the Lua libraries (_libs
 
   * *`MICROLUA_VERSION`* (_libs_): version of Micro Lua (String).
   * *`SCREEN_WIDTH`*, *`SCREEN_HEIGHT`* (_libs_): width and height of the screens.
-  * *`NB_FPS`* (_?_): number of frame per second automatically updated each second. You can display it with a `screen.print()` between `screen.startDrawing()` and `screen.stopDrawing()`. Don’t display it in the debug console.
+  * *`NB_FPS`* (_libs_): number of frame per second automatically updated each second. You can display it with a `screen.print()` between `screen.startDrawing()` and `screen.stopDrawing()`. Don’t display it in the debug console.
   * *`SCREEN_UP`*, *`SCREEN_DOWN`* (_libs_): screen number where to draw. See examples for more details.
   * *`RAM`* and *`VRAM`* (_libs_): destination where to load some object. See examples for more details.
   * *`ATTR_X1`*, *`ATTR_Y1`*, *`ATTR_X2`*, *`ATTR_Y1`*, *`ATTR_X3`*, *`ATTR_Y3`*, *`ATTR_COLOR`*, *`ATTR_COLOR1`*, *`ATTR_COLOR2`*, *`ATTR_COLOR3`*, *`ATTR_COLOR4`*, *`ATTR_TEXT`*, *`ATTR_VISIBLE`*, *`ATTR_FONT`*, *`ATTR_IMAGE`* (_libs_): attributes used in canvas.
