@@ -472,7 +472,7 @@ Scroll a ScrollMap.
   * *x* (Number): x scrolling in pixel
   * *y* (Number): y scrolling in pixel
 
-*`Void ScrollMap.setTile(scrollmap, x, y, tile)`* (nds)
+*`Void ScrollMap.setTile(scrollmap, x, y, tile)`* (_nds_)
 
 Change a tile value.
 

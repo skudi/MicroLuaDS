@@ -492,6 +492,21 @@ Fait défiler une carte défilante.
   * *x* (Number): défilement horizontal en pixel
   * *y* (Number): défilement horizontal en pixel
 
+*`Void ScrollMap.setTile(carteDefilante, x, y, tuile)`* (_nds_)
+
+Change la valeur d'une tuile.
+  * *carteDefilante* (ScrollMap): carte défilante à modifier
+  * *x* (Number): numéro de la colonne de la tuile à changer dans la carte
+  * *y* (Number): numéro de la ligne de la tuile à changer dans la carte
+  * *tuile* (Number): nouvelle valeur de tuile
+
+*`Number ScrollMap.getTile(carteDefilante, x ,y)`* (_nds_)
+
+Obtient une valeur de tuile.
+  * *carteDefilante* (ScrollMap): carte défilante qui contient la tuile voulue
+  * *x* (Number): numéro de la colonne de la tuile à obtenir
+  * *y* (Number): numéro de la ligne de la tuile à obtenir
+
 === Canevas ===
 
 *`Canvas Canvas.new()`* (_nds_)
