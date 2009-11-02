@@ -39,7 +39,7 @@ Les types de variables n'ont pas été traduits pour des raisons de compréhensi
 
   * `MICROLUA_VERSION` (_libs_): version de Micro Lua (sous forme d’un String)
   * `SCREEN_WIDTH`, `SCREEN_HEIGHT` (_libs_): largeur et hauteur des écrans
-  * `NB_FPS` (_?_): nombre de _frames_ (images) par seconde, automatiquement mis à jour chaque seconde. Vous pouvez l’afficher grâce à un `screen.print()`. Ne pas afficher dans la console de déboguage.
+  * `NB_FPS` (_libs_): nombre de _frames_ (images) par seconde, automatiquement mis à jour chaque seconde. Vous pouvez l’afficher grâce à un `screen.print()`. Ne pas afficher dans la console de déboguage.
   * `SCREEN_UP`, `SCREEN_DOWN` (_libs_): numéro de l’écran sur lequel afficher les éléments. Voir les exemples pour de plus amples détails.
   * `RAM`, `VRAM` (_libs_): destination du chargement de certains objets. Voir les exemples pour de plus amples détails.
   * `ATTR_X1`, `ATTR_Y1`, `ATTR_X2`, `ATTR_Y1`, `ATTR_X3`, `ATTR_Y3`, `ATTR_COLOR`, `ATTR_COLOR1`, `ATTR_COLOR2`, `ATTR_COLOR3`, `ATTR_COLOR4`, `ATTR_TEXT`, `ATTR_VISIBLE`, `ATTR_FONT`, `ATTR_IMAGE` (_libs_): attributs utilisés par les canevas.
