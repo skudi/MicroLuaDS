@@ -144,7 +144,7 @@ These are numbers or booleans. Everything here is defined in the _libs_.
 These are booleans. Everything here is defined in the _libs_.
 
 (`[KEY]` can take the following values :
-*`A`, `B`, `X`, `Y`, `L`, `Start`, `Select`, `Up`, `Down`, `Left`, `Right`*)
+*`A`, `B`, `X`, `Y`, `L`, `R`, `Start`, `Select`, `Up`, `Down`, `Left`, `Right`*)
 
 *`Keys.held.[KEY]`*: is the key held?
 
