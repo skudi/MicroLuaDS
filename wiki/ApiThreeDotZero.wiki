@@ -365,7 +365,8 @@ List all files and folders of a directory.
 Create a new font from a font file (oslib and µLibrary format).
   * *Path* (String): path of the file to load
 
-*`Font Font.destroy(font)
+*`Void Font.destroy(font)`* (_nds_)
+
 Destroy the font.
   * *font* (Font): font to destroy
 
