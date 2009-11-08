@@ -1,5 +1,4 @@
 #summary List of projects running under Micro Lua.
-#labels Featured
 
 = Introduction =
 
