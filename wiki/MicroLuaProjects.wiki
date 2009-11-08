@@ -16,13 +16,14 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * GhuntletProject
   * LibRpg
   * LuaEditor
-  * MarioSokoban
   * MicroDemineurDs (Minesweeper)
   * PingPong
   * PlusOuMoins (More or Less)
   * PokemonMiniGame
   * PpcDs (Pierre-Papier-Ciseaux / Rock-Paper-Scissors)
   * SeaquestRemake
+  * SokobanAllStars
+  * SpacePong
   * SpaceshipProject
   * StargateUniversDs
   * TankDs
