@@ -1,4 +1,4 @@
-#summary TOC to display as sidebar or at the root of the wiki.
+#summary Table of Contents.
 
 <wiki:comment>
 http://www.xaprb.com/blog/2009/07/01/how-to-add-a-wiki-homepage-sidebar-and-toc-in-google-code/
