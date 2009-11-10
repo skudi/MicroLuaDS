@@ -45,7 +45,7 @@ If you changed things in your working copy, you may end with conflicts.
 
 == Make changes ==
 
-Edit the code as you usually do, test it.
+Edit the code as you usually do, test it. If you ever add a new page, don't forget to [http://svnbook.red-bean.com/en/1.0/re01.html svn add] it.
 
 === See what changed ===
 
