@@ -11,7 +11,7 @@ Si le nom d'un projet n'est pas facile à convertir en CamelCase (s'il est en un
 
   * AloufsDs
   * CalculatriceProject (Calculatrice)
-  * CarPlaying (Évite-le tous)
+  * CarPlaying (Évite-les tous)
   * DsLaby (Labyrinthe)
   * GhuntletProject
   * LibRpg
