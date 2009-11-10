@@ -19,7 +19,7 @@
 
   * Aurel2108 : http://auetargames.e3b.org/index.php
   * Quent42340 : http://sites.google.com/site/crazycollecmicrolua/
-  * Reylak: http ://www.microlua4ds.comxa.com/
+  * Reylak : http://www.microlua4ds.comxa.com/
   * Thermo_nono : http://sites.google.com/site/microlua/Home
 
 == Divers, articles, news ==
