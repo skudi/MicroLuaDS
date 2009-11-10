@@ -1,5 +1,7 @@
-﻿#summary Liste de liens externes à propos de Micro Lua.
+#summary Liste de liens externes à propos de Micro Lua.
 #labels Featured
+
+<wiki:toc />
 
 = Liens officiels =
 
