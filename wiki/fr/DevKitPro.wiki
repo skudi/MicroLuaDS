@@ -1,0 +1,9 @@
+﻿#summary Présentation rapide de DevKitPro
+
+= Introduction =
+
+Un ensemble d'outils pour le développement de homebrews, disponible actuellement pour !GameBoy Advance, GP32, Playstation Portable et Gamecube. Plus de plateformes seront ajoutées si le temps le permet. Pour la DS, la GBA et GP32, le devkitARM est requis.
+
+= Détails =
+
+Plus d'informations sur http://www.devkitpro.org/.
