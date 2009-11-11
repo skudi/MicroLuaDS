@@ -7,7 +7,6 @@
 # TODO
 #######
 # spaces for camel case titles
-# if no title in the page, TOC is empty: no 'contents' to display
 # localization
 # override some pages
 # try to use the syntax highlighter as in the original template

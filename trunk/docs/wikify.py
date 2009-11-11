@@ -833,8 +833,10 @@ def wikify(pages, options=None):
 
         # Generate the TOC
         if getattr(options, 'toc', True):
-            matches = [ '<b>%s: Contents</b>' % wikiname ]
+            matches = []
             for match in reFind.findall(wikified):
+                if not matches:
+                     matches.append('<b>%s: Contents</b>' % wikiname)
                 if int(match[0]) > getattr(options, 'levels', 3): continue
                 indent = "&nbsp;" * ((int(match[0])) * 2)
                 
