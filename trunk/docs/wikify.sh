@@ -6,7 +6,6 @@
 
 # TODO
 #######
-# spaces for camel case titles
 # localization
 # override some pages
 # try to use the syntax highlighter as in the original template

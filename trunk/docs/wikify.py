@@ -67,6 +67,15 @@
 
 import re, os, os.path, htmlentitydefs, urllib
 
+def spacedwikiword(wikiword):
+    ret = ''
+    first = True
+    for l in wikiword:
+        if not first and l.isupper():
+            ret += ' '
+        ret += l
+        first = False
+    return ret
 
 class _HTML:
     """ An HTML node factory factory. """
@@ -860,7 +869,7 @@ def wikify(pages, options=None):
             # Fill the template
             wikified = options.template % {
                     "toc": toc,
-                    "title": wikiname,
+                    "title": spacedwikiword(wikiname),
                     "wiki": wikified,
                     "summary": summary }
         
@@ -954,7 +963,7 @@ if __name__ == "__main__":
                 # Fill the template
                 content = options.template % {
                         "toc": '',
-                        "title": wikiname,
+                        "title": spacedwikiword(wikiname),
                         "wiki": not_offline_message % {'url':wiki_url,
                                                        'page1': wikiname,
                                                        'page2': wikiname},
