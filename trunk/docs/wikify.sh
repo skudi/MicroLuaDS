@@ -7,7 +7,6 @@
 # TODO
 #######
 # spaces for camel case titles
-# generate nice message to redirect to wiki for pages not in pages.txt
 # if no title in the page, TOC is empty: no 'contents' to display
 # localization
 # override some pages
@@ -32,5 +31,6 @@ python wikify.py --srcdir=../../wiki/ \
                  --destdir=$BUILD_DIR \
                  --template=wikify.tpl \
                  --mainpage=TableOfContents \
+                 --gcproject=microlua \
                  `cat pages.txt`
 cp screen.css $BUILD_DIR

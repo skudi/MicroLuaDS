@@ -904,6 +904,8 @@ if __name__ == "__main__":
                         help="raw wiki translation -- no wrapping, no toc, no links")
     parser.add_option("-p", "--mainpage", dest="mainpage", metavar="PAGENAME",
                         help="set main page to PAGENAME")
+    parser.add_option("-P", "--gcproject", dest="gcproject",
+                        help="name of the Google Code project")
     
     # Batch / Location options
     parser.add_option("-s", "--srcdir", dest="srcdir",
@@ -938,6 +940,30 @@ if __name__ == "__main__":
         print "Template not found: %s" % options.template
         parser.print_usage()
         sys.exit()
+    
+    wiki_url = 'http://code.google.com/p/%s/wiki/' % options.gcproject
+    not_offline_message = 'Please see %(page1)s <a href="%(url)s%(page2)s">online</a>.'
+    not_offline_message_raw = 'Please see %(page1)s online: %(url)s%(page2)s.'
+    # [:-5] to remove the .wiki extension
+    for wikiname in [fname[:-5] for fname in os.listdir(options.srcdir)
+                     if os.path.isfile(os.path.join(options.srcdir, fname))]:
+        if wikiname not in args:
+            if not getattr(options, 'raw', False):
+                # Fill the template
+                content = options.template % {
+                        "toc": '',
+                        "title": wikiname,
+                        "wiki": not_offline_message % {'url':wiki_url,
+                                                       'page1': wikiname,
+                                                       'page2': wikiname},
+                        "summary": 'unavailable' }
+            else:
+                content = not_offline_message_raw % {'url':wiki_url,
+                                                     'page1': wikiname,
+                                                     'page2': wikiname}
+            if options.destdir is not None:
+                outputname = os.path.join(options.destdir, "%s.html" % wikiname)
+                file(outputname,"w").write(content)
     
     for wikiname, htmldata in wikify(args, options):
         if options.destdir:
