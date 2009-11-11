@@ -6,7 +6,6 @@
 
 # TODO
 #######
-# cleaner tpl, style.css
 # don't generate <wiki:xxx> (toc and comment)
 # spaces for camel case titles
 # generate nice message to redirect to wiki for pages not in pages.txt
@@ -35,3 +34,4 @@ python wikify.py --srcdir=../../wiki/ \
                  --template=wikify.tpl \
                  --mainpage=TableOfContents \
                  `cat pages.txt`
+cp screen.css $BUILD_DIR
