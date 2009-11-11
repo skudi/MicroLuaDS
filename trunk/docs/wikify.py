@@ -3,25 +3,27 @@
 # wikify.py - Convert from wikitext to HTML
 # Based on large portions of JeremyRuston's TiddlyWiki JS Wikifier
 # Changed to GoogleCode wiki syntax, python by Michael Crawford <mike@dataunity.com>
+# Tweaked to suit the needs of the Micro Lua project by Christophe Gragnic
+# november 2009 (Grahack).
 """ Convert wikitext to HTML """
 
 # Jeremy's license:
 #   Copyright (c) UnaMesa Association 2004-2007
-#   
+#
 #   Redistribution and use in source and binary forms, with or without modification,
 #   are permitted provided that the following conditions are met:
-#   
+#
 #   Redistributions of source code must retain the above copyright notice, this
 #   list of conditions and the following disclaimer.
-#   
+#
 #   Redistributions in binary form must reproduce the above copyright notice, this
 #   list of conditions and the following disclaimer in the documentation and/or other
 #   materials provided with the distribution.
-#   
+#
 #   Neither the name of the UnaMesa Association nor the names of its contributors may be
 #   used to endorse or promote products derived from this software without specific
 #   prior written permission.
-#  
+#
 #   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 #   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 #   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -36,21 +38,21 @@
 #
 # My license:
 #   Copyright (c) Data Unity 2007
-#   
+#
 #   Redistribution and use in source and binary forms, with or without modification,
 #   are permitted provided that the following conditions are met:
-#   
+#
 #   Redistributions of source code must retain the above copyright notice, this
 #   list of conditions and the following disclaimer.
-#   
+#
 #   Redistributions in binary form must reproduce the above copyright notice, this
 #   list of conditions and the following disclaimer in the documentation and/or other
 #   materials provided with the distribution.
-#   
+#
 #   Neither the name of the Data Unity nor the names of its contributors may be
 #   used to endorse or promote products derived from this software without
 #   specific prior written permission.
-#  
+#
 #   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 #   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 #   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -152,7 +154,6 @@ def GoogleCode_ReadSVNFile(wikifier, domain, path, start, end):
     gcurl = "http://%s.googlecode.com/svn/trunk/%s" % (domain,path)
     fdata = urllib.urlopen(gcurl).readlines()
     return gcurl, fdata[start-1:end]
-    
 
 def GoogleCode_IsExternalLink(wikifier, link):
     """ See if the link points outside of the wiki. """
@@ -174,7 +175,6 @@ def GoogleCode_Exists(wikifier, wikipage):
     if os.path.exists(path):
         return True
     return False
-
 
 def GoogleCode_Heading(wikifier, termRegExp=None, **kwargs):
     termMatch = termRegExp.search(wikifier.source, wikifier.nextMatch)
@@ -199,8 +199,6 @@ def GoogleCode_SimpleElement(wikifier, termRegExp=None, tagName=None, **kwargs):
     if termRegExp.search(wikifier.source, wikifier.nextMatch) is None: return
     output = HTML.Node(wikifier.output, tagName, **kwargs)
     wikifier.subWikifyTerm(output, termRegExp)
-    #if wikifier.source[wikifer.nextMatch-2] == "_":
-    #    wikifier.nextMatch -= 1
     
 def GoogleCode_Blockquote(wikifier, termRegExp=None, **kwargs):
     sibs = wikifier.output.children
@@ -438,45 +436,36 @@ def GoogleCode_List(wikifier, lookaheadRegExp=None, termRegExp=None, **kwargs):
         currType = listType
 
         # Output the item
-        output = HTML.Node(stack[-1],itemType)
-        wikifier.subWikifyTerm(output,termRegExp)
+        output = HTML.Node(stack[-1], itemType)
+        wikifier.subWikifyTerm(output, termRegExp)
 
         # Roll again
         lookMatch = lookaheadRegExp.search(wikifier.source, wikifier.nextMatch)
-    
-        
         
 GoogleCodeWikiFormat = [
-    {
-      "name": "tablerow",
+    { "name": "tablerow",
       "match": r"^(?:\|\|.+\|\|)",
       "termRegExp": re.compile(r"(\n)", re.M),
       "sepRegExp": re.compile(r"(\|\|)", re.M),
       "handler": GoogleCode_Table
     },
-    
     { "name": "heading",
       "match": r"^={1,6}",
       "termRegExp": re.compile(r"([=]+)", re.M),
       "handler": GoogleCode_Heading
     },
-    
     { "name": "list",
       "match": r"^(?:[ ]+)(?:[\*#])",
       "lookaheadRegExp": re.compile(r"^(?:[ ]+)(?:(\*)|(#))",re.M),
       "termRegExp": re.compile(r"(\n)", re.M),
       "handler": GoogleCode_List
     },
-    
-    
-    
     { "name": "blockquote",
       "match": r"^(?:[ ]+)",
       "termRegExp": re.compile(r"(\n)", re.M),
       "handler": GoogleCode_Blockquote,
       "tagName": "blockquote"
     },
-    
     { "name": "codeword",
       "match": r"\`",
       "initRegExp": re.compile(r"(\`)", re.M),
@@ -484,7 +473,6 @@ GoogleCodeWikiFormat = [
       "handler": GoogleCode_Codeblock,
       "tagName": "code"
     },
-        
     { "name": "codeblock",
       "match": r"\{\{\{",
       "initRegExp": re.compile(r"(\{\{\{)", re.M),
@@ -493,58 +481,49 @@ GoogleCodeWikiFormat = [
       "tagName": "pre",
       "attribs": { "class": "codeblock" }
     },
-    
     { "name": "bold",
       "match": r"[\*]",
       "termRegExp": re.compile(r"([\*])", re.M),
       "handler": GoogleCode_SimpleElement,
       "tagName": "b"
     },
-    
     { "name": "italic",
       "match": r"(?:[^\w\b]|^)[\_]",
       "termRegExp": re.compile(r"([\_])[^\w\b]", re.M),
       "handler": GoogleCode_SimpleElement,
       "tagName": "i"
     },
-    
     { "name": "strike",
       "match": r"\~\~",
       "termRegExp": re.compile(r"(\~\~)", re.M),
       "handler": GoogleCode_SimpleElement,
       "tagName": "strike"
     },
-        
     { "name": "superscript",
       "match": r"\^",
       "termRegExp": re.compile(r"(\^)", re.M),
       "handler": GoogleCode_SimpleElement,
       "tagName": "sup"
     },
-    
     { "name": "subscript",
       "match": r",,",
       "termRegExp": re.compile(r"(,,)", re.M),
       "handler": GoogleCode_SimpleElement,
       "tagName": "sub"
     },
-            
     { "name": "prettyLink",
       "match": r"\[(?:(?:[A-Za-z][A-Za-z0-9\_\-]+)|(?:(?:file|http|https|mailto|ftp|irc|news|data):[^\s'\"]+(?:/|\b)))(?: .*?)?\]",
       "lookaheadRegExp": re.compile(r'\[(.*?)(?: (.*?))?\]', re.M),
       "handler": GoogleCode_PrettyLink
     },
-    
     { "name": "wikiword",
       "match": r"(?:\!?(?:[A-Z]+[a-z]+[A-Z][A-Za-z]*)|(?:[A-Z]{2,}[a-z]+))",
       "handler": GoogleCode_WikiWord
     },
-    
     { "name": "urlLink",
       "match": URLSTR,
       "handler": GoogleCode_UrlLink
     },
-
     { "name": "linebreak",
       "match": r"\n\n",
       "handler": GoogleCode_LineBreak,
@@ -552,8 +531,6 @@ GoogleCodeWikiFormat = [
     },
     
 ]
-
-
 
 class Wikifier:
     
@@ -632,7 +609,7 @@ class Wikifier:
             self.nextMatch = match.end()
             
             # Figure out which sub-group matched (zero-indexed)
-            t,submatch = [ (t,s) for t, s in enumerate(match.groups()) if s ][0]
+            t, submatch = [(t,s) for t, s in enumerate(match.groups()) if s][0]
             
             # Handle it
             self.formatters[t]['handler'](self, **self.formatters[t])
@@ -699,7 +676,6 @@ class Wikifier:
         
         self.output = oldOutput
 
-
     def outputText(self, output, startPos, endPos):
         HTML.Text(output, self.source[startPos:endPos])
 
@@ -755,7 +731,7 @@ def wikify(pages, options=None):
     # See options definition below.
     # Pass any object with those (potential) attributes
     srcdir = getattr(options, 'srcdir', os.getcwd())
-    destdir = getattr(options, 'destdir', None) 
+    destdir = getattr(options, 'destdir', None)
     
     # Find all requested files
     onlyStale = False
@@ -846,7 +822,7 @@ def wikify(pages, options=None):
                 matches.append(anchor)
             toc = "<br>".join(matches)
         else:
-            toc = "" #-e -d /home/adam/src/CSpaceWiki/
+            toc = ""
         
         # Generate the body links
         if getattr(options, 'links', True):
@@ -931,7 +907,7 @@ if __name__ == "__main__":
     parser.set_default('all', False)
 
     # Parse the command line
-    (options, args) = parser.parse_args()    
+    (options, args) = parser.parse_args()
     
     if options.template is None:
         options.template = DEFAULT_TEMPLATE
@@ -941,7 +917,7 @@ if __name__ == "__main__":
         print "Template not found: %s" % options.template
         parser.print_usage()
         sys.exit()
-    #sys.exit()
+    
     for wikiname, htmldata in wikify(args, options):
         if options.destdir:
             print wikiname + ":",
