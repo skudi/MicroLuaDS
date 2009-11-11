@@ -1,0 +1,5 @@
+#summary Description de l'hébergement de projets Google Code.
+
+C'est le célèbre système qui héberge notre [http://code.google.com/p/microlua/ espace de travail].
+
+Voir http://code.google.com/.
