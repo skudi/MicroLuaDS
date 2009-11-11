@@ -127,8 +127,6 @@ class _HTML:
 
         def _clean(self, text):
             text = text.replace("&", "&amp;")
-            for k,v in self.entities:
-                text = text.replace(v, "&%s;" % k)
             return text
 
         def __str__(self):
