@@ -8,7 +8,7 @@ MicroLua est un homebrew pour la Nintendo DS qui vous permet d'exécuter des scr
 
 Micro Lua a été créé à l'origine par Risike.
 
-Micro Lua est devenu open source le 9 juillet 2009. Depuis, la communauté a commencé à travailler sur le projet de ce Google Code aux alentours du mois d'octobre de la même année.
+Micro Lua est devenu open source le 9 juillet 2009. Depuis, la communauté a commencé à travailler sur ce projet Google Code aux alentours du mois d'octobre de la même année.
 
 = En savoir plus =
 
