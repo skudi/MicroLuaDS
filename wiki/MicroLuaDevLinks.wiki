@@ -1,4 +1,4 @@
-#summary Useful links for Micro Lua developpers.
+#summary Useful links for Micro Lua developers.
 
 = APIs =
 

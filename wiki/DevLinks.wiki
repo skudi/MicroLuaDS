@@ -1,4 +1,4 @@
-#summary Useful links for game developpers.
+#summary Useful links for game developers.
 
 = APIs =
 
