@@ -176,6 +176,16 @@ def GoogleCode_Exists(wikifier, wikipage):
         return True
     return False
 
+def GoogleCode_WikiComment(wikifier, lookaheadRegExp=None, termRegExp=None, **kwargs):
+    termMatch = termRegExp.search(wikifier.source, wikifier.nextMatch)
+    if termMatch is None: return
+    output = HTML.Node(wikifier.output, 'div', **kwargs)
+    wikifier.outputText(output, wikifier.nextMatch, termMatch.start())
+    wikifier.nextMatch = termMatch.end()
+
+def GoogleCode_WikiToc(wikifier, lookaheadRegExp=None, termRegExp=None, **kwargs):
+    pass
+
 def GoogleCode_Heading(wikifier, termRegExp=None, **kwargs):
     termMatch = termRegExp.search(wikifier.source, wikifier.nextMatch)
     if termMatch is None: return
@@ -529,7 +539,18 @@ GoogleCodeWikiFormat = [
       "handler": GoogleCode_LineBreak,
       "empty": True
     },
-    
+    { "name": "wikicomment",
+      "match": r"<wiki:comment>",
+      "initRegExp": re.compile(r"(<wiki:comment>)", re.M),
+      "termRegExp": re.compile(r"(</wiki:comment>)", re.M),
+      "handler": GoogleCode_WikiComment,
+      "tagName": "div",
+      "attribs": { "class": "comment" }
+    },
+    { "name": "wikitoc",
+      "match": r"<wiki:toc />",
+      "handler": GoogleCode_WikiToc
+    },
 ]
 
 class Wikifier:

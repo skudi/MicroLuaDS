@@ -6,7 +6,6 @@
 
 # TODO
 #######
-# don't generate <wiki:xxx> (toc and comment)
 # spaces for camel case titles
 # generate nice message to redirect to wiki for pages not in pages.txt
 # if no title in the page, TOC is empty: no 'contents' to display
