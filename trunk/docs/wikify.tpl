@@ -9,7 +9,7 @@
         <div id="page">
             <div id='header'>Micro Lua documentation</div>
             <div id='nav'><a href="TableOfContents.html">back to index</a></div>
-            <div id='nav'><a href="fr/index.html">French version</a></div>
+            <div id='nav'><a href="fr/index.html">version française</a></div>
             <div id="pagecontent">
                 <div class="index">
 <!-- This is a (PRE) block.  Make sure it's left aligned or your toc title will be off. -->
