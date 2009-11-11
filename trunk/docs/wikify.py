@@ -802,7 +802,11 @@ def wikify(pages, options=None):
         
         # Load the wiki content
         wikifilename = os.path.join(srcdir, "%s.wiki" % wikiname)
-        wikisrc = file(wikifilename).read()
+        try:
+            wikisrc = file(wikifilename).read()
+        except IOError:
+            wikisrc = wikifilename + ' file not found!'
+            print '**** ' + wikisrc
         
         # Ask a question
         wikified = w.wikify(wikisrc)
