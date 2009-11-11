@@ -1,4 +1,4 @@
-﻿#summary Présentation de Micro Lua
+#summary Présentation de Micro Lua
 
 = Introduction =
 
