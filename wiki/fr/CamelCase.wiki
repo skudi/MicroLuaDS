@@ -1,4 +1,4 @@
-﻿#summary Description de CamelCase
+#summary Description de CamelCase
 
 CamelCase permet de créer automatiquement un lien vers une page du wiki avec un seul mot. MicroLua est un lien, mais Microlua ne l'est pas à cause du 'l' minuscule.
 

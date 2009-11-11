@@ -1,4 +1,4 @@
-﻿#summary Présentation rapide de DevKitPro
+#summary Présentation rapide de DevKitPro
 
 = Introduction =
 
