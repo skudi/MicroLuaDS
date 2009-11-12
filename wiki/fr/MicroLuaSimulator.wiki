@@ -4,7 +4,7 @@
 
 = Introduction =
 
-MicrMicroLuaSimulator (ou _MLS_) est un utilitaire indispensable pour les développeurs de Micro Lua, créé par un membre de la communauté, _Ced-le-pingouin_.
+MicroLuaSimulator (ou _MLS_) est un utilitaire indispensable pour les développeurs de Micro Lua, créé par un membre de la communauté, _Ced-le-pingouin_.
 Il vous permet de tester vos scripts Lua pour NDS directement sur votre ordinateur. MicroLuaSimulator a aussi une console debug!
 
 = Télécharger =
@@ -51,16 +51,16 @@ Vous pouvez utiliser certains raccourcis dans MLS:
 
 || *Raccourcis* || *Effet* ||
 || Ctrl+O || Ouvre un script ||
-|| P || Met en pause le script  ||
+|| P || Met en pause le script ||
 || B || Relance le script ||
 || C || Affiche ou cache la console ||
 || DEL || Efface la console ||
-|| F1 || Réduit les FPS  ||
-|| F2 || Augmente les FPS  ||
-|| F3 || Réduit les UPS  ||
-|| F4 || Augmente les UPS  ||
-|| F5 || Augmente le niveau de log  ||
-|| Ctrl+Q || Quitte MLS  ||
+|| F1 || Réduit les FPS ||
+|| F2 || Augmente les FPS ||
+|| F3 || Réduit les UPS ||
+|| F4 || Augmente les UPS ||
+|| F5 || Augmente le niveau de log ||
+|| Ctrl+Q || Quitte MLS ||
 
 _Ctrl key_ est remplacé par la touche de commande ("Apple") sur Mac OS X.
 
