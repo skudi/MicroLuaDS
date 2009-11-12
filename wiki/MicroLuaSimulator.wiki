@@ -27,7 +27,7 @@ With `file > open`, you can browse your files and open Lua scripts. You can also
 
 === Buttons ===
 
-Here is a comparative list between DS and computer keyboard buttons :
+Here is a comparative list between the controls of the DS and those of your computer:
 
 || *DS* || *Keyboard* ||
 || Up || I or 8 ||
@@ -59,9 +59,9 @@ You can use some shortcuts in MLS:
 || F3 || Reduce UPS ||
 || F4 || increase UPS ||
 || F5 || increase the log level ||
-|| Ctrl+Q || Quit MLS ||
+|| _Ctrl_+Q || Quit MLS ||
 
-_Ctrl key_ is _Command key_ ("Apple") on Mac OS X.
+_Ctrl_ key is _Command_ key ("Apple") on Mac OS X.
 
 == Know limitations ==
 
