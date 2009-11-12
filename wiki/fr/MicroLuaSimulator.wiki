@@ -1,35 +1,34 @@
-#summary Tester vos scripts sans La DS
+#summary Tester vos scripts sans la DS
 
 <wiki:toc />
 
 = Introduction =
 
-MicrMicroLuaSimulator (ou _MLS_) est un utilitaire indispensable pour les développeurs de Micro Lua,crée par un membre de la communautés, _Ced-le-pingouin_. 
-Il vous permet de tester vos scripts lua pour NDS directement sur le PC. MicroLuaSimulator a aussi une console debug! 
-
+MicrMicroLuaSimulator (ou _MLS_) est un utilitaire indispensable pour les développeurs de Micro Lua, créé par un membre de la communauté, _Ced-le-pingouin_.
+Il vous permet de tester vos scripts Lua pour NDS directement sur votre ordinateur. MicroLuaSimulator a aussi une console debug!
 
 = Télécharger =
 
-Un bon point puisque vous pouvez utilisez MicroLuaSimulator sur plusieurs plateforme: 
-  * Windows ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-win.zip download])
-  * Linux ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-linux.zip download])
-  * Mac OS X ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-mac.zip download])
-  * Source ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-src.zip download])
+Un de ses points forts est que vous pouvez utiliser MicroLuaSimulator sur plusieurs plateformes:
+  * Windows ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-win.zip télécharger])
+  * Linux ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-linux.zip télécharger])
+  * Mac OS X ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-mac.zip télécharger])
+  * Source ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-src.zip télécharger])
 
-La dernière version est la _0.4 Beta2_. 
+La dernière version est la _0.4 Beta2_.
 
 
 = Utilisation =
 
 == Lancer un script ==
 
-Avec`file > open`, vous pouvez naviguer dans vos fichiers et ouvrir un script lua. Vous pouvez aussi passer le script de test en tant que arg sur la ligne de commande. 
+Avec `file > open`, vous pouvez naviguer dans vos fichiers et ouvrir un script Lua. Vous pouvez aussi passer le script de test en tant qu'argument sur la ligne de commande.
 
 == Commande ==
 
 === Bouttons ===
 
-Voici une liste comparative entre la DS et les boutons du clavier  : 
+Voici une liste comparative entre la DS et les boutons du clavier de votre ordinateur:
 
 || *DS* || *Clavier* ||
 || Haut || I ou 8 ||
@@ -44,16 +43,16 @@ Voici une liste comparative entre la DS et les boutons du clavier  :
 || R  || Z ou T ||
 || START || Q ou F ||
 || SELECT || W ou V ||
-|| Stylus || Pause ||
+|| Stylus || Souris ||
 
 === Raccourcis ===
 
-Vous pouvez utiliser certains raccourcis dans MLS: 
+Vous pouvez utiliser certains raccourcis dans MLS:
 
 || *Raccourcis* || *Effet* ||
 || Ctrl+O || Ouvre un script ||
 || P || Met en pause le script  ||
-|| B || Relancer le script ||
+|| B || Relance le script ||
 || C || Affiche ou cache la console ||
 || DEL || Efface la console ||
 || F1 || Réduit les FPS  ||
@@ -65,11 +64,11 @@ Vous pouvez utiliser certains raccourcis dans MLS:
 
 _Ctrl key_ est remplacé par la touche de commande ("Apple") sur Mac OS X.
 
-== Les limites ==
+== Limitations connues ==
 
-=== Chemin ===
+=== Chemins ===
 
-Les fichiers .ini et .txt sont chargés dans le dossier de MLS, mais les images sont chargés dans le même dossier que les scripts. Ainsi , mettez vos fichiers dans le bon répertoire.
+Les fichiers `.ini` et `.txt` sont chargés dans le dossier de l'exécutable `mls`, mais les images sont chargées dans le même dossier que les scripts. Ainsi, mettez vos fichiers dans le bon répertoire.
 
 === Son ===
 
@@ -78,5 +77,5 @@ En raison de l'absence de bibliothèques de sons, il n'y a actuellement pas de s
 = Liens =
 
 Changelogs:
-  * En Anglais : http://microlua.xooit.fr/t180-Micro-Lua-Simulator.htm
-  * En Français : http://microlua.xooit.fr/t179-Micro-Lua-Simulator.htm
+  * En anglais : http://microlua.xooit.fr/t180-Micro-Lua-Simulator.htm
+  * En français : http://microlua.xooit.fr/t179-Micro-Lua-Simulator.htm

@@ -1,4 +1,4 @@
-#summary Test your scripts without an NDS
+#summary Test your scripts without an NDS.
 
 <wiki:toc />
 
