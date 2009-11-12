@@ -24,11 +24,11 @@ La dernière version est la _0.4 Beta2_.
 
 Avec `file > open`, vous pouvez naviguer dans vos fichiers et ouvrir un script Lua. Vous pouvez aussi passer le script de test en tant qu'argument sur la ligne de commande.
 
-== Commande ==
+== Commandes ==
 
-=== Bouttons ===
+=== Boutons ===
 
-Voici une liste comparative entre la DS et les boutons du clavier de votre ordinateur:
+Voici une liste comparative entre les commandes de la DS et celles de votre ordinateur:
 
 || *DS* || *Clavier* ||
 || Haut || I ou 8 ||
@@ -60,9 +60,9 @@ Vous pouvez utiliser certains raccourcis dans MLS:
 || F3 || Réduit les UPS ||
 || F4 || Augmente les UPS ||
 || F5 || Augmente le niveau de log ||
-|| Ctrl+Q || Quitte MLS ||
+|| _Ctrl_+Q || Quitte MLS ||
 
-_Ctrl key_ est remplacé par la touche de commande ("Apple") sur Mac OS X.
+La touche _Ctrl_ est remplacée par la touche de commande ("Apple") sur Mac OS X.
 
 == Limitations connues ==
 
@@ -77,5 +77,5 @@ En raison de l'absence de bibliothèques de sons, il n'y a actuellement pas de s
 = Liens =
 
 Changelogs:
-  * En anglais : http://microlua.xooit.fr/t180-Micro-Lua-Simulator.htm
-  * En français : http://microlua.xooit.fr/t179-Micro-Lua-Simulator.htm
+  * En anglais: http://microlua.xooit.fr/t180-Micro-Lua-Simulator.htm
+  * En français: http://microlua.xooit.fr/t179-Micro-Lua-Simulator.htm
