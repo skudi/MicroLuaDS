@@ -1,4 +1,4 @@
-#summary Test your scripts without an NDS.
+#summary Test your scripts without an NDS
 
 <wiki:toc />
 
@@ -27,7 +27,7 @@ With `file > open`, you can browse your files and open Lua scripts. You can also
 
 === Buttons ===
 
-Here is a comparative list between DS and keyboard button :
+Here is a comparative list between DS and computer keyboard buttons :
 
 || *DS* || *Keyboard* ||
 || Up || I or 8 ||
@@ -61,13 +61,13 @@ You can use some shortcuts in MLS:
 || F5 || increase the log level ||
 || Ctrl+Q || Quit MLS ||
 
-_Ctrl key_ is remplaced by _Command key_ ("Apple") on Mac OS X.
+_Ctrl key_ is _Command key_ ("Apple") on Mac OS X.
 
 == Know limitations ==
 
 === Paths ===
 
-The `.ini` and `.txt` files are load from the mls executable folder, but the images are load from the script folder. So, be carrefull to place the files in the right place.
+The `.ini` and `.txt` files are load from the folder of the `mls` executable, but the images are loaded from the script folder. So, be careful to place the files in the right place.
 
 === Sound ===
 
