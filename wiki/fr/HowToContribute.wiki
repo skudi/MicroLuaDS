@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Ajuster le code source de MicroLua n'est pas la seule solution pour aider la communauté. Voici quelques idées.
+Modifier le code source de MicroLua n'est pas la seule solution pour aider la communauté. Voici quelques idées.
 
 = Documentation =
 
