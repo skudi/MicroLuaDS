@@ -1,0 +1,17 @@
+#summary Liste des différentes aides souhaitées
+
+= Introduction =
+
+Ajuster le code source de MicroLua n'est pas la seule solution pour aider la communauté. Voici quelques idées.
+
+= Documentation =
+
+Rédiger des docs ou des tutoriels est une bonne façon d'améliorer le projet. Si ce n'est pas déjà fait, vous pouvez demander le droit d'édition du Wiki (_EditWiki permission_) afin de créer et / ou d'améliorer des pages.
+
+= Traduction =
+
+Vous aurez besoin de savoir comment utiliser SVN ou Git (HowToUseSvn et HowToUseGit), car pour l'instant [http://code.google.com/p/support/issues/detail?id=2468 les pages traduites ne peuvent pas être éditées par le biais de l'interface web].
+
+= Tests =
+
+Signaler les [http://code.google.com/p/microlua/issues/list bugs] est déjà une bonne manière de participer à l'amélioration de MicroLua.
