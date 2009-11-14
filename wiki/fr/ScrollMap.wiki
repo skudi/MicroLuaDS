@@ -2,26 +2,25 @@
 
 = Introduction =
 
-Les ScrollMaps sont comme des Maps, mais bien sur il y a quelques différence.
+Les ScrollMaps sont comme des Maps, mais bien sûr il y a quelques différences.
 
 = Caractéristiques =
 
-Premièrement une ScrollMap ne peut être affiché que sur l'écran entier, tandis que les Maps peuvent être affiché sur une partie de l'écran.
+Premièrement une ScrollMap ne peut être affichée que sur l'écran entier, tandis que les Maps peuvent être affichées sur une partie de l'écran.
 
-Par contre, elle sont plus rapid que de simple Maps, et on peut les faire défilé pixel par pixel, et non tile par tile. De plus, elle sont toroïdal , c'est à dire lorsque vous atteignez un bord de la carte, le bord opposé est automatiquement affichée.
+Par contre, elle sont plus rapides que de simple Maps, et on peut les faire défiler pixel par pixel, et non tile par tile. De plus, elle sont toroïdes, c'est-à-dire que lorsque vous atteignez un bord de la carte, le bord opposé est automatiquement affiché.
 
 = Moins de fonctions =
 
-C'est un des inconvénients: les ScrollMaps ont moins de fonctions que les Maps normal. Vous perdez la fonction `space()`, donc vous ne pouvez pas définir l'espace entre 2 tiles.
+C'est un des inconvénients: les ScrollMaps ont moins de fonctions que les Maps normales. Vous perdez la fonction `space()`, donc vous ne pouvez pas définir l'espace entre deux tiles.
 
 = Changement de fonctions =
 
- * Comme les ScrollMaps sont affiché sur l'écran entier, `ScrollMap.draw()` attend seulement la carte a dessiné (avec les Maps, la fonction attend des coordonnées).
+ * Comme les ScrollMaps sont affichées sur l'écran entier, `ScrollMap.draw()` attend seulement la carte a dessiner (avec les Maps, la fonction attend des coordonnées).
  * Tandis que `Map.scroll()` attend le nombre de tiles, `ScrollMap.scroll()` attend le nombre de pixels.
- * Les autres fonctions (`ScrollMap.new()`, `ScrollMap.destroy()`, `ScrollMap.setTile()` and `ScrollMap.getTile()`) sont inchangées.
+ * Les autres fonctions (`ScrollMap.new()`, `ScrollMap.destroy()`, `ScrollMap.setTile()` and `ScrollMap.getTile()`) restent inchangées.
 
-= Mieux ou non? =
+= Mieux ou non ? =
 
-Pour finir, les ScrollMaps sont mieux que les Maps normal, même si vous ne pouvez pas définir l'espace entre les tiles. La vitesse d'affichage est certainement le meilleur avantage. Mais si l'affichage en plein écran vous gêne, utilisez les Maps simple.
-
+Pour finir, les ScrollMaps sont meilleures que les Maps normales, même si vous ne pouvez pas définir l'espace entre les tiles. La vitesse d'affichage est certainement le meilleur avantage. Mais si l'affichage en plein écran vous gêne, utilisez les Maps simple.
 
