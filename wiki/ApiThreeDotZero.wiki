@@ -429,14 +429,14 @@ Draw a map.
 *`Void Map.scroll(map, x, y)`* (_nds_)
 
 Scroll a map.
-  * *map* (Map): map to destroy
+  * *map* (Map): map to scroll
   * *x* (Number): x number of tiles to scroll
   * *y* (Number): y number of tiles to scroll
 
 *`Void Map.space(map, x, y)`* (_nds_)
 
 Set the space between each tiles of a map.
-  * *map* (Map): map to destroy
+  * *map* (Map): map to modify
   * *x* (Number): x space between tiles
   * *y* (Number): y space between tiles
 
