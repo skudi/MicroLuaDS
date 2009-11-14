@@ -7,5 +7,5 @@
     * Paste them on your linker (the `lua` folder must be at the root of your linker!).
     * You can paste the Lua scripts where you want, but the default directory when you launch _microlua.nds_ is `/lua/scripts`, so it will be easier to put the scripts in it.
   # Power on your DS:
-    * Launch _microLua.nds_.
+    * Launch the `.nds` or `.gba`.
     * You can browse your linker and launch a Lua script (A button). Have a look at MicroLuaProjects to find one.
