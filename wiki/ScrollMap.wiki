@@ -6,7 +6,7 @@ ScrollMaps are like Maps, but of course there are some differences.
 
 = Characteristics =
 
-First, a ScrollMap can only be displayed on the entire screen, while Maps could be displayed on a part of the screen.
+First, a ScrollMap can only be displayed on the entire screen, while Maps can be displayed on a part of the screen.
 
 But they are faster than simple Maps, and can be scrolled pixel by pixel, and not tile by tile. Moreover, they are toroidal, that is to say when you reach an edge of the map, the opposite edge is automatically displayed.
 
@@ -16,8 +16,8 @@ This is a disadvantage: ScrollMaps have less functions than normal Maps. You loo
 
 = Changing functions =
 
- * Because ScrollMaps are displayed on the entire screen, `ScrollMap.draw()` expects only the map to draw (with Maps, it expects coordinates)
- * While `Map.scroll()` expects tiles numbers, `ScrollMap.scroll()` expects pixel values.
+ * Because ScrollMaps are displayed on the entire screen, `ScrollMap.draw()` expects only the map to draw (with Maps, it expects coordinates).
+ * While `Map.scroll()` expects the number of tiles, `ScrollMap.scroll()` expects pixel values.
  * The others functions (`ScrollMap.new()`, `ScrollMap.destroy()`, `ScrollMap.setTile()` and `ScrollMap.getTile()`) are unchanged
 
 = Better or worse =
