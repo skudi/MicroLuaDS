@@ -63,7 +63,7 @@ Sound.loadSFX(1)  -- Voir plus haut encore une fois pour l'ID
 
 Maintenant, nous pouvons le jouer:
 {{{
-handle = Sound.startSFX(1) -- Joue le son et retourne une référence de ce son
+handle = Sound.startSFX(1) -- Joue le son et retourne une référence vers ce son
 }}}
 
 Cette référence vous permet de faire quelques effets sur le son comme changer le volume. Regardez la documentation pour plus d'exemples et de détails.
