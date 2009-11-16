@@ -32,7 +32,7 @@ Exemple: soundbank.h
 
 == Utiliser les banques de sons dans un script ==
 
-Premièrement, vous devez charger la banque de données. La banque de données n'est jamais chargée entièrement en mémoire donc la banque de sons peut être très grosse.
+Premièrement, vous devez charger la banque de données. La banque de données n'est jamais chargée entièrement en mémoire donc la banque de sons peut être de très grande taille.
 
 Pour charger un fichier `soundbank.bin` (par exemple), il faut utiliser:
 {{{
@@ -47,7 +47,7 @@ Sound.loadMod(1) -- Charge le module en mémoire
 Sound.startMod(1, PLAY_ONCE) -- Joue le module une fois. On peut utiliser PLAY_LOOP pour le jouer en boucle
 }}}
 
-Vous pouvez bien sûr arrêter, mettre en pause, modifier le volume... Regardez la documentation pour plus de détails.
+Vous pouvez bien sûr arrêter, mettre en pause, modifier le volume... Regardez la documentation pour de plus amples informations.
 
 Maintenant, à la fin de notre script, il faut décharger le module de la mémoire avec:
 {{{
