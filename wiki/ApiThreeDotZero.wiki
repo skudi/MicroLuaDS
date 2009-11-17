@@ -376,7 +376,9 @@ Font.destroy(font)
 font = nil
 }}}
 
-*`Void Font.print(screen, font, x, y, text [, color])`* (_nds_)
+*`Void Font.print(screen, font, x, y, text [, color])`* (_nds_, _deprecated_)
+
+Please use `screen.printFont` which really handles the color.
 
 Print a text with a special font.
   * *screen* (Number): screen where to draw (`SCREEN_UP` or `SCREEN_DOWN`)
