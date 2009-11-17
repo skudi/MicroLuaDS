@@ -165,7 +165,7 @@ Ce sont des nombres ou des booléens, tous définis dans les _libs_.
 Voici des booléens. Toute cette section est définie dans les _libs_.
 
 (`[KEY]` peut prendre une des valeurs suivantes:
-*`A`, `B`, `X`, `Y`, `R`, `L`, `Start`, `Select`, `Up`, `Down`, `Left`, `Right`*)
+*`A`, `B`, `X`, `Y`, `L`, `R`, `Start`, `Select`, `Up`, `Down`, `Left`, `Right`*)
 
 *`Keys.held.[KEY]`*: état enfoncé du bouton
 
