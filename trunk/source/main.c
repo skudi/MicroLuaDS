@@ -46,6 +46,9 @@ int main()
         }
     }
     
+    lua_pushliteral(l, "microlua 1");
+    lua_setglobal(l, "_VERSION_DS");
+    
     if(lua_pcall(l,0,0,0))
     {
         ulDebug(lua_tostring(l, -1));
