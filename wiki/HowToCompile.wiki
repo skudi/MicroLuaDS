@@ -68,9 +68,9 @@ Extract the zip to a location.
 
 ==== MicroLua Source ====
 
- * Extract the microLua source to folder '\devkitpro\'
- * Rename the resulting source folder 'Micro Lua DS v3.0\'(the one containing `Examples`, `Fat`...) to 'luads'
- * Copy '\devkitpro\luads\img\fcsr.dldi' file to '\devkitpro\devkitarm\bin\dldi\' (make the dldi folder)
+ * Extract the MicroLua source to folder '\devkitpro\', or GetTheCurrentSourceCode.
+ * You can skip this item if you only need a `.nds` for you hardware. If you want a `.nds` to test on _No$GBA_ you'll have to rename the resulting source folder (the one containing `Examples`, `Fat`...) to 'luads'. This is because the name of a compiled file is the same as the source folder and a `luads.img` will be needed. Note that if you track the code in our repository, you'll have to rename it again to `trunk` before updates, unless you only checked out the trunk.
+ * Copy '\devkitpro\luads\img\fcsr.dldi' file to '\devkitpro\devkitarm\bin\dldi\' (make the dldi folder).
 
 ==== Launch the compilation ====
 
