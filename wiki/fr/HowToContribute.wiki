@@ -1,4 +1,4 @@
-#summary Liste des différentes aides souhaitées
+#summary Liste des différentes aides souhaitées.
 
 = Introduction =
 
