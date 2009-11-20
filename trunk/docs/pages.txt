@@ -5,16 +5,12 @@ DevLinks
 MicroLuaDevLinks
 HowToContribute
 ExternalLinks
-LuaLinks
 MicroLuaSimulator
 MicroLuaInstallation
 MicroLuaProjects
-HowToCompile
 ApiThreeDotZero
 ScrollMap
 ScrollMaps
 SoundTutorial
-HowToUseSvn
-HowToUseGit
 GoogleCode
 DevKitPro
