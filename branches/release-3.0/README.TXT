@@ -2,6 +2,7 @@ Micro Lua DS 3.0
 By Risike
 
 Official website : www.microlua.risike.com
+Dev platform : http://microlua.googlecode.com
 
 
 HOW TO INSTALL ?
