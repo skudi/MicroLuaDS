@@ -18,6 +18,9 @@ RELEASE NOTE
 
 3.0:
 
+After the 3.0 prerelease, compiling with libfat20080530 made relative paths
+usable (thanks to Quent42340).
+
 Fixed bugs:
 
 - Double-click issue.
