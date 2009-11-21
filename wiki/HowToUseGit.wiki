@@ -22,6 +22,8 @@ For each git-svn command used here, you can refer to [http://www.kernel.org/pub/
 cd /where/I/usually/work/with/microlua
 mkdir my_working_copy  # or anything else
 cd my_working_copy
+git svn clone http://microlua.googlecode.com/svn/ .
+# or better if you have the `Commit` permission
 git svn clone https://microlua.googlecode.com/svn/ .
 # wait for the repository and the code to be downloaded
 }}}
