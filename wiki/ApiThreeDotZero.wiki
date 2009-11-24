@@ -4,9 +4,7 @@
 
 = Introduction =
 
-This page is directly taken from the documentation of the 3.0 prerelease, except the tags.
-
-Be aware that what you will read here may be defined in the Lua libraries (_libs_ tag) or in the C code (_nds_ tag). Until someone examines the code carefully to track where things are defined, everything that is marked (_?_) or not marked should probably be defined in the Lua libs.
+The variables or functions that you will find here may be defined in the Lua libraries (_libs_ tag) or in the C code (_nds_ tag).
 
 = API =
 

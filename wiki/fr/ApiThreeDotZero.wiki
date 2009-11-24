@@ -4,10 +4,7 @@
 
 = Introduction =
 
-Cette page est directement tirée de la documentation de la 3.0 prerelease, rédigée à l'origine par Risike, puis traduite par Reylak (excepté les tags).
-
-Notez bien que les fonctions décrites ici peuvent aussi bien être définies dans les bibliothèques écrites en Lua (tag _libs_) ou dans le code C (tag _nds_). Jusqu'à ce que quelqu'un examine le code attentivement pour déterminer où les choses sont définies, tout ce qui est marqué (_?_) ou non marqué devrait probablement être défini dans les bibliothèques Lua.
-
+Les variables et les fonctions que vous trouverez ici peuvent aussi bien être définies dans les bibliothèques écrites en Lua (tag _libs_) ou dans le code C (tag _nds_).
 
 = Notes du traducteur =
 
