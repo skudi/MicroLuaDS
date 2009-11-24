@@ -374,18 +374,6 @@ Font.destroy(font)
 font = nil
 }}}
 
-*`Void Font.print(screen, font, x, y, text [, color])`* (_nds_, _deprecated_)
-
-Please use `screen.printFont` which really handles the color.
-
-Print a text with a special font.
-  * *screen* (Number): screen where to draw (`SCREEN_UP` or `SCREEN_DOWN`)
-  * *font* (Font): font to use
-  * *x* (Number): x-coordinate where to draw
-  * *y* (Number): y-coordinate where to draw
-  * *text* (String): text to print
-  * *color* (Color): color of the text
-
 *`Number Font.getCharHeight(font)`* (_nds_)
 
 Get the height of the characters of a font.

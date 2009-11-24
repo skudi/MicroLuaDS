@@ -65,26 +65,6 @@ static int font_getCharHeight(lua_State *L){
     return 1;
 }
 
-static int font_print(lua_State *L){
-    int screen = (int)luaL_checknumber(L, 1);
-    UL_FONT * font = lua_touserdata(L, 2);
-    int x = (int)luaL_checknumber(L, 3);
-    int y = (int)luaL_checknumber(L, 4);
-    char * text = (char *)luaL_checkstring(L, 5);
-    int color = RGB15(31, 31, 31);
-    assert(L, screen == SCREEN_UP_DISPLAY || screen == SCREEN_DOWN_DISPLAY || screen == SCREEN_BOTH , "Bad screen number");
-    assert(L, x>=0 , "x must be >= 0");
-    assert(L, y>=0 , "y must be >= 0");
-    assert(L, text != NULL , "Text can't be null");
-    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
-        ulSetFont(font);
-        ulSetTextColor(color);
-        ulDrawString(x, y, text);
-        ulSetFont(ul_lcdFont);
-    }
-    return 0;
-}
-
 static int font_destroy(lua_State *L){
     UL_FONT * font = lua_touserdata(L, 1);
     free(font);

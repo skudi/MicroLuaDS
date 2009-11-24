@@ -383,18 +383,6 @@ Liste tous les fichiers et répertoires d'un dossier.
 Crée une nouvelle police depuis un fichier de police (au format oslib et µLibrairy).
   * *chemin* (String): chemin d'accès du fichier police à charger
 
-*`Void Font.print(ecran, police, x, y, texte [, couleur])`* (_nds_, _deprecated_)
-
-Merci d'utiliser `screen.printFont`, qui gère vraiment la couleur.
-
-Affiche un texte avec une police spéciale.
-  * *ecran* (Number): écran sur lequel afficher le texte (`SCREEN_UP` ou `SCREEN_DOWN`)
-  * *police* (Font): police à utiliser
-  * *x* (Number): abscisse du coin haut-gauche du texte
-  * *y* (Number): ordonnée du coin haut-gauche du texte
-  * *texte* (String): texte à afficher
-  * *couleur* (Color): couleur du texte
-
 *`Number Font.getCharHeight(police)`* (_nds_)
 
 Obtient la hauteur des caractères d'une police.
