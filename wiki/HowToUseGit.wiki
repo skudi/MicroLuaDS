@@ -131,3 +131,45 @@ git svn rebase
 It will fetch the latest history in the remote repository and move your branch on top of the latest available code (`remotes/git-svn`).
 
 Beware not to change already published branches though.
+
+== Track someone's code ==
+
+=== Instructions ===
+
+To bind a remote repository to one of your tracking branches, use the
+[http://www.kernel.org/pub/software/scm/git/docs/git-remote.html git remote]
+set of commands.
+{{{
+# bind
+git remote add grahack http://baco.myftp.org/repositories/microlua.git
+# you have to request an update if you didn't add `-f` to the previous command
+git fetch grahack
+# now git branch -a should show you the remotes bound to Grahack's repo:
+git branch -a
+#* master
+#  remotes/git-svn
+#  remotes/grahack/constants
+#  remotes/grahack/master
+#  remotes/grahack/pixel
+}}}
+
+If you just plan to have a quick look and not change some of the tracked code:
+{{{
+git checkout remotes/grahack/constants
+}}}
+
+Or you may want to create a local tracking branch:
+{{{
+git checkout --track -b remotes/grahack/constants
+}}}
+
+Now to update your favorite remote:
+{{{
+git fetch grahack
+}}}
+
+
+=== URLs of some repositories ===
+
+  * Grahack: `http://baco.myftp.org/repositories/microlua.git`
+  * !PapyMouge: `git://papymouge.indefero.net/papymouge/microlua.git`
