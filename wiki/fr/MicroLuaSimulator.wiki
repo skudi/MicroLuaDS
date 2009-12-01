@@ -75,6 +75,8 @@ Les fichiers `.ini` et `.txt` sont chargés dans le dossier de l'exécutable `ml
 En raison de l'absence de bibliothèques de sons, il n'y a actuellement pas de son sur MLS.
 
 = Liens =
+ 
+Projet Google Code: http://code.google.com/p/microlua-sim/
 
 Changelogs:
   * En anglais: http://microlua.xooit.fr/t180-Micro-Lua-Simulator.htm
