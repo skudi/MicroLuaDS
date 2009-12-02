@@ -12,8 +12,12 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * AloufsDs
   * CalculatriceProject (Calculator)
   * CarPlaying (Avoid them all)
+  * Drawing Platform Game
   * DsLaby (Labyrinth)
+  * FireGhouls
+  * Fléchettes
   * GhuntletProject
+  * Lampe
   * LibRpg
   * LuaEditor
   * MicroDemineurDs (Minesweeper)
@@ -27,5 +31,6 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * SpaceshipProject
   * StargateUniversDs
   * TankDs
+  * TicTacTo
   * TilesEngine
   * TilesEngineEvolution
