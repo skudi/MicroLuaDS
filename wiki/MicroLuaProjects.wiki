@@ -15,7 +15,7 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * Drawing Platform Game
   * DsLaby (Labyrinth)
   * FireGhouls
-  * Fléchettes
+  * FlechettesProject (darts)
   * GhuntletProject
   * Lampe
   * LibRpg
