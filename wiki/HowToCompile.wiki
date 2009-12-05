@@ -133,6 +133,7 @@ First download everything here and then follow the instructions below.
  For ubuntu use 'apt-get 7z' or try 'yum install 7z'
 
  * [http://sourceforge.net/projects/devkitpro/files/ devkitpro packages]
+Many packages are listed at the SourceForge site.  I've listed the folders and the versions I used.
 || *Folder* || *Package* ||
 || Previous/DevkitARM release 24 || devkitARM_r24-i686-linux.tar.bz2 ||
 || dswifi || dswifi-0.3.10.tar.bz2 ||
@@ -202,7 +203,7 @@ Extract the zip to /opt/devkitpro.
 Some changes had to be made to get the build system to work in Linux.
 However they are pretty minor, but I just packed them all up into a easy tarball.
 
- *[http://orbitalair.wikispaces.com/MicroLua luads-linux-makefiles]
+ * [http://orbitalair.wikispaces.com/MicroLua luads-linux-makefiles.tgz]
 {{{
  tar -zxvf luads-linux-makefiles.tgz -C /opt/devkitpro
 }}}
@@ -230,7 +231,7 @@ Change to uLibrary and build the package.
  make
  make install
 }}}
- * change include/uLib to ulib
+ * rename '/include/uLib' to /include/ulib'  (lower case L !)
 
 ===== Lua-5.1.3 =====
 Build the core Lua code and the luads extension code.
