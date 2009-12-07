@@ -130,24 +130,25 @@ We should probably make a big package for win32 that contains all this stuff alr
 First download everything here and then follow the instructions below.
 
  * Several archives are in the 7z format, so you will need [http://www.7-zip.org/ 7-zip] 
- For ubuntu use 'apt-get 7z' or try 'yum install 7z'
+ For debian/ubuntu use `apt-get install p7zip` or try `yum install 7z`.
 
  * [http://sourceforge.net/projects/devkitpro/files/ devkitpro packages]
 Many packages are listed at the SourceForge site.  I've listed the folders and the versions I used.
 || *Folder* || *Package* ||
-|| Previous/DevkitARM release 24 || devkitARM_r24-i686-linux.tar.bz2 ||
-|| dswifi || dswifi-0.3.10.tar.bz2 ||
+|| devkitARM/previous/DevkitARM release 24 || devkitARM_r24-i686-linux.tar.bz2 ||
+|| dswifi || dswifi-0.3.11.tar.bz2 ||
 || libnds/previous/libnds-1.3.6 || libnds-1.3.6.tar.bz2 ||
-|| filesystem/filesystem-1.9.2 || libfilesystem-0.9.2.tar.bz2 ||
+|| filesystem/filesystem-0.9.2 || libfilesystem-0.9.2.tar.bz2 ||
 || default arm7/previous || default_arm7-0.5.6.tar.bz2  ||
 
  * [http://brunni.palib.info/new/dl/nds/uLibrary.7z uLibrary]
 
  * fatlib (The [http://nanolua.fr.nf/nanolua/files/libfat20080530.zip 20080530 version] should have better results, you'll only find it here)
 
- * The source code ([http://code.google.com/p/microlua/source/checkout Subversion repository] or [http://code.google.com/p/microlua/downloads/list zip])
+ * GetTheCurrentSourceCode
 
-===Optional===
+=== Optional ===
+
  * PAlib (the version needed is PAlib090801.7z, you can download it in a [http://forum.palib.info/index.php?topic=7048.0 forum thread] with links to many mirrors).
 I did not install PAlib yet.  TODO: update for linux.
 
@@ -155,7 +156,7 @@ I did not install PAlib yet.  TODO: update for linux.
 
 ==== DevKitPro ====
 
-Make a folder to work in.  I used /opt/devkitpro/
+Make a folder to work in.  I used `/opt/devkitpro/`.
 {{{
  mkdir /opt/devkitpro
  cd /opt/devkitpro
@@ -167,32 +168,19 @@ Hereafter we refer to your devkitpro install folder as simply '/devkitpro'.
 
 ==== Unpack packages ====
 
-Unpack the devkitARM_r24-i686-linux.tar.bz2 package into '\devkitpro'.
+Unpack the devkitARM_r24-i686-linux.tar.bz2 package into '/devkitpro'.
 {{{
  tar -jxvf devkitARM_r24-i686-linux.tar.bz2 -C /opt/devkitpro/
- tar -jxvf dswifi-0.3.10.tar.bz2 -C /opt/devkitpro/
+ tar -jxvf dswifi-0.3.11.tar.bz2 -C /opt/devkitpro/
  tar -jxvf libnds-1.3.6.tar.bz2 -C /opt/devkitpro/
  tar -jxvf libfilesystem-0.9.2.tar.bz2 -C /opt/devkitpro/
  tar -jxvf default_arm7-0.5.6.tar.bz2 -C /opt/devkitpro/
+ p7zip -d uLibrary.7z
+ mv uLibrary\ -\ 1.12/ /opt/devkitpro/uLibrary
+ unzip libfat20080530.zip
+ cp libfat20080530/nds/lib/libfat.a /opt/devkitpro/lib/
+ cp libfat20080530/nds/include/fat.h /opt/devkitpro/include/
 }}}
- * unzip uLibrary.7z to /opt/devkitpro
- * unzip libfat20080530.zip to /opt/devkitpro
- 
-My filemanager gui handled the zips and 7z (once I installed the app)
-
-
-==== uLibrary ====
-
-uLibrary is a lib for low level 'OS' like stuff for ARM processors.<br>
- * Rename the folder 'uLibrary - 1.12' to 'uLibrary'
-
-==== fatlib ====
-
-This has to be backdated.  Use the version listed above, 20080530.
-Extract the zip to /opt/devkitpro.  
-
- * Copy the file '/libfat20080530/nds/lib/libfat.a' to '/devkitpro/libnds/lib'
- * Copy the file '/libfat20080530/nds/include/fat.h' to '/devkitpro/libnds/include'
 
 ==== MicroLua Source ====
 
@@ -200,15 +188,19 @@ Extract the zip to /opt/devkitpro.
  * You can skip this item if you only need a `.nds` for you hardware. If you want a `.nds` to test on _No$GBA_ you'll have to rename the resulting source folder (the one containing `Examples`, `Fat`...) to 'luads'. This is because the name of a compiled file is the same as the source folder and a `luads.img` will be needed. Note that if you track the code in our repository, you'll have to rename it again to `trunk` before updates, unless you only checked out the trunk.
 
 ==== Makefiles for Linux ====
+
 Some changes had to be made to get the build system to work in Linux.
 However they are pretty minor, but I just packed them all up into a easy tarball.
 
  * [http://orbitalair.wikispaces.com/MicroLua luads-linux-makefiles.tgz]
 {{{
  tar -zxvf luads-linux-makefiles.tgz -C /opt/devkitpro
+ # if ever you don't keep the sources in /opt/devkitpro/luads
+ cp -r /opt/devkitpro/luads/* /data/prj/microlua/googlecode_git/microlua/trunk/
 }}}
 
 ==== Environment Variables ====
+
 export env vars: (shell dependant, BASH use export)
 {{{
  DEVKITPRO=/opt/devkitpro
@@ -216,6 +208,7 @@ export env vars: (shell dependant, BASH use export)
 }}}
 
 ==== Launch the compilation ====
+
 First we need to make a folder that mimics the win32 setup.  Then we need to make 2 symbolic links so everything will match up.
 {{{
  mkdir /opt/devkitpro/libnds
@@ -225,15 +218,20 @@ First we need to make a folder that mimics the win32 setup.  Then we need to mak
 }}}
 
 ===== uLibrary =====
+
 Change to uLibrary and build the package.
 {{{
  cd /opt/devkitpro/uLibrary/Source
  make
  make install
 }}}
- * rename '/include/uLib' to /include/ulib'  (lower case L !)
+Rename `include/uLib` to `include/ulib`  (lower case L !)
+{{{
+ mv /opt/devkitpro/include/uLib/ /opt/devkitpro/include/ulib
+}}}
 
 ===== Lua-5.1.3 =====
+
 Build the core Lua code and the luads extension code.
 {{{
  cd luads/lua-5.1.3
@@ -242,6 +240,7 @@ Build the core Lua code and the luads extension code.
 }}}
 
 ===== luads =====
+
 Make the luads binaries.
 
  * copy /opt/devkitpro/default.arm7 to /opt/devkitpro/libnds/ folder
