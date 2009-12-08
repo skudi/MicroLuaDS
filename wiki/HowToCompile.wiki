@@ -235,25 +235,34 @@ Rename `include/uLib` to `include/ulib`  (lower case L !)
 
 ===== Lua-5.1.3 =====
 
-Build the core Lua code and the luads extension code.
+Build the core Lua code and the Microlua extension code.
 {{{
- cd luads/lua-5.1.3
+ cd /path/to/sources/lua-5.1.3
  make
  make install
 }}}
 
-===== luads =====
+===== Microlua binaries =====
 
-Make the luads binaries.
+====== Test versions ======
+
+You can skip this section if you only need a `.nds` for you hardware. If you want a `.nds` to test on _No$GBA_ your source folder will need to be named 'luads', and you'll need to do this:
 {{{
  mkdir /opt/devkitpro/devkitARM/bin/dldi/
- cp /opt/devkitpro/luads/img/fcsr.dldi /opt/devkitpro/devkitARM/bin/dldi/fcsr.dldi
- cd /opt/devkitpro/luads
- cp ./img/luads.img to luads.img [hack, until someone figures the way to make   this image in linux]
+ cp /path/to/sources/img/fcsr.dldi /opt/devkitpro/devkitARM/bin/dldi/fcsr.dldi
+ cd /path/to/sources/
+ cp ./img/luads.img luads.img [hack, until someone figures the way to make   this image in linux]
  make
 }}}
 
- * Copy luads.nds to sd card and run.
+======= Hardware versions ======
+
+{{{
+ cd /path/to/sources/
+ make
+}}}
+
+ * Copy xxxx.nds to your linker and run.
 
 
 === Folders ===
@@ -277,9 +286,13 @@ Make the luads binaries.
 }}}
 
 === Notes ===
+
 ==== Tested Linux Versions ====
+
 Lets list the tested Linux OS (and OSX10.?) here.
- Ubuntu LSV 8.04
+  * Ubuntu LSV 8.04
+  * Debian Squeeze as of december 4th 2009
 
 ==== Libs ====
+
 Once the DevARM-`r24`, PAlib, uLibrary and fatlib are setup you don't have to recompile those unless one of these components is updated.  The setup is complete.
