@@ -75,7 +75,6 @@ static const luaL_Reg fontlib[] = {
     {"load", font_load},
     {"getStringWidth", font_getStringWidth},
     {"getCharHeight", font_getCharHeight},
-    {"print", font_print},
     {"destroy", font_destroy},
     {NULL, NULL}
 };
