@@ -1,0 +1,13 @@
+#summary Important dated informations.
+#labels Featured
+
+= GNU/Linux compilation made possible (2009/12/08) =
+
+Motopic/Orbitalair made a great work. See instructions
+[https://code.google.com/p/microlua/wiki/HowToCompile#Linux here].
+
+= Source code becomes _open source_ (2009/07/09) =
+
+Risike releases the code. See the posts in the
+[http://microlua.xooit.fr/t274-Micro-Lua-DS-became-open-source.htm#p2807 English] and
+[http://microlua.xooit.fr/t273-Micro-Lua-DS-devient-open-source.htm#p2806 French] sections.
