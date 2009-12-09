@@ -79,7 +79,7 @@ svn diff (path/to/the/file) > path/where/to/store/the/patch/reason_for_the_chang
 
 To commit code, use [http://svnbook.red-bean.com/en/1.1/re06.html svn commit].
 
-You'll need the Commit permission, ask Grahack if you want it.
+You'll need the Commit permission, ask Grahack if you want it. Then please read the CommitMessage page.
 
 Here we feel the superiority of [HowToUseGit Git] which can commit only some changes among others, but in the same file. You'll have real pleasure using `git add -p` for this.
 Subversion cannot differentiate multiple changes in one same file.
