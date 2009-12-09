@@ -94,7 +94,7 @@ With Git, you can [#Commit_locally store this set of changes locally] to be able
 
 === Commit locally ===
 
-Git is superior to Subversion here as you can commit locally to store and organize your changes. Maybe you will publish them, maybe not.
+Git is superior to Subversion here as you can commit locally to store and organize your changes. Maybe you will publish them, maybe not. In any case, please read the CommitMessage page.
 
 So this is all about [http://www.kernel.org/pub/software/scm/git/docs/git-add.html git-add], [http://www.kernel.org/pub/software/scm/git/docs/git-diff.html git diff --cached] and [http://www.kernel.org/pub/software/scm/git/docs/git-commit.html git-commit], but remember to always commit in another branch than `master`. You will find thousand of tutorials about this process.
 
@@ -107,7 +107,7 @@ git log remotes/git-svn..HEAD
 
 If you are happy with what `git` answers, you can use `git svn dcommit`.
 
-You'll need the Commit permission, ask Grahack if you want it. Then please read the CommitMessage? page. 
+You'll need the Commit permission, ask Grahack if you want it. Please be sure to have read the CommitMessage page.
 
 *NOTE*: Even if you have the Commit permission and typed the right password, you won't be able to authenticate if you checked out from `http` and not `https`.
 
