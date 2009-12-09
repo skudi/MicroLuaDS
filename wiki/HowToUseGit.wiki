@@ -98,7 +98,18 @@ Git is superior to Subversion here as you can commit locally to store and organi
 
 So this is all about [http://www.kernel.org/pub/software/scm/git/docs/git-add.html git-add], [http://www.kernel.org/pub/software/scm/git/docs/git-diff.html git diff --cached] and [http://www.kernel.org/pub/software/scm/git/docs/git-commit.html git-commit], but remember to always commit in another branch than `master`. You will find thousand of tutorials about this process.
 
-You can use templates for your commit messages, which will automaticly act on the issues in the Google Code project. See [http://www.javalinux.it/wordpress/?p=319 this article]. You can also simply copy-paste the special lines you will find in the article.
+=== Commit to the central repository ===
+
+To see what you are about to commit, try
+{{{
+git log remotes/git-svn..HEAD
+}}}
+
+If you are happy with what `git` answers, you can use `git svn dcommit`.
+
+You'll need the Commit permission, ask Grahack if you want it. Then please read the CommitMessage? page. 
+
+*NOTE*: Even if you have the Commit permission and typed the right password, you won't be able to authenticate if you checked out from `http` and not `https`.
 
 === Publish a branch ===
 
