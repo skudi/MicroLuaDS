@@ -1,15 +1,20 @@
-# makefile for building Lua
+# makefile for building Lua as part of Microlua
+# HISTORY
+# ??/??/?? risike, init
+# 12/08/09 motopic, jmr, fixed include search for linux
+#
 # see ../INSTALL for installation instructions
 # see ../Makefile and luaconf.h for further customization
 
 # == CHANGE THE SETTINGS BELOW TO SUIT YOUR ENVIRONMENT =======================
 
 # Your platform. See PLATS for possible values.
+# Microlua uses generic (note by jmr).
 PLAT= generic
 
 LIBDIRS	:=	$(DEVKITPRO)/libnds
-export INCLUDE	:=	$(foreach dir,$(LIBDIRS),-I$(dir)/include) \
-					$(foreach dir,$(LIBDIRS),-I$(dir)/include/nds) \
+export INCLUDE	:= -I. -I.. $(foreach dir,$(LIBDIRS),-I$(dir)/include) \
+		    $(foreach dir,$(LIBDIRS),-I$(dir)/include/nds) \
 
 MACHDEP = 
 

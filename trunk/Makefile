@@ -1,3 +1,8 @@
+# makefile for Microlua
+# HISTORY
+# ??/??/??  risike, init.  from palib most likely.
+# 12/08/09 motopic, jmr, added export changes to path for linux
+#
 PROGNAME = Micro Lua DS
 OFILES   +=
 ADD_LIBS +=
@@ -29,7 +34,11 @@ BUILD		:=	build
 SOURCES	:=	gfx source data
 INCLUDES	:=	include build data
 
+#if windows uncomment this
 EXPORT_DIR := /c/ndsexamples/
+
+#if linux uncomment this
+#EXPORT_DIR := ./nds_examples/
 
 #ARM7BIN := -7 luads.arm7
 
