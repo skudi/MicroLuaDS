@@ -52,10 +52,11 @@ uLibrary is a lib for low level 'OS' like stuff for ARM processors.
 This is built next.
   
  * Unpack to '\devkitpro\'
- * cd to '\devkitpro\uLibrary-1.12\Source\'
+ * rename "uLibrary - 1.12" to uLibrary
+ * cd to '\devkitpro\uLibrary\Source\'
  * Run 'build.bat'
  * Run 'Install.bat'
- * cd .. to '\devkitpro\uLibrary-1.12\'
+ * cd .. to '\devkitpro\uLibrary\'
  * Run 'Install.bat' here also (yes they do 2 different tasks)!
 
 ==== fatlib ====
