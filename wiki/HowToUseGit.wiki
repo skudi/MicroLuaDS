@@ -104,6 +104,10 @@ To see what you are about to commit, try
 {{{
 git log remotes/git-svn..HEAD
 }}}
+or
+{{{
+git svn dcommit -n
+}}}
 
 If you are happy with what `git` answers, you can use `git svn dcommit`.
 
