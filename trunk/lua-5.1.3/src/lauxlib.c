@@ -551,12 +551,6 @@ static int errfile (lua_State *L, const char *what, int fnameindex) {
 
 
 LUALIB_API int luaL_loadfile (lua_State *L, const char *filename) {
-	/*if(!fatInitDefault())
-	{
-		printf("Lua can't open files because FAT couldn't initialise - SD in the slot?\n");
-	}*/
-  fatInitDefault();
-  
   LoadF lf;
   int status, readstatus;
   int c;

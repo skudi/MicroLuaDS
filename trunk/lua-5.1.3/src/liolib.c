@@ -161,7 +161,6 @@ static int io_tostring (lua_State *L) {
 
 
 static int io_open (lua_State *L) {
-	fatInitDefault();
   const char *filename = luaL_checkstring(L, 1);
   const char *mode = luaL_optstring(L, 2, "r");
   FILE **pf = newfile(L);
@@ -201,7 +200,6 @@ static FILE *getiofile (lua_State *L, int findex) {
 
 
 static int g_iofile (lua_State *L, int f, const char *mode) {
-	fatInitDefault();
   if (!lua_isnoneornil(L, 1)) {
     const char *filename = lua_tostring(L, 1);
     if (filename) {
@@ -250,7 +248,6 @@ static int f_lines (lua_State *L) {
 
 
 static int io_lines (lua_State *L) {
-	fatInitDefault();
   if (lua_isnoneornil(L, 1)) {  /* no arguments? */
     /* will iterate over default input */
     lua_rawgeti(L, LUA_ENVIRONINDEX, IO_INPUT);
