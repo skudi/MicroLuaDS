@@ -193,13 +193,14 @@ Unpack the devkitARM_r24-i686-linux.tar.bz2 package into '/devkitpro'.
 ==== Makefiles for Linux ====
 
 Some changes had to be made to get the build system to work in Linux.
-However they are pretty minor, but I just packed them all up into a easy tarball.
+However they are very minor.  These have been checked into svn here.
 
- * [http://orbitalair.wikispaces.com/MicroLua luads-linux-makefiles.tgz]
-{{{
- tar -zxvf luads-linux-makefiles.tgz -C /opt/devkitpro
- # if ever you don't keep the sources in /opt/devkitpro/luads
- cp -r /opt/devkitpro/luads/* /data/prj/microlua/googlecode_git/microlua/trunk/
+ * Locate the Makefile at luads/ folder, and comment out the win32 line and uncomment the linux line.
+{{{ 
+ 	#if windows uncomment this 
+ 	#EXPORT_DIR := /c/ndsexamples/ 
+ 	#if linux uncomment this
+ 	EXPORT_DIR := ./nds_examples/
 }}}
 
 ==== Environment Variables ====
@@ -251,7 +252,7 @@ You can skip this section if you only need a `.nds` for you hardware. If you wan
  mkdir /opt/devkitpro/devkitARM/bin/dldi/
  cp /path/to/sources/img/fcsr.dldi /opt/devkitpro/devkitARM/bin/dldi/fcsr.dldi
  cd /path/to/sources/
- cp ./img/luads.img luads.img [hack, until someone figures the way to make   this image in linux]
+ cp ./img/luads.img luads.img [hack, until someone figures the way to make this image in linux]
  make
 }}}
 
