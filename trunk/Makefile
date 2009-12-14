@@ -11,7 +11,7 @@ PATH 		:= $(DEVKITARM)/bin:$(PATH)
 
 TARGET	:=	$(shell basename $(CURDIR))
 
-ifeq ( $(findstring Windows,$(OS)), Windows )
+ifeq ($(findstring Windows,$(OS)),Windows)
 WINDOWS := 1
 endif
 
