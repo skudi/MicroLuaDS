@@ -1,4 +1,3 @@
-COMPILE_FOR_DS = 0 -- 0: no, 1: yes
 -- ##### CONST  ######
 
 MICROLUA_VERSION = "3.0"

@@ -43,7 +43,12 @@ int main()
         return 0;
     }
     
+    // transfer COMPILE_FOR_DS C constant to Lua
+    lua_pushnumber(l, COMPILE_FOR_DS);
+    lua_setglobal(l, "COMPILE_FOR_DS");
+    
     luaL_openlibs(l);
+    
     if (luaL_loadfile(l, BOOT_FULLPATH)) {
         ulDebug("Error Occured: Couldn't open %s (%s mode)\n", BOOT_FULLPATH, 
                 COMPILE_FOR_DS ? "DS" : "EMU");
