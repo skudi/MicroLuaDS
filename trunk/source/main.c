@@ -1,13 +1,6 @@
-#define COMPILE_FOR_DS 0    // 1: yes, 0: no$gba
-
-#if COMPILE_FOR_DS
-#define BOOT_DIR "/lua/"
-#else
-#define BOOT_DIR ""
-#endif
-
+#define BOOT_DIR "/lua"
 #define BOOT_FILE "libs.lua"
-#define BOOT_FULLPATH BOOT_DIR BOOT_FILE
+#define BOOT_FULLPATH BOOT_DIR "/" BOOT_FILE
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -43,15 +36,10 @@ int main()
         return 0;
     }
     
-    // transfer COMPILE_FOR_DS C constant to Lua
-    lua_pushnumber(l, COMPILE_FOR_DS);
-    lua_setglobal(l, "COMPILE_FOR_DS");
-    
     luaL_openlibs(l);
     
     if (luaL_loadfile(l, BOOT_FULLPATH)) {
-        ulDebug("Error Occured: Couldn't open %s (%s mode)\n", BOOT_FULLPATH, 
-                COMPILE_FOR_DS ? "DS" : "EMU");
+        ulDebug("Error Occured: Couldn't open %s\n", BOOT_FULLPATH);
         return 0;
     }
     
