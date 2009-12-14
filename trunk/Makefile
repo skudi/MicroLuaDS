@@ -188,13 +188,13 @@ $(OUTPUT).elf	:	$(OFILES)
 	cp $(OUTPUT).nds $(OUTPUT)_tst.nds  
 	padbin 512 $(OUTPUT)_tst.nds
 	## uncomment this on Linux to create the img file from the Fat directory
-	cd ../img ; sh build.sh $(OUTPUT).img ../Fat
+	#cd ../img ; sh build.sh $(OUTPUT).img ../Fat
 	cat $(OUTPUT)_tst.nds $(OUTPUT).img  > $(OUTPUT)_fs.nds
 	## we can keep the img file, Desmume is able to read it with --cflash-image option
 	#rm $(OUTPUT).img
 	dlditool fcsr.dldi $(OUTPUT)_fs.nds
 	## patch final file with GBAMP DLDI driver, to test in Desmume
-	dlditool mpcf.dldi $(OUTPUT).nds
+	#dlditool mpcf.dldi $(OUTPUT).nds
 
 #---------------------------------------------------------------------------------
 %.bin: %.elf
