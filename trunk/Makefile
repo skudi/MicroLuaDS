@@ -11,6 +11,9 @@ PATH 		:= $(DEVKITARM)/bin:$(PATH)
 
 TARGET	:=	$(shell basename $(CURDIR))
 
+ifeq ( $(findstring Windows,$(OS)), Windows )
+WINDOWS := 1
+endif
 
 TEXT1 		:= Micro Lua DS
 TEXT2 		:= By Risike
@@ -34,11 +37,11 @@ BUILD		:=	build
 SOURCES	:=	gfx source data
 INCLUDES	:=	include build data
 
-#if windows uncomment this
+ifdef WINDOWS
 EXPORT_DIR := /c/ndsexamples/
-
-#if linux uncomment this
-#EXPORT_DIR := ./nds_examples/
+else
+EXPORT_DIR := ./nds_examples/
+endif
 
 #ARM7BIN := -7 luads.arm7
 
@@ -187,11 +190,13 @@ $(OUTPUT).elf	:	$(OFILES)
 	ndstool -c $@ -9 $(TARGET).bin $(ARM7BIN) $(LOGO) $(ICON) "$(TEXT1);$(TEXT2);$(TEXT3)"
 	cp $(OUTPUT).nds $(OUTPUT)_tst.nds  
 	padbin 512 $(OUTPUT)_tst.nds
-	## uncomment this on Linux to create the img file from the Fat directory
-	#cd ../img ; sh build.sh $(OUTPUT).img ../Fat
+ifndef WINDOWS
+	cd ../img ; sh build.sh $(OUTPUT).img ../Fat
+endif
 	cat $(OUTPUT)_tst.nds $(OUTPUT).img  > $(OUTPUT)_fs.nds
-	## we can keep the img file, Desmume is able to read it with --cflash-image option
-	#rm $(OUTPUT).img
+ifndef WINDOWS
+	rm $(OUTPUT).img
+endif
 	dlditool fcsr.dldi $(OUTPUT)_fs.nds
 	## patch final file with GBAMP DLDI driver, to test in Desmume
 	#dlditool mpcf.dldi $(OUTPUT).nds
