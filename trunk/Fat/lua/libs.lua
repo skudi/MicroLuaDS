@@ -417,11 +417,7 @@ SpriteAnimation = {
 	
 }
 
-str = ""
-if COMPILE_FOR_DS == 1 then
-	str = "/lua/libs/"
-end	
-
+str = "/lua/libs/"
 dofile(str.."ini.lua")
 
 -- ################################ START ################################
@@ -439,10 +435,7 @@ startDrawing()
 while true do
 
 	status_global_microlua_errors, err_global_microlua_errors = pcall(function ()
-		str = ""
-		if COMPILE_FOR_DS == 1 then
-			str = "/lua/libs/"
-		end	
+	    str = "/lua/libs/"
 		dofile(str.."shell.lua")
 	end)
 	if err_global_microlua_errors ~= nil then

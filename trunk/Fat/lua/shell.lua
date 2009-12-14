@@ -1,15 +1,11 @@
-if COMPILE_FOR_DS == 1 then System.changeDirectory("/lua/scripts") end
+System.changeDirectory("/lua/scripts")
 files = {}
 nbFiles = 0
 selectedFile = {}
 
 status, err = pcall(function()
 	local configs
-	if COMPILE_FOR_DS == 1  then
-		configs = INI.load("/lua/libs/shell.ini")
-	else
-		configs = INI.load("shell.ini")
-	end
+    configs = INI.load("/lua/libs/shell.ini")
 	local f
 	f = loadstring("return Color.new("..configs["colors"]["bgupcolor"]..")")
 	bgupcolor = f()
