@@ -38,11 +38,7 @@ CORE_O=	lapi.o lcode.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o \
 	lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o  \
 	lundump.o lvm.o lzio.o
 LIB_O=	lauxlib.o lbaselib.o ldblib.o liolib.o lmathlib.o loslib.o ltablib.o \
-	lstrlib.o loadlib.o linit.o \
-	ds/ds_screen.o ds/ds_controls.o ds/ds_image.o ds/ds_system.o ds/ds_map.o \
-	ds/ds_font.o ds/ds_color.o ds/ds_scrollmap.o ds/ds_canvas.o \
-	ds/ds_wifi.o ds/ds_sound.o ds/ds_rumble.o ds/ds_motion.o
-
+	lstrlib.o loadlib.o linit.o
 
 ALL_O= $(CORE_O) $(LIB_O) 
 ALL_T= $(LUA_A) 
@@ -183,18 +179,5 @@ lzio.o: lzio.c lua.h luaconf.h llimits.h lmem.h lstate.h lobject.h ltm.h \
   lzio.h
 print.o: print.c ldebug.h lstate.h lua.h luaconf.h lobject.h llimits.h \
   ltm.h lzio.h lmem.h lopcodes.h lundump.h
-ds_screen.o: ds/ds_screen.c lua.h luaconf.h lauxlib.h lualib.h
-ds_controls.o: ds/ds_controls.c lua.h luaconf.h lauxlib.h lualib.h
-ds_image.o: ds/ds_image.c lua.h luaconf.h lauxlib.h lualib.h
-ds_system.o: ds/ds_system.c lua.h luaconf.h lauxlib.h lualib.h
-ds_map.o: ds/ds_map.c lua.h luaconf.h lauxlib.h lualib.h
-ds_font.o: ds/ds_font.c lua.h luaconf.h lauxlib.h lualib.h
-ds_color.o: ds/ds_color.c lua.h luaconf.h lauxlib.h lualib.h
-ds_scrollmap.o: ds/ds_scrollmap.c lua.h luaconf.h lauxlib.h lualib.h
-ds_canvas.o: ds/ds_canvas.c lua.h luaconf.h lauxlib.h lualib.h
-ds/ds_wifi.o: ds/ds_wifi.c lua.h luaconf.h lauxlib.h lualib.h
-ds/ds_sound.o: ds/ds_sound.c lua.h luaconf.h lauxlib.h lualib.h
-ds/ds_rumble.o: ds/ds_rumble.c lua.h luaconf.h lauxlib.h lualib.h
-ds/ds_motion.o: ds/ds_motion.c lua.h luaconf.h lauxlib.h lualib.h
 
 # (end of Makefile)

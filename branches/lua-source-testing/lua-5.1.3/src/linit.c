@@ -23,21 +23,6 @@ static const luaL_Reg lualibs[] = {
   {LUA_STRLIBNAME, luaopen_string},
   {LUA_MATHLIBNAME, luaopen_math},
   {LUA_DBLIBNAME, luaopen_debug},
-  
-// DS
-  {LUA_SCREENLIBNAME, luaopen_screen},  
-  {LUA_CONTROLSLIBNAME, luaopen_controls},    
-  {LUA_IMAGELIBNAME, luaopen_image}, 
-  {LUA_SYSTEMLIBNAME, luaopen_system},
-  {LUA_MAPLIBNAME, luaopen_map}, 
-  {LUA_FONTLIBNAME, luaopen_font},
-  {LUA_COLORLIBNAME, luaopen_color},
-  {LUA_SCROLLMAPLIBNAME, luaopen_scrollmap},
-  {LUA_CANVASLIBNAME, luaopen_canvas},
-  {LUA_WIFILIBNAME, luaopen_wifi},  
-  {LUA_RUMBLELIBNAME, luaopen_rumble},
-  {LUA_MOTIONLIBNAME, luaopen_motion},
-  {LUA_SOUNDLIBNAME, luaopen_sound},
   {NULL, NULL}
 };
 
