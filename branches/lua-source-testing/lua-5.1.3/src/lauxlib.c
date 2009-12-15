@@ -12,8 +12,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <fat.h>
-
 
 /* This file uses only the official API of Lua.
 ** Any function declared here could be written as an application function.
@@ -137,6 +135,7 @@ LUALIB_API void *luaL_checkudata (lua_State *L, int ud, const char *tname) {
   luaL_typerror(L, ud, tname);  /* else error */
   return NULL;  /* to avoid warnings */
 }
+
 
 LUALIB_API void luaL_checkstack (lua_State *L, int space, const char *mes) {
   if (!lua_checkstack(L, space))
@@ -583,7 +582,7 @@ LUALIB_API int luaL_loadfile (lua_State *L, const char *filename) {
   readstatus = ferror(lf.f);
   if (filename) fclose(lf.f);  /* close file (even in case of errors) */
   if (readstatus) {
-    lua_settop(L, fnameindex);  
+    lua_settop(L, fnameindex);  /* ignore results from `lua_load' */
     return errfile(L, "read", fnameindex);
   }
   lua_remove(L, fnameindex);

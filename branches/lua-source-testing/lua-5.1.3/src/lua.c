@@ -344,13 +344,13 @@ static int pmain (lua_State *L) {
   int has_i = 0, has_v = 0, has_e = 0;
   globalL = L;
   if (argv[0] && argv[0][0]) progname = argv[0];
-  lua_gc(L, LUA_GCSTOP, 0); 
-  luaL_openlibs(L);  
+  lua_gc(L, LUA_GCSTOP, 0);  /* stop collector during initialization */
+  luaL_openlibs(L);  /* open libraries */
   lua_gc(L, LUA_GCRESTART, 0);
   s->status = handle_luainit(L);
   if (s->status != 0) return 0;
   script = collectargs(argv, &has_i, &has_v, &has_e);
-  if (script < 0) { 
+  if (script < 0) {  /* invalid args? */
     print_usage();
     s->status = 1;
     return 0;
@@ -368,15 +368,16 @@ static int pmain (lua_State *L) {
       print_version();
       dotty(L);
     }
-    else dofile(L, NULL);
+    else dofile(L, NULL);  /* executes stdin as a file */
   }
   return 0;
 }
 
-int main(int argc, char ** argv){
+
+int main (int argc, char **argv) {
   int status;
   struct Smain s;
-  lua_State *L = lua_open();
+  lua_State *L = lua_open();  /* create state */
   if (L == NULL) {
     l_message(argv[0], "cannot create state: not enough memory");
     return EXIT_FAILURE;

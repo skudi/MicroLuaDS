@@ -441,6 +441,7 @@ static int luaB_newproxy (lua_State *L) {
   return 1;
 }
 
+
 static const luaL_Reg base_funcs[] = {
   {"assert", luaB_assert},
   {"collectgarbage", luaB_collectgarbage},

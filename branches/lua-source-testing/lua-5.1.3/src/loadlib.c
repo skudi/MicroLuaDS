@@ -12,7 +12,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <fat.h>
 
 #define loadlib_c
 #define LUA_LIB

@@ -10,8 +10,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <fat.h>
-
 #define liolib_c
 #define LUA_LIB
 
