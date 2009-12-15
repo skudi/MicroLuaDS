@@ -134,13 +134,12 @@ LUA_API lua_CFunction lua_atpanic (lua_State *L, lua_CFunction panicf) {
   old = G(L)->panic;
   G(L)->panic = panicf;
   lua_unlock(L);
-
-  return NULL;
+  return old;
 }
 
 
 LUA_API lua_State *lua_newthread (lua_State *L) {
-/*  lua_State *L1;
+  lua_State *L1;
   lua_lock(L);
   luaC_checkGC(L);
   L1 = luaE_newthread(L);
@@ -148,8 +147,7 @@ LUA_API lua_State *lua_newthread (lua_State *L) {
   api_incr_top(L);
   lua_unlock(L);
   luai_userstatethread(L, L1);
-*/
-  return NULL;
+  return L1;
 }
 
 
