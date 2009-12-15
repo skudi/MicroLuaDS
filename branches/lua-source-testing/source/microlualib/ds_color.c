@@ -8,13 +8,13 @@
 #define ds_color_c
 #define LUA_LIB
 
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
+#include <lua.h>
+#include <lauxlib.h>
 
 #include <ulib/ulib.h>
 
 #include "vars.h"
+#include "microlualib.h"
 
 static int color_new(lua_State *L){
     int r = (int)luaL_checknumber(L, 1);

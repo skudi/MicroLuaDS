@@ -8,21 +8,19 @@
 #define ds_map_c
 #define LUA_LIB
 
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
-
 #include <math.h>
-#include "../lobject.h"
-#include "../ltable.h"
 
-#include <ulib/ulib.h>
 #include <sys/stat.h>
 #include <sys/dir.h>
 #include <string.h>
-#include <math.h>
+
+#include <lua.h>
+#include <lauxlib.h>
+
+#include <ulib/ulib.h>
 
 #include "vars.h"
+#include "microlualib.h"
 
 void blitTile(int x, int y, UL_IMAGE * img, int sourcex, int sourcey, int width, int height){
     ulSetImageTile(img, sourcex, sourcey, sourcex+width, sourcey+height);

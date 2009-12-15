@@ -8,15 +8,17 @@
 #define ds_motion_c
 #define LUA_LIB
 
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
-
 #include <nds.h>
 #include <ulib/ulib.h>
 #include <nds/arm9/ndsmotion.h>
 
+#include <lua.h>
+#include <lauxlib.h>
+
+#include <ulib/ulib.h>
+
 #include "vars.h"
+#include "microlualib.h"
 
 static int motion_initlib(lua_State *L){
     lua_pushboolean(L, motion_init());

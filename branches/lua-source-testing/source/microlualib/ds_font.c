@@ -8,15 +8,17 @@
 #define ds_font_c
 #define LUA_LIB
 
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
-
 #include <ulib/ulib.h>
 #include <sys/stat.h>
 #include <sys/dir.h>
 
+#include <lua.h>
+#include <lauxlib.h>
+
+#include <ulib/ulib.h>
+
 #include "vars.h"
+#include "microlualib.h"
 
 static int font_load(lua_State *L){
     char * filename = (char *)luaL_checkstring(L, 1);

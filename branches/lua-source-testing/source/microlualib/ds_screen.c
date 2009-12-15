@@ -8,13 +8,13 @@
 #define ds_screen_c
 #define LUA_LIB
 
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
+#include <lua.h>
+#include <lauxlib.h>
 
 #include <ulib/ulib.h>
 
 #include "vars.h"
+#include "microlualib.h"
 
 static int screen_init(lua_State *L) {
     SCREEN_UP_DISPLAY = 0;

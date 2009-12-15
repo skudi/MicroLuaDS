@@ -8,11 +8,12 @@
 #define ds_controls_c
 #define LUA_LIB
 
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
+#include <lua.h>
+#include <lauxlib.h>
 
 #include <ulib/ulib.h>
+
+#include "microlualib.h"
 
 // Stylus
 

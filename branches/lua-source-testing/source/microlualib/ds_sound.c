@@ -8,16 +8,17 @@
 #define ds_sound_c
 #define LUA_LIB
 
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
-
-#include <ulib/ulib.h>
 #include <maxmod9.h>
 #include <sys/stat.h>
 #include <sys/dir.h>
 
+#include <lua.h>
+#include <lauxlib.h>
+
+#include <ulib/ulib.h>
+
 #include "vars.h"
+#include "microlualib.h"
 
 // ########## BANKS ##########
 

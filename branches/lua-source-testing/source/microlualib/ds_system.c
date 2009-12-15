@@ -9,10 +9,6 @@
 #define ds_system_c
 #define LUA_LIB
 
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
-
 #include <fat.h>
 #include <sys/stat.h>
 #include <sys/dir.h>
@@ -20,6 +16,14 @@
 #include <dirent.h>
 #include <string.h>
 #include <time.h>
+
+#include <lua.h>
+#include <lauxlib.h>
+
+#include <ulib/ulib.h>
+
+#include "vars.h"
+#include "microlualib.h"
 
 #define TIME_YEAR 0
 #define TIME_MONTH 1

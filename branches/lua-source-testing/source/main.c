@@ -15,6 +15,8 @@
 #include <dswifi9.h>
 #include <netinet/in.h>
 
+#include "microlualib/microlualib.h"
+
 int main()
 {
     // Initialization of µlibrary
@@ -37,6 +39,7 @@ int main()
     }
     
     luaL_openlibs(l);
+    microlua_openlibs(l);
     
     if (luaL_loadfile(l, BOOT_FULLPATH)) {
         ulDebug("Error Occured: Couldn't open %s\n", BOOT_FULLPATH);

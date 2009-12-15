@@ -1,28 +1,22 @@
-/*
-*
-*/
-
 #include <stdlib.h>
 #include <stdio.h>
 
 #define ds_scrollmap_c
 #define LUA_LIB
 
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
-
 #include <math.h>
-#include "../lobject.h"
-#include "../ltable.h"
 
-#include <ulib/ulib.h>
 #include <sys/stat.h>
 #include <sys/dir.h>
 #include <string.h>
-#include <math.h>
+
+#include <lua.h>
+#include <lauxlib.h>
+
+#include <ulib/ulib.h>
 
 #include "vars.h"
+#include "microlualib.h"
 
 static int scrollmap_new(lua_State *L){
     UL_IMAGE * image = lua_touserdata(L, 1);

@@ -34,7 +34,7 @@ endif
 # INCLUDES is a list of directories containing extra header files
 #---------------------------------------------------------------------------------
 BUILD		:=	build
-SOURCES	:=	gfx source data
+SOURCES	:=	gfx source source/microlualib data
 INCLUDES	:=	include build data
 
 ifdef WINDOWS
@@ -313,7 +313,6 @@ endef
 	@echo $(notdir $<)
 	@$(bin2o)
 
- 
 -include $(DEPENDS) 
 
 #---------------------------------------------------------------------------------------

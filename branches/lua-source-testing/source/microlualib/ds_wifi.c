@@ -8,19 +8,20 @@
 #define ds_wifi_c
 #define LUA_LIB
 
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
-
 #include <nds.h>
-#include <ulib/ulib.h>
 
 #include <dswifi9.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h>
 
+#include <lua.h>
+#include <lauxlib.h>
+
+#include <ulib/ulib.h>
+
 #include "vars.h"
+#include "microlualib.h"
 
 static int wifi_connectWFC(lua_State *L){
 	lua_pushboolean(L, Wifi_InitDefault(WFC_CONNECT));

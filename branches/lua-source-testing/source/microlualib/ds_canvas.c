@@ -1,20 +1,16 @@
-/*
-*
-*/
-
 #include <stdlib.h>
 #include <stdio.h>
 
 #define ds_canvas_c
 #define LUA_LIB
 
-#include "lua.h"
-#include "lauxlib.h"
-#include "lualib.h"
+#include <lua.h>
+#include <lauxlib.h>
 
 #include <ulib/ulib.h>
 
 #include "vars.h"
+#include "microlualib.h"
 
 #define CANVAS_TYPE_LINE 0
 #define CANVAS_TYPE_POINT 1
