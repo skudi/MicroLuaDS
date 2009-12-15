@@ -16,6 +16,7 @@
 #include <netinet/in.h>
 
 #include "microlualib/microlualib.h"
+#include "microlualib/fixlibs.h"
 
 int main()
 {
@@ -39,7 +40,9 @@ int main()
     }
     
     luaL_openlibs(l);
+    
     microlua_openlibs(l);
+    microlua_fixlibs(l);
     
     if (luaL_loadfile(l, BOOT_FULLPATH)) {
         ulDebug("Error Occured: Couldn't open %s\n", BOOT_FULLPATH);
