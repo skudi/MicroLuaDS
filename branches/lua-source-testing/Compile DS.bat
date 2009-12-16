@@ -1,5 +1,7 @@
 @echo off
 
+set LUA_SRC_DIR=lua-5.1.3
+
 echo Micro Lua DS compiler by Risike
 echo.
 
@@ -8,24 +10,24 @@ cd img
 start makeimg.cmd
 sleep 0.5
 cd ..  
-del luads.img  2> lua-5.1.3\out2 1> lua-5.1.3\out
-cp img\luads.img . 2> lua-5.1.3\out2 1> lua-5.1.3\out
+del luads.img  2> %LUA_SRC_DIR%\out2 1> %LUA_SRC_DIR%\out
+cp img\luads.img . 2> %LUA_SRC_DIR%\out2 1> %LUA_SRC_DIR%\out
 sleep 0.5
 
 echo Compiling Micro Lua DS...
 make
 
-del lua-5.1.3\src\*.o 2> lua-5.1.3\out2 1> lua-5.1.3\out
-del lua-5.1.3\src\*.a 2> lua-5.1.3\out2 1> lua-5.1.3\out
-del lua-5.1.3\src\ds\*.o 2> lua-5.1.3\out2 1> lua-5.1.3\out
-del lua-5.1.3\src\ds\*.a 2> lua-5.1.3\out2 1> lua-5.1.3\out
-del /F /S /Q build 1> lua-5.1.3\out 1> lua-5.1.3\out
-rmdir build 1> lua-5.1.3\out 1> lua-5.1.3\out
-del lua-5.1.3\out
-del lua-5.1.3\out2
+del %LUA_SRC_DIR%\src\*.o 2> %LUA_SRC_DIR%\out2 1> %LUA_SRC_DIR%\out
+del %LUA_SRC_DIR%\src\*.a 2> %LUA_SRC_DIR%\out2 1> %LUA_SRC_DIR%\out
+del %LUA_SRC_DIR%\src\ds\*.o 2> %LUA_SRC_DIR%\out2 1> %LUA_SRC_DIR%\out
+del %LUA_SRC_DIR%\src\ds\*.a 2> %LUA_SRC_DIR%\out2 1> %LUA_SRC_DIR%\out
+del /F /S /Q build 1> %LUA_SRC_DIR%\out 1> %LUA_SRC_DIR%\out
+rmdir build 1> %LUA_SRC_DIR%\out 1> %LUA_SRC_DIR%\out
+del %LUA_SRC_DIR%\out
+del %LUA_SRC_DIR%\out2
 
-del luads_tst.nds 2> lua-5.1.3\out2 1> lua-5.1.3\out
-del luads.img  2> lua-5.1.3\out2 1> lua-5.1.3\out
+del luads_tst.nds 2> %LUA_SRC_DIR%\out2 1> %LUA_SRC_DIR%\out
+del luads.img  2> %LUA_SRC_DIR%\out2 1> %LUA_SRC_DIR%\out
 
 echo Finished !
 
