@@ -1,6 +1,6 @@
 @echo off
 
-set LUA_SRC_DIR=lua-5.1.3
+set LUA_SRC_DIR=lua
 
 echo Micro Lua DS compiler by Risike
 echo.
