@@ -18,7 +18,7 @@ cd ..
 
 echo Creating fcsr image...
 cd img  
-start makeimg.cmd
+start /B makeimg.cmd
 sleep 0.5
 cd ..  
 del luads.img  2> %LUA_SRC_DIR%\out2 1> %LUA_SRC_DIR%\out
