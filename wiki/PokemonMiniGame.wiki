@@ -1,52 +1,13 @@
-Pokemon Mini-Game est un party-game crée par blabla qui rassemble 16 mini-jeux.
-Vous avez le choix entre 2 modes:
+= Introduction =
 
-Le mode 1 joueur qui rassemble les 16 mini-jeux.
+PokemonMiniGame homebrew is a collection of mini-games created by blabla.
 
-Et le mode multijoueur qui se joue sur la même DS et contient 3 mini-jeux.
+You can play 16 mini-games alone or playing with 3 more minigames.
 
-Listes des 16 mini-jeux :
+An extension bonus is available and adds 2 Mini-games using the motion and rumble.
 
-- Pika Quiz : répondez aux 5 questions!
+= Links =
 
-- Pika Dash: Dépassez votre adversaire!
+* Download: [http://www.4shared.com/file/157141101/be7ccc18/Pokemon_Mini-Game_DS_33.html PokemonMiniGame 3.3]
 
-- Pikboutton:Appuyez 10 fois pour gagner!
-
-- Pikachu contre Mew:Combattez Mew 
-
-- SpaceShipDash:Ne pas sortir de l'écran!
-
-- Shoot Bomber:Détruire les bombes!
-
-- Get Pokeball:Ramassez les 8 poke-ball en 10 s!
-
-- Porte à Porte: Traverser les bonnes portes pour gagner!
-
-- Cyberdemon?: Battre le monstre
-
-- Mario Bros Dash: Dépassez Mario
-
-- Rainbow Road Dash:Dépasser votre adversaire!
-
-- Multiplication de Pikachu:Donnez la bonne réponse aux multiplication
-
-- Tuyau du Hazard : Choisissez un tuyau et priez pour tomber sur l'emeraude!
-
-- Pika Dance : Danser dans la même direction que la flèche
-
-- Key Party : Prendre la clé et aller au coffre sans être touché.
-
-- Chance Race : Pariez sur un adversaire et espérez qu'il gagne!
-
-Screenshots:
-
-http://img24.xooimage.com/files/3/1/3/screen1-1438150.png 
-
-http://img26.xooimage.com/files/f/2/f/screen4-1422391.png
-
-http://img27.xooimage.com/files/a/f/c/screen1-1447cac.png
-
-Lien de Téléchargement:
-
-http://www.4shared.com/file/144720284/186e671d/Pokemon_Mini-Game_DS_31.html
+* Topic of PokemonMiniGame on the MicroLua forum: http://microlua.xooit.fr/t403-Pokemon-Mini-Game.htm
