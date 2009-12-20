@@ -20,6 +20,7 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * Lampe
   * LibRpg
   * LuaEditor
+  * LuaExplorer
   * MicroDemineurDs (Minesweeper)
   * PingPong
   * PlusOuMoins (More or Less)
@@ -27,6 +28,8 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * PpcDs (Pierre-Papier-Ciseaux / Rock-Paper-Scissors)
   * SeaquestRemake
   * SokobanAllStars
+  * SonicMiniGame
+  * SonicRage
   * SpacePong
   * SpaceshipProject
   * StargateUniversDs
@@ -34,3 +37,4 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * TicTacTo
   * TilesEngine
   * TilesEngineEvolution
+  * Touch On The Beat Baby
