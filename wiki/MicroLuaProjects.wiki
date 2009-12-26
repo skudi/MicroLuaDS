@@ -12,7 +12,7 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * AloufsDs
   * CalculatriceProject (Calculator)
   * CarPlaying (Avoid them all)
-  * DigimonµArenaProject
+  * DigimonArenaProject
   * DrawingPlatformGame
   * DsLaby (Labyrinth)
   * FireGhouls
