@@ -2,7 +2,7 @@
 
 = Introduction =
 
-DigimonμArena is a homebrew lua coded blabla.
+DigimonμArena is a homebrew lua coded by blabla.
 You can fight against a digimon or play mini-game.
 Since the project was abandoned.
 To play, you should start with Nano Lua 2.4
