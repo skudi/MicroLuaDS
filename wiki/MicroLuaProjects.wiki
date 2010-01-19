@@ -29,6 +29,7 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * PpcDs (Pierre-Papier-Ciseaux / Rock-Paper-Scissors)
   * SeaquestRemake
   * SokobanAllStars
+  * SonicDial
   * SonicMiniGame
   * SonicRage
   * SpacePong
