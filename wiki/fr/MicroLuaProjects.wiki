@@ -12,10 +12,14 @@ Si le nom d'un projet n'est pas facile à convertir en CamelCase (s'il est en un
   * AloufsDs
   * CalculatriceProject (Calculatrice)
   * CarPlaying (Évite-les tous)
+  * DigimonArenaProject
   * DsLaby (Labyrinthe)
+  * FireGhouls (Tue-les tous)
   * GhuntletProject
+  * LampeProject
   * LibRpg
   * LuaEditor
+  * LuaExplorer
   * MicroDemineurDs (Démineur)
   * PingPong
   * PlusOuMoins (Plus ou moins)
@@ -23,9 +27,11 @@ Si le nom d'un projet n'est pas facile à convertir en CamelCase (s'il est en un
   * PpcDs (Pierre-Papier-Ciseaux)
   * SeaquestRemake
   * SokobanAllStars
+  * SonicDial
   * SpacePong
   * SpaceshipProject
   * StargateUniversDs
   * TankDs
   * TilesEngine
   * TilesEngineEvolution
+  * TouchOnTheBeatBaby
