@@ -1,9 +1,4 @@
-#summary One-sentence summary of this page.
-
-= Introduction =
-
-*A pong-clone game.
-
+#A pong-clone game.
 
 = Details =
 
