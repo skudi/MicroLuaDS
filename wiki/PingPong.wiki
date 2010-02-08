@@ -2,4 +2,4 @@ A pong-clone game.
 
 = Links =
 
-*Official page of the project (fr) : http://sites.google.com/site/poramadev/mes-projets/pingpong
+Official page of the project (fr) : http://sites.google.com/site/poramadev/mes-projets/pingpong
