@@ -15,7 +15,7 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * DigimonArenaProject
   * DrawingPlatformGame
   * DsLaby (Labyrinth)
-  * FireGhouls
+  * FireGhouls (Kill Them All)
   * FlechettesProject (darts)
   * GhuntletProject
   * LampeProject
