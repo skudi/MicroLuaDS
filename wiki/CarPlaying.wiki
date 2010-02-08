@@ -6,4 +6,4 @@ You drive a car and have to dodge the dangerous monsters.
 
 = Links =
 
-Official website of the project : http://sites.google.com/site/poramadev/mes-projets/carplaying
+Official website of the project (fr) : http://sites.google.com/site/poramadev/mes-projets/carplaying
