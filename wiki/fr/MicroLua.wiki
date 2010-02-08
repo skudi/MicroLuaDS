@@ -4,7 +4,7 @@
 
 MicroLua est un homebrew pour la Nintendo DS qui vous permet d'exécuter des scripts Lua (voir LuaLinks). Des dizaines de fonctions ont été ajoutées à Lua 5.1.3, de sorte que vous pouvez créer des applications et des jeux très simplement sur votre console favorite.
 
-= History =
+= Histoire =
 
 Micro Lua a été créé à l'origine par Risike.
 
