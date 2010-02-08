@@ -1,4 +1,4 @@
-An Avoid-Them-all game
+An avoid-them-all game created by BALROG.
 = Introduction =
 
 You drive a car and have to dodge the dangerous monsters.
