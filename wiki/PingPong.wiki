@@ -1,4 +1,4 @@
-#A pong-clone game.
+A pong-clone game.
 
 = Details =
 
