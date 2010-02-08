@@ -1,0 +1,10 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+*A pong-clone game.
+
+
+= Details =
+
+*Official page of the project (fr) : http://sites.google.com/site/poramadev/mes-projets/pingpong
