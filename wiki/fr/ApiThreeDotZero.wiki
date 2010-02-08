@@ -382,6 +382,16 @@ Liste tous les fichiers et répertoires d'un dossier.
 
 Crée une nouvelle police depuis un fichier de police (au format oslib et µLibrairy).
   * *chemin* (String): chemin d'accès du fichier police à charger
+  
+*`Void Font.destroy(police)`* (_nds_)
+
+Détruit une police.
+  * *police* (Font): police à détruire
+Pour détruire complètement une police, faire:
+{{{
+Font.destroy(police)
+police = nil
+}}}
 
 *`Void Font.print(ecran, police, x, y, texte [, couleur])`* (_nds_, _deprecated_)
 
