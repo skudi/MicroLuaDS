@@ -1,0 +1,11 @@
+A shooter game created by BALROG.
+
+= Introduction =
+
+You have to kill all the ghouls !
+Gameplay precisions in the readme.
+
+
+= Links =
+
+Official website of the project : http://sites.google.com/site/poramadev/mes-projets/fireghouls 
