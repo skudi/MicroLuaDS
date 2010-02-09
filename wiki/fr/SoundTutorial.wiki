@@ -1,4 +1,4 @@
-#summary Tutoriel à propos des sons avec MicroLua.
+#summary Tutoriel Ã  propos des sons avec MicroLua.
  
 <wiki:toc />
 
@@ -8,15 +8,15 @@ Cette page est directement extraite du tutoriel sur le son de la 3.0 prerelease.
 
 = Comment jouer des sons =
 
-Microlua 3 vous permet de jouer des sons de type "modules" et des effets sonores (_sound effects_ en anglais, abrégés _SFX_).
-  * Modules supportés: MOD, XM, S3M, IT
-  * SFX supportés: WAV
+Microlua 3 vous permet de jouer des sons de type "modules" et des effets sonores (_sound effects_ en anglais, abrÃ©gÃ©s _SFX_).
+  * Modules supportÃ©s: MOD, XM, S3M, IT
+  * SFX supportÃ©s: WAV
 
 == Banques de sons ==
 
-Vous ne pouvez pas jouer ces fichiers directement avec MicroLua, vous devez d'abord créer une banque de sons.
+Vous ne pouvez pas jouer ces fichiers directement avec MicroLua, vous devez d'abord crÃ©er une banque de sons.
 
-Pour ce faire, vous pouvez utiliser le _Soundbank Maker tool_ (outil de fabrication de banques de sons), inclus dans la distribution de MicroLua 3. Mettez tous vos fichiers de musique que vous voulez utiliser dans le dossier `in` et lancez `convert.bat`. Le programme créera deux fichiers: `soundbank.bin` et `soundbank.h`. Le premier est la banque de son: un fichier contenant tous les fichiers mods et sfx. Le second n'est pas utilisé par MicroLua mais peut vous aider à identifier vos mods et sfx grâce à leur ID.
+Pour ce faire, vous pouvez utiliser le _Soundbank Maker tool_ (outil de fabrication de banques de sons), inclus dans la distribution de MicroLua 3. Mettez tous vos fichiers de musique que vous voulez utiliser dans le dossier `in` et lancez `convert.bat`. Le programme crÃ©era deux fichiers: `soundbank.bin` et `soundbank.h`. Le premier est la banque de son: un fichier contenant tous les fichiers mods et sfx. Le second n'est pas utilisÃ© par MicroLua mais peut vous aider Ã  identifier vos mods et sfx grÃ¢ce Ã  leur ID.
 
 Exemple: soundbank.h
 {{{
@@ -32,7 +32,7 @@ Exemple: soundbank.h
 
 == Utiliser les banques de sons dans un script ==
 
-Premièrement, vous devez charger la banque de données. La banque de données n'est jamais chargée entièrement en mémoire donc la banque de sons peut être de très grande taille.
+PremiÃ¨rement, vous devez charger la banque de donnÃ©es. La banque de donnÃ©es n'est jamais chargÃ©e entiÃ¨rement en mÃ©moire donc la banque de sons peut Ãªtre de trÃ¨s grande taille.
 
 Pour charger un fichier `soundbank.bin` (par exemple), il faut utiliser:
 {{{
@@ -43,39 +43,39 @@ Sound.loadBank("soundbank.bin")
 
 Maintenant, nous voulons jouer un module, par exemple le module _Purple Motion_ (dont l'ID est 1, voir plus haut).
 {{{
-Sound.loadMod(1) -- Charge le module en mémoire
+Sound.loadMod(1) -- Charge le module en mÃ©moire
 Sound.startMod(1, PLAY_ONCE) -- Joue le module une fois. On peut utiliser PLAY_LOOP pour le jouer en boucle
 }}}
 
-Vous pouvez bien sûr arrêter, mettre en pause, modifier le volume... Regardez la documentation pour de plus amples informations.
+Vous pouvez bien sÃ»r arrÃªter, mettre en pause, modifier le volume... Regardez la documentation pour de plus amples informations.
 
-Maintenant, à la fin de notre script, il faut décharger le module de la mémoire avec:
+Maintenant, Ã  la fin de notre script, il faut dÃ©charger le module de la mÃ©moire avec:
 {{{
 Sound.unloadMod(1)
 }}}
 
-=== Sons courts (effets spéciaux) ===
+=== Sons courts (effets spÃ©ciaux) ===
 
-Jouer un son court (SFX) est un peu différent. Premièrement nous avons besoin de charger le son en mémoire. Nous voulons jouer le son _Boom_ (ID=1):
+Jouer un son court (SFX) est un peu diffÃ©rent. PremiÃ¨rement nous avons besoin de charger le son en mÃ©moire. Nous voulons jouer le son _Boom_ (ID=1):
 {{{
 Sound.loadSFX(1)  -- Voir plus haut encore une fois pour l'ID
 }}}
 
 Maintenant, nous pouvons le jouer:
 {{{
-handle = Sound.startSFX(1) -- Joue le son et retourne une référence vers ce son
+handle = Sound.startSFX(1) -- Joue le son et retourne une rÃ©fÃ©rence vers ce son
 }}}
 
-Cette référence vous permet de faire quelques effets sur le son comme changer le volume. Regardez la documentation pour plus d'exemples et de détails.
+Cette rÃ©fÃ©rence vous permet de faire quelques effets sur le son comme changer le volume. Regardez la documentation pour plus d'exemples et de dÃ©tails.
 
-Et pour le décharger de la mémoire à la fin du script:
+Et pour le dÃ©charger de la mÃ©moire Ã  la fin du script:
 {{{
 Sound.unloadSFX(1)
 }}}
 
-=== Décharger la banque de sons ===
+=== DÃ©charger la banque de sons ===
 
-Finalement, n'oubliez pas de décharger la banque de sons de la mémoire:
+Finalement, n'oubliez pas de dÃ©charger la banque de sons de la mÃ©moire:
 {{{
 Sound.unloadBank()
 }}}
