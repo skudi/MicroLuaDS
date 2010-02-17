@@ -19,7 +19,7 @@ First download everything here and then follow the instructions below.
  * [http://sourceforge.net/projects/devkitpro/files/devkitARM/previous/devkitARM%20release%2024/devkitARM_r24-win32.exe/download devkitARM-r24]
  * PAlib (the version needed is PAlib090801.7z, you can download it in a [http://forum.palib.info/index.php?topic=7048.0 forum thread] with links to many mirrors).
  * [http://brunni.palib.info/new/dl/nds/uLibrary.7z uLibrary]
- * fatlib (The [http://nanolua.fr.nf/nanolua/files/libfat20080530.zip 20080530 version] should have better results, you'll only find it here)
+ * fatlib (The [http://www.toofiles.com/fr/oip/documents/zip/libfat20080530.html 20080530 version] should have better results, you'll only find it here)
  * The source code ([http://code.google.com/p/microlua/source/checkout Subversion repository] or [http://code.google.com/p/microlua/downloads/list zip])
 
 
