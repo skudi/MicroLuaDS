@@ -20,7 +20,7 @@
 == Fan sites (French) ==
 
   * Aurel2108: http://microlua.fr.nf/
-  * Quent42340: http://nanolua.fr.nf/
+  * Quent42340: http://nanolua.webege.com/
   * Reylak: http://www.microlua4ds.comxa.com/
   * Thermo_nono: http://sites.google.com/site/microlua/Home
 
