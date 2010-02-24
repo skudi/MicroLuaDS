@@ -45,5 +45,5 @@
 
 = Other projects about interpreting Lua on an NDS =
 
-  * Nano Lua: http://nanolua.fr.nf/
+  * Nano Lua: http://nanolua.webege.com/
   * DSLua: http://www.dslua.com/
