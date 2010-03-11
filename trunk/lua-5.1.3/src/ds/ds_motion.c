@@ -18,7 +18,7 @@
 
 #include "vars.h"
 
-static int motion_initlib(lua_State *L){
+static int motion_init(lua_State *L){
     lua_pushboolean(L, motion_init());
     return 1;
 }
@@ -66,13 +66,13 @@ static int motion_readGyro(lua_State *L){
     return 1;
 }
 
-static int motion_librotation(lua_State *L){
+static int motion_rotation(lua_State *L){
     lua_pushnumber(L, motion_rotation());
     return 1;
 }
 
 static const luaL_Reg motionlib[] = {
-    {"init", motion_initlib},
+    {"init", motion_init},
     {"calibrate", motion_calibrate},
     {"readX", motion_readX},
     {"readY", motion_readY},
@@ -81,7 +81,7 @@ static const luaL_Reg motionlib[] = {
     {"accelerationY", motion_accelerationY},
     {"accelerationZ", motion_accelerationZ},
     {"readGyro", motion_readGyro},
-    {"rotation", motion_librotation},
+    {"rotation", motion_brotation},
     {NULL, NULL}
 };
 
