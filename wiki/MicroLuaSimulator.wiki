@@ -10,12 +10,12 @@ MicroLuaSimulator also has a debug console!
 = Download =
 
 A good point is that you can use MicroLuaSimulator on several platforms:
-  * Windows ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-win.zip download])
-  * Linux ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-linux.zip download])
-  * Mac OS X ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-mac.zip download])
-  * Source ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-src.zip download])
+  * Windows ([http://www.cedlepingouin.com/mls/files/mls-0.4-win.zip])
+  * Linux ([http://www.cedlepingouin.com/mls/files/mls-0.4-linux.zip])
+  * Mac OS X ([http://www.cedlepingouin.com/mls/files/mls-0.4-mac.zip])
+  * Source ([http://www.cedlepingouin.com/mls/files/mls-0.4-src.zip])
 
-The current version is _0.4 Beta2_.
+The current version is _0.4 Final_.
 
 = Usage =
 

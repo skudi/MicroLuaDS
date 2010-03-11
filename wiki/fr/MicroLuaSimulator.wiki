@@ -10,12 +10,12 @@ Il vous permet de tester vos scripts Lua pour NDS directement sur votre ordinate
 = Télécharger =
 
 Un de ses points forts est que vous pouvez utiliser MicroLuaSimulator sur plusieurs plateformes:
-  * Windows ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-win.zip télécharger])
-  * Linux ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-linux.zip télécharger])
-  * Mac OS X ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-mac.zip télécharger])
-  * Source ([http://www.cedlepingouin.com/mls/files/mls-0.4beta2-src.zip télécharger])
+  * Windows ([http://www.cedlepingouin.com/mls/files/mls-0.4-win.zip])
+  * Linux ([http://www.cedlepingouin.com/mls/files/mls-0.4-linux.zip])
+  * Mac OS X ([http://www.cedlepingouin.com/mls/files/mls-0.4-mac.zip])
+  * Source ([http://www.cedlepingouin.com/mls/files/mls-0.4-src.zip])
 
-La dernière version est la _0.4 Beta2_.
+La dernière version est la _0.4 Finale_.
 
 
 = Utilisation =
