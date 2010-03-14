@@ -1,8 +1,8 @@
-#summary How to use Subversion.
+#summary Comment utiliser Subversion.
 
 <wiki:toc />
 
-(Attention, ceci étant une traduction expérimentale, il est très probable que des erreurs soient encore présentes sur cette page))
+(Attention, ceci étant une traduction expérimentale, il est très probable que des erreurs soient encore présentes sur cette page)
 
 = Introduction =
 
