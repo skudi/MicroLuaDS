@@ -1,0 +1,31 @@
+#summary Things to do before, during and after a release.
+
+= Introduction =
+
+A release is always a lot of work, with a lot of tedious steps. Every release being similar we collect any good idea here.
+
+This page is still a work in progress for the real 3.0, please contribute and discuss...
+
+= Before the release =
+
+Waiting for the release script...
+
+  * convert the docs to static html files
+  * sources pack
+    * export sources (no .svn)
+  * bin pack
+    * compile the .nds
+  * upload to the GoogleCode download space in the deprecated section
+  * pre-announce on the forum for MicroLua members to test
+
+= During the release =
+
+  * upload to the GoogleCode download space in the normal section
+  * Prepare the forum announce
+    * intro
+    * changes
+
+= After the release =
+
+  * Update any side pages
+    * Wikipedia
