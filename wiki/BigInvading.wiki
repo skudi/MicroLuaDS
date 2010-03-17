@@ -1,0 +1,11 @@
+A Space Invaders-like game created by BALROG.
+
+= Introduction =
+
+You must save the planet !
+You will find gameplay precisions in the in-game menu
+
+
+= Links =
+
+Official website of the project (fr) : http://sites.google.com/site/poramadev/mes-projets/biginvading
