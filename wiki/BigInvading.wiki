@@ -3,7 +3,7 @@ A Space Invaders-like game created by BALROG.
 = Introduction =
 
 You must save the planet !
-You will find gameplay precisions in the in-game menu
+Gameplay precisions in the in-game menu.
 
 
 = Links =
