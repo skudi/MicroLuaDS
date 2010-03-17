@@ -10,6 +10,7 @@ Si le nom d'un projet n'est pas facile à convertir en CamelCase (s'il est en un
 = Projets Micro Lua =
 
   * AloufsDs
+  * BigInvading
   * CalculatriceProject (Calculatrice)
   * CarPlaying (Évite-les tous)
   * DigimonArenaProject
