@@ -29,3 +29,6 @@ Waiting for the release script...
 
   * Update any side pages
     * Wikipedia
+  * Post updates in friend forums
+    * SdZ
+    * nintendomax
