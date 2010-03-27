@@ -30,5 +30,8 @@ Waiting for the release script...
   * Update any side pages
     * Wikipedia
   * Post updates in friend forums
-    * SdZ
-    * nintendomax
+    * Dev-fr.org  (fr)    
+    * gbadev.org  (eng)
+    * nintendomax  (fr)
+    * PlayerAdvance.org  (fr)
+    * SdZ  (fr)
