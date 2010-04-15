@@ -18,7 +18,8 @@
 
 #include "vars.h"
 
-static int motion_init(lua_State *L){
+// Since motion_init is already used, we slightly break a rule of consistence.
+static int motion_initlib(lua_State *L){
     lua_pushboolean(L, motion_init());
     return 1;
 }
@@ -66,7 +67,8 @@ static int motion_readGyro(lua_State *L){
     return 1;
 }
 
-static int motion_rotation(lua_State *L){
+// Since motion_init is already used, we slightly break a rule of consistence.
+static int motion_librotation(lua_State *L){
     lua_pushnumber(L, motion_rotation());
     return 1;
 }
