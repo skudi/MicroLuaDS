@@ -67,14 +67,14 @@ static int motion_readGyro(lua_State *L){
     return 1;
 }
 
-// Since motion_init is already used, we slightly break a rule of consistence.
+// Since motion_rotation is already used, we slightly break a rule of consistence.
 static int motion_librotation(lua_State *L){
     lua_pushnumber(L, motion_rotation());
     return 1;
 }
 
 static const luaL_Reg motionlib[] = {
-    {"init", motion_init},
+    {"init", motion_initlib},
     {"calibrate", motion_calibrate},
     {"readX", motion_readX},
     {"readY", motion_readY},
@@ -83,7 +83,7 @@ static const luaL_Reg motionlib[] = {
     {"accelerationY", motion_accelerationY},
     {"accelerationZ", motion_accelerationZ},
     {"readGyro", motion_readGyro},
-    {"rotation", motion_brotation},
+    {"rotation", motion_librotation},
     {NULL, NULL}
 };
 
