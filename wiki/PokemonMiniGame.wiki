@@ -1,6 +1,6 @@
 = Introduction =
 
-PokemonMiniGame homebrew is a collection of mini-games created by blabla.
+PokemonMiniGame is an homebrew created by blabla.
 
 You can play 16 mini-games alone or playing with 3 more minigames.
 
@@ -11,3 +11,5 @@ An extension bonus is available and adds 2 Mini-games using the motion and rumbl
 * Download: [http://www.4shared.com/file/157141101/be7ccc18/Pokemon_Mini-Game_DS_33.html PokemonMiniGame 3.3]
 
 * Topic of PokemonMiniGame on the MicroLua forum: http://microlua.xooit.fr/t403-Pokemon-Mini-Game.htm
+
+* PokemonMiniGame on gameblabla : http://gameblabla.netai.net/index.php?p=1_7
