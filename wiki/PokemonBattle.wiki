@@ -1,0 +1,14 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+PokemonBattle is an homebrew created by blabla.
+You can fight 6 pokemons.
+A multiplayer mode is available.
+
+
+= Links =
+
+PokemonBattle on the microlua forum : http://microlua.xooit.fr/t552-Pokemon-Battle.htm
+PokemonBattle on gameblabla : http://gameblabla.netai.net/index.php?p=1_8
+
