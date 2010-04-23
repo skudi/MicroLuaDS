@@ -19,6 +19,7 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * FireGhouls (Kill Them All)
   * FlechettesProject (darts)
   * GhuntletProject
+  * KnightmareDsProject
   * LampeProject
   * LibRpg
   * LuaEditor
