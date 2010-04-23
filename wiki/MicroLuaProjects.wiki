@@ -26,9 +26,11 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * MicroDemineurDs (Minesweeper)
   * PingPong
   * PlusOuMoins (More or Less)
+  * PokemonBattle
   * PokemonMiniGame
   * PpcDs (Pierre-Papier-Ciseaux / Rock-Paper-Scissors)
   * SeaquestRemake
+  * SnakeProject
   * SokobanAllStars
   * SonicDial
   * SonicMiniGame
