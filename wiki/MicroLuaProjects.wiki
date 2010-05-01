@@ -15,6 +15,7 @@ If the name of the project is not easy to convert to CamelCase (only one word), 
   * CarPlaying (Avoid them all)
   * DigimonArenaProject
   * DrawingPlatformGame
+  * DrawsProject
   * DsLaby (Labyrinth)
   * FireGhouls (Kill Them All)
   * FlechettesProject (darts)
