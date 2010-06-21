@@ -474,7 +474,7 @@ Destroy a ScrollMap.
 *`Void ScrollMap.draw(scrollmap)`* (_nds_)
 
 Draw a ScrollMap.
-  * *scrollmap* (ScrollMap): ScrollMap to draw
+  * *scrollmap* (screen, ScrollMap): ScrollMap to draw
 
 *`Void ScrollMap.scroll(scrollmap, x, y)`* (_nds_)
 
