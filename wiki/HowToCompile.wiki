@@ -183,8 +183,9 @@ Unpack the devkitARM_r30-i686-linux.tar.bz2 package into '/devkitpro'.
 Copy files.
 {{{
  cp /opt/devkitpro/default.arm7 /opt/devkitpro/libnds/
- cp /opt/devkitpro/default.arm7 /opt/devkitpro/libnds/
+ cp /opt/devkitpro/default.elf /opt/devkitpro/libnds/
 }}}
+
 ==== MicroLua Source ====
 
  * Extract the MicroLua source to folder '/devkitpro', or GetTheCurrentSourceCode.
@@ -203,8 +204,7 @@ However they are very minor.  These have been checked into svn here.
  	EXPORT_DIR := ./nds_examples/
 }}}
 
- * Locate the Makefile in the luads/lua-5.1.3/src folder.
-   Add 2 includes '-I. -I.. '
+ * Locate the Makefile in the luads/lua-5.1.3/src folder. Add 2 includes '-I. -I.. '
 {{{
   LIBDIRS :=      $(DEVKITPRO)/libnds
   export INCLUDE  :=      -I. -I.. $(foreach dir,$(LIBDIRS),-I$(dir)/include) \
@@ -284,7 +284,6 @@ You can skip this section if you only need a `.nds` for you hardware. If you wan
 	/devkitARM
 	/include
 	/lib
-	/libfat20080530
 	/libnds
 	/luads
 		/Examples
@@ -292,7 +291,6 @@ You can skip this section if you only need a `.nds` for you hardware. If you wan
 		/img
 		/lua-5.1.3
 		/source
-		/Utilities
 	/uLibrary
 }}}
 
