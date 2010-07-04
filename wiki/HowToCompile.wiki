@@ -133,7 +133,7 @@ First download everything here and then follow the instructions below.
  * Several archives are in the 7z format, so you will need [http://www.7-zip.org/ 7-zip] 
  For debian/ubuntu use `apt-get install p7zip` or try `yum install 7z`.
 
- * [http://sourceforge.net/projects/devkitpro/files/ Go he to get devkitpro packages] Click on "View All Files" to see the folders listed below.
+ * [http://sourceforge.net/projects/devkitpro/files/ Go here to get devkitpro packages] Click on "View All Files" to see the folders listed below.
 
 Many packages are listed at the SourceForge site.  I've listed the folders and the versions I used.
 || *Folder* || *Package* ||
