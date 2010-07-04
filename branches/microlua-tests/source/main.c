@@ -28,6 +28,17 @@ int main()
     // Use bright pink as a transparent color
     ulSetTransparentColor(RGB15(31, 0, 31));
     
+    // By Quent42340 : Set texture memory.
+    bool tex = ulSetTexVramParameters(UL_BANK_A | UL_BANK_B | UL_BANK_C | UL_BANK_D, VRAM_A, 512 << 10);
+    
+    // By Quent42340 : Set palette memory.
+    bool pal = ulSetTexPalVramParameters(UL_BANK_E, VRAM_E, 64 << 10);
+    
+    if (!tex || !pal) {
+        ulDebug("Error Occured : Can't set VRAM correctly.");
+        return 0;
+    }
+    
     fatInitDefault();
     
     struct lua_State *l = lua_open();
