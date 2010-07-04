@@ -15,9 +15,9 @@ ifeq ($(findstring Windows,$(OS)),Windows)
 WINDOWS := 1
 endif
 
-TEXT1 		:= Micro Lua DS
-TEXT2 		:= By Risike
-TEXT3 		:= www.microlua.risike.com
+TEXT1 		:= Micro Lua DS 3.1
+TEXT2 		:= Original by Risike
+TEXT3 		:= http://microlua.xooit.fr/
 ICON 		:= -b $(CURDIR)/../logo.bmp
 LOGO		:= -o $(CURDIR)/../logo_wifi.bmp
 
@@ -87,7 +87,11 @@ LDFLAGS	:=	-g $(ARCH) -mno-fpu
 #---------------------------------------------------------------------------------
 # the prefix on the compiler executables
 #---------------------------------------------------------------------------------
-PREFIX			:=	arm-eabi-
+ifndef WINDOWS
+	PREFIX			:=	$(DEVKITARM)/bin/arm-eabi-
+else
+	PREFIX			:=	arm-eabi-
+endif
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
@@ -190,14 +194,13 @@ $(OUTPUT).elf	:	$(OFILES)
 	ndstool -c $@ -9 $(TARGET).bin $(ARM7BIN) $(LOGO) $(ICON) "$(TEXT1);$(TEXT2);$(TEXT3)"
 	cp $(OUTPUT).nds $(OUTPUT)_tst.nds  
 	padbin 512 $(OUTPUT)_tst.nds
-ifndef WINDOWS
-	cd ../img ; sh build.sh $(OUTPUT).img ../Fat
-endif
+	
 	cat $(OUTPUT)_tst.nds $(OUTPUT).img  > $(OUTPUT)_fs.nds
-ifndef WINDOWS
-	rm $(OUTPUT).img
-endif
+	cat $(OUTPUT)_tst.nds $(OUTPUT).img  > $(OUTPUT)_mp.nds
+	
 	dlditool fcsr.dldi $(OUTPUT)_fs.nds
+	dlditool mpcf.dldi $(OUTPUT)_mp.nds
+	
 	## patch final file with GBAMP DLDI driver, to test in Desmume
 	#dlditool mpcf.dldi $(OUTPUT).nds
 
