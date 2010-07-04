@@ -1,0 +1,15 @@
+#header {
+ text-align: center;
+ font-weight: bold;
+ font-size: 2em;
+ }
+#nav {
+ text-align: right;
+ }
+.summary {
+ text-align: right;
+ font-style: italic;
+ }
+.comment {
+ display: none;
+ }
