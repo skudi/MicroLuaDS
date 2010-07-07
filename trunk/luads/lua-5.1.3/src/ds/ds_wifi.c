@@ -103,7 +103,7 @@ static int wifi_receive(lua_State *L){
 	char buffer[length];
 	int recv_len = recv(my_socket, buffer, length, 0);
 	if(recv_len > 0){
-		lua_pushsltring(L, buffer, recv_len);
+		lua_pushlstring(L, buffer, recv_len);
 		return 1;
 	}else{
 		return 0;
