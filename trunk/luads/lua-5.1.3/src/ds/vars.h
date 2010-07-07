@@ -11,6 +11,7 @@ int SCREEN_UP_DISPLAY;
 int SCREEN_DOWN_DISPLAY;
 int spaceBetweenScreens;
 int decale;
+int alphaGroup;
 
 typedef struct mapObj{
     UL_IMAGE * image;

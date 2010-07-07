@@ -16,6 +16,8 @@
 
 #include "vars.h"
 
+int alphaGroup = 1;
+
 static int screen_init(lua_State *L) {
     SCREEN_UP_DISPLAY = 0;
     SCREEN_DOWN_DISPLAY = 1;
@@ -71,6 +73,25 @@ static int screen_endDrawing(lua_State *L) {
 
 static int screen_waitForVBL(lua_State *L) {
     ulSyncFrame();
+    return 0;
+}
+
+static int screen_getAlpha(lua_State *L) {
+    lua_pushnumber(L, alphaGroup);
+    return 1;
+}
+
+static int screen_setAlpha(lua_State *L) {
+    int level = (int)luaL_checknumber(L, 1);
+    if (level == 100) {
+    	ulSetAlpha(UL_FX_DEFAULT, 0, 0);
+	alphaGroup = 1;
+    } else {
+        int group = (int)luaL_checknumber(L, 2);
+	if (!group) group = alphaGroup;
+	ulSetAlpha(UL_FX_ALPHA, level, group);
+	alphaGroup = group + 1;
+    }
     return 0;
 }
 
@@ -227,6 +248,8 @@ static const luaL_Reg screenlib[] = {
     {"startDrawing2D", screen_startDrawing2D},
     {"endDrawing", screen_endDrawing},
     {"waitForVBL", screen_waitForVBL},
+    {"getAlpha", screen_getAlpha},
+    {"setAlpha", screen_setAlpha},
     {"print", screen_print},
     {"printFont", screen_printFont},
     {"blit", screen_blit},
