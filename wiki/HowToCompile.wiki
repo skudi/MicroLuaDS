@@ -10,41 +10,26 @@ This page will guide you on how to setup the development environment
 for building the source of MicroLua. There are several steps and several
 packages to install, but should be relatively straightforward.
 
-== Windows XP ==
+== Windows ==
 
 First download everything here and then follow the instructions below.
 
  * Several archives are in the 7z format, so you will need [http://www.7-zip.org/ 7-zip] or [http://portableapps.com/apps/utilities/peazip_portable PeaZip Portable].
  * [http://sourceforge.net/projects/devkitpro/files/Automated%20Installer/devkitProUpdater-1.5.0.exe/download devkitPro]
- * [http://sourceforge.net/projects/devkitpro/files/devkitARM/previous/devkitARM%20release%2024/devkitARM_r24-win32.exe/download devkitARM-r24]
- * PAlib (the version needed is PAlib090801.7z, you can download it in a [http://forum.palib.info/index.php?topic=7048.0 forum thread] with links to many mirrors).
  * [http://brunni.palib.info/new/dl/nds/uLibrary.7z uLibrary]
- * fatlib (The [http://www.toofiles.com/fr/oip/documents/zip/libfat20080530.html 20080530 version] should have better results, you'll only find it here)
- * The source code ([http://code.google.com/p/microlua/source/checkout Subversion repository] or [http://code.google.com/p/microlua/downloads/list zip])
+ * The source code ([http://code.google.com/p/microlua/source/checkout Subversion repository] or [http://code.google.com/p/microlua/downloads/list zip]; you should download it from the repository as it is more updated than the packages)
 
 
 === Details ===
 
 ==== DevKitPro ====
 
-Start with DevKitPro.  You may use the web installer from the website, or our copy here.
+Start with DevKitPro, using the "Updater", that is an automatic downloader.
+You will only need msys and devkitARM, so you can uncheck the others unless you plan to make homebrews for PSP, NGC or Wii, or you want to use the utilities.
 This package is the compiler and binary tools for compiling ARM source code.
 Recommend to install to 'c:\devkitpro'. Just don't use spaces in any folder names.
 Hereafter we refer to your devkitpro install folder as simply '\devkitpro'.
-
-
-==== DevARM-`r24` ====
-
-Initially MicroLua v3.0 requires to backdate the DevARM library.
-This is the ARM 7/9 hardware library.  Rename or delete the DevKitPro `DevArm` folder, then unpack this package into '\devkitpro'.
-
-==== PAlib ====
-
-PAlib is a Nintendo DS hardware library.  This library provides access most of the features of the DS. 
-
- * Install PAlib into '\devkitpro'
- * cd to '\devkitpro\PAlib\lib'
- * Run 'build.bat'
+You might have troubles in downloading some packages, like senseless connection drop-out at the end of a download. In this case you can download all you need on the [http://sourceforge.net/projects/devkitpro/files/ devkitPro Sourceforge].
 
 ==== uLibrary ====
 
@@ -57,25 +42,17 @@ This is built next.
  * Run 'build.bat'
  * Run 'Install.bat'
  * cd .. to '\devkitpro\uLibrary\'
- * Run 'Install.bat' here also (yes they do 2 different tasks)!
-
-==== fatlib ====
-
-This has to be backdated.  Use the version listed above, 20080530.
-Extract the zip to a location.  
-
- * Copy the file '\libfat20080530\nds\lib\libfat.a' to '\devkitpro\libnds\lib'
- * Copy the file '\libfat20080530\nds\include\fat.h' to '\devkitpro\libnds\include'
+ * Run 'Install.bat' here also (yes they do 2 different tasks!)
 
 ==== MicroLua Source ====
 
- * Extract the MicroLua source to folder '\devkitpro\', or GetTheCurrentSourceCode.
- * You can skip this item if you only need a `.nds` for you hardware. If you want a `.nds` to test on _No$GBA_ you'll have to rename the resulting source folder (the one containing `Examples`, `Fat`...) to 'luads'. This is because the name of a compiled file is the same as the source folder and a `luads.img` will be needed. Note that if you track the code in our repository, you'll have to rename it again to `trunk` before updates, unless you only checked out the trunk.
+ * Extract the MicroLua source to folder '\devkitpro\', or GetTheCurrentSourceCode. You only need the 'luads' directory.
  * Copy '\devkitpro\luads\img\fcsr.dldi' file to '\devkitpro\devkitarm\bin\dldi\' (make the dldi folder).
 
 ==== Launch the compilation ====
 
 Now use `\devkitpro\luads\Compile All.bat` file to build. Either double click it of launch it from the command line.
+Note you need admin rights to install the Lua library after its compilation. You can launch 'Compile All.bat' as admin by right-clicking on it and choosing "Run as administrator", or throught a CMD that is already in administrator mode.
 
 === Folders ===
 
@@ -83,8 +60,7 @@ Now use `\devkitpro\luads\Compile All.bat` file to build. Either double click it
 \devkitPro
 	\devkitARM
 	\examples
-	\insight
-	\libfat20080530
+	\insight (only if you installed it)
 	\libgba
 	\libmirko
 	\libnds
@@ -97,15 +73,15 @@ Now use `\devkitpro\luads\Compile All.bat` file to build. Either double click it
 		\Utilities
 	\msys
 	\Other Libs
-	\PAlib
-	\Programmers Notepad
+	\Programmers Notepad (only if you installed it)
 	\uLibrary-1.12
 }}}
 
 === Notes ===
 
 ==== Libs ====
-Once the DevKitPro, DevARM-`r24`, PAlib, uLibrary and fatlib are setup you don't have to recompile those unless one of these components is updated.  The setup is complete.
+Once the DevKitPro, uLibrary and Lua are setup you don't have to recompile those unless one of these components is updated. The setup is complete.
+To compile only uLua (that is to say, 'source/main.c'), just use 'Compile DS.bat'.
 
 ==== Environment variables ====
 DevKitPro uses 2 environment variables.
