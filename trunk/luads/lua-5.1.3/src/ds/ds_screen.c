@@ -231,7 +231,7 @@ static const luaL_Reg screenlib[] = {
     {"printFont", screen_printFont},
     {"blit", screen_blit},
     {"drawLine", screen_drawLine},
-    {"drawPoint", screen_drawLine},
+    {"drawPoint", screen_drawPoint},
     {"drawRect", screen_drawRect},
     {"drawFillRect", screen_drawFillRect},
     {"drawGradientRect", screen_drawGradientRect},
