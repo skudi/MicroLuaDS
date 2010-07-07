@@ -38,6 +38,7 @@ static const luaL_Reg lualibs[] = {
   {LUA_RUMBLELIBNAME, luaopen_rumble},
   {LUA_MOTIONLIBNAME, luaopen_motion},
   {LUA_SOUNDLIBNAME, luaopen_sound},
+  {LUA_USERLIBNAME, luaopen_user},
   {NULL, NULL}
 };
 

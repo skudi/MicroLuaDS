@@ -69,6 +69,8 @@ LUALIB_API int (luaopen_rumble) (lua_State *L);
 LUALIB_API int (luaopen_motion) (lua_State *L);
 #define LUA_SOUNDLIBNAME "Sound"
 LUALIB_API int (luaopen_sound) (lua_State *L);
+#define LUA_USERLIBNAME "dsUser"
+LUALIB_API int (luaopen_user) (lua_State *l);
 
 #ifndef lua_assert
 #define lua_assert(x)	((void)0)
