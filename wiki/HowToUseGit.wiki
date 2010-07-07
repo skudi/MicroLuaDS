@@ -115,6 +115,15 @@ You'll need the Commit permission, ask Grahack if you want it. Please be sure to
 
 *NOTE*: Even if you have the Commit permission and typed the right password, you won't be able to authenticate if you checked out from `http` and not `https`.
 
+*NOTE 2*: If you use msysgit, you might have troubles with `dcommit`:
+{{{
+could not decode commit messages as UTF-8
+}}}
+By default, Git considers commit messages are encoded in UTF-8, but msysgit seems to encode in ISO-8859-1 (according to what happend on a French Windows version). You can fix this by setting `i18n.commitencoding` to the correct encoding (here ISO-8859-1):
+{{{
+git config i18n.commitencoding ISO-8859-1
+}}}
+
 === Publish a branch ===
 
 There are several ways to publish a branch. You can use [http://github.com/ Github] or [http://gitorious.com/ Gitorious] to host a Git repository, or upload a repo to a personal server.
