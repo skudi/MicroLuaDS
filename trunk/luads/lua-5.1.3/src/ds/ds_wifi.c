@@ -99,7 +99,7 @@ static int wifi_receive(lua_State *L){
 	int my_socket = (int)luaL_checknumber(L, 1);
 	int length = (int)luaL_checknumber(L, 2);
 	assert(L, my_socket >= 0, "Invalid socket");
-	assert(L, length > 0, "Length must me > 0");
+	assert(L, length > 0, "Length must be > 0");
 	char buffer[length];
 	int recv_len = recv(my_socket, buffer, length, 0);
 	if(recv_len > 0){
