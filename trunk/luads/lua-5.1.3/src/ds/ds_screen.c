@@ -131,6 +131,16 @@ static int screen_drawLine(lua_State *L) {
     return 0;
 }
 
+static int screen_drawPoint(lua_State *L) {
+    int screen = (int)luaL_checknumber(L, 1);
+    int x = (int)luaL_checknumber(L, 2);
+    int y = (int)luaL_checknumber(L, 3);
+    int color = (int)luaL_checknumber(L, 4);
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH)
+        ulDrawLine(x, y, x, y, color);
+    return 0;
+}
+
 static int screen_drawRect(lua_State *L) {
     int screen = (int)luaL_checknumber(L, 1);
     int x0 = (int)luaL_checknumber(L, 2);
@@ -221,6 +231,7 @@ static const luaL_Reg screenlib[] = {
     {"printFont", screen_printFont},
     {"blit", screen_blit},
     {"drawLine", screen_drawLine},
+    {"drawPoint", screen_drawLine},
     {"drawRect", screen_drawRect},
     {"drawFillRect", screen_drawFillRect},
     {"drawGradientRect", screen_drawGradientRect},
