@@ -3,6 +3,7 @@
 = APIs =
 
   * [ApiThreeDotZero API of MicroLua 3.0]
+  * [ApiThreeDotOne API of MicroLua 3.1]
   * [ApiIdeas API ideas]
 
 = Tools =
