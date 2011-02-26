@@ -20,6 +20,7 @@
 #include <dirent.h>
 #include <string.h>
 #include <time.h>
+#include <ulib/ulib.h>
 
 #define TIME_YEAR 0
 #define TIME_MONTH 1
@@ -38,6 +39,27 @@ DIR *pdir;
 struct dirent *pent;
 struct stat statbuf;
 
+//cette fonction retourne un chiffre bizard
+static int system_currentVramUsed(lua_State *L){
+	lua_pushnumber(L, (unsigned int) ulGetTexVramUsedMemory());
+	return 1;
+}
+
+static int system_currentVramFree(lua_State *L){
+	lua_pushnumber(L, (unsigned int) ulGetTexVramAvailMemory());
+	return 1;
+}
+
+//cette fonction retourne aussi un chiffre bizard
+static int system_currentPalUsed(lua_State *L){
+	lua_pushnumber(L, (unsigned int) ulGetTexPalUsedMemory());
+	return 1;
+}
+
+static int system_currentPalFree(lua_State *L){
+	lua_pushnumber(L, (unsigned int) ulGetTexPalAvailMemory());
+	return 1;
+}
 
 static int system_currentDirectory(lua_State *L){
 	char *path;
@@ -166,6 +188,10 @@ static const luaL_Reg systemlib[] = {
 	{"makeDirectory", system_makeDirectory},
 	{"listDirectory", system_listDirectory},
 	{"getCurrentTime", system_getCurrentTime},
+	{"CurrentVramUsed",system_currentVramUsed},
+	{"CurrentVramFree",system_currentVramFree},
+	{"CurrentPalUsed",system_currentPalUsed},
+	{"CurrentPalFree",system_currentPalFree},
 	{NULL, NULL}
 };
 

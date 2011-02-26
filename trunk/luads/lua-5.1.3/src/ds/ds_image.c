@@ -58,8 +58,11 @@ static int image_load(lua_State *L){
     free(buffer);
     buffer = NULL;
     if(img == NULL){
-        luaL_error(L, "Failed to load %s", filename);
-        return 0;
+        //luaL_error(L, "Failed to load %s", filename);
+        //return 0;
+        // Si pas d'images chargée l'indiquer en renvoyant nil
+        lua_pushnil(L);
+        return 1;
     }
     lua_pushlightuserdata(L, img);
     return 1;
@@ -68,6 +71,7 @@ static int image_load(lua_State *L){
 static int image_destroy(lua_State *L){
     UL_IMAGE * img = lua_touserdata(L, 1);
     assert(L, img != NULL, "Bad image ressource");
+    if(img->imgState == UL_STATE_VRAM) ulUnrealizeImage(img);
     ulDeleteImage(img);
     return 0;
 }
