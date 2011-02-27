@@ -80,13 +80,13 @@ static int user_alarmMinute(lua_State* l) {
 }
 
 static int user_language(lua_State* l) {
-    lua_pushnumber(l, PersonalData->_user_data.language);
+    lua_pushnumber(l, PersonalData->language);
 
     return 1;
 }
 
 static int user_GBAScreen(lua_State* l) {
-    if (PersonalData->_user_data.gbaScreen) {
+    if (PersonalData->gbaScreen) {
         lua_pushboolean(l, 1);
     } else {
         lua_pushboolean(l, 0);
@@ -96,13 +96,13 @@ static int user_GBAScreen(lua_State* l) {
 }
 
 static int user_defaultBrightness(lua_State *l) {
-    lua_pushnumber(l, PersonalData->_user_data.defaultBrightness);
+    lua_pushnumber(l, PersonalData->defaultBrightness);
 
     return 1;
 }
 
 static int user_autoMode(lua_State *l) {
-    if (PersonalData->_user_data.autoMode) {
+    if (PersonalData->autoMode) {
         lua_pushboolean(l, 1);
     } else {
         lua_pushboolean(l, 0);
