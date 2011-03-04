@@ -348,7 +348,7 @@ static int canvas_setAttr(lua_State *L){
 
 static int canvas_getAttr(lua_State *L){
     CanvasObject * co = lua_touserdata(L, 1);
-    switch((int)luaL_checknumber(L, 3)){
+    switch((int)luaL_checknumber(L, 2)){
         case ATTR_X1:
             lua_pushnumber(L, co->x1);
             break;
