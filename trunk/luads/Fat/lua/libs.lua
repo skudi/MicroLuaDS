@@ -425,7 +425,6 @@ dofile(str.."ini.lua")
 -- ################################ START ################################
 
 screen.init()
-os.initTimer()	
 
 NB_FPS = 30
 NB_FPS_COUNTER = 0
