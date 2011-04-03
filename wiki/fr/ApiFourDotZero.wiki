@@ -735,7 +735,7 @@ Retourne les données souhaité en fonction du choix.
 *`Void Wifi.resetIP()`* (_nds_)
 
 Réinitialise les données IP,GateWay, SubnetMask et DNS de la DS.
-Si éxécuté avant une association, la DS interoge le serveur DNS pour récupéré ces données.
+Si éxécuté avant une association, la DS interoge le serveur DHCP pour récupéré ces données.
 
 *`Void Wifi.setLocalIp(ip, gateway[, subnetmask[, dns1[, dns2]]])`* (_nds_)
 

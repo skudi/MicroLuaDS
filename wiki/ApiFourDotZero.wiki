@@ -686,9 +686,82 @@ Create a new DateTime object with current time values.
 
 Connect the DS to the Wifi connection. Use the firmware configurations. So, you need to configure your connection with an official DS game.
 
+*`Void Wifi.initDefault()`* (_nds_)
+
+Init the DS wifi. Must do before all over wifi function except Wifi.connectWFC(). Don't use with Wifi.connectWFC().
+
+*`Void Wifi.autoConnectWFC()`* (_nds_)
+
+Same as Wifi.connectWFC() but use after Wifi.initDefault().
+
+*`Void Wifi.scanAP()`* (_nds_)
+
+Set the DS in scan Mode for AP detection (Access Point like Livebox, Freebox, Neufbox...). When start, the DS search all the time but don't prevent the connection or else thing.
+
+*`Number Wifi.getNumAP()`* (_nds_)
+
+Return the number of AP find after a Wifi.scanAP(). the search may be long.
+
+*`Tableau Wifi.newAP()`* (_nds_)
+
+Return an empty table with AP datas. There are:
+  * ssid : (String) Name of the network's AP.
+  * bssid : (String)
+  * macaddr : (String) address Mac of the AP.
+  * channel : (Int) the network channel number.
+  * rssi : (Int) the signal strength.
+  * maxrate : (Int) The communication speed (1M or 2M)
+  * protection : (String) The wifi protection (NONE, WEP, WPA)
+  * adhoc : (Booléen) Indicates if there is an adhcoc connection or not(true or false)
+  * active : (Booléen) Indiates if the connection is active or not(true or false)
+
+*`Tableau Wifi.getAP(numap)`* (_nds_) 
+
+Return the AP's datas with the number numap find by the Wifi.scanAP() function.
+  * *numap* (Number) : number of the AP.
+
+*`Number Wifi.connectAP(numap, numkey, key)`* (_nds_)
+
+Make a association request to the numap AP with the key number numkey with the WEPkey key.
+If you make association with a non protect AP set 1 in numkey and ("") in key.
+numkey must be between 1 and 4. But generaly it's the first key was used.
+Return -1 if the association is refused.
+  * *numap* (Number) : number of the AP.
+  * *numkey* (Number) : number of the key.
+  * *key* (String) : WEPkey.
+
 *`Void Wifi.disconnect()`* (_nds_)
 
 Disconnect the DS form the Wifi connection.
+
+*`Void Wifi.stop()`* (_nds_)
+
+Disangage the Wifi.
+
+*`String Wifi.getLocalConf(choix)`* (_nds_)
+
+Return data of the DS connection.
+  * *choix* (Number) : 
+    * *1* Return the IP of DS.
+    * *2* Return the GateWay's DS.
+    * *3* Return the subnetMask of the DS.
+    * *4* Return the DNS1 of the DS.
+    * *5* Return the DNS2 of the DS.
+    * *6* Return the address MAC of the DS.
+
+*`Void Wifi.resetIP()`* (_nds_)
+
+Reset the IP, GateWay, SubnetMask and DNS data.
+If call before association, The DS query the DHCP server.
+
+*`Void Wifi.setLocalIp(ip, gateway[, subnetmask[, dns1[, dns2]]])`* (_nds_)
+
+Set the IP, gateWay, subnetMask and DNS.The strings must be formated like "N1.N2.N3.N4" where N is a number between 0 to 255.
+  * *ip* (String) : IP address.
+  * *gateway* (String) : gateWay address.
+  * *subnetmask* (String) : the SubnetMask.
+  * *dns1* (String) : first DNS.
+  * *dns2* (String) : second DNS.
 
 *`Socket Wifi.createTCPSocket(host, port)`* (_nds_)
 
@@ -712,6 +785,11 @@ Close a socket (TCP or UDP).
 Send data to a server using a socket.
   * *socket* (Socket): Socket to use
   * *buffer* (String): data to send
+
+*`Number Wifi.checkData(socket)`* (_nds_)
+
+Check if there are data in the Wifi buffer and Return the number of character to read.
+  * *socket* (Socket) : socket to verify.
 
 *`String Wifi.receive(socket, length)`* (_nds_)
 
