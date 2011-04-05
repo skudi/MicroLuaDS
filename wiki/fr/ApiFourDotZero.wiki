@@ -1,4 +1,4 @@
-#summary 3.1 API.
+#summary 4.0 API.
 
 <wiki:toc />
 
@@ -942,3 +942,91 @@ Cet exemple change la ligne `nom=toto` en `nom=tata`.
 
 Les tables de données des fichiers INI ne peuvent contenir que des Strings !
 Si vous voulez sauvegarder des nombres, vous devez d'abord les convertir en String grâce à `tostring()`.
+
+=== Informations Utilisateurs ===
+
+==== Functions ====
+
+They are not really useful since the variables below are based on them, but are more convenient to use.
+
+*`Number dsUser.getColor()`* (_nds_)
+
+Retourne la couleur du théme choisie, entre 0 et 15.
+
+*`Number dsUser.getBirthDay()`* (_nds_)
+
+Retourne le jour de naissance.
+
+*`Number dsUser.getBirthMonth()`* (_nds_)
+
+Retourne le mois de naissance.
+
+*`String dsUser.getName()`* (_nds_)
+
+Retourne le pseudo.
+
+*`Number dsUser.getNameLength()`* (_nds_)
+
+Retourne la taille du pseudo.
+
+*`String dsUser.getMessage()`* (_nds_)
+
+Retourne le message personnel.
+
+*`Number dsUser.getMessageLength()`* (_nds_)
+
+Retourne la taille du message personnel.
+
+*`Number dsUser.getAlarmHour()`* (_nds_)
+
+Retourne l'heure de l'alarme.
+
+*`Number dsUser.getAlarmMinute()`* (_nds_)
+
+Retourne les minutes de l'alarme.
+
+*`Number dsUser.getLanguage()`* (_nds_)
+
+Retourne le language choisi, entre 0 et 5.
+
+*`Boolean dsUser.getGBAScreen()`* (_nds_)
+
+Retourne l'écran choisi pour le mode GBA (`true` pour l'écran du haut, et `false` pour celui du bas).
+
+*`Number dsUser.getDefaultBrightness()`* (_nds_)
+
+Retourne la luminositée par defaut (entre 0 et 3 pour une DS Lite et DSi).
+
+*`Boolean dsUser.getAutoMode()`* (_nds_)
+
+Retourne la configuration de l'auto démarrage (`true si actif et `false` si désactivé).
+
+==== Variables ====
+
+They are also defined in _nds_.
+
+*`(Number) dsUser.color`*: donne la couleur du théme, entre 0 et 15.
+
+*`(Number) dsUser.birthDay`*: donne le jour d'anniversaire.
+
+*`(Number) dsUser.birthMonth`*: donne le mois d'anniversaire.
+
+*`(String) dsUser.name`*: donne le pseudo.
+
+*`(Number) dsUser.nameLength`*: donne la taille du pseudo.
+
+*`(String) dsUser.message`*: donne le message personnel.
+
+*`(Number) dsUser.messageLength`*: donne la taille du message personnel.
+
+*`(Number) dsUser.alarmHour`*: donne l'heure de l'alarme.
+
+*`(Number) dsUser.alarmMinute`*: donne les minutes de l'alarme.
+
+*`(Number) dsUser.language`*: donne la langue de l'utilisateur, entre 0 et 5.
+
+*`(Boolean) dsUser.GBAScreen`*: donne l'écran choisi pour le mode GBA (`true` pour l'écran du haut, `false` pour l'écran du bas).
+
+*`(Number) dsUser.defaultBrightness`*: donne la luminausité par défaut (entre 0 et 3 pour une NDSl ou une NDSi).
+
+*`(Boolean) dsUser.getAutoMode`*: donne l'état du démarrage automatique (`true` si activé, et `false` si désactivé).
