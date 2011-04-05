@@ -947,7 +947,7 @@ Si vous voulez sauvegarder des nombres, vous devez d'abord les convertir en Stri
 
 ==== Functions ====
 
-They are not really useful since the variables below are based on them, but are more convenient to use.
+Ces fonctions ne sont pas vraiment utiles mais les variables ci-dessous les utilisent.
 
 *`Number dsUser.getColor()`* (_nds_)
 
@@ -1003,7 +1003,7 @@ Retourne la configuration de l'auto démarrage (`true si actif et `false` si dé
 
 ==== Variables ====
 
-They are also defined in _nds_.
+Elles sont définient dans _nds_.
 
 *`(Number) dsUser.color`*: donne la couleur du théme, entre 0 et 15.
 
