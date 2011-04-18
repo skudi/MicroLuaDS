@@ -230,15 +230,17 @@ Rotate the image around rotation center, the angle is given in degree.
   * *centerx* (Number): x-coordinate of the new rotation center
   * *centery* (Number): y-coordinate of the new rotation center
 
-*`Void Image.mirrorH(image)`* (_nds_)
+*`Void Image.mirrorH(image, activate)`* (_nds_)
 
 Mirror the image horizontally.
   * *image* (Image): image to mirror
+  * *activate* (Boolean): `true` to activate the mirroring, `false` to cancel the transformation
 
-*`Void Image.mirrorV(image)`* (_nds_)
+*`Void Image.mirrorV(image, activate)`* (_nds_)
 
 Mirror the image vertically.
   * *image* (Image): image to mirror
+  * *activate* (Boolean): `true` to activate the mirroring, `false` to cancel the transformation
 
 *`Void Image.setTint(image, color)`* (_nds_)
 
