@@ -17,11 +17,11 @@ cd ..
 echo Creating fcsr image...
 cd img  
 start makeimg.cmd
-sleep 0.5
+timeout /t 1 /nobreak > NUL
 cd ..  
 del luads.img  2> lua-5.1.3\out2 1> lua-5.1.3\out
 cp img\luads.img . 2> lua-5.1.3\out2 1> lua-5.1.3\out
-sleep 0.5
+timeout /t 1 /nobreak > NUL
 
 echo Compiling Micro Lua DS...
 make
