@@ -2,19 +2,19 @@
 -- * showMiniWifiSignal(scr, pos)
 -- ********************************************************
 -- *                     DESCRIPTION
--- * Affiche un graphique représentant la force du signal
+-- * Display signal power
 -- ********************************************************
--- *                      ENTREE(S)
--- * scr : l'écran sur lequel afficher le signal
--- * pos : le coin dans lequel est affiché le graphique
+-- *                       INPUTS
+-- * scr : screen to display
+-- * pos : corner to display
 -- ********************************************************
--- *                      SORTIE(S)
+-- *                      OUTPUTS
 -- *
 -- ********************************************************
-_POSUL = 1	-- Position HAUT-GAUCHE
-_POSUR = 2	-- Position HAUT-DROIT
-_POSDR = 3	-- Position BAS-DROIT
-_POSDL = 4	-- Position BAS-GAUCHE
+_POSUL = 1	-- TOP-LEFT
+_POSUR = 2	-- TOP-RIGHT
+_POSDR = 3	-- BOTTOM-RIGHT
+_POSDL = 4	-- BOTTOM-LEFT
 function showMiniWifiSignal(scr,pos)
 	local tabx = {2,240,2,240}
 	local taby = {14,14,190,190}
@@ -41,13 +41,13 @@ end
 -- * delMiniWifiSignal()
 -- ********************************************************
 -- *                     DESCRIPTION
--- * libere la mémoire en supprimant les variables
--- * et les fonctions créer pour le mini signale
+-- * Free memory by destroying variables and
+-- * functions created to display signal power
 -- ********************************************************
--- *                      ENTREE(S)
+-- *                       INPUTS
 -- * 
 -- ********************************************************
--- *                      SORTIE(S)
+-- *                      OUTPUTS
 -- *
 -- ********************************************************
 function delMiniWifiSignal()

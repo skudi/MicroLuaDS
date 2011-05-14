@@ -18,11 +18,11 @@ popup.new = function(screen, title, text, button, border)
 	local long, longti, longte, longbo, i, j, add
 	local buffer = {}
 	popup.scr = screen
---Vidage table texte
+    -- Empty text table
 	for i=1, #popup.text do
 		table.remove(popup.text,1)
 	end
---Preparation titre
+    -- Prepare title
 	title = " "..title.." "
 	if(string.len(title)> 30) then
 		title = string.sub(title,1,30)
@@ -30,7 +30,7 @@ popup.new = function(screen, title, text, button, border)
 	else
 		longti = string.len(title)
 	end
---Preparation texte
+    -- Prepare text
 	if(string.len(text)> 30) then
 		for i=1, string.len(text), 30 do
 			table.insert(buffer,string.sub(text,i,i+29))
@@ -40,7 +40,7 @@ popup.new = function(screen, title, text, button, border)
 		table.insert(buffer,text)
 		longte = string.len(text)+4
 	end
---Preparation boutons
+    -- Prepare buttons
 	if(button == 1) then
 		if(screen == SCREEN_DOWN) then longbo = 6
 		else longbo = 9 end
@@ -53,7 +53,7 @@ popup.new = function(screen, title, text, button, border)
 	else longbo = 0
 	end
 	longbo = longbo+4
---Longueur du popup
+    -- Popup length
 	if(longti > longte) then
 		if(longti > longbo) then long = longti
 		else
@@ -67,25 +67,25 @@ popup.new = function(screen, title, text, button, border)
 	end
 	i = math.floor(long/2)
 	if(i+i ~= long) then long = long+1 end
---Formatage du titre
+    -- Format title
 	i = math.floor(string.len(title)/2)
 	if(i+i ~= string.len(title)) then add = 1 else add = 0 end
 	title = string.rep(border,math.floor(long/2)-(i+add))..title..
 		string.rep(border,math.floor(long/2)-i)
---Insertion du titre
+    -- Insert title
 	table.insert(popup.text,title)
---Insertion ligne vide
+    -- Insert empty line
 	text = border..string.rep(" ",long-2)..border
 	table.insert(popup.text,text)
---Insertion du texte
+    -- Insert text
 	for i=1, #buffer do
 		text = border.." "..buffer[i]..string.rep(" ",long-(3+string.len(buffer[i])))..border
 		table.insert(popup.text,text)
 	end
---Insertion ligne vide
+    -- Insert empty line
 	text = border..string.rep(" ",long-2)..border
 	table.insert(popup.text,text)
---Insertion bouton
+    -- Insert button
 	if(button == 1 or button == 2) then
 		text = border..string.rep(" ",math.floor((long-2)/2)-math.floor(longbo/2))..
 			string.rep(border,longbo)..

@@ -1,22 +1,28 @@
--- Load soundbank
-Sound.loadBank("soundbank.bin")
--- Load all mods and sfx in ram
+--[[
+
+        ==>[ MICROLUA EXAMPLE ]<==
+              ==>{ Mods ans SFX }<==
+        
+            About copying Guitar Hero!
+
+]]--
+
+Sound.loadBank("soundbank.bin")                 -- Load soundbank
+-- Load all mods and SFX in ram
 Sound.loadMod(0)
 Sound.loadMod(1)
 Sound.loadMod(2)
 Sound.loadSFX(0)
 Sound.loadSFX(1)
 
-Sound.setModVolume(600)
+Sound.setModVolume(600)                         -- Set the mods volume
 
 pan = 255
 
 while not Keys.held.Start do
-
 	Controls.read()	
 	
-	-- Stop all
-	if Keys.newPress.X then
+	if Keys.newPress.X then                     	-- Stop all
 		Sound.stop()
 	end	
 	-- Play mods
@@ -29,9 +35,8 @@ while not Keys.held.Start do
 	if Keys.newPress.Y then
 		Sound.startMod(2, PLAY_ONCE)
 	end
-	-- Play SFX
 	if Keys.newPress.L then		
-		Sound.startSFX(1)
+		Sound.startSFX(1)                           -- Play SFX
 	end
 	if Keys.newPress.R then
 		pan = 0
@@ -57,15 +62,14 @@ while not Keys.held.Start do
 	screen.print(SCREEN_DOWN, 0, 86, "X: stop mod playing")
 	
 	render()
-
 end
 
--- unload all mods
+-- Unload all mods
 Sound.unloadMod(0)
 Sound.unloadMod(1)
 Sound.unloadMod(2)
--- unload all sfx
+-- Unload all sfx
 Sound.unloadSFX(0)
 Sound.unloadSFX(1)
--- unload sound bank
+-- Unload sound bank
 Sound.unloadBank()

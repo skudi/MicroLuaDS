@@ -1,23 +1,23 @@
 
 _VGESTCONN = 0.4
 
-dofile("Clavier.lua")				--Ajout du script Clavier.lua
-clavier.activeScreen(clavv,true)	-- On active l'ecran texte du clavier
+dofile("Clavier.lua")				--Load keyboard script
+clavier.activeScreen(clavv,true)	-- Activate keyboard's text screen
 
-lAP = {}			-- Liste des APs
-li = 0				-- numero de la ligne
-conn = 0			-- connection
-tps = Timer.new()	-- timer de refresh des AP trouvés
+lAP = {}			-- AP list
+li = 0				-- Line number
+conn = 0			-- Connection
+tps = Timer.new()	-- Found AP refresh timer
 tps:start()
-sel = 1				-- selection actuelle
+sel = 1				-- Current selection
 i = 0
 quit = false		
-enr = true			-- enregistrement de la connection?
+enr = true			-- Save connection?
 
 fichier = io.open("/lua/libs/lapm.ini","r")
-Wifi.initDefault()		-- Initialisation du Wifi
-listeAPM = {}			-- Liste des AP Mémorisés
-if(fichier) then		-- création de la liste APM si il y en à une.
+Wifi.initDefault()		-- Wifi initialisation
+listeAPM = {}			-- Saved AP list
+if(fichier) then		-- Create AP list if existing
 	key = fichier:read("*l")
 	while(key ~= nil) do
 		value = fichier:read("*l")
@@ -31,19 +31,19 @@ value = nil
 fichier = nil
 collectgarbage("collect")
 
--- Configuration du mode scan du wifi
+-- Wifi scan mode
 Wifi.scanAP()
 
 -- ********************************************************
 -- * saveLAPM()
 -- ********************************************************
 -- *                     DESCRIPTION
--- * Enregistre le fichier des connections connues
+-- * Save known connections file
 -- ********************************************************
--- *                      ENTREE(S)
+-- *                        INPUTS
 -- *
 -- ********************************************************
--- *                      SORTIE(S)
+-- *                      OUTPUTS
 -- *
 -- ********************************************************
 local saveLAPM = function()
@@ -59,14 +59,13 @@ end
 -- * addConnectionLAPM(ssid, wepkey)
 -- ********************************************************
 -- *                     DESCRIPTION
--- * Ajoute un enregistrement à la liste des points
--- * d'acces connu.
+-- * Add an entry to the known connections list
 -- ********************************************************
--- *                      ENTREE(S)
--- * ssid : Le nom du réseau
--- * wepkey : la clef WEP
+-- *                         INPUTS
+-- * ssid : network name
+-- * wepkey : WEP key
 -- ********************************************************
--- *                      SORTIE(S)
+-- *                      OUTPUTS
 -- *
 -- ********************************************************
 local addConnectionLAPM = function(ssid,wepkey)
@@ -83,13 +82,13 @@ end
 -- * delConnectionLAPM(ssid)
 -- ********************************************************
 -- *                     DESCRIPTION
--- * Supprime de la liste des connections connues la 
--- * connection du nom de ssid
+-- * Delete this connection from the known
+-- * connections list
 -- ********************************************************
--- *                      ENTREE(S)
--- * ssid : Le nom de la connection à supprimer
+-- *                         INPUTS
+-- * ssid : name of the connection
 -- ********************************************************
--- *                      SORTIE(S)
+-- *                      OUTPUTS
 -- *
 -- ********************************************************
 local delConnectionLAPM = function(ssid)
@@ -106,12 +105,12 @@ end
 -- * listeWifiAP()
 -- ********************************************************
 -- *                     DESCRIPTION
--- * Crée la liste des APs trouvés
+-- * Create found AP list
 -- ********************************************************
--- *                      ENTREE(S)
+-- *                         INPUTS
 -- *
 -- ********************************************************
--- *                      SORTIE(S)
+-- *                      OUTPUTS
 -- *
 -- ********************************************************
 local listeWifiAP = function()
@@ -128,13 +127,13 @@ end
 -- * printInfoIP()
 -- ********************************************************
 -- *                     DESCRIPTION
--- * Affiche les informations de la connection:
--- * comme l'IP, le Gateway, le subnetMask, les DNS
+-- * Display connection informations, like IP,
+-- * gateway, subnetMask, DNS...
 -- ********************************************************
--- *                      ENTREE(S)
+-- *                         INPUTS
 -- *
 -- ********************************************************
--- *                      SORTIE(S)
+-- *                      OUTPUTS
 -- *
 -- ********************************************************
 local printInfoIP = function()
@@ -157,15 +156,13 @@ end
 -- * delGestCon(all)
 -- ********************************************************
 -- *                     DESCRIPTION
--- * Supprime de la mémoire les variables et fonction
--- * de ce script
+-- * Free memory
 -- ********************************************************
--- *                      ENTREE(S)
--- * all : type booléen
--- *       indique si on vide tout ou si on garde les
--- *       variables et la fonction showMiniWifiSignal()
+-- *                         INPUTS
+-- * all (boolean) : true to destroy everything, false
+-- * to keep variables and showMiniWifiSignal() func
 -- ********************************************************
--- *                      SORTIE(S)
+-- *                      OUTPUTS
 -- *
 -- ********************************************************
 del_GestCon = function()
@@ -187,13 +184,13 @@ end
 -- * entrer_cle()
 -- ********************************************************
 -- *                     DESCRIPTION
--- * Récupère en affichant un clavier la clef WEP et 
--- * Associe la DS à ce réseau
+-- * Get WEP key from the keyboard and associate
+-- * the console to the network
 -- ********************************************************
--- *                      ENTREE(S)
+-- *                         INTPUTS
 -- *
 -- ********************************************************
--- *                      SORTIE(S)
+-- *                       OUTPUTS
 -- *
 -- ********************************************************
 local entrer_cle = function()
@@ -226,9 +223,9 @@ local entrer_cle = function()
 		end
 	end
 	if(buff ~= "Esc" and lAP[sel].protection ~= "WPA") then
-		Wifi.disconnect()	-- On s'assure que l'on est pas connecter ailleurs
-		Wifi.resetIP()		-- On demande de nouvelles adresses
-		ok = Wifi.connectAP(sel,1,clef)	-- On associe la DS à l'AP
+		Wifi.disconnect()	-- Be sure we are not already connected elsewhere
+		Wifi.resetIP()		-- Asking for new IP address
+		ok = Wifi.connectAP(sel,1,clef)	-- Associate console to the AP
 		if(enr) then
 			delConnectionLAPM(lAP[sel].ssid)
 			addConnectionLAPM(lAP[sel].ssid,clef)
@@ -241,44 +238,44 @@ end
 -- * verif_stylus()
 -- ********************************************************
 -- *                     DESCRIPTION
--- * Verification des clics du stilet et action en conséquance
+-- * Stylus clicks check and related actions
 -- ********************************************************
--- *                      ENTREE(S)
+-- *                        INPUTS
 -- *
 -- ********************************************************
--- *                      SORTIE(S)
+-- *                      OUTPUTS
 -- *
 -- ********************************************************
 local verif_stylus = function()
 	local x = Stylus.X
 	local y = Stylus.Y
 	if(Stylus.newPress) then
-		-- appuis sur la liste des APs
+		-- Click on AP list
 		if(x> 1 and x< 243) then
 			if(y > 1 and y< 162) then 
 				sel = math.floor((y-1)/24)+1
 				if(sel > #lAP) then sel = #lAP end
 			end
 		end
-		-- appuis sur annuler
+		-- Click on "Cancel"
 		if(x> 19 and x< 109) then
 			if(y > 174 and y< 190) then 
 				quit = true
 			end
 		end
-		-- appuis sur connecter
+		-- Click on "Connect"
 		if(x> 156 and x< 240) then
 			if(y > 174 and y< 190) then 
 				entrer_cle()
 			end
 		end
-		-- appuis sur enregistrer
+		-- Click on "Save"
 		if(x> 45 and x< 211) then
 			if(y > 164 and y< 172) then 
 				enr = not enr
 			end
 		end
-		-- appuis sur supprimer
+		-- Click on "Delete"
 		if(x> 1 and x< 17) then
 			if(y > 174 and y< 190) then 
 				if(#lAP > 0) then
@@ -289,7 +286,7 @@ local verif_stylus = function()
 			end
 		end
 	elseif(Stylus.held) then
-		-- appuis dans la barre de defilement
+		-- Click on scrolling bar
 		if(x> 245 and x< 255) then
 			if(y > 1 and y< 162) then 
 				
@@ -302,22 +299,22 @@ end
 -- * 
 -- ********************************************************
 -- *                     DESCRIPTION
--- * Boucle principale
+-- * Main loop
 -- ********************************************************
--- *                      ENTREE(S)
+-- *                        INPUTS
 -- *
 -- ********************************************************
--- *                      SORTIE(S)
+-- *                      OUTPUTS
 -- *
 -- ********************************************************
 while(not quit)do
-	Controls.read()				-- Lecture de l'état des touches
-	if(tps:time() > 500) then	-- On met à jour la liste des AP toutes les 500ms 
+	Controls.read()				-- Read keys state
+	if(tps:time() > 500) then	-- Update AP list every 500ms
 		lAP = listeWifiAP()
 		tps:reset()
 		tps:start()
 	end
-	-- Affichage des données sur l'écran du dessus
+	-- Display data on the top screen
 	screen.print(SCREEN_UP,50,0,"Gestionnaire de connexions")
 	screen.print(SCREEN_UP,170,40,"Version :".._VGESTCONN)
 	screen.print(SCREEN_UP,170,55,"PAPY 11/2010")
@@ -330,7 +327,7 @@ while(not quit)do
 	screen.drawFillRect(SCREEN_UP,10,128,19,137,Color.new(31,8,0))
 	screen.print(SCREEN_UP,22,130,"Connexion inactive.")
 	screen.print(SCREEN_UP,62,182,"Points d'Accès Trouvés :")
-	-- Affichage de la liste trouvé sur l'écran du bas
+	-- Display found AP on the bottom screen
 	li = 1
 	for i=1, #lAP do
 		local coulc, coult
@@ -354,17 +351,17 @@ while(not quit)do
 		screen.print(SCREEN_DOWN,211,li+12,math.floor((lAP[i].rssi*100)/175).."%",coult)
 		li = li+24
 	end
-	-- Dessin des boutons du menu
+	-- Draw menu buttons
 	screen.drawRect(SCREEN_DOWN,245,1,255,162,Color.new(29,16,16))
 	screen.drawRect(SCREEN_DOWN,45,164,53,172,Color.new(22,22,22))
-	-- Remplissage de la case d'enregistrement si demandée
+	-- Fill saving box if asked to
 	if(enr) then screen.drawFillRect(SCREEN_DOWN,46,165,52,171,Color.new(15,31,0)) end
 	screen.print(SCREEN_DOWN,55,164,"Enregistrer la connection.")
 	screen.drawFillRect(SCREEN_DOWN,156,174,240,190,Color.new(5,19,31))
 	screen.print(SCREEN_DOWN,158,178,"[A]Connection",Color.new(0,0,0))
 	screen.drawFillRect(SCREEN_DOWN,19,174,109,190,Color.new(31,31,12))
 	screen.print(SCREEN_DOWN,21,178,"[Start]Annuler",Color.new(0,0,0))
-	-- Si l'AP est enregistrer dessin de l'option de suppression
+	-- If the AP is saved, draw "Delete" button
 	if(#lAP > 0) then
 		if(listeAPM[lAP[sel].ssid] ~= nil) then
 			screen.drawFillRect(SCREEN_DOWN,1,174,17,190,Color.new(31,8,0))
@@ -372,7 +369,7 @@ while(not quit)do
 		end
 	end
 	screen.print(SCREEN_DOWN,1,((sel-1) * 24)+9,">",Color.new(0,0,0))
-	-- Verification des touches appuyée
+	-- Check pressed keys
 	if(Keys.newPress.Up) then
 		sel = sel -1
 		if(sel == 0) then sel = 1 end
@@ -384,12 +381,12 @@ while(not quit)do
 	if(Keys.newPress.A) then
 		entrer_cle()
 	end
-	-- Verification de l'appuis du stylet
+	-- Check stylus state
 	verif_stylus()
-	-- Si la connexion est réussie, on quitte le gestionnaire
+	-- If successful connection, leave the manager
 	if(conn == 1) then
 		quit = true
-		Wifi.numAP = sel  -- Création de la variable Wifi.numAP et enregistrement du numéro de l'AP selectionné
+		Wifi.numAP = sel  -- Create Wifi.numAP and save selected AP number
 	end
 	--printInfoIP()
 	render()

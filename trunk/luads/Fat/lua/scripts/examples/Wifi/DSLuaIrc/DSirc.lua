@@ -30,7 +30,7 @@ else
 	irc.user.server[1].chan[1] = "#microlua"
 end
 file = nil
--- Tableau des parametres de connections
+-- Connection parameters table
 tab_param = {}
 tab_param.host = irc.user.server[1].name
 tab_param.port = irc.user.server[1].port
@@ -39,7 +39,7 @@ tab_param.real = "microLuaDS_IRC"
 tab_param.user = "guest"
 tab_param.chan = irc.user.server[1].chan[1]
 
---Couleurs
+-- Colours
 irc.color = {}
 irc.color.gray = Color.new(20,20,20)
 irc.color.white = Color.new(31,31,31)
@@ -48,7 +48,7 @@ irc.color.blue = Color.new(0,0,31)
 irc.color.red = Color.new(31,0,0)
 irc.color.green = Color.new(0,31,0)
 
--- Variable globales
+-- Global variables
 irc.buffer = ""
 irc.tab_text = {}
 irc.pattern = string.format("%c%c",13,10)
@@ -64,15 +64,15 @@ irc.clnames = true
 irc.affichage = ""
 irc.cptping = 0
 irc.dep = 1
---[[ mode : 	0 = Connection internet
-				1 = Connection IRC
-				2 = Rejoindre canal
-				3 = Discution
-			   -1 = Erreur  (Message dans irc.erreur)
+--[[ mode : 	0 = Internet connection
+				1 = IRC connection
+				2 = Join channel
+				3 = Discussion
+			   -1 = Error  (Message in irc.erreur)
 ]]
 irc.mode = 0
 
--- Déclarations des boutons
+-- Buttons
 fenP = {}
 fenP.parent = luaWidget.newWidget(SCREEN_DOWN)
 fenP.Bserveur = luaWidget.newObj(fenP.parent,TBUTTON,1,18,64,15,tab_param.host,_ACENTER)
@@ -85,8 +85,8 @@ luaWidget.set(fenP.parent,fenP.BlistUsers,"visible",false)
 -------------------------------------------------
 -- tableau = recois()
 -------------------------------------------------
--- Verifie si des données sont en attente dans le buffer 
--- du wifi, les lis et remplis le tableau avec.
+-- Check for waiting data in wifi buffer, read it and fill
+-- in the table with it.
 -------------------------------------------------
 irc.recois = function()
 	local retour = {}
@@ -107,35 +107,35 @@ irc.recois = function()
 	if(string.len(irc.tempon) > 1) then
 		Debug.clear()-----------------------------
 		buff = irc.tempon
--- On recherche la fin du message au cas ou il y aurait le debut d'un autre
+-- Look for message end in case of beginning of the next
 		i = string.find(buff, irc.pattern)
 		if(i~= nil) then 
--- On a bien un message complet
+-- We have a complete message
 			irc.tempon = string.sub(buff,i+2,-1)
 			buff = string.sub(buff,1,i-1)
 			Debug.print(buff)
--- Le message est il préfixé
+-- Is the message prefixed?
 			if(string.sub(buff,1,1) == ":") then
--- Oui : On lit le préfixe
+-- Yes: read the prefix
 				j = string.find(buff," ")
 				retour.prefix.norm = string.sub(buff,2,j-1)
 				buff = string.sub(buff,j+1,-1)
 			else
--- Non : On indique un préfixe vide
+-- No: empty prefix
 			retour.prefix.norm = ""
 			end
--- Y a t'il des paramètres après la commande
+-- Are there parameters after the command?
 			i = string.find(buff," ")
 			if(i ~= nil)  then
--- Oui, on les lit
+-- Yes: read them
 				retour.command = string.sub(buff,1,i-1)
 				buff = string.sub(buff,i+1,-1)
 				retour.param.norm = buff
--- On les formate
--- y a t'il le caractere 0x01 ?
+-- Format them
+-- Is there the 0x01 character?
 				i = string.find(buff,string.char(1))
 				if(i ~= nil) then
--- oui alors on ajoute la commande2 avec ses parametres
+-- Yes: add command2 with its parameters
 					buff = string.sub(buff,i+1,-2)
 					i = string.find(buff, " ")
 					if(i == nil) then
@@ -145,7 +145,7 @@ irc.recois = function()
 						retour.param.com2 = string.sub(buff,i+1,-1)
 					end
 				else
--- non on formate les parametres
+-- No: format parameters
 					i = string.find(buff," ")
 					while(i~= nil) do
 						if(string.sub(buff,1,1) == ":") then
@@ -166,10 +166,10 @@ irc.recois = function()
 					end
 				end
 			else
--- Non, on ne met que la commande
+-- No: only put the command
 				retour.command = buff
 			end
--- Formatage préfix
+-- Format prefix
 			i = string.find(retour.prefix.norm,"!")
 			if(i ~= nil) then
 				retour.prefix.nick = string.sub(retour.prefix.norm,1,i-1)
@@ -185,8 +185,8 @@ end
 -------------------------------------------------
 -- attente()
 -------------------------------------------------
--- Verifie le status du wifi et l'affiche
--- dans un popup jusqu'a l'association a l'AP
+-- Check Wifi status and display it in a popup
+-- until AP association
 -------------------------------------------------
 irc.attente = function()
 	local stat
@@ -211,13 +211,13 @@ end
 -------------------------------------------------
 -- verif_mode()
 -------------------------------------------------
--- Action a faire en fonction du moment
--- irc.mode = -1 : il y a une erreur, on l'affiche
--- irc.mode = 0  : Association a l'AP
--- irc.mode = 1  : Attente de connection a un serveur
--- irc.mode = 2  : Connection au serveur et on rejoind le canal
--- irc.mode = 3  : On rejoind un canal
--- irc.mode = 5  : En discution
+-- Action to be done according to the situation
+-- irc.mode = -1: error, display it
+-- irc.mode = 0 : association to the AP
+-- irc.mode = 1 : Waiting for connection to a server
+-- irc.mode = 2 : Connect to server and join channel
+-- irc.mode = 3 : Join channel
+-- irc.mode = 5 : Chatting
 -------------------------------------------------
 irc.verif_mode = function()
 	if(irc.mode == -1) then
@@ -272,11 +272,11 @@ end
 -------------------------------------------------
 -- ajout_text(list, nick, text)
 -------------------------------------------------
--- list : liste de texte à laquelle celà doit être ajouté
--- nick : Surnom de l'auteur du message
--- text : Message a ajouter
+-- list : text list to add this
+-- nick : message author's nickname
+-- text : message to add
 -------------------------------------------------
--- Ajoute le texte et le formate pour l'affichage
+-- Add the text and format it to display
 -------------------------------------------------
 irc.ajout_text = function(list, nick, text)
 	local buffer
@@ -298,11 +298,11 @@ end
 -------------------------------------------------
 -- texte = commande(texte)
 -------------------------------------------------
--- texte : texte à interpréter
+-- texte : text to interpret
 -------------------------------------------------
--- verifie si le texte entré au clavier
--- est une commande, la formate et l'envoit le cas échéant.
--- Retourne si formaté.
+-- Check whether the typed text is
+-- a command or not; format and
+-- send it if it is. Return if formated.
 -------------------------------------------------
 irc.commande = function(texte)
 	local ret = false
@@ -349,10 +349,10 @@ end
 -------------------------------------------------
 -- pause(seconde)
 -------------------------------------------------
--- seconde : temps en secondes
+-- seconde : time (seconds)
 -------------------------------------------------
--- Fait une pause de x secondes, pendant la pause
--- le script ne repond pas.
+-- Make a x-seconds pause ; during
+-- the pause the script is frozen
 -------------------------------------------------
 irc.pause = function(seconde)
 	local tps = DateTime.getCurrentTime()
@@ -367,10 +367,11 @@ end
 -------------------------------------------------
 -- text = verif_text(text)
 -------------------------------------------------
--- text : texte à vérifier
+-- text : text to check
 -------------------------------------------------
--- Verifie si le texte ne contient pas de caratères
--- spéciaux et convertis si nécéssaire
+-- Check whether the text contains
+-- special characters or not, and
+-- convert them if needed
 -------------------------------------------------
 irc.verif_text = function(text)
 	local i, j
@@ -395,7 +396,7 @@ end
 -------------------------------------------------
 -- resetBorder()
 -------------------------------------------------
--- Reset la couleur de bordure des boutons
+-- Reset button's border colour
 -------------------------------------------------
 irc.resetBorder = function()
 	luaWidget.set(fenP.parent,fenP.BautoConnect,"cCadre",irc.color.white)
@@ -406,10 +407,11 @@ end
 -------------------------------------------------
 -- affBD(pos, max)
 -------------------------------------------------
--- pos : position de depart
--- max : nombre max de ligne
+-- pos : beginning position
+-- max : maximum lines number
 -------------------------------------------------
--- Affiche la barre de defilement à droite du texte
+-- Display scrolling bar on the right
+-- of the text
 -------------------------------------------------
 irc.affBD = function(pos, max)
 	local blanc = Color.new(31,31,31)
@@ -491,7 +493,7 @@ while(not irc.quit) do
 		end
 	end
 	if(irc.mode > 2) then
--- Reponses aux commandes
+-- Command reply
 		irc.buffer = irc.recois()
 		if(irc.buffer.command2 ~= nil) then
 			if(irc.buffer.param.com2 == nil) then
@@ -603,7 +605,7 @@ while(not irc.quit) do
 				irc.ajout_text(irc.server_text,irc.buffer.command..":"..irc.buffer.param.norm)
 			end
 		end
--- Affichage
+-- Display
 		local dep , buff
 		if(irc.affichage == "users") then buff = irc.lnames
 		elseif(irc.affichage == "server") then buff = irc.server_text
@@ -640,7 +642,7 @@ if(irc.mode == 5) then
 	Wifi.send(irc.socket,"QUIT Aurevoir!\n")
 	popup.show()
 	render()
--- On attend 2s pour etre sur que les commandes soient bien parties
+-- Pause for 2s to send the commands
 	irc.pause(2)
 	Wifi.closeSocket(irc.socket)
 	popup.show()

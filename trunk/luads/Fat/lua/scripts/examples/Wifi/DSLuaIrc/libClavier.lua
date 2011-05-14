@@ -16,17 +16,17 @@ clavier.new = function()
 			cla[i][j] = {}
 		end
 	end
-	cla.ta = 1             --Panneau actif
-	cla.xscr = 1		   --Pos x de l'ecran
-	cla.yscr = 1		   --Pos y de l'ecran
-	cla.lon = 1			   --Longueur de l'ecran en case
-	cla.ascr = false	   --Affichage de l'ecran
-	cla.cc = coul.blanc	   --Couleur du cadre de l'ecran
-	cla.cf = coul.noir	   --Couleur du fond de l'ecran
-	cla.ct = coul.blanc	   --Couleur du texte de l'ecran
-	cla.text = ""		   --Texte entrer au clavier
-	cla.ycurs = 1		   --Pos y du curseur de l'ecran
-	cla.ydep = 1		   --Pos de départ du texte
+	cla.ta = 1             -- Active panel
+	cla.xscr = 1		   -- Screen X position
+	cla.yscr = 1		   -- Screen Y position
+	cla.lon = 1			   -- Screen length (in "boxes")
+	cla.ascr = false	   -- Screen display
+	cla.cc = coul.blanc	   -- Screen frame colour
+	cla.cf = coul.noir	   -- Screen background colour
+	cla.ct = coul.blanc	   -- Screen text colour
+	cla.text = ""		   -- Typed text
+	cla.ycurs = 1		   -- Screen cursor Y position
+	cla.ydep = 1		   -- Beginning text position
 	cla.canvas = Canvas.new()
 	cla.modif = true
 	cla.tabTApp = {}
@@ -47,21 +47,21 @@ clavier.addKey = function(cla,x,y,text,nbc,op,cc,cf,cs,ct)
 	local key = {}
 	local i
 	if(type(text) == "number") then text = string.char(text) end
-	key.t = text            	--Texte du panneau [x]
+	key.t = text            	-- "[X]" panel colour
 	if(cc == nil) then key.cc = coul.blanc
-	else key.cc = cc end    	--Couleur du cadre
+	else key.cc = cc end    	-- Frame colour
 	if(cf == nil) then key.cf = coul.bleu
-	else key.cf = cf end    	--Couleur du fond
+	else key.cf = cf end    	-- Background colour
 	if(cs == nil) then key.cs = coul.bleuv
-	else key.cs = cs end    	--Couleur du fond selectionné
+	else key.cs = cs end    	-- Selected background colour
 	if(ct == nil) then key.ct = coul.blanc
-	else key.ct = ct end    	--Couleur du texte
+	else key.ct = ct end    	-- Text colour
 	if(op == nil) then key.op = 0
-	else key.op = op end    	--Activation du panneau x si > 0
+	else key.op = op end    	-- "[X]" panel activated if > 0
 	if(nbc == nil) then key.nbc = 1
-	else key.nbc = nbc end  	--Nb de case recouverte par la touche
-	key.app = false         	--La touche n'est pas appuyer
-	key.canvFond = 0			-- Objet du canvas representant le fond de la touche
+	else key.nbc = nbc end  	-- Boxes number covered by the key
+	key.app = false         	-- The key is not held
+	key.canvFond = 0			--  Key background canvas object
 	table.insert(cla[y][x],key)
 end
 
@@ -77,13 +77,13 @@ clavier.nbPanel = function(cla)
 end
 
 clavier.modKey = function(cla,x,y,panneau,text,nbc,op,cc,cf,cs,ct)
-	if(text ~= nil) then cla[y][x][panneau].t = text end --Texte du panneau [x]
-	if(cc ~= nil) then cla[y][x][panneau].cc = cc end    --Couleur du cadre
-	if(cf ~= nil) then cla[y][x][panneau].cf = cf end    --Couleur du fond
-	if(cs ~= nil) then cla[y][x][panneau].cs = cs end    --Couleur du fond selectionné
-	if(ct ~= nil) then cla[y][x][panneau].ct = ct end    --Couleur du texte
-	if(op ~= nil) then cla[y][x][panneau].op = op end     --Activation du panneau x si > 0
-	if(nbc ~= nil) then cla[y][x][panneau].nbc = nbc end   --Nb de case recouverte par la touche
+	if(text ~= nil) then cla[y][x][panneau].t = text end -- "[X]" panel text
+	if(cc ~= nil) then cla[y][x][panneau].cc = cc end    -- Frame colour
+	if(cf ~= nil) then cla[y][x][panneau].cf = cf end    -- Background colour
+	if(cs ~= nil) then cla[y][x][panneau].cs = cs end    -- Selected background colour
+	if(ct ~= nil) then cla[y][x][panneau].ct = ct end    -- Text colour
+	if(op ~= nil) then cla[y][x][panneau].op = op end     -- "[X]" panel activated if > 0
+	if(nbc ~= nil) then cla[y][x][panneau].nbc = nbc end   -- Boxes number covered by the key
 end
 
 clavier.delKey = function(cla,x,y,panneau)
@@ -94,9 +94,9 @@ clavier.modScreen = function(cla,x,y,lon,cc,cf,ct)
 	cla.xscr = x
 	cla.yscr = y
 	cla.lon = lon
-	if(cc ~= nil) then cla.cc = cc end    --Couleur du cadre
-	if(cf ~= nil) then cla.cf = cf end    --Couleur du fond
-	if(ct ~= nil) then cla.ct = ct end    --Couleur du texte
+	if(cc ~= nil) then cla.cc = cc end    -- Frame colour
+	if(cf ~= nil) then cla.cf = cf end    -- Background colour
+	if(ct ~= nil) then cla.ct = ct end    -- Text colour
 end
 
 clavier.activeScreen = function(cla,active)

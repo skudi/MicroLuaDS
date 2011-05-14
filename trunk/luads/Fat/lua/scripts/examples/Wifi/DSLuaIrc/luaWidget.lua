@@ -1,27 +1,27 @@
---[[ Librairie regroupant toutes les fonctions
-	 de création et gestion de GUI ]]
+--[[ Library gathering functions to create
+    and manage GUI ]]
 
 V_LUAWIDGET = 0.522
 	 
 luaWidget = {}
 luaWidget.tabobj = {}
-luaWidget.tabwidget = {}	-- Tableau des collections
-luaWidget.tabwidget.nb = 0	-- Tableau des objets
-TBUTTON = 1      -- type bouton
-TTEXTBOX = 2     -- type textBox
-TCHECKBOX = 3    -- type checkBox
-TRADIOBUTTON = 4 -- type radio Button
-TLINK = 5   	  -- type lien
-TNUMUPDOWN = 6   -- type numeric UpDown
-TPROGRESSBAR = 7 -- type barre de progression
-TLISTVIEW = 8	  -- type liste
-TTABLEVIEW = 9	  -- type tableview
-TCOMBOBOX = 10	  -- type combobox
+luaWidget.tabwidget = {}	-- Collections table
+luaWidget.tabwidget.nb = 0	-- Objects table
+TBUTTON = 1      -- Button type
+TTEXTBOX = 2     -- Textbox type
+TCHECKBOX = 3    -- CheckBox type
+TRADIOBUTTON = 4 -- RadioButton type
+TLINK = 5   	  -- Link type
+TNUMUPDOWN = 6   -- NumericUpDown type
+TPROGRESSBAR = 7 -- ProgressBar type
+TLISTVIEW = 8	  -- List type
+TTABLEVIEW = 9	  -- TableView type
+TCOMBOBOX = 10	  -- ComboBox type
 
-_ALEFT = 1   -- Alignement à gauche
-_ARIGHT = 2  -- Alignement à droite
-_ACENTER = 3 -- Alignement au centre
-_ATRONQ = 4  -- Aligne à gauche et tronque la phrase si elle est trop grande
+_ALEFT = 1   -- Left alignment
+_ARIGHT = 2  -- Right alignment
+_ACENTER = 3 -- Centre alignment
+_ATRONQ = 4  -- Left alignment + truncation of sentences
 
 _BSTART = 1
 _BSELECT = 2
@@ -250,7 +250,7 @@ luaWidget.set = function(parent, obj, opt, value)
 			else luaWidget.tabobj[parent][obj][opt] = Image.load(value,VRAM) end
 --******************** ELEMENT ********************
 		elseif(opt == "element") then
---******************** ELEMENT Pour COMBOBOX ********************
+--******************** ELEMENT for COMBOBOX ********************
 			if(luaWidget.tabobj[parent][obj].type == TCOMBOBOX) then
 				luaWidget.set(parent,luaWidget.tabobj[parent][obj].min,"element",value)
 			end
@@ -259,17 +259,17 @@ luaWidget.set = function(parent, obj, opt, value)
 			end
 			for i=1,#value do
 				local buff = {}
---******************** ELEMENT Pour RADIOBUTTON ********************
+--******************** ELEMENT for RADIOBUTTON ********************
 				if(luaWidget.tabobj[parent][obj].type == TRADIOBUTTON) then
 					buff.text = value[i]
 					buff.check = false
 					table.insert(luaWidget.tabobj[parent][obj].element,buff)
 					luaWidget.tabobj[parent][obj].height = #luaWidget.tabobj[parent][obj].element * 11
---******************** ELEMENT Pour LISTVIEW ********************
+--******************** ELEMENT for LISTVIEW ********************
 				elseif(luaWidget.tabobj[parent][obj].type == TLISTVIEW) then
 					buff.text = value[i]
 					table.insert(luaWidget.tabobj[parent][obj].element,buff)
---******************** ELEMENT Pour TABLEVIEW ********************
+--******************** ELEMENT for TABLEVIEW ********************
 				elseif(luaWidget.tabobj[parent][obj].type == TTABLEVIEW) then
 					table.insert(luaWidget.tabobj[parent][obj].element,value[i])
 				end
@@ -315,10 +315,10 @@ luaWidget.set = function(parent, obj, opt, value)
 			if(luaWidget.tabobj[parent][obj].max > 0) then
 				luaWidget.tabobj[parent][obj].max = math.floor((value-4)/10)
 			end
---******************** DIMCOL (dimension des colonnes) ********************
+--******************** DIMCOL (column dimensions) ********************
 		elseif(opt == "dimcol") then
 			luaWidget.tabobj[parent][obj].element[0] = value
---******************** Le Reste ********************
+--******************** Everything else ********************
 		else
 			luaWidget.tabobj[parent][obj][opt] = value
 		end
@@ -422,7 +422,7 @@ luaWidget.show = function(widget)
 	local ombre = Color.new(10,10,10)
 	for a, obj in pairs(luaWidget.tabobj[widget]) do
 		if(obj.visible) then
--- ************** BOUTON *****************
+-- ************** BUTTON *****************
 			if(obj.type == TBUTTON) then
 				local add, xx, yy, ximg, wimg
 				local bout = ""
@@ -538,7 +538,7 @@ luaWidget.show = function(widget)
 				for i=1,#obj.element do
 					yy = obj.y+((i-1)*11)
 					if (obj.align == _ARIGHT) then xx = obj.x+obj.width-10 end
-					--Contour du cercle
+					-- Circle contour
 					screen.drawLine(scr,xx+3,yy,xx+7,yy,obj.cCadre)
 					screen.drawLine(scr,xx+2,yy+1,xx+8,yy+1,obj.cCadre)
 					screen.drawLine(scr,xx+1,yy+2,xx+9,yy+2,obj.cCadre)
@@ -548,7 +548,7 @@ luaWidget.show = function(widget)
 					screen.drawLine(scr,xx+1,yy+7,xx+9,yy+7,obj.cCadre)
 					screen.drawLine(scr,xx+2,yy+8,xx+8,yy+8,obj.cCadre)
 					screen.drawLine(scr,xx+3,yy+9,xx+7,yy+9,obj.cCadre)
-					-- remplissage du cercle
+					-- Circle filling
 					screen.drawLine(scr,xx+3,yy+1,xx+7,yy+1,obj.cFond)
 					screen.drawLine(scr,xx+2,yy+2,xx+8,yy+2,obj.cFond)
 					screen.drawLine(scr,xx+1,yy+3,xx+9,yy+3,obj.cFond)
@@ -566,7 +566,7 @@ luaWidget.show = function(widget)
 						screen.drawLine(scr,xx+3,yy+6,xx+7,yy+6,obj.cSel)
 						screen.drawLine(scr,xx+4,yy+7,xx+6,yy+7,obj.cSel)				
 					end
-					--texte
+					-- Text
 					if (obj.align == _ARIGHT) then
 						xx = (obj.x+obj.width)-((string.len(obj.element[i].text)*6)+14)
 						screen.print(scr, xx, yy+1, obj.element[i].text, obj.cText)
@@ -585,12 +585,12 @@ luaWidget.show = function(widget)
 				screen.drawFillRect(scr,obj.x,obj.y,obj.x+10,obj.y+20,obj.cFond)
 				screen.drawRect(scr,obj.x,obj.y,obj.x+10,obj.y+10,obj.cCadre)
 				screen.drawRect(scr,obj.x,obj.y+10,obj.x+10,obj.y+20,obj.cCadre)
-				-- Fleche haut
+				-- Up arrow
 				screen.drawLine(scr,obj.x+4,obj.y+2,obj.x+4,obj.y+8,obj.cFleche)
 				screen.drawLine(scr,obj.x+5,obj.y+2,obj.x+5,obj.y+8,obj.cFleche)
 				screen.drawLine(scr,obj.x+3,obj.y+3,obj.x+7,obj.y+3,obj.cFleche)
 				screen.drawLine(scr,obj.x+2,obj.y+4,obj.x+8,obj.y+4,obj.cFleche)
-				-- Fleche bas
+				-- Down arrow
 				screen.drawLine(scr,obj.x+4,obj.y+12,obj.x+4,obj.y+18,obj.cFleche)
 				screen.drawLine(scr,obj.x+5,obj.y+12,obj.x+5,obj.y+18,obj.cFleche)
 				screen.drawLine(scr,obj.x+3,obj.y+16,obj.x+7,obj.y+16,obj.cFleche)
@@ -647,17 +647,17 @@ luaWidget.show = function(widget)
 					end
 				end
 				xx1 = xx2-10
-				-- Fleche haut
+				-- Up arrow
 				screen.drawLine(scr,xx1+4,yy1+2,xx1+4,yy1+8,obj.cFleche)
 				screen.drawLine(scr,xx1+5,yy1+2,xx1+5,yy1+8,obj.cFleche)
 				screen.drawLine(scr,xx1+3,yy1+3,xx1+7,yy1+3,obj.cFleche)
 				screen.drawLine(scr,xx1+2,yy1+4,xx1+8,yy1+4,obj.cFleche)
-				-- Fleche bas
+				-- Down arrow
 				screen.drawLine(scr,xx1+4,yy2-2,xx1+4,yy2-8,obj.cFleche)
 				screen.drawLine(scr,xx1+5,yy2-2,xx1+5,yy2-8,obj.cFleche)
 				screen.drawLine(scr,xx1+3,yy2-4,xx1+7,yy2-4,obj.cFleche)
 				screen.drawLine(scr,xx1+2,yy2-5,xx1+8,yy2-5,obj.cFleche)
-				-- Curseur
+				-- Cursor
 				if obj.max > 0 then
 					ep_curs = ((yy2-10)-(yy1+10))/obj.max
 					po_curs = math.floor(ep_curs*(obj.pos-1))+10+yy1
@@ -665,10 +665,10 @@ luaWidget.show = function(widget)
 					if ep_curs == 0 then ep_curs = 1 end
 					screen.drawFillRect(scr,xx1+1,po_curs,xx1+9,po_curs+ep_curs,obj.cSel)
 				end
-				-- Cadre fleche
+				-- Arrow frame
 				screen.drawLine(scr,xx1,yy1+9,xx1+10,yy1+9,obj.cCadre)
 				screen.drawLine(scr,xx1,yy2-10,xx2,yy2-10,obj.cCadre)
-				-- Cadre
+				-- Frame
 				screen.drawRect(scr,xx1,yy1,xx2,yy2,obj.cCadre)
 -- **************TABLEVIEW ********************
 			elseif(obj.type == TTABLEVIEW) then
@@ -681,17 +681,17 @@ luaWidget.show = function(widget)
 				screen.drawLine(scr,xx1,yy1+11,xx2,yy1+11,obj.cCadre)
 				xx1 = xx2-10
 				yy1 = yy1+11
-				-- Fleche haut
+				-- Up arrow
 				screen.drawLine(scr,xx1+4,yy1+2,xx1+4,yy1+8,obj.cFleche)
 				screen.drawLine(scr,xx1+5,yy1+2,xx1+5,yy1+8,obj.cFleche)
 				screen.drawLine(scr,xx1+3,yy1+3,xx1+7,yy1+3,obj.cFleche)
 				screen.drawLine(scr,xx1+2,yy1+4,xx1+8,yy1+4,obj.cFleche)
-				-- Fleche bas
+				-- Down arrow
 				screen.drawLine(scr,xx1+4,yy2-2,xx1+4,yy2-8,obj.cFleche)
 				screen.drawLine(scr,xx1+5,yy2-2,xx1+5,yy2-8,obj.cFleche)
 				screen.drawLine(scr,xx1+3,yy2-4,xx1+7,yy2-4,obj.cFleche)
 				screen.drawLine(scr,xx1+2,yy2-5,xx1+8,yy2-5,obj.cFleche)
-				-- Curseur
+				-- Cursor
 				local nbliaff = math.floor((obj.height - 15)/10)
 				if obj.max > 0 then
 					ep_curs = ((yy2-10)-(yy1+10))/obj.max
@@ -700,12 +700,12 @@ luaWidget.show = function(widget)
 					if ep_curs == 0 then ep_curs = 1 end
 					screen.drawFillRect(scr,xx1+1,po_curs,xx1+9,po_curs+ep_curs,obj.cSel)
 				end
-				-- Cadre fleche
+				-- Arrow frame
 				screen.drawLine(scr,xx1,yy1+9,xx1+10,yy1+9,obj.cCadre)
 				screen.drawLine(scr,xx1,yy2-10,xx2,yy2-10,obj.cCadre)
-				-- Cadre
+				-- Frame
 				screen.drawRect(scr,xx1,yy1,xx2,yy2,obj.cCadre)
-				-- Séparation des colonnes
+				-- Column delimitation
 				if(obj.element[0] ~= nil) then
 					local i
 					yy1 = obj.y
@@ -716,10 +716,10 @@ luaWidget.show = function(widget)
 						end
 						xx1 = xx1 + obj.element[0][i]
 					end
-				-- Texte
+				-- Text
 					local j,text,cx
 					local xnbelem = #obj.element[1]
-				-- Titre
+				-- Title
 					cx = obj.x
 					for j=1, xnbelem do
 						text = string.sub(obj.element[1][j],1,math.floor((obj.element[0][j]-4)/6))
@@ -728,7 +728,7 @@ luaWidget.show = function(widget)
 						end
 						cx = cx + obj.element[0][j]
 					end
-				-- reste
+				-- Everything else
 					yy1 = yy1+12
 					local posSel, ldep, lfin
 					local ynbelem = #obj.element
@@ -745,7 +745,7 @@ luaWidget.show = function(widget)
 						if(i == posSel+1) then
 							screen.drawFillRect(scr,cx+1,yy1+((i-ldep)*10),xx2-10,yy1+12+((i-ldep)*10),obj.cSel)
 						end
-						-- texte
+						-- Text
 						for j=1, xnbelem do
 							text = string.sub(obj.element[i][j],1,math.floor((obj.element[0][j]-4)/6))
 							if(cx+(string.len(text)*6) < xx2) then
@@ -779,7 +779,7 @@ luaWidget.held = function(widget)
 	local obj, i, kre
 	for i, obj in pairs(luaWidget.tabobj[widget]) do
 		if(obj.visible and obj.active) then
---******************** Verifie les boutons associé aux touches ********************
+--******************** Check buttons associated to keys ********************
 			if(obj.type == TBUTTON) then
 				local ok = false
 				if(Keys.newPress.A and obj.min == _BA) then ok = true end
@@ -792,7 +792,7 @@ luaWidget.held = function(widget)
 			end
 			local kre = square(obj.x, obj.y, obj.x+obj.width, obj.y+obj.height)
 			if estDedans(Stylus.X, Stylus.Y, kre) and (luaWidget.tabwidget[widget].scr == SCREEN_DOWN) then
--- ************** Tous les objets sur un simple clique ********************
+-- ************** All simple-click objects ********************
 				if(Stylus.newPress) then
 					obj.newPress = true
 					obj.check = not obj.check
@@ -876,7 +876,7 @@ luaWidget.held = function(widget)
 							end
 						end
 					end
---********************** Double clique ************************************
+--********************** Double-click ************************************
 				elseif(Stylus.doubleClick) then
 					if(obj.type == TLISTVIEW and Stylus.X > obj.x+obj.width-10) then
 						-- Pas bon
