@@ -528,6 +528,7 @@ static int canvas_removeObj(lua_State *L){
 			canvas->list[i] = canvas->list[i+1];
 		}
 		free(canvas->list[canvas->nb-1]);
+		canvas->nb--;
 	}
     return 0;
 }
