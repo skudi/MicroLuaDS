@@ -348,7 +348,7 @@ static int canvas_setAttr(lua_State *L){
 
 static int canvas_getAttr(lua_State *L){
     CanvasObject * co = lua_touserdata(L, 1);
-    switch((int)luaL_checknumber(L, 2)){
+    switch((int)luaL_checknumber(L, 3)){
         case ATTR_X1:
             lua_pushnumber(L, co->x1);
             break;
@@ -484,6 +484,54 @@ static int canvas_draw(lua_State *L){
     return 0;
 }
 
+static int canvas_setObjOnTop(lua_State *L){
+    Canvas * canvas = lua_touserdata(L, 1);
+    CanvasObject * co = lua_touserdata(L, 2);
+	// search the object
+	int i;
+	int pos = -1;
+	CanvasObject * buff;
+	for(i=0; i<canvas->nb; i++){
+		if(co == canvas->list[i]){
+			pos = i;
+		}
+		if(pos > -1) break;
+	}
+	// Si trouve, on le copie, on remonte tout de 1 a partir de sa position et on le colle en fin
+	if(pos>-1){
+		buff = canvas->list[pos];
+		for(i=pos; i<(canvas->nb -1); i++){
+			canvas->list[i] = canvas->list[i+1];
+		}
+		canvas->list[canvas->nb-1] = buff;
+	}
+	return 0;
+}
+
+static int canvas_removeObj(lua_State *L){
+    Canvas * canvas = lua_touserdata(L, 1);
+    CanvasObject * co = lua_touserdata(L, 2);
+    // search the object
+	int i;
+	int pos = -1;
+	CanvasObject * buff;
+	for(i=0; i<canvas->nb; i++){
+		if(co == canvas->list[i]){
+			pos = i;
+		}
+		if(pos > -1) break;
+	}
+	// Si trouve, on le supprime, on remonte tout de 1 a partir de sa position
+	if(pos>-1){
+		buff = canvas->list[pos];
+		for(i=pos; i<(canvas->nb -1); i++){
+			canvas->list[i] = canvas->list[i+1];
+		}
+		free(canvas->list[canvas->nb-1]);
+	}
+    return 0;
+}
+
 static const luaL_Reg canvaslib[] = {
     {"new", canvas_new},
     {"destroy", canvas_destroy},
@@ -500,6 +548,8 @@ static const luaL_Reg canvaslib[] = {
     {"draw", canvas_draw},
     {"setAttr", canvas_setAttr},
     {"getAttr", canvas_getAttr},
+    {"setObjOnTop", canvas_setObjOnTop},
+    {"removeObj", canvas_removeObj},
     {NULL, NULL}
 };
 
