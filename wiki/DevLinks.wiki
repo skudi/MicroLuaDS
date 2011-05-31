@@ -2,6 +2,7 @@
 
 = APIs =
 
+  * [ApiFourDotZero API of MicroLua 4.0]
   * [ApiThreeDotZero API of MicroLua 3.0]
   * [ApiIdeas API ideas]
 
