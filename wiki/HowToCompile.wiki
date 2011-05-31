@@ -2,7 +2,7 @@
 
 <wiki:toc />
 
-= How To Compile MicroLua v3.0. =
+= How To Compile MicroLua v4.0. =
 
 == Introduction ==
 
@@ -33,8 +33,8 @@ You might have troubles in downloading some packages, like senseless connection 
 
 ==== uLibrary ====
 
-uLibrary is a lib for low level 'OS' like stuff for ARM processors.
-This is built next.
+uLibrary is a lib for low level 'OS' like stuff for ARM processors. This is built next.
+If you didn't installed devkitPro to 'c:\devkitpro', you have first to change paths in each bat files you will use here.
   
  * Unpack to '\devkitpro\'
  * rename "uLibrary - 1.12" to uLibrary
@@ -47,11 +47,11 @@ This is built next.
 ==== MicroLua Source ====
 
  * Extract the MicroLua source to folder '\devkitpro\', or GetTheCurrentSourceCode. You only need the 'luads' directory.
- * Copy '\devkitpro\luads\img\fcsr.dldi' file to '\devkitpro\devkitarm\bin\dldi\' (make the dldi folder).
+ * Copy '\devkitpro\luads\img\fcsr.dldi' file to '\devkitpro\devkitarm\bin\dldi\' (make the dldi folder). This is only used to compile the No$GBA version, so if you don't care about it, you don't need to do this.
 
 ==== Launch the compilation ====
 
-Now use `\devkitpro\luads\Compile All.bat` file to build. Either double click it of launch it from the command line.
+Now use `\devkitpro\luads\Compile All.bat` file to build. Either double click it of launch it from the command line (recommended).
 Note you need admin rights to install the Lua library after its compilation. You can launch 'Compile All.bat' as admin by right-clicking on it and choosing "Run as administrator", or throught a CMD that is already in administrator mode.
 
 === Folders ===
@@ -81,7 +81,7 @@ Note you need admin rights to install the Lua library after its compilation. You
 
 ==== Libs ====
 Once the DevKitPro, uLibrary and Lua are setup you don't have to recompile those unless one of these components is updated. The setup is complete.
-To compile only uLua (that is to say, 'source/main.c'), just use 'Compile DS.bat'.
+To compile only uLua (that is to say, 'source/main.c' and other files you may add here), just use 'Compile DS.bat'.
 
 ==== Environment variables ====
 DevKitPro uses 2 environment variables.

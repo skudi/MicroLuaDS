@@ -7,3 +7,4 @@ A set of toolchains of choice for homebrew game development, currently available
 = Details =
 
 More info at http://www.devkitpro.org/.
+You can also download the installer [http://sourceforge.net/projects/devkitpro/ here], or the files one by one [http://sourceforge.net/projects/devkitpro/files/ here].

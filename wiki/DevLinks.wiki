@@ -3,7 +3,8 @@
 = APIs =
 
   * [ApiFourDotZero API of MicroLua 4.0]
-  * [ApiThreeDotZero API of MicroLua 3.0]
+  * [ApiThreeDotOne API of an intermediate version of MicroLua known as 3.1] (of course you should refer to the one just above)
+  * [ApiThreeDotZero API of MicroLua 3.0] (of course you should refer to the one just above)
   * [ApiIdeas API ideas]
 
 = Tools =

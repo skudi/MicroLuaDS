@@ -17,8 +17,9 @@ The variables or functions that you will find here may be defined in the Lua lib
   * *`RAM`* and *`VRAM`* (_libs_): destination where to load some object. See examples for more details.
   * *`ATTR_X1`*, *`ATTR_Y1`*, *`ATTR_X2`*, *`ATTR_Y2`*, *`ATTR_X3`*, *`ATTR_Y3`*, *`ATTR_COLOR`*, *`ATTR_COLOR1`*, *`ATTR_COLOR2`*, *`ATTR_COLOR3`*, *`ATTR_COLOR4`*, *`ATTR_TEXT`*, *`ATTR_VISIBLE`*, *`ATTR_FONT`*, *`ATTR_IMAGE`* (_libs_): attributes used in canvas.
   * *`ALPHA_RESET`* (_libs_): blending coefficient value to reset alpha transparency. Is equal to 100.
-
-<wiki:comment>not documented: PLAY_LOOP, PLAY_ONCE, mustCountFPS</wiki:comment>
+  * *`PLAY_LOOP`*, *`PLAY_ONCE`*: arguments to play mods respectively loop and once.
+  * *`mustCountFPS`*: regulate the FPS couting system. It is an internal variable, you should never have to deal with it.
+  * *`Debug.isDebugOn`*, *`Debug.debugText`* and *`Debug.debugColor`*: variables used by the debug system. You should only modify them by using the `Debug` functions.
 
 == Functions and their table ==
 
@@ -121,7 +122,30 @@ Draw a text box on the screen.
   * *text* (String): text to print
   * *color* (Color): color of the text box
 
-<wiki:comment>not documented: screen.init, screen_getMainLcd, screen_startDrawing2D, screen_endDrawing, screen_waitForVBL, screen.setSpaceBetweenScreens</wiki:comment>
+*`Boolean screen.getMainLcd()`* (_libs_)
+
+Give the screen uLibrary is drawing on (`true` for upper screen, `false` for the lower screen).
+
+*`Void screen.setSpaceBetweenScreens(space)`* (_libs_, _deprecated_ (you can no longer draw on the two screens at the same time))
+
+Set the space between the screens (so some drawing will not be displayed if drawn in this space).
+  * *space* (Number): space (in pixels) between the screens
+
+*`Void screen.init()`* (_libs_)
+
+Initialise some stuff about the screens. It is done automatically, so you should have nothing to care about this.
+
+*`Void screen.startDrawing2D()`* (_libs_)
+
+Start a new drawing and configure 2D. You should have nothing to care about this.
+
+*`Void screen.endDrawing()`* (_libs_)
+
+End drawing. You will never need to use it (use `render()` to command screens actualisation).
+
+*`Void screen.waitForVBL()`* (_libs_)
+
+Wait for the VBlank period to reach 60FPS. You will never need to use it (using `render()` will synchronise the frames).
 
 === Colors ===
 
@@ -324,7 +348,11 @@ Stop an animation.
 Return `true` if the animation has drawn the last frame.
   * *nbAnim* (Number): number of the animation
 
-<wiki:comment>not documented: SpriteAnimation</wiki:comment>
+*`Table SpriteAnimation.new(tabAnim, delay)`* (_nds_)
+
+Create a new sprite animation. You don't have to use it, use `sprite:addAnimation()` instead.
+  * *tabAnim* (Table): table containing the animation frames
+  * *delay* (Number): delay between each frame
 
 === Debug ===
 
@@ -349,8 +377,6 @@ Clear the debug console.
 
 Set the debug text color.
   * *color* (Color): color of the text
-
-<wiki:comment>not documented: isDebugOn, debugText, debugColor</wiki:comment>
 
 === System ===
 
@@ -385,6 +411,22 @@ List all files and folders of a directory.
   * *path* (String): path of the directory to list
 
   * *NOTE*: See examples for more details.
+  
+*`Number System.CurrentVramUsed()`* (_libs_)
+
+Give the current amount of used VRAM (seems to return some weird number).
+
+*`Number System.CurrentVramFree()`* (_libs_)
+
+Give the current amount of free VRAM.
+
+*`Number System.CurrentPalUsed()`* (_libs_)
+
+Give the current amount of used palette memory (seems to return some weird number).
+
+*`Number System.CurrentPalFree()`* (_libs_)
+
+Give the current amount of free palette memory.
 
 === Fonts ===
 
@@ -414,8 +456,6 @@ Get the height of the characters of a font.
 Get the width of a text with a specific font.
   * *font* (Font): font to use
   * *text* (String): text
-
-<wiki:comment>not documented: destroy</wiki:comment>
 
 === Maps ===
 
@@ -611,7 +651,7 @@ Set an attribute value.
 
 Get an attribute value. Return type depends of the attribute (number, font or image).
   * *object* (CanvasObject): object to use
-  * *attName* (Constant): attribute to get value. Must be ATTR_XXX. See “some useful variables” for more details
+  * *attName* (Constant | Number): attribute to get value. Must be ATTR_XXX. See “some useful variables” for more details
 
 === Rumble ===
 
@@ -667,8 +707,6 @@ Read the gyro value of the motion.
 Read the rotation value of the motion.
 
 === DateTime ===
-
-This should be DEPRECATED soon, as there is the `os.date()` basic Lua function.
 
 *`DateTime DateTime.new()`* (_libs_)
 

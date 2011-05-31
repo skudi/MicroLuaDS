@@ -2,8 +2,9 @@
 
 = APIs =
 
-  * [ApiThreeDotZero API of MicroLua 3.0]
+  * [ApiFourDotZero API of MicroLua 4.0]
   * [ApiThreeDotOne API of MicroLua 3.1]
+  * [ApiThreeDotZero API of MicroLua 3.0]
   * [ApiIdeas API ideas]
 
 = Tools =
@@ -16,3 +17,4 @@
 = Misc =
 
   * ReleaseTodoList
+  * ReleaseScript

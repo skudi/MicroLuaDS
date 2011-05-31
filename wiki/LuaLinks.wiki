@@ -21,6 +21,7 @@
   * Lua in C code: http://mdeverdelhan.developpez.com/tutoriel/lua/tutoriel1/
   * Lua language (bases, advanced, wxWidgets): http://www.xtreamlua.com/wiki/doku.php?id=pc_tutos_lua
   * Introduction to programming in Lua: http://www.luteus.biz/Download/LoriotPro_Doc/LUA/LUA_Training_FR/Introduction_Programmation.html
+  
 = Misc, articles, news =
 
 == Wikipedia ==
@@ -28,3 +29,4 @@
   * English Wikipedia page: http://en.wikipedia.org/wiki/Lua_(programming_language)
   * French Wikipedia page: http://fr.wikipedia.org/wiki/Lua
   * disambiguation page at Wikipedia: http://en.wikipedia.org/wiki/Lua
+  

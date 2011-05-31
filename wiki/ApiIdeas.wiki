@@ -14,34 +14,9 @@ Bon, mon titre est en anglais, pas grave...
 
 Merci et bravo Quent42340 pour avoir réussi à compiler PAlib avec NanoLua, ce qui nous offre de nouvelles fonctions intéressantes.
 
-== fonctions utilisateur =
-
-{{{
-DS.UserName
-DS.UserMessage
-DS.UserLangNum
-DS.UserColorNum
-DS.UserColorName
-DS.BirthMonth
-DS.BirthDay
-}}}
-
-Plutôt dans dsUser, ou DSUser ou DSuser:
-{{{
-dsUser.name
-dsUser.message
-dsUser.langNum
-dsUser.colorNum
-dsUser.colorName
-dsUser.birthMonth
-dsUser.birthDay
-}}}
-
 == le reste ==
 
 {{{
-DS.AlarmHour
-DS.AlarmMin
 DS.LidClosed
 DS.SetScreenLight
 DS.SetDSLBrightness
@@ -50,8 +25,6 @@ DS.SetLedBlink
 
 Pourquoi pas dans ce bon vieux System ?
 {{{
-System.alarmHour
-System.alarmMin
 System.lidClosed
 System.setScreenLight
 System.setDSLBrightness
