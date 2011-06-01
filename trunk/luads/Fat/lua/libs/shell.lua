@@ -128,7 +128,7 @@ while true do
 	screen.print(SCREEN_UP, 0, 184, (selected + 1).."/"..nbFiles, fgupcolor)
 	str = "Micro LUA DS "..MICROLUA_VERSION
 	screen.print(SCREEN_UP, (SCREEN_WIDTH / 2) - (8 * str:len() / 2), 32, str, microluacolor)
-	str = "(c) Risike 2009"
+	str = "(c) Risike 2009  and community 2009 - 2011"
 	screen.print(SCREEN_UP, (SCREEN_WIDTH / 2) - (8 * str:len() / 2), 56, "By Risike", fgupcolor)
 	screen.print(SCREEN_UP, 8, 90, " dir: "..System.currentDirectory(), fgupcolor)
 	screen.print(SCREEN_UP, 8, 106, "file: "..selectedFile.name, fgupcolor)

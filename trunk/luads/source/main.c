@@ -58,7 +58,7 @@ int main()
 		}
     }
     
-    lua_pushliteral(l, "microlua 1");
+    lua_pushliteral(l, "microlua 4.0.1");
     lua_setglobal(l, "_VERSION_DS");
     
     if(lua_pcall(l,0,0,0)) {

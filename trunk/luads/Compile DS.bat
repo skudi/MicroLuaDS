@@ -6,11 +6,11 @@ echo.
 echo Creating fcsr image...
 cd img  
 start makeimg.cmd
-timeout /t 1 /nobreak > NUL
+timeout /t 2 /nobreak > NUL
 cd ..  
 del luads.img  2> lua-5.1.3\out2 1> lua-5.1.3\out
 cp img\luads.img . 2> lua-5.1.3\out2 1> lua-5.1.3\out
-timeout /t 1 /nobreak > NUL
+timeout /t 2 /nobreak > NUL
 
 echo Compiling Micro Lua DS...
 make
@@ -26,6 +26,7 @@ del lua-5.1.3\out2
 
 del luads_tst.nds 2> lua-5.1.3\out2 1> lua-5.1.3\out
 del luads.img  2> lua-5.1.3\out2 1> lua-5.1.3\out
+del img/luads.img 2> lua-5.1.3\out2 1> lua-5.1.3\out
 
 echo Finished !
 
