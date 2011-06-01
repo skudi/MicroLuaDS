@@ -17,7 +17,7 @@ if ! test -f 'wikify.py'; then
     exit 1
     fi
 
-BUILD_DIR='../build/docs'
+BUILD_DIR='../../../HTMLWiki/'
 
 function wikify {
     LANG=$1
@@ -25,7 +25,7 @@ function wikify {
         mkdir -p $BUILD_DIR/$LANG
         echo 'Created a docs build dir: '$BUILD_DIR/$LANG'.'
         fi
-    python wikify.py --srcdir=../../wiki/$LANG \
+    python wikify.py --srcdir=../../../wiki/$LANG \
                      --destdir=$BUILD_DIR/$LANG \
                      --template=wikify$LANG.tpl \
                      --mainpage=TableOfContents \
