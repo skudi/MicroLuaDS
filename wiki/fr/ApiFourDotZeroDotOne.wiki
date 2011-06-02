@@ -645,6 +645,18 @@ Obtient la valeur d'un attribut. Le type de retour dépend de l'attribut demand�
   * *objet* (CanvasObject): objet à utiliser
   * *nomAttr* (Constant | Nombre): attribut dont la valeur est demandée. Doit être sous la forme ATTR_XXX. Voir « Quelques variables utiles » pour de plus amples informations
   
+*`Void Canvas.setObjOnTop(canvas, object)`* (_nds_)
+
+Fait passer un objet d'un canevas au premier plan.
+  * *canvas* (Canvas) : Canevas dans lequel on travail.
+  * *object* (CanvasObject) : Objet que l'on désire faire passer au premier plan.
+  
+*`Void Canvas.removeObj(canvas, object)`* (_nds_)
+
+Suppression d'un objet dans un canevas.
+  * *canvas* (Canvas) : Canevas dans lequel on veut supprimer l'objet.
+  * *object* (CanvasObject) : Objet que l'on désire supprimer.
+
 === Rumble ===
 
 *`Boolean Rumble.isInserted()`* (_nds_)

@@ -2,6 +2,9 @@
 
 = APIs =
 
+  * [ApiThreeDotZeroDotOne API de MicroLua 4.0.1]
+  * [ApiThreeDotZero API de MicroLua 4.0]
+  * [ApiThreeDotOne API de MicroLua 3.1]
   * [ApiThreeDotZero API de MicroLua 3.0]
   * [ApiIdeas Idées pour l'API]
 

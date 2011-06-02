@@ -651,8 +651,20 @@ Set an attribute value.
 
 Get an attribute value. Return type depends of the attribute (number, font or image).
   * *object* (CanvasObject): object to use
-  * *attrName* (Constant | Number): attribute to get value. Must be ATTR_XXX. See “some useful variables” for more details
+  * *attName* (Constant | Number): attribute to get value. Must be ATTR_XXX. See “some useful variables” for more details
+  
+*`Void Canvas.setObjOnTop(canvas, object)`* (_nds_)
 
+Make a CanvasObject on the first plan of a Canvas.
+  * *canvas* (Canvas) : Canvas in which we work.
+  * *object* (CanvasObject) : Object that we want to set on Top.
+  
+*`Void Canvas.removeObj(canvas, object)`* (_nds_)
+
+Delete an CanvasObject in a Canvas.
+  * *canvas* (Canvas) : Canvas in which we want to delete an Object.
+  * *object* (CanvasObject) : Object that we want to delete.
+  
 === Rumble ===
 
 *`Boolean Rumble.isInserted()`* (_nds_)

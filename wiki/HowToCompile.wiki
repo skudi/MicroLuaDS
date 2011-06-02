@@ -2,7 +2,7 @@
 
 <wiki:toc />
 
-= How To Compile MicroLua v4.0. =
+= How To Compile MicroLua v4.0.1 =
 
 == Introduction ==
 
