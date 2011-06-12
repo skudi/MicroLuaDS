@@ -472,7 +472,7 @@ static int canvas_draw(lua_State *L){
                     }
                     if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
                         ulDrawImageXY(canvas->list[i]->image, canvas->list[i]->x1+x+canvas->list[i]->image->centerX, canvas->list[i]->y1+y+canvas->list[i]->image->centerY);
-                        ulResetImageTile(canvas->list[i]->image);
+                        // ulResetImageTile(canvas->list[i]->image);
                     }
                     break;
                 // Default
