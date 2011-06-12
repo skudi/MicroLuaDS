@@ -89,8 +89,24 @@ function goUp()
 end
 
 while true do
-
 	Controls.read()
+    
+    screen.drawFillRect(SCREEN_UP, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, bgupcolor)
+	screen.drawFillRect(SCREEN_DOWN, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, bgdowncolor)
+
+	drawList(System.currentDirectory())
+	screen.print(SCREEN_UP, 0, 184, (selected + 1).."/"..nbFiles, fgupcolor)
+	str = "Micro LUA DS "..MICROLUA_VERSION
+	screen.print(SCREEN_UP, (SCREEN_WIDTH / 2) - (3 * str:len()), 32, str, microluacolor)
+	str = "(c) Risike 2009 and community 2009 - 2011"
+	screen.print(SCREEN_UP, (SCREEN_WIDTH / 2) - (3 * str:len()), 56, str, fgupcolor)
+	screen.print(SCREEN_UP, 8, 90, " dir: "..System.currentDirectory(), fgupcolor)
+	screen.print(SCREEN_UP, 8, 106, "file: "..selectedFile.name, fgupcolor)
+	screen.print(SCREEN_UP, 8, 144, "Move stylus up and down to navigate", fgupcolor)
+	screen.print(SCREEN_UP, 8, 152, "Stylus double click: launch", fgupcolor)
+	screen.print(SCREEN_UP, 8, 160, "Up, Down, Left, Right: navigate", fgupcolor)
+	screen.print(SCREEN_UP, 8, 168, "A or Start: launch", fgupcolor)
+    
 	if Stylus.held then
 		if math.floor(Stylus.Y / 8 - 1) <= nbFiles - 1 then
 			selected = math.floor(Stylus.Y / 8 - 1)
@@ -120,22 +136,6 @@ while true do
 		selected = 0
 		startList = 0
 	end
-	
-	screen.drawFillRect(SCREEN_UP, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, bgupcolor)
-	screen.drawFillRect(SCREEN_DOWN, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, bgdowncolor)
-
-	drawList(System.currentDirectory())
-	screen.print(SCREEN_UP, 0, 184, (selected + 1).."/"..nbFiles, fgupcolor)
-	str = "Micro LUA DS "..MICROLUA_VERSION
-	screen.print(SCREEN_UP, (SCREEN_WIDTH / 2) - (8 * str:len() / 2), 32, str, microluacolor)
-	str = "(c) Risike 2009  and community 2009 - 2011"
-	screen.print(SCREEN_UP, (SCREEN_WIDTH / 2) - (8 * str:len() / 2), 56, "By Risike", fgupcolor)
-	screen.print(SCREEN_UP, 8, 90, " dir: "..System.currentDirectory(), fgupcolor)
-	screen.print(SCREEN_UP, 8, 106, "file: "..selectedFile.name, fgupcolor)
-	screen.print(SCREEN_UP, 8, 144, "Move stylus up and down to navigate", fgupcolor)
-	screen.print(SCREEN_UP, 8, 152, "Stylus double click: launch", fgupcolor)
-	screen.print(SCREEN_UP, 8, 160, "Up, Down, Left, Right: navigate", fgupcolor)
-	screen.print(SCREEN_UP, 8, 168, "A or Start: launch", fgupcolor)
 
 	render()
 
