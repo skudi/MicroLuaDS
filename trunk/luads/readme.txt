@@ -15,7 +15,7 @@ I-..... Package content
 II-.... How to compile
 III-... General informations
 IV-.... Links
-V-... Credits and other background informations
+V-..... Credits and other background informations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
