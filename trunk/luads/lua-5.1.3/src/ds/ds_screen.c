@@ -17,6 +17,7 @@
 #include "vars.h"
 
 int alphaGroup = 1;
+int alphaLevel = 100;
 
 static int screen_init(lua_State *L) {
     SCREEN_UP_DISPLAY = 0;
@@ -76,8 +77,13 @@ static int screen_waitForVBL(lua_State *L) {
     return 0;
 }
 
-static int screen_getAlpha(lua_State *L) {
+static int screen_getLayer(lua_State *L) {
     lua_pushnumber(L, alphaGroup);
+    return 1;
+}
+
+static int screen_getAlphaLevel(lua_State *L) {
+    lua_pushnumber(L, alphaLevel);
     return 1;
 }
 
@@ -85,12 +91,17 @@ static int screen_setAlpha(lua_State *L) {
     int level = (int)luaL_checknumber(L, 1);
     if (level == 100) {
     	ulSetAlpha(UL_FX_DEFAULT, 0, 0);
-	alphaGroup = 1;
+        alphaGroup = 1;
+        alphaLevel = 100
     } else {
-        int group = (int)luaL_checknumber(L, 2);
-	if (!group) group = alphaGroup;
-	ulSetAlpha(UL_FX_ALPHA, level, group);
-	alphaGroup = group + 1;
+        int group = 0;
+        if (lua_isnumber(L, 2)) group = (int)luaL_checknumber(L, 2);
+        if (group < 1) group = alphaGroup;
+        ulSetAlpha(UL_FX_ALPHA, level, group);
+        if (alphaLevel != level) {
+            alphaGroup = group + 1;
+            alphaLevel = level;
+        }
     }
     return 0;
 }
@@ -248,7 +259,8 @@ static const luaL_Reg screenlib[] = {
     {"startDrawing2D", screen_startDrawing2D},
     {"endDrawing", screen_endDrawing},
     {"waitForVBL", screen_waitForVBL},
-    {"getAlpha", screen_getAlpha},
+    {"getLayer", screen_getLayer},
+    {"getAlphaLevel", screen_getAlphaLevel},
     {"setAlpha", screen_setAlpha},
     {"print", screen_print},
     {"printFont", screen_printFont},

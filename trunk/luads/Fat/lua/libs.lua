@@ -1,6 +1,6 @@
 -- ##### CONST  ######
 
-MICROLUA_VERSION = "4.0.1"
+MICROLUA_VERSION = "4.0.2"
 	
 SCREEN_WIDTH = 256
 SCREEN_HEIGHT = 192
@@ -59,6 +59,7 @@ stopDrawing = function()
 	if Debug.isDebugOn then
 		screen.drawTextBox(SCREEN_DOWN, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, Debug.debugText, Debug.debugColor)
 	end
+    screen.setAlpha(ALPHA_RESET)
 	screen.endDrawing()
 	screen.waitForVBL()		
 end
