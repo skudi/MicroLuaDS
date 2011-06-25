@@ -4,6 +4,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 
 #define ds_screen_c
 #define LUA_LIB
@@ -92,11 +93,13 @@ static int screen_setAlpha(lua_State *L) {
     if (level == 100) {
     	ulSetAlpha(UL_FX_DEFAULT, 0, 0);
         alphaGroup = 1;
-        alphaLevel = 100
+        alphaLevel = 100;
     } else {
         int group = 0;
         if (lua_isnumber(L, 2)) group = (int)luaL_checknumber(L, 2);
         if (group < 1) group = alphaGroup;
+        level = floor(level * 31 / 99);         // level must actually be between 1 and 31 (0 = wireframe)
+        if (level == 0) level = 1;
         ulSetAlpha(UL_FX_ALPHA, level, group);
         if (alphaLevel != level) {
             alphaGroup = group + 1;
