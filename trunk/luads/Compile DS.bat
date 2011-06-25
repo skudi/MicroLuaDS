@@ -7,8 +7,7 @@ echo Creating fcsr image...
 cd img  
 start makeimg.cmd
 timeout /t 2 /nobreak > NUL
-cd ..  
-del luads.img  2> lua-5.1.3\out2 1> lua-5.1.3\out
+cd ..
 cp img\luads.img . 2> lua-5.1.3\out2 1> lua-5.1.3\out
 timeout /t 2 /nobreak > NUL
 
@@ -21,12 +20,9 @@ del lua-5.1.3\src\ds\*.o 2> lua-5.1.3\out2 1> lua-5.1.3\out
 del lua-5.1.3\src\ds\*.a 2> lua-5.1.3\out2 1> lua-5.1.3\out
 del /F /S /Q build 1> lua-5.1.3\out 1> lua-5.1.3\out
 rmdir build 1> lua-5.1.3\out 1> lua-5.1.3\out
-del lua-5.1.3\out
-del lua-5.1.3\out2
-
 del luads_tst.nds 2> lua-5.1.3\out2 1> lua-5.1.3\out
-del luads.img  2> lua-5.1.3\out2 1> lua-5.1.3\out
-del img/luads.img 2> lua-5.1.3\out2 1> lua-5.1.3\out
+del luads.img 2> lua-5.1.3\out2 1> lua-5.1.3\out
+del img\luads.img 2> lua-5.1.3\out2 1> lua-5.1.3\out
 
 echo Finished !
 
