@@ -255,6 +255,93 @@ static int screen_setSpaceBetweenScreens(lua_State *L) {
     return 0;
 }
 
+static int screen_drawTexturedQuad(lua_State *L){
+	int screen = (int)luaL_checknumber(L, 1);
+    int x0 = (int)luaL_checknumber(L, 2);
+    int y0 = (int)luaL_checknumber(L, 3);
+    int x1 = (int)luaL_checknumber(L, 4);
+    int y1 = (int)luaL_checknumber(L, 5);
+    int x2 = (int)luaL_checknumber(L, 6);
+    int y2 = (int)luaL_checknumber(L, 7);
+    int x3 = (int)luaL_checknumber(L, 8);
+    int y3 = (int)luaL_checknumber(L, 9);
+	UL_IMAGE * img = lua_touserdata(L, 10);
+    int sourcex=-1, sourcey=-1, width=-1, height=-1;
+    if(lua_isnumber(L, 11)) sourcex = (int)luaL_checknumber(L, 11);
+    if(lua_isnumber(L, 12)) sourcey = (int)luaL_checknumber(L, 12);
+    if(lua_isnumber(L, 13)) width  = (int)luaL_checknumber(L, 13);
+    if(lua_isnumber(L, 14)) height = (int)luaL_checknumber(L, 14);
+    
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+		if(height != -1) ulSetImageTile(img, sourcex, sourcey, sourcex+width, sourcey+height);
+		else{
+			if(sourcey != -1) ulSetImageTile(img, sourcex, sourcey, img->sizeX, img->sizeY);
+		}
+		
+		ulSetTexture(img);
+
+		//Begins drawing quadliterals
+		ulVertexBegin(GL_QUADS);
+		
+		//Drawing order for a quad is: top-left, bottom-left, bottom-right, top-right.
+		ulVertexUVXY(img->offsetX0, img->offsetY0, x0, y0);
+		ulVertexUVXY(img->offsetX0, img->offsetY1, x1, y1);
+		ulVertexUVXY(img->offsetX1, img->offsetY1, x2, y2);
+		ulVertexUVXY(img->offsetX1, img->offsetY0, x3, y3);
+
+		//End there. You could also continue and draw other quads (issue 4 new vertex commands)
+		ulVertexEnd();
+
+		//Auto-increment depth
+		ulVertexHandleDepth();
+		
+		ulResetImageTile(img);
+	}
+	return 0;
+}
+
+static int screen_drawTexturedTriangle(lua_State *L){
+	int screen = (int)luaL_checknumber(L, 1);
+    int x0 = (int)luaL_checknumber(L, 2);
+    int y0 = (int)luaL_checknumber(L, 3);
+    int x1 = (int)luaL_checknumber(L, 4);
+    int y1 = (int)luaL_checknumber(L, 5);
+    int x2 = (int)luaL_checknumber(L, 6);
+    int y2 = (int)luaL_checknumber(L, 7);
+	UL_IMAGE * img = lua_touserdata(L, 8);
+    int sourcex=-1, sourcey=-1, width=-1, height=-1;
+    if(lua_isnumber(L, 9)) sourcex = (int)luaL_checknumber(L, 9);
+    if(lua_isnumber(L, 10)) sourcey = (int)luaL_checknumber(L, 10);
+    if(lua_isnumber(L, 11)) width  = (int)luaL_checknumber(L, 11);
+    if(lua_isnumber(L, 12)) height = (int)luaL_checknumber(L, 12);
+    
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+		if(height != -1) ulSetImageTile(img, sourcex, sourcey, sourcex+width, sourcey+height);
+		else{
+			if(sourcey != -1) ulSetImageTile(img, sourcex, sourcey, img->sizeX, img->sizeY);
+		}
+		
+		ulSetTexture(img);
+
+		//Begins drawing quadliterals
+		ulVertexBegin(GL_TRIANGLES);
+		
+		//Drawing order for a quad is: top-left, bottom-left, bottom-right, top-right.
+		ulVertexUVXY(img->offsetX0, img->offsetY0, x0, y0);
+		ulVertexUVXY(img->offsetX0, img->offsetY1, x1, y1);
+		ulVertexUVXY(img->offsetX1, img->offsetY1, x2, y2);
+
+		//End there. You could also continue and draw other quads (issue 4 new vertex commands)
+		ulVertexEnd();
+
+		//Auto-increment depth
+		ulVertexHandleDepth();
+		
+		ulResetImageTile(img);
+	}
+	return 0;
+}
+
 static const luaL_Reg screenlib[] = {
     {"init", screen_init},
     {"switch", screen_switch},
@@ -275,6 +362,8 @@ static const luaL_Reg screenlib[] = {
     {"drawGradientRect", screen_drawGradientRect},
     {"drawTextBox", screen_drawTextBox},
     {"setSpaceBetweenScreens", screen_setSpaceBetweenScreens},
+    {"drawTexturedQuad", screen_drawTexturedQuad},
+    {"drawTexturedTriangle", screen_drawTexturedTriangle},
     {NULL, NULL}
 };
 
