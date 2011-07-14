@@ -49,7 +49,7 @@ LUALIB_API int (luaopen_screen) (lua_State *L);
 LUALIB_API int (luaopen_controls) (lua_State *L);
 #define LUA_IMAGELIBNAME "Image"
 LUALIB_API int (luaopen_image) (lua_State *L);
-#define LUA_SYSTEMLIBNAME "ds_system"
+#define LUA_SYSTEMLIBNAME "System"
 LUALIB_API int (luaopen_system) (lua_State *L);
 #define LUA_MAPLIBNAME "Map"
 LUALIB_API int (luaopen_map) (lua_State *L);

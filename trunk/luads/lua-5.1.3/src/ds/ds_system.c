@@ -31,15 +31,14 @@
 #define TIME_WEEKDAY 6
 #define TIME_YEARDAY 7
 
-
-int dirListed;
+/*int dirListed;
 char * dirname;
 //DIR_ITER* dir;
 DIR *pdir;
 struct dirent *pent;
-struct stat statbuf;
+struct stat statbuf;*/
 
-//cette fonction retourne un chiffre bizard
+//cette fonction retourne un chiffre bizare
 static int system_currentVramUsed(lua_State *L){
 	lua_pushnumber(L, (unsigned int) ulGetTexVramUsedMemory());
 	return 1;
@@ -50,7 +49,7 @@ static int system_currentVramFree(lua_State *L){
 	return 1;
 }
 
-//cette fonction retourne aussi un chiffre bizard
+//cette fonction retourne aussi un chiffre bizare
 static int system_currentPalUsed(lua_State *L){
 	lua_pushnumber(L, (unsigned int) ulGetTexPalUsedMemory());
 	return 1;
@@ -69,7 +68,7 @@ static int system_currentDirectory(lua_State *L){
 	return 1;
 }
 
-static int system_changeCurrentDirectory(lua_State *L){
+static int system_changeDirectory(lua_State *L){
 	char * dir = (char *)luaL_checkstring(L, 1);
 	chdir(dir);
 	return 0;
@@ -94,31 +93,7 @@ static int system_makeDirectory(lua_State *L){
 	return 0;
 }
 
-//static int system_listDirectory(lua_State *L){
-//	if(dirListed == 0){
-//		dirListed = 1;
-//		dirname = (char *)luaL_checkstring(L, 1);
-//		dir = diropen(dirname);
-//	}
-//	struct stat st;
-//	char filename[768];
-//	char filename2[768];
-//	if (dirnext(dir, filename, &st) == 0){
-//		if(st.st_mode & S_IFDIR){
-//			sprintf(filename2, "*%s", filename);
-//			lua_pushstring(L, filename2);
-//		}else{
-//			lua_pushstring(L,filename);
-//		}
-//	}else{
-//		dirListed = 0;
-//		dirclose(dir);
-//		lua_pushstring(L, "##");
-//	}
-//	return 1;
-//}
-
-static int system_listDirectory(lua_State *L){
+/*static int system_listDirectory(lua_State *L){
 	if(dirListed == 0){
 		dirListed = 1;
 		dirname = (char *)luaL_checkstring(L, 1);
@@ -139,6 +114,109 @@ static int system_listDirectory(lua_State *L){
 		lua_pushstring(L, "##");
 	}
 	return 1;
+}*/
+
+char *strlower( char* str){
+	char *tmp = str;
+	while(*tmp != NULL){
+		if(*tmp>65 && *tmp<90) *tmp=*tmp+32;
+		tmp++;
+	}
+	return str;
+}
+
+static int system_listDirectory(lua_State *L){
+	struct dirent *pent;
+	struct stat statbuf;
+	bool cont = true;
+	struct filestat {
+		char name[255];
+		bool isDir;
+		int size;
+	};
+	struct listtri{
+		struct filestat fstat;
+		struct listtri *suiv;
+	} *prem, *prec, *tmp, *tmp2;
+	prem = NULL;
+	prec = NULL;
+	tmp = NULL;
+	char *dirname = (char *)luaL_checkstring(L,1);
+	DIR *pdir = opendir(dirname);
+	u8 index = 0;
+	if(pdir !=NULL){
+		while((pent=readdir(pdir))!=NULL){
+			stat(pent->d_name,&statbuf);
+			tmp = malloc(sizeof(struct listtri));
+			strcpy(tmp->fstat.name,pent->d_name);
+			tmp->fstat.isDir = S_ISDIR(statbuf.st_mode);
+			tmp->fstat.size = statbuf.st_size;
+			tmp->suiv = NULL;
+			if(prem == NULL){
+				prem = tmp;
+			}
+			else{
+				tmp2 = prem;
+				prec = prem;
+				cont = true;
+				while(cont){
+					if(strcmp(strlower(tmp2->fstat.name),strlower(tmp->fstat.name)) > 0){
+						prec->suiv = tmp;
+						tmp->suiv = tmp2;
+						cont = false;
+					}
+					else{
+						prec = tmp2;
+						tmp2 = tmp2->suiv;
+					}
+					if(tmp2 == NULL){
+						prec->suiv = tmp;
+						cont = false;
+					}
+				}
+			}			
+		}
+		closedir(pdir);
+		tmp = prem;
+		lua_newtable(L);
+		while(tmp != NULL){  //On commence par les dossiers
+			if(tmp->fstat.isDir){
+				lua_pushnumber(L,index++); //clef 
+				lua_newtable(L);	//value = table
+					lua_pushstring(L,"name"); //key
+					lua_pushstring(L,tmp->fstat.name); //value
+					lua_settable(L,-3); //enregistre la ligne
+					lua_pushstring(L,"isDir"); //key
+					lua_pushboolean(L,tmp->fstat.isDir); //value
+					lua_settable(L,-3); //enregistre la ligne
+					lua_pushstring(L,"size"); //key
+					lua_pushnumber(L,tmp->fstat.size); //value
+					lua_settable(L,-3); //enregistre la ligne
+				lua_settable(L,-3);
+			}
+			tmp = tmp->suiv;
+		}
+		tmp = prem;
+		while(tmp != NULL){  // On fait la meme pour les fichiers
+			if(!tmp->fstat.isDir){
+				lua_pushnumber(L,index++); //clef 
+				lua_newtable(L);	//value = table
+					lua_pushstring(L,"name"); //key
+					lua_pushstring(L,tmp->fstat.name); //value
+					lua_settable(L,-3); //enregistre la ligne
+					lua_pushstring(L,"isDir"); //key
+					lua_pushboolean(L,tmp->fstat.isDir); //value
+					lua_settable(L,-3); //enregistre la ligne
+					lua_pushstring(L,"size"); //key
+					lua_pushnumber(L,tmp->fstat.size); //value
+					lua_settable(L,-3); //enregistre la ligne
+				lua_settable(L,-3);
+			}
+			tmp = tmp->suiv;
+		}
+		return 1;
+	}
+	else return 0;
 }
 
 static int system_getCurrentTime(lua_State *L){
@@ -182,7 +260,7 @@ static int system_getCurrentTime(lua_State *L){
 
 static const luaL_Reg systemlib[] = {
 	{"currentDirectory", system_currentDirectory},
-	{"changeCurrentDirectory", system_changeCurrentDirectory},
+	{"changeDirectory", system_changeDirectory},
 	{"remove", system_remove},
 	{"rename", system_rename},
 	{"makeDirectory", system_makeDirectory},

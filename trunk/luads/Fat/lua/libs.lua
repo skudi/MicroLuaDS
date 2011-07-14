@@ -1,3 +1,4 @@
+COMPILE_FOR_DS = 1 -- 0: no, 1: yes
 -- ##### CONST  ######
 
 MICROLUA_VERSION = "4.0.2"
@@ -11,8 +12,6 @@ VRAM = 1
 SCREEN_UP = 1
 SCREEN_DOWN = 0
 --SCREEN_BOTH = 2
-
-ALPHA_RESET = 100
 
 ATTR_X1 = 0
 ATTR_Y1 = 1
@@ -178,72 +177,45 @@ Timer = {
 
 Debug = {}
 Debug.isDebugOn = false
+Debug.listText = {}
 Debug.debugText = ""
 Debug.debugColor = Color.new(31, 31, 31)
 Debug.ON = function()
 	Debug.isDebugOn = true
+	Debug.clear()
 end
 Debug.OFF = function()
 	Debug.isDebugOn = false
 end
-Debug.print = function(text)
+Debug.print = function(text,aff)
+	local i
 	assert(text ~= nil, "Text can't be null")
-	Debug.debugText = Debug.debugText..text.."\n"
+	if(aff ~= nil) then
+		if(aff ~= true) then aff = false end
+	end
+	if(#Debug.listText == 21) then
+		for i=1,20 do
+			Debug.listText[i] = Debug.listText[i+1]
+		end
+		Debug.listText[21] = text
+	else
+		table.insert(Debug.listText,text)
+	end
+	Debug.debugText = ""
+	for i = 1,#Debug.listText do
+		Debug.debugText = Debug.debugText..Debug.listText[i].."\n"
+	end
+	if aff then render() end
 end
 Debug.setColor = function(color)
 	assert(color ~= nil, "Color can't be null")
 	Debug.debugColor = color
 end
 Debug.clear = function()
-	Debug.debugText = ""
-end
-
-System = {}
-
-System.currentDirectory = function() return ds_system.currentDirectory() end
-System.changeDirectory = function(dir)
-	assert(dir ~= nil, "Directory name can't be null")
-	ds_system.changeCurrentDirectory(dir)
-end
-System.remove = function(file)
-	assert(file ~= nil, "Parameter must be a file name or a directory name")
-	ds_system.remove(file)
-end	
-System.rename = function(file1, file2)
-	assert(file1 ~= nil, "Parameters 1 must be a file name or a directory name")
-	assert(file2 ~= nil, "Parameters 2 must be a file name or a directory name")
-	ds_system.rename(file1, file2)
-end
-System.makeDirectory = function(dir)
-	assert(dir ~= nil, "Parameter must be a directory name")
-	ds_system.makeDirectory(dir)
-end
-System.listDirectory = function(dir)
-	assert(dir ~= nil, "Parameter must be a directory name")
-	tabFile = {}
-	tabDir = {}
-	ret = ds_system.listDirectory(dir)		
-	while ret ~= "##" do
-		if string.sub(ret,1 , 1) ~= "ù" then -- Strange but useful...
-			obj = {}
-			if string.sub(ret,1 , 1) == "*" then
-				obj.name = string.sub(ret, 2)
-				obj.isDir = true
-				table.insert(tabDir, obj)			
-			else
-				obj.name = ret
-				obj.isDir = false
-				table.insert(tabFile, obj)
-			end
-		end
-		ret = ds_system.listDirectory(dir)
+	local i
+	for i = 1,#Debug.listText do
+		table.remove(Debug.listText,1)
 	end
-	tab = {}
-	for key, value in pairs(tabDir) do table.insert(tab, value) end
-	for key, value in pairs(tabFile) do table.insert(tab, value) end
-	tabDir = nil
-	tabFile = nil
-	return tab
 end
 
 DateTime = {}
@@ -420,7 +392,11 @@ SpriteAnimation = {
 	
 }
 
-str = "/lua/libs/"
+str = ""
+if COMPILE_FOR_DS == 1 then
+	str = "/lua/libs/"
+end	
+
 dofile(str.."ini.lua")
 
 -- ################################ START ################################
@@ -438,7 +414,10 @@ startDrawing()
 while true do
 
 	status_global_microlua_errors, err_global_microlua_errors = pcall(function ()
-	    str = "/lua/libs/"
+		str = ""
+		if COMPILE_FOR_DS == 1 then
+			str = "/lua/libs/"
+		end	
 		dofile(str.."shell.lua")
 	end)
 	if err_global_microlua_errors ~= nil then
