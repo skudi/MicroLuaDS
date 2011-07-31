@@ -2,10 +2,8 @@
 
 = APIs =
 
-  * [ApiFourDotZeroDotOne API de MicroLua 4.0]
+  * [ApiFourDotOne API de MicroLua 4.1]
   * [ApiFourDotZero API de MicroLua 4.0]
-  * [ApiThreeDotOne API d'une version intermédiaire de MicroLua en version 3.1] (biensûr vous pouvez vous refferez à la version ci-dessus)
-  * [ApiThreeDotZero API de MicroLua 3.0] (biensûr vous pouvez vous refferez à la version ci-dessus)
   * [ApiIdeas Idées pour l'API]
 
 = Tools =
