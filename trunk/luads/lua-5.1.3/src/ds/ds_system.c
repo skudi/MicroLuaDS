@@ -31,14 +31,7 @@
 #define TIME_WEEKDAY 6
 #define TIME_YEARDAY 7
 
-/*int dirListed;
-char * dirname;
-//DIR_ITER* dir;
-DIR *pdir;
-struct dirent *pent;
-struct stat statbuf;*/
-
-//cette fonction retourne un chiffre bizare
+//cette fonction retourne un chiffre bizarre
 static int system_currentVramUsed(lua_State *L){
 	lua_pushnumber(L, (unsigned int) ulGetTexVramUsedMemory());
 	return 1;
@@ -49,7 +42,7 @@ static int system_currentVramFree(lua_State *L){
 	return 1;
 }
 
-//cette fonction retourne aussi un chiffre bizare
+//cette fonction retourne aussi un chiffre bizarre
 static int system_currentPalUsed(lua_State *L){
 	lua_pushnumber(L, (unsigned int) ulGetTexPalUsedMemory());
 	return 1;
@@ -93,36 +86,14 @@ static int system_makeDirectory(lua_State *L){
 	return 0;
 }
 
-/*static int system_listDirectory(lua_State *L){
-	if(dirListed == 0){
-		dirListed = 1;
-		dirname = (char *)luaL_checkstring(L, 1);
-		pdir = opendir(dirname);
-	}
-	char filename[768];
-	if((pent=readdir(pdir))!=NULL){
-		stat(pent->d_name,&statbuf);
-		if(S_ISDIR(statbuf.st_mode)){ // Is directory
-			sprintf(filename, "*%s", pent->d_name);
-			lua_pushstring(L, filename);
-		}else{ // Is not directory
-			lua_pushstring(L, pent->d_name);
-		}
-	}else{ // End
-		dirListed = 0;
-		closedir(pdir);
-		lua_pushstring(L, "##");
-	}
-	return 1;
-}*/
-
-char *strlower( char* str){
-	char *tmp = str;
-	while(*tmp != NULL){
-		if(*tmp>65 && *tmp<90) *tmp=*tmp+32;
-		tmp++;
-	}
-	return str;
+char *strlower(char* str){
+	while(*str != NULL) {
+        if (*str >= 'A' && *str <= 'Z') {
+          *str = *str + 'a' - 'A';
+        }
+        str++;
+    }
+    return str;
 }
 
 static int system_listDirectory(lua_State *L){
@@ -266,10 +237,10 @@ static const luaL_Reg systemlib[] = {
 	{"makeDirectory", system_makeDirectory},
 	{"listDirectory", system_listDirectory},
 	{"getCurrentTime", system_getCurrentTime},
-	{"CurrentVramUsed",system_currentVramUsed},
-	{"CurrentVramFree",system_currentVramFree},
-	{"CurrentPalUsed",system_currentPalUsed},
-	{"CurrentPalFree",system_currentPalFree},
+	{"currentVramUsed", system_currentVramUsed},
+	{"currentVramFree", system_currentVramFree},
+	{"currentPalUsed", system_currentPalUsed},
+	{"currentPalFree", system_currentPalFree},
 	{NULL, NULL}
 };
 
