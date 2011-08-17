@@ -7,8 +7,7 @@
 
 == Micro Lua ==
 
-  * Official web site (needs update): http://microlua.risike.com/
-  * Official forum (mostly in French but with an English section): http://microlua.xooit.fr/
+  * Official forum and site (mostly in French but with an English section): http://microlua.xooit.fr/
 
 == Lua ==
 
@@ -18,6 +17,7 @@
 = Unofficial links =
 
 == Fan sites (French) ==
+(mostly dead)
 
   * Aurel2108: http://microlua.fr.nf/
   * Quent42340: http://nanolua.webege.com/
@@ -27,20 +27,20 @@
 
 == Misc, articles, news ==
 
-=== French ===
+== French ==
 
-==== Lua and Microlua ====
+=== Lua and Microlua ===
 
   * http://fr.wikipedia.org/wiki/Lua
   * http://fr.wikipedia.org/wiki/Micro_Lua_DS
   * Micro Lua DS v1.0.1 beta announcement: http://www.xtreamlua.com/modules.php?name=News&file=article&sid=418
   * Tutorial on "Newbies Paradise": http://www.siteduzero.com/tutoriel-3-174318-programmez-sur-votre-ds-avec-microlua.html
 
-==== Other ====
+=== Other ===
 
   * Linkers are legal stuff in France: http://www.zataz.com/news/19723/linker-nintedo-DS--NDSI.html
 
-=== English ===
+== English ==
 
   ...
 

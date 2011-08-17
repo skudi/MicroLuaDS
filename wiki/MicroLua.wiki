@@ -1,15 +1,15 @@
-#summary presentation of Micro Lua
+#summary Introducing Micro Lua
 #labels Featured
 
 = Introduction =
 
-Micro Lua is an homebrew for Nintendo DS which allows you to lauch Lua scripts (see LuaLinks). Tens of functions have been added to Lua 5.1.3 source code. This allow you to create applications and games very simply on your favorite console.
+The project MicroLua is an homebrew for Nintendo DS which allows you to launch [LuaLink Lua] scripts. Tens of functions have been added to Lua 5.1.3 source code. This allow you to easily create applications and games on your favorite console.
 
 = History =
 
-Micro Lua was originally created by Risike.
+MicroLua was originally created by Risike.
 
-Micro Lua became open on the 9th of July, 2009. Then the community begun to work on this Google Code project around October the same year.
+MicroLua became open on the 9th of July, 2009. Then the community begun to work on this Google Code project around October the same year.
 
 = Learn more =
 

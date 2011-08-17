@@ -7,8 +7,7 @@
 
 == Micro Lua ==
 
-  * Site web officiel (ayant besoin d'une mise à jour) : http://microlua.risike.com/
-  * Forum officiel (surtout en français avec une section anglaise) : http://microlua.xooit.fr/
+  * Forum et site officiel (surtout en français avec une section anglaise) : http://microlua.xooit.fr/
 
 == Lua ==
 
@@ -18,6 +17,7 @@
 = Liens non officiels =
 
 == Fan sites (en français) ==
+(pour la plupart morts)
 
   * Aurel2108 : http://microlua.fr.nf/
   * Quent42340 : http://nanolua.webege.com/
