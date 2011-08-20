@@ -229,12 +229,12 @@ end
 
 DateTime.getCurrentTime = function()
 	local dt = DateTime.new()
-	dt.year = ds_system.getCurrentTime(0)
-	dt.month = ds_system.getCurrentTime(1)
-	dt.day = ds_system.getCurrentTime(2)
-	dt.hour = ds_system.getCurrentTime(3)
-	dt.minute = ds_system.getCurrentTime(4)
-	dt.second = ds_system.getCurrentTime(5)
+	dt.year = System.getCurrentTime(0)
+	dt.month = System.getCurrentTime(1)
+	dt.day = System.getCurrentTime(2)
+	dt.hour = System.getCurrentTime(3)
+	dt.minute = System.getCurrentTime(4)
+	dt.second = System.getCurrentTime(5)
 	return dt
 end
 
@@ -435,7 +435,3 @@ while true do
 	end
 
 end
-
-
-
-
