@@ -1,7 +1,4 @@
-COMPILE_FOR_DS = 1 -- 0: no, 1: yes
 -- ##### CONST  ######
-
-MICROLUA_VERSION = "4.0.2"
 	
 SCREEN_WIDTH = 256
 SCREEN_HEIGHT = 192

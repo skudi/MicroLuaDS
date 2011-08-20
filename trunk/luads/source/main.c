@@ -12,7 +12,6 @@
 #include <ulib/ulib.h>
 #include <fat.h>
 #include <unistd.h>
-//#include <sys/dir.h>
 
 #include <dswifi9.h>
 #include <netinet/in.h>
@@ -58,8 +57,8 @@ int main()
 		}
     }
     
-    lua_pushliteral(l, "microlua 4.0.1");
-    lua_setglobal(l, "_VERSION_DS");
+    lua_pushliteral(l, "microlua 4.1.1b2");
+    lua_setglobal(l, "MICROLUA_VERSION");
     
     if(lua_pcall(l,0,0,0)) {
         ulDebug(lua_tostring(l, -1));
