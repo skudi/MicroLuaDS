@@ -45,9 +45,9 @@ static int screen_blit(lua_State *L) {
     if(lua_isnumber(L, 6)) sourcey = (int)luaL_checknumber(L, 6);
     if(lua_isnumber(L, 7)) width  = (int)luaL_checknumber(L, 7);
     if(lua_isnumber(L, 8)) height = (int)luaL_checknumber(L, 8);
-    assert(L, screen == SCREEN_UP_DISPLAY || screen == SCREEN_DOWN_DISPLAY || screen == SCREEN_BOTH , "Bad screen number");
+    assert(L, screen == SCREEN_UP_DISPLAY || screen == SCREEN_DOWN_DISPLAY, "Bad screen number");
     assert(L, img != NULL, "Bad image ressource");
-    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
         if(height != -1) ulSetImageTile(img, sourcex, sourcey, sourcex+width, sourcey+height);
         else{
             if(sourcey != -1) ulSetImageTile(img, sourcex, sourcey, img->sizeX, img->sizeY);
@@ -116,11 +116,11 @@ static int screen_print(lua_State *L) {
     char * text = (char *)luaL_checkstring(L, 4);
     int color = RGB15(31, 31, 31);
     if(lua_isnumber(L, 5)) color = (int)luaL_checknumber(L, 5);
-    assert(L, screen == SCREEN_UP_DISPLAY || screen == SCREEN_DOWN_DISPLAY || screen == SCREEN_BOTH , "Bad screen number");
+    assert(L, screen == SCREEN_UP_DISPLAY || screen == SCREEN_DOWN_DISPLAY, "Bad screen number");
     /*assert(L, x>=0, "x must be >= 0");
     assert(L, y>=0, "y must be >= 0");*/
     assert(L, text != NULL , "Text can't be null");
-    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
         ulSetTextColor(color);
         ulDrawString(x, y, text);
     }
@@ -135,12 +135,12 @@ static int screen_printFont(lua_State *L) {
     int color = RGB15(31, 31, 31);
     if(lua_isnumber(L, 5)) color = (int)luaL_checknumber(L, 5);
     UL_FONT * font = lua_touserdata(L, 6);
-    assert(L, screen == SCREEN_UP_DISPLAY || screen == SCREEN_DOWN_DISPLAY || screen == SCREEN_BOTH , "Bad screen number");
+    assert(L, screen == SCREEN_UP_DISPLAY || screen == SCREEN_DOWN_DISPLAY, "Bad screen number");
     /*assert(L, x>=0, "x must be >= 0");
     assert(L, y>=0, "y must be >= 0");*/
     assert(L, text != NULL, "Text can't be null");
     assert(L, font != NULL, "Font can't be null");
-    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
         ulSetFont(font);
         ulSetTextColor(color);
         ulDrawString(x, y, text);
@@ -160,7 +160,7 @@ static int screen_drawLine(lua_State *L) {
     assert(L, y0>=0, "y0 must be >= 0");
     assert(L, x1>=0, "x1 must be >= 0");
     assert(L, y1>=0, "y1 must be >= 0");*/
-    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
         ulDrawLine(x0, y0, x1, y1, color);
     }
     return 0;
@@ -171,7 +171,7 @@ static int screen_drawPoint(lua_State *L) {
     int x = (int)luaL_checknumber(L, 2);
     int y = (int)luaL_checknumber(L, 3);
     int color = (int)luaL_checknumber(L, 4);
-    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH)
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()))
         ulDrawLine(x, y, x, y, color);
     return 0;
 }
@@ -187,7 +187,7 @@ static int screen_drawRect(lua_State *L) {
     assert(L, y0>=0, "y0 must be >= 0");
     assert(L, x1>=0, "x1 must be >= 0");
     assert(L, y1>=0, "y1 must be >= 0");*/
-    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
         ulDrawRect(x0, y0, x1, y1, color);
     }
     return 0;
@@ -204,7 +204,7 @@ static int screen_drawFillRect(lua_State *L) {
     assert(L, y0>=0, "y0 must be >= 0");
     assert(L, x1>=0, "x1 must be >= 0");
     assert(L, y1>=0, "y1 must be >= 0");*/
-    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
         ulDrawFillRect(x0, y0, x1, y1, color);
     }
     return 0;
@@ -224,7 +224,7 @@ static int screen_drawGradientRect(lua_State *L) {
     assert(L, y0>=0, "y0 must be >= 0");
     assert(L, x1>=0, "x1 must be >= 0");
     assert(L, y1>=0, "y1 must be >= 0");*/
-    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
         ulDrawGradientRect(x0, y0, x1, y1, color1, color2, color3, color4);
     }
     return 0;
@@ -244,7 +244,7 @@ static int screen_drawTextBox(lua_State *L) {
     assert(L, x1>=0, "x1 must be >= 0");
     assert(L, y1>=0, "y1 must be >= 0");*/
     ulSetTextColor(color);
-    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
         ulDrawTextBox(x0, y0, x1, y1, text, UL_PF_PAL8);
     }
     return 0;
@@ -272,7 +272,7 @@ static int screen_drawTexturedQuad(lua_State *L){
     if(lua_isnumber(L, 13)) width  = (int)luaL_checknumber(L, 13);
     if(lua_isnumber(L, 14)) height = (int)luaL_checknumber(L, 14);
     
-    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
 		if(height != -1) ulSetImageTile(img, sourcex, sourcey, sourcex+width, sourcey+height);
 		else{
 			if(sourcey != -1) ulSetImageTile(img, sourcex, sourcey, img->sizeX, img->sizeY);
@@ -315,7 +315,7 @@ static int screen_drawTexturedTriangle(lua_State *L){
     if(lua_isnumber(L, 11)) width  = (int)luaL_checknumber(L, 11);
     if(lua_isnumber(L, 12)) height = (int)luaL_checknumber(L, 12);
     
-    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
 		if(height != -1) ulSetImageTile(img, sourcex, sourcey, sourcex+width, sourcey+height);
 		else{
 			if(sourcey != -1) ulSetImageTile(img, sourcex, sourcey, img->sizeX, img->sizeY);

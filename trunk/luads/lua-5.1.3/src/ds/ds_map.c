@@ -91,7 +91,7 @@ static int map_draw(lua_State *L){
     int y = (int)luaL_checknumber(L, 4);
     int width = (int)luaL_checknumber(L, 5);
     int height = (int)luaL_checknumber(L, 6);
-    if(!((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH)){
+    if(!((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()))){
         return 0;
     }
     int i, j;

@@ -16,34 +16,6 @@
 
 #include "vars.h"
 
-#define CANVAS_TYPE_LINE 0
-#define CANVAS_TYPE_POINT 1
-#define CANVAS_TYPE_RECT 2
-#define CANVAS_TYPE_FILLRECT 3
-#define CANVAS_TYPE_GRADIENTRECT 4
-#define CANVAS_TYPE_TEXT 5
-#define CANVAS_TYPE_TEXTFONT 6
-#define CANVAS_TYPE_TEXTBOX 7
-#define CANVAS_TYPE_IMAGE 8
-
-#define ATTR_X1 0
-#define ATTR_Y1 1
-#define ATTR_X2 2
-#define ATTR_Y2 3
-#define ATTR_X3 4
-#define ATTR_Y3 5
-#define ATTR_COLOR 6
-#define ATTR_COLOR1 7
-#define ATTR_COLOR2 8
-#define ATTR_COLOR3 9
-#define ATTR_COLOR4 10
-#define ATTR_TEXT 11
-#define ATTR_VISIBLE 12
-#define ATTR_FONT 13
-#define ATTR_IMAGE 14
-
-#define MAX_OBJECTS 20000
-
 typedef struct CanvasObjectObj{
     u8 type;
     int x1, y1, x2, y2, x3, y3;
@@ -406,51 +378,51 @@ static int canvas_draw(lua_State *L){
     Canvas * canvas = lua_touserdata(L, 2);
     int x = (int)luaL_checknumber(L, 3);
     int y = (int)luaL_checknumber(L, 4);
-    assert(L, screen == SCREEN_UP_DISPLAY || screen == SCREEN_DOWN_DISPLAY || screen == SCREEN_BOTH , "Bad screen number");
+    assert(L, screen == SCREEN_UP_DISPLAY || screen == SCREEN_DOWN_DISPLAY, "Bad screen number");
     int i;
     for(i=0; i<canvas->nb;i++){
         if(canvas->list[i]->visible){
             switch(canvas->list[i]->type){
                 // Draw Lines
                 case CANVAS_TYPE_LINE:
-                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
                         ulDrawLine(canvas->list[i]->x1+x, canvas->list[i]->y1+y, canvas->list[i]->x2+x, canvas->list[i]->y2+y, canvas->list[i]->color);
                     }
                     break;
                 // Draw Points
                 case CANVAS_TYPE_POINT:
-                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
                         ulDrawLine(canvas->list[i]->x1+x, canvas->list[i]->y1+y, canvas->list[i]->x1+x, canvas->list[i]->y1+y, canvas->list[i]->color);
                     }
                     break;
                 // Draw Rect
                 case CANVAS_TYPE_RECT:
-                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
                         ulDrawRect(canvas->list[i]->x1+x, canvas->list[i]->y1+y, canvas->list[i]->x2+x, canvas->list[i]->y2+y, canvas->list[i]->color);
                     }
                     break;
                 // Draw FillRect
                 case CANVAS_TYPE_FILLRECT:
-                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
                         ulDrawFillRect(canvas->list[i]->x1+x, canvas->list[i]->y1+y, canvas->list[i]->x2+x, canvas->list[i]->y2+y, canvas->list[i]->color);
                     }
                     break;
                 // Draw GradientRect
                 case CANVAS_TYPE_GRADIENTRECT:
-                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
                         ulDrawGradientRect(canvas->list[i]->x1+x, canvas->list[i]->y1+y, canvas->list[i]->x2+x, canvas->list[i]->y2+y, canvas->list[i]->color1, canvas->list[i]->color2, canvas->list[i]->color3, canvas->list[i]->color4);
                     }
                     break;
                 // Draw Text
                 case CANVAS_TYPE_TEXT:
-                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
                         ulSetTextColor(canvas->list[i]->color);
                         ulDrawString(canvas->list[i]->x1+x, canvas->list[i]->y1+y, canvas->list[i]->text);
                     }
                     break;
                 // Draw TextFont
                 case CANVAS_TYPE_TEXTFONT:
-                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
                         ulSetFont(canvas->list[i]->font);
                         ulSetTextColor(canvas->list[i]->color);
                         ulDrawString(canvas->list[i]->x1+x, canvas->list[i]->y1+y, canvas->list[i]->text);
@@ -459,7 +431,7 @@ static int canvas_draw(lua_State *L){
                     break;
                 // Draw TextBox
                 case CANVAS_TYPE_TEXTBOX:
-                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
                         ulSetTextColor(canvas->list[i]->color);
                         ulDrawTextBox(canvas->list[i]->x1+x, canvas->list[i]->y1+y, canvas->list[i]->x2+x, canvas->list[i]->y2+y, canvas->list[i]->text, UL_PF_PAL8);
                     }
@@ -470,7 +442,7 @@ static int canvas_draw(lua_State *L){
                     else{
                         if(canvas->list[i]->y2 != -1) ulSetImageTile(canvas->list[i]->image, canvas->list[i]->x2, canvas->list[i]->y2, canvas->list[i]->image->sizeX, canvas->list[i]->image->sizeY);
                     }
-                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+                    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
                         ulDrawImageXY(canvas->list[i]->image, canvas->list[i]->x1+x+canvas->list[i]->image->centerX, canvas->list[i]->y1+y+canvas->list[i]->image->centerY);
                         // ulResetImageTile(canvas->list[i]->image);
                     }

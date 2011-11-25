@@ -1,11 +1,11 @@
-System.changeDirectory("/lua/scripts")
+System.changeDirectory(ULUA_SCRIPTS)
 files = {}
 nbFiles = 0
 selectedFile = {}
 
 status, err = pcall(function()
 	local configs
-    configs = INI.load("/lua/libs/shell.ini")
+    configs = INI.load(ULUA_LIBS .. "shell.ini")
 	local f
 	f = loadstring("return Color.new("..configs["colors"]["bgupcolor"]..")")
 	bgupcolor = f()
@@ -96,7 +96,7 @@ while true do
 
 	drawList(System.currentDirectory())
 	screen.print(SCREEN_UP, 0, 184, (selected + 1).."/"..nbFiles, fgupcolor)
-	str = "Micro LUA DS "..MICROLUA_VERSION
+	str = "Micro LUA DS "..ULUA_VERSION
 	screen.print(SCREEN_UP, (SCREEN_WIDTH / 2) - (3 * str:len()), 32, str, microluacolor)
 	str = "(c) Risike 2009 and community 2009 - 2011"
 	screen.print(SCREEN_UP, (SCREEN_WIDTH / 2) - (3 * str:len()), 56, str, fgupcolor)

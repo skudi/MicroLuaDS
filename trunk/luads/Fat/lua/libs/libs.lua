@@ -1,36 +1,3 @@
--- ##### CONST  ######
-	
-SCREEN_WIDTH = 256
-SCREEN_HEIGHT = 192
-
-RAM = 0
-VRAM = 1
-
-SCREEN_UP = 1
-SCREEN_DOWN = 0
---SCREEN_BOTH = 2
-
-ALPHA_RESET = 100
-
-ATTR_X1 = 0
-ATTR_Y1 = 1
-ATTR_X2 = 2
-ATTR_Y2 = 3
-ATTR_X3 = 4
-ATTR_Y3 = 5
-ATTR_COLOR = 6
-ATTR_COLOR1 = 7
-ATTR_COLOR2 = 8
-ATTR_COLOR3 = 9
-ATTR_COLOR4 = 10
-ATTR_TEXT = 11
-ATTR_VISIBLE = 12
-ATTR_FONT = 13
-ATTR_IMAGE = 14
-
-PLAY_LOOP = 0
-PLAY_ONCE = 1
-
 screen.setSpaceBetweenScreens(10)
 
 mustCountFPS = true
@@ -391,12 +358,8 @@ SpriteAnimation = {
 	
 }
 
-str = ""
-if COMPILE_FOR_DS == 1 then
-	str = "/lua/libs/"
-end	
 
-dofile(str.."ini.lua")
+dofile(ULUA_LIBS.."ini.lua")
 
 -- ################################ START ################################
 
@@ -413,11 +376,7 @@ startDrawing()
 while true do
 
 	status_global_microlua_errors, err_global_microlua_errors = pcall(function ()
-		str = ""
-		if COMPILE_FOR_DS == 1 then
-			str = "/lua/libs/"
-		end	
-		dofile(str.."shell.lua")
+		dofile(ULUA_LIBS.."shell.lua")
 	end)
 	if err_global_microlua_errors ~= nil then
 		Debug.OFF()	

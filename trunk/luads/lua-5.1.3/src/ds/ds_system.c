@@ -22,24 +22,9 @@
 #include <time.h>
 #include <ulib/ulib.h>
 
-#define TIME_YEAR 0
-#define TIME_MONTH 1
-#define TIME_DAY 2
-#define TIME_HOUR 3
-#define TIME_MINUTE 4
-#define TIME_SECOND 5
-#define TIME_WEEKDAY 6
-#define TIME_YEARDAY 7
+#include "vars.h"
 
-/*int dirListed;
-char * dirname;
-//DIR_ITER* dir;
-DIR *pdir;
-struct dirent *pent;
-struct stat statbuf;*/
-
-//cette fonction retourne un chiffre bizare
-static int system_currentVramUsed(lua_State *L){
+static int system_currentVramUsed(lua_State *L) {
 	lua_pushnumber(L, (unsigned int) ulGetTexVramUsedMemory());
 	return 1;
 }

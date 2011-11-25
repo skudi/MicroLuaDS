@@ -76,7 +76,7 @@ static int scrollmap_destroy(lua_State *L){
 static int scrollmap_draw(lua_State *L){
     int screen = (int)luaL_checknumber(L, 1);
     UL_MAP * map = lua_touserdata(L, 2);
-    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd()) || screen == SCREEN_BOTH){
+    if ((screen == SCREEN_UP_DISPLAY && ulGetMainLcd()) || (screen == SCREEN_DOWN_DISPLAY && !ulGetMainLcd())){
         ulDrawMap(map);
     }
     return 0;

@@ -1,7 +1,3 @@
-#define BOOT_DIR "/lua"
-#define BOOT_FILE "libs.lua"
-#define BOOT_FULLPATH BOOT_DIR "/" BOOT_FILE
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -15,6 +11,8 @@
 
 #include <dswifi9.h>
 #include <netinet/in.h>
+
+#include "constants.h"
 
 int main()
 {
@@ -49,16 +47,14 @@ int main()
     }
     
     luaL_openlibs(l);
+    uLua_pushConstants(l);
     
-    if (luaL_loadfile(l, BOOT_FULLPATH)) {
+    if (luaL_loadfile(l, ULUA_BOOT_FULLPATH)) {
         if(luaL_loadfile(l, "/lua/libs/libs.lua")){
-		    ulDebug("Error Occured: Couldn't open %s\n", BOOT_FILE);
+		    ulDebug("Error Occured: Couldn't open %s\n", ULUA_BOOT_FILE);
 		    return 0;
 		}
     }
-    
-    lua_pushliteral(l, "microlua 4.1.1b2");
-    lua_setglobal(l, "MICROLUA_VERSION");
     
     if(lua_pcall(l,0,0,0)) {
         ulDebug(lua_tostring(l, -1));
