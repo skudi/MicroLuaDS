@@ -147,7 +147,6 @@ static int map_draw(lua_State *L){
 static int map_destroy(lua_State *L){
     Map * map = lua_touserdata(L, 1);
     free(map->table);
-    ulDeleteImage(map->image);
     free(map);
     return 0;
 }

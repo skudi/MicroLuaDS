@@ -6,7 +6,7 @@
 #include "lualib.h"
 
 
-#define ULUA_VERSION "4.1.1b2"
+#define ULUA_VERSION "4.2"
 
 #define ULUA_DIR "/lua/"
 #define ULUA_SCRIPTS ULUA_DIR "/scripts/"
