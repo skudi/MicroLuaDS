@@ -1,11 +1,20 @@
 --[[
-    DEFAULT MYBOOT
-    
-    Here is the default example personal bootstrap.
-    Please note that it is *NOT* loaded by "boot.lua". If you want to, put "myboot.lua"
-    into ULUA_MYBOOT.
-]]--
 
+            ==>[ DEFAULT MYBOOT ]<==
+        
+        
+   # Based on Christophe "Grahack" Gragnic's #
+   #                idea in October 2009                #
+
+    
+같같같같같같같같같같같같같같같같같같같같같같같같같같같같같
+
+   Here is the default example of "myboot.lua".
+   Please note that it is *NOT* loaded by
+   "boot.lua". If you want to, rename it as
+   "myboot;lua".
+
+]]--
 
 
 -- You may wish to change the directory open by default, that is to say the "scripts" directory.
