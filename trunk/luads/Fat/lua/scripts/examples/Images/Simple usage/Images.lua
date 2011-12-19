@@ -21,8 +21,8 @@ while not Keys.newPress.Start do
 		y = Stylus.Y
 	end
 
-	if Keys.held.Up then y = y + 2 end
-	if Keys.held.Down then y = y - 2 end
+	if Keys.held.Up then y = y - 2 end
+	if Keys.held.Down then y = y + 2 end
 	if Keys.held.Right then x = x + 2 end
 	if Keys.held.Left then x = x - 2 end
 
