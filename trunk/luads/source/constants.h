@@ -11,7 +11,7 @@
 #define ULUA_DIR "/lua/"
 #define ULUA_SCRIPTS ULUA_DIR "/scripts/"
 #define ULUA_LIBS ULUA_DIR "/libs/"
-#define ULUA_BOOT_FILE "libs/libs.lua"
+#define ULUA_BOOT_FILE "boot.lua"
 #define ULUA_BOOT_FULLPATH ULUA_DIR ULUA_BOOT_FILE
 
 #define SCREEN_WIDTH 256
