@@ -485,6 +485,11 @@ Obtient la largeur d’un texte avec une police spéciale.
   * *police* (Font) : police à utiliser
   * *texte* (String) : texte
 
+*`Void Font.destroy(police)`* (_nds_)
+
+Libère la mémoire en supprimant la police.
+  * *police* (Font) : police à supprimer de la mémoire.
+
 === Cartes ===
 
 *`Map Map.new(image, fichierCarte, longueur, largeur, longueurTuile, largeurTuile)`* (_nds_)

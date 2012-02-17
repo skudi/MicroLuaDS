@@ -67,6 +67,8 @@ static int font_getCharHeight(lua_State *L){
 
 static int font_destroy(lua_State *L){
     UL_FONT * font = lua_touserdata(L, 1);
+    if(font->img->imgState == UL_STATE_VRAM) ulUnrealizeImage(font->img);
+    ulDeleteImage(font->img);
     free(font);
     return 0;
 }
