@@ -4,68 +4,68 @@
 
 = Introduction =
 
-Les variables et les fonctions que vous trouverez ici peuvent aussi bien être définies dans les bibliothèques écrites en Lua (tag _libs_) ou dans le code C (tag _nds_).
+Les variables et les fonctions que vous trouverez ici peuvent aussi bien Ãªtre dÃ©finies dans les bibliothÃ¨ques Ã©crites en Lua (tag _libs_) ou dans le code C (tag _nds_).
 
 = Notes du traducteur =
 
 == Clavier ==
 
-Il n’est plus fait mention du clavier, celui-ci ayant été enlevé des bibliothèques de base de MicroLua. Vous pouvez toujours trouver une version traduite et opérationnelle sur le forum.
+Il nâ€™est plus fait mention du clavier, celui-ci ayant Ã©tÃ© enlevÃ© des bibliothÃ¨ques de base de MicroLua. Vous pouvez toujours trouver une version traduite et opÃ©rationnelle sur le forum.
 
 == Types de variables ==
 
-Les types de variables n'ont pas été traduits pour des raisons de compréhension générale. En programmation, on parlera plus facilement de « string » que de « chaîne de caractères ». Voici les correspondances françaises des types employés ici:
+Les types de variables n'ont pas Ã©tÃ© traduits pour des raisons de comprÃ©hension gÃ©nÃ©rale. En programmation, on parlera plus facilement de Â«Â stringÂ Â» que de Â«Â chaÃ®ne de caractÃ¨resÂ Â». Voici les correspondances franÃ§aises des types employÃ©s ici:
 
-  * `Void`: « vide » (utilisé par une fonction qui ne renvoie rien)
+  * `Void`: Â«Â videÂ Â» (utilisÃ© par une fonction qui ne renvoie rien)
   * `Number`: nombre
-  * `String`: chaîne de caractères
+  * `String`: chaÃ®ne de caractÃ¨res
   * `Color`: couleur
   * `Image`: image
-  * `Font`: police d'écriture
+  * `Font`: police d'Ã©criture
   * `Table`: table (ou tableau)
-  * `Map` & `ScrollMap`: carte et carte défilante
+  * `Map` & `ScrollMap`: carte et carte dÃ©filante
   * `Canvas` & `CanvasObject`: canevas & objet de canevas
   * `Constant`: constante
-  * `Boolean`: booléen (`true` – vrai, ou `false` – faux)
-  * `DateTime`: objet représentant une date
-  * `Handle`: référence d’un objet pour le gérer
+  * `Boolean`: boolÃ©en (`true` â€“ vrai, ou `false` â€“ faux)
+  * `DateTime`: objet reprÃ©sentant une date
+  * `Handle`: rÃ©fÃ©rence dâ€™un objet pour le gÃ©rer
 
 = API =
 
 == Variables ==
 
-  * *`ULUA_VERSION`* (_nds_) : version de Micro Lua (sous forme d’un String)
-  * *`SCREEN_WIDTH`*, *`SCREEN_HEIGHT`* (_nds_) : largeur et hauteur des écrans
-  * *`NB_FPS`* (_libs_) : nombre de _frames_ (images) par seconde, automatiquement mis à jour chaque seconde.
-  * *`SCREEN_UP`*, *`SCREEN_DOWN`* (_nds_) : numéro de l’écran sur lequel afficher les éléments. Voir les exemples pour de plus amples détails.
-  * *`RAM`*, *`VRAM`* (_nds_) : destination du chargement de certains objets. Voir les exemples pour de plus amples détails.
-  * *`ATTR_X1`*, *`ATTR_Y1`*, *`ATTR_X2`*, *`ATTR_Y1`*, *`ATTR_X3`*, *`ATTR_Y3`*, *`ATTR_COLOR`*, *`ATTR_COLOR1`*, *`ATTR_COLOR2`*, *`ATTR_COLOR3`*, *`ATTR_COLOR4`*, *`ATTR_TEXT`*, *`ATTR_VISIBLE`*, *`ATTR_FONT`*, *`ATTR_IMAGE`* (_nds_) : attributs utilisés par les canevas.
-  * *`ALPHA_RESET`* (_nds_ ) : valeur du coefficient de transparence pour réinitialiser l''alpha transparency'. Par defaut elle vaut 100.
+  * *`ULUA_VERSION`* (_nds_) : version de Micro Lua (sous forme dâ€™un String)
+  * *`SCREEN_WIDTH`*, *`SCREEN_HEIGHT`* (_nds_) : largeur et hauteur des Ã©crans
+  * *`NB_FPS`* (_libs_) : nombre de _frames_ (images) par seconde, automatiquement mis Ã  jour chaque seconde.
+  * *`SCREEN_UP`*, *`SCREEN_DOWN`* (_nds_) : numÃ©ro de lâ€™Ã©cran sur lequel afficher les Ã©lÃ©ments. Voir les exemples pour de plus amples dÃ©tails.
+  * *`RAM`*, *`VRAM`* (_nds_) : destination du chargement de certains objets. Voir les exemples pour de plus amples dÃ©tails.
+  * *`ATTR_X1`*, *`ATTR_Y1`*, *`ATTR_X2`*, *`ATTR_Y1`*, *`ATTR_X3`*, *`ATTR_Y3`*, *`ATTR_COLOR`*, *`ATTR_COLOR1`*, *`ATTR_COLOR2`*, *`ATTR_COLOR3`*, *`ATTR_COLOR4`*, *`ATTR_TEXT`*, *`ATTR_VISIBLE`*, *`ATTR_FONT`*, *`ATTR_IMAGE`* (_nds_) : attributs utilisÃ©s par les canevas.
+  * *`ALPHA_RESET`* (_nds_ ) : valeur du coefficient de transparence pour rÃ©initialiser l''alpha transparency'. Par defaut elle vaut 100.
   * *`PLAY_LOOP`*, *`PLAY_ONCE`* (_nds_) : arguments pour jouer des 'mods' respectivement 'loop' et 'once'.
-  * Constantes de chemins (certaines sont formées à partir des précédentes) (_nds_):
+  * Constantes de chemins (certaines sont formÃ©es Ã  partir des prÃ©cÃ©dentes) (_nds_):
    * *`ULUA_DIR`*: _/lua/_ (dossier principal de MicroLua)
-   * *`ULUA_SCRIPTS`*: _ULUA_DIR scripts/_ (dossier par défaut pour les scripts)
-   * *`ULUA_LIBS`*: _ULUA_DIR libs/_ (dossier par défaut pour les librairies)
-   * *`ULUA_BOOT_FILE`*: _boot.lua_ (premier fichier chargé par MicroLua)
-   * *`ULUA_BOOT_FULLPATH`*: _ULUA_DIR ULUA_BOOTFILE_ (chemin complet du premier fichier chargé par MicroLua)
-  * *`mustCountFPS`* (_libs_) : régule le système de comptabilisation des FPS. C'est une variable interne, vous ne devriez jamais en avoir besoin.
-  * *`Debug.isDebugOn`*, *`Debug.debugText`* et *`Debug.debugColor`* (_libs_): variables utilisées par le système de debuging. Vous devez les modifier uniquement en utilisant les fonctions `Debug` .
+   * *`ULUA_SCRIPTS`*: _ULUA_DIR scripts/_ (dossier par dÃ©faut pour les scripts)
+   * *`ULUA_LIBS`*: _ULUA_DIR libs/_ (dossier par dÃ©faut pour les librairies)
+   * *`ULUA_BOOT_FILE`*: _boot.lua_ (premier fichier chargÃ© par MicroLua)
+   * *`ULUA_BOOT_FULLPATH`*: _ULUA_DIR ULUA_BOOTFILE_ (chemin complet du premier fichier chargÃ© par MicroLua)
+  * *`mustCountFPS`* (_libs_) : rÃ©gule le systÃ¨me de comptabilisation des FPS. C'est une variable interne, vous ne devriez jamais en avoir besoin.
+  * *`Debug.isDebugOn`*, *`Debug.debugText`* et *`Debug.debugColor`* (_libs_): variables utilisÃ©es par le systÃ¨me de debuging. Vous devez les modifier uniquement en utilisant les fonctions `Debug` .
   
 == Les fonctions et leur tableau ==
 
-=== L’écran ===
+=== Lâ€™Ã©cran ===
 
 *`Void render()`* (_libs_)
 
-Actualise l’écran.
+Actualise lâ€™Ã©cran.
 
 *`Void startDrawing()`* & *`Void stopDrawing()`* (_libs_, _deprecated_)
 
-Toutes vos opérations graphiques doivent être placées entre ces deux fonctions.
+Toutes vos opÃ©rations graphiques doivent Ãªtre placÃ©es entre ces deux fonctions.
 
 *`Void screen.switch()`* (_nds_)
 
-Intervertit l’affichage des écrans.
+Intervertit lâ€™affichage des Ã©crans.
 
 *`Number screen.getLayer()`* (_nds_)
 
@@ -77,116 +77,116 @@ Obtient le niveau de transparence actuel.
 
 *`Void screen.setAlpha(niveau[, groupe])`* (_nds_)
 
-Définit le niveau de transparence du groupe donné.
-  * *niveau* (Number) : niveau de transparence, de 0 à 99 (100, ou ALPHA_RESET, remet tout le système de transparence à zéro)
+DÃ©finit le niveau de transparence du groupe donnÃ©.
+  * *niveau* (Number) : niveau de transparence, de 0 Ã  99 (100, ou ALPHA_RESET, remet tout le systÃ¨me de transparence Ã  zÃ©ro)
   * *groupe* (Number) : groupe de transparence ; la fonction tient automatiquement le compte
 
 *`Void screen.print(ecran, x, y, texte [, couleur])`* (_nds_)
 
-Affiche un texte à l’écran.
-  * *ecran* (Number) : écran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
-  * *x* (Number) : abscisse du coin haut-gauche du texte
-  * *y* (Number) : ordonnée du coin haut-gauche du texte
-  * *texte* (String) : texte à afficher
-  * *couleur* (Color) : couleur du texte
+Affiche un texte Ã  lâ€™Ã©cran.
+  * *ecran* (Number)Â : Ã©cran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
+  * *x* (Number)Â : abscisse du coin haut-gauche du texte
+  * *y* (Number)Â : ordonnÃ©e du coin haut-gauche du texte
+  * *texte* (String)Â : texte Ã  afficher
+  * *couleur* (Color)Â : couleur du texte
 
 *`Void screen.printFont(ecran, x, y, texte, couleur, police)`* (_nds_)
 
-Affiche un texte à l’écran dans une police spéciale.
-  * *ecran* (Number) : écran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
-  * *x* (Number) : abscisse du coin haut-gauche du texte
-  * *y* (Number) : ordonnée du coin haut-gauche du texte
-  * *texte* (String) : texte à afficher
-  * *couleur* (Color) : couleur du texte
-  * *police* (Font) : police spéciale
+Affiche un texte Ã  lâ€™Ã©cran dans une police spÃ©ciale.
+  * *ecran* (Number)Â : Ã©cran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
+  * *x* (Number)Â : abscisse du coin haut-gauche du texte
+  * *y* (Number)Â : ordonnÃ©e du coin haut-gauche du texte
+  * *texte* (String)Â : texte Ã  afficher
+  * *couleur* (Color)Â : couleur du texte
+  * *police* (Font)Â : police spÃ©ciale
 
 *`Void screen.blit(ecran, x, y, image [,sourceX, sourceY] [, largeur, hauteur])`* (_nds_)
 
-_Blitte_ (affiche) une image à l’écran.
-  * *ecran* (Number) : écran sur lequel afficher l'image (`SCREEN_UP` ou `SCREEN_DOWN`)
-  * *x* (Number) : abscisse du coin haut-gauche de l’image
-  * *y* (Number) : ordonnée du coin haut-gauche de l’image
-  * *image* (Image) : image à blitter
-  * *sourceX*, *sourceY* (Number) : coordonnées de la partie de l’image source à blitter
-  * *largeur*, *hauteur* (Number): dimensions de la partie de l’image source à blitter
+_Blitte_ (affiche) une image Ã  lâ€™Ã©cran.
+  * *ecran* (Number)Â : Ã©cran sur lequel afficher l'image (`SCREEN_UP` ou `SCREEN_DOWN`)
+  * *x* (Number)Â : abscisse du coin haut-gauche de lâ€™image
+  * *y* (Number)Â : ordonnÃ©e du coin haut-gauche de lâ€™image
+  * *image* (Image)Â : image Ã  blitter
+  * *sourceX*, *sourceY* (Number)Â : coordonnÃ©es de la partie de lâ€™image source Ã  blitter
+  * *largeur*, *hauteur*Â (Number): dimensions de la partie de lâ€™image source Ã  blitter
 
 *`Void screen.drawPoint(ecran, x, y, couleur)`* (_nds_)
 
-Dessine un point à l'écran.
-  * *ecran* (Number) : écran sur le quel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
-  * *x*, *y* (Number) : coordonnées du point
+Dessine un point Ã  l'Ã©cran.
+  * *ecran* (Number) : Ã©cran sur le quel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
+  * *x*, *y* (Number) : coordonnÃ©es du point
   * *couleur* (Color) : couleur du point
 
 *`Void screen.drawLine(ecran, x0, y0, x1, y1, couleur)`* (_nds_)
 
-Dessine une ligne à l’écran.
-  * *ecran* (Number) : écran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
-  * *x0*, *y0*, *x1*, *y1* (Number) : coordonnées de la ligne
-  * *couleur* (Color) : couleur de la ligne
+Dessine une ligne Ã  lâ€™Ã©cran.
+  * *ecran* (Number)Â : Ã©cran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
+  * *x0*, *y0*, *x1*, *y1* (Number)Â : coordonnÃ©es de la ligne
+  * *couleur* (Color)Â : couleur de la ligne
 
 *`Void screen.drawRect(ecran, x0, y0, x1, y1, couleur)`* (_nds_)
 
-Dessine un rectangle à l’écran.
-  * *ecran* (Number) : écran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
-  * *x0*, *y0*, *x1*, *y1* (Number) : coordonnées du rectangle
-  * *couleur* (Color) : couleur du rectangle
+Dessine un rectangle Ã  lâ€™Ã©cran.
+  * *ecran* (Number)Â : Ã©cran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
+  * *x0*, *y0*, *x1*, *y1* (Number)Â : coordonnÃ©es du rectangle
+  * *couleur* (Color)Â : couleur du rectangle
 
 *`Void screen.drawFillRect(ecran, x0, y0, x1, y1, couleur)`* (_nds_)
 
-Dessine un rectangle plein à l’écran.
-  * *ecran* (Number) : écran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
-  * *x0*, *y0*, *x1*, *y1* (Number) : coordonnées du rectangle plein
-  * *couleur* (Color) : couleur du rectangle plein
+Dessine un rectangle plein Ã  lâ€™Ã©cran.
+  * *ecran* (Number)Â : Ã©cran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
+  * *x0*, *y0*, *x1*, *y1* (Number)Â : coordonnÃ©es du rectangle plein
+  * *couleur* (Color)Â : couleur du rectangle plein
 
 *`Void screen.drawGradientRect(ecran,  *x0*, *y0*, *x1*, *y1*, couleur1, couleur2, couleur3, couleur4)`* (_nds_)
 
-Dessine un rectangle dégradé à l’écran.
-  * *ecran* (Number) : écran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
-  * *x0*, *y0*, *x1*, *y1* (Number) : coordonnées du rectangle dégradé
-  * *couleur1*, *couleur2*, *couleur3*, *couleur4* (Color) : couleurs du rectangle dégradé
+Dessine un rectangle dÃ©gradÃ© Ã  lâ€™Ã©cran.
+  * *ecran* (Number)Â : Ã©cran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
+  * *x0*, *y0*, *x1*, *y1* (Number)Â : coordonnÃ©es du rectangle dÃ©gradÃ©
+  * *couleur1*, *couleur2*, *couleur3*, *couleur4* (Color)Â : couleurs du rectangle dÃ©gradÃ©
 
 *`Void screen.drawTextBox(ecran, x0, y0, x1, y1, texte [, couleur])`* (_nds_)
 
-Affiche une zone de texte à l’écran.
-  * *ecran* (Number) : écran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
-  * *x0*, *y0*, *x1*, *y1* (Number) : coordonnées de la zone de texte
-  * *texte* (String) : texte à afficher
-  * *couleur* (Color) : couleur de la zone de texte
+Affiche une zone de texte Ã  lâ€™Ã©cran.
+  * *ecran* (Number)Â : Ã©cran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
+  * *x0*, *y0*, *x1*, *y1* (Number)Â : coordonnÃ©es de la zone de texte
+  * *texte* (String)Â : texte Ã  afficher
+  * *couleur* (Color)Â : couleur de la zone de texte
 
 *`Void screen.drawTexturedQuad(ecran, x0, y0, x1, y1, x2, y2, x3, y3, texture[, sourceX, sourceY][, largeur, hauteur])`* (_nds_)
 
-Affiche un quadrilatère texturé.
-  * *ecran* (Number) : écran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
-  * *x0*, *y0*, *x1*, *y1*... (Number) : coordonnées des angles du quadrilatère
+Affiche un quadrilatÃ¨re texturÃ©.
+  * *ecran* (Number) : Ã©cran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
+  * *x0*, *y0*, *x1*, *y1*... (Number) : coordonnÃ©es des angles du quadrilatÃ¨re
   * *texture* (Image) : image de la texture
-  * *sourceX*, *sourceY* (Number) : coordonnées de la partie de l’image à utiliser comme texture
-  * *largeur*, *hauteur* (Number): dimensions de la partie de l’image à utiliser comme texture
+  * *sourceX*, *sourceY* (Number)Â : coordonnÃ©es de la partie de lâ€™image Ã  utiliser comme texture
+  * *largeur*, *hauteur*Â (Number): dimensions de la partie de lâ€™image Ã  utiliser comme texture
 
 *`Void screen.drawTexturedTriangle(ecran, x0, y0, x1, y1, x2, y2, texture[, sourceX, sourceY][, largeur, hauteur])`* (_nds_)
 
-Affiche un triangle texturé.
-  * *ecran* (Number) : écran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
-  * *x0*, *y0*, *x1*, *y1*... (Number) : coordonnées des angles du triangle
+Affiche un triangle texturÃ©.
+  * *ecran* (Number) : Ã©cran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
+  * *x0*, *y0*, *x1*, *y1*... (Number) : coordonnÃ©es des angles du triangle
   * *texture* (Image) : image de la texture
-  * *sourceX*, *sourceY* (Number) : coordonnées de la partie de l’image à utiliser comme texture
-  * *largeur*, *hauteur* (Number) : dimensions de l'image à utiliser comme texture
+  * *sourceX*, *sourceY* (Number)Â : coordonnÃ©es de la partie de lâ€™image Ã  utiliser comme texture
+  * *largeur*, *hauteur* (Number) : dimensions de l'image Ã  utiliser comme texture
   
 *`Boolean screen.getMainLcd()`* (_nds_)
 
-Retourne l'écran sur lequel µLua dessine (`true` pour l'écran du haut, `false` pour l'écran du bas).
+Retourne l'Ã©cran sur lequel ÂµLua dessine (`true` pour l'Ã©cran du haut, `false` pour l'Ã©cran du bas).
 
-*`Void screen.setSpaceBetweenScreens(space)`* (_nds_, _deprecated_ (vous ne pouvez plus dessinez sur les deux écran en même temps.))
+*`Void screen.setSpaceBetweenScreens(space)`* (_nds_, _deprecated_ (vous ne pouvez plus dessinez sur les deux Ã©cran en mÃªme temps.))
 
-Définit l'espace entre les deux écrans (certain dessin ne seront pas affiché si ils sont dessinés dans cet espace.).
-  * *space* (Number): espace (en pixels) entre les écrans.
+DÃ©finit l'espace entre les deux Ã©crans (certain dessin ne seront pas affichÃ© si ils sont dessinÃ©s dans cet espace.).
+  * *space* (Number): espace (en pixels) entre les Ã©crans.
 
 *`Void screen.init()`* (_nds_)
 
-Initialise tout ce qui touche aux écrans. Cela est fait automatiquement, donc vous ne devez pas vous en occupez.
+Initialise tout ce qui touche aux Ã©crans. Cela est fait automatiquement, donc vous ne devez pas vous en occupez.
 
 *`Void screen.startDrawing2D()`* (_nds_)
 
-Démarre un nouvel affichage en 2D. Vous ne devez pas vous en occupez.
+DÃ©marre un nouvel affichage en 2D. Vous ne devez pas vous en occupez.
 
 *`Void screen.endDrawing()`* (_nds_)
 
@@ -200,28 +200,28 @@ Attend une periode VBlank pour atteindre 60FPS. Vous ne devez jamais l'utilisez 
 
 *`Color Color.new(r, v, b)`* (_nds_)
 
-Crée une nouvelle couleur.
-  * *r* (Number): masque rouge (de 0 à 31 inclus)
-  * *v* (Number): masque vert (de 0 à 31 inclus)
-  * *b* (Number): masque bleu (de 0 à 31 inclus)
+CrÃ©e une nouvelle couleur.
+  * *r* (Number): masque rouge (de 0 Ã  31 inclus)
+  * *v* (Number): masque vert (de 0 Ã  31 inclus)
+  * *b* (Number): masque bleu (de 0 Ã  31 inclus)
 
-=== Contrôles ===
+=== ContrÃ´les ===
 
 *`Void Controls.read()`* (_libs_)
 
-Met à jour les commandes.
+Met Ã  jour les commandes.
 
 ==== Stylet ====
 
-Ce sont des nombres ou des booléens, tous définis dans les _libs_.
+Ce sont des nombres ou des boolÃ©ens, tous dÃ©finis dans les _libs_.
 
 *`Stylus.X`*: abscisse du stylet
 
-*`Stylus.Y`*: ordonnée du stylet
+*`Stylus.Y`*: ordonnÃ©e du stylet
 
-*`Stylus.held`*: état appuyé sur l'écran du stylet
+*`Stylus.held`*: Ã©tat appuyÃ© sur l'Ã©cran du stylet
 
-*`Stylus.released`*: état relâché du stylet
+*`Stylus.released`*: Ã©tat relÃ¢chÃ© du stylet
 
 *`Stylus.doubleClick`*: vaut `true` si le stylet effectue un double-clic
 
@@ -233,14 +233,14 @@ Ce sont des nombres ou des booléens, tous définis dans les _libs_.
 
 ==== Boutons ====
 
-Voici des booléens. Toute cette section est définie dans les _libs_.
+Voici des boolÃ©ens. Toute cette section est dÃ©finie dans les _libs_.
 
 (`[KEY]` peut prendre une des valeurs suivantes:
 *`A`, `B`, `X`, `Y`, `L`, `R`, `Start`, `Select`, `Up`, `Down`, `Left`, `Right`*)
 
-*`Keys.held.[KEY]`*: état enfoncé du bouton
+*`Keys.held.[KEY]`*: Ã©tat enfoncÃ© du bouton
 
-*`Keys.released.[KEY]`*: état relâché du bouton
+*`Keys.released.[KEY]`*: Ã©tat relÃ¢chÃ© du bouton
 
 *`Keys.newPress.[KEY]`*: vaut `true` si le bouton effectue une nouvelle pression
 
@@ -248,17 +248,17 @@ Voici des booléens. Toute cette section est définie dans les _libs_.
 
 *`Image Image.load(chemin, destination)`* (_nds_)
 
-Crée une nouvelle image depuis un fichier image (PNG, JPG – JPEG ou GIF).
-  * *chemin* (String): chemin d'accès du fichier image à charger
-  * *destination* (Number): destination de l'image dans la mémoire (`RAM` ou `VRAM`)
+CrÃ©e une nouvelle image depuis un fichier image (PNG, JPG â€“ JPEG ou GIF).
+  * *chemin* (String): chemin d'accÃ¨s du fichier image Ã  charger
+  * *destination* (Number): destination de l'image dans la mÃ©moire (`RAM` ou `VRAM`)
 
 
 *`Void Image.destroy(image)`* (_nds_)
 
-Détruit une image.
-  * *image* (Image): image à détruire
+DÃ©truit une image.
+  * *image* (Image): image Ã  dÃ©truire
 
-Pour détruire complètement l'image, faire
+Pour dÃ©truire complÃ¨tement l'image, faire
 {{{
 Image.destroy(monImage)
 monImage = nil
@@ -267,59 +267,59 @@ monImage = nil
 *`Number Image.width(image)`* (_nds_)
 
 Obtient la longueur d'une image.
-  * *image* (Image): image à utiliser
+  * *image* (Image): image Ã  utiliser
                                                      
 *`Number Image.height(image)`* (_nds_)
 
 Obtient la largeur d'une image.
-  * *image* (Image): image à utiliser
+  * *image* (Image): image Ã  utiliser
 
 *`Void Image.scale(image, longueur, largeur)`* (_nds_)
 
-Agrandit (ou réduit) l'image.
-  * *image* (Image): image à modifier
+Agrandit (ou rÃ©duit) l'image.
+  * *image* (Image): image Ã  modifier
   * *longueur* (Number): nouvelle longueur de l'image
   * *largeur* (Number): nouvelle largeur de l'image
 
 *`Void Image.rotate(image, angle [, xCentre, yCentre])`* (_nds_)
 
-Fait pivoter l'image autour du centre de rotation indiqué.
-  * *image* (Image): image à modifier
+Fait pivoter l'image autour du centre de rotation indiquÃ©.
+  * *image* (Image): image Ã  modifier
   * *angle* (Number): angle de rotation (entre 0 et 511)
   * *xCentre* (Number): abscisse du centre de rotation
-  * *yCentre* (Number): ordonnée du centre de rotation
+  * *yCentre* (Number): ordonnÃ©e du centre de rotation
 
 *`Void Image.rotateDegree(image, angle [, xCentre, yCentre])`* (_nds_)
 
-Fait pivoter l’image autour du centre de rotation indiqué.  L’angle est en degrés.
-  * *image* (Image) : image à modifier
-  * *angle* (Number) : angle de rotation, en degrés (entre 0 et 360)
-  * *xCentre* (Number) : abscisse du centre de rotation
-  * *yCentre* (Number) : ordonnée du centre de rotation
+Fait pivoter lâ€™image autour du centre de rotation indiquÃ©.  Lâ€™angle est en degrÃ©s.
+  * *image* (Image)Â : image Ã  modifier
+  * *angle* (Number)Â : angle de rotation, en degrÃ©s (entre 0 et 360)
+  * *xCentre* (Number)Â : abscisse du centre de rotation
+  * *yCentre* (Number)Â : ordonnÃ©e du centre de rotation
 
 *`Void Image.mirrorH(image)`* (_nds_)
 
-Réalise une symétrie horizontale de l'image.
-  * *image* (Image): image à modifier
+RÃ©alise une symÃ©trie horizontale de l'image.
+  * *image* (Image): image Ã  modifier
 
 *`Void Image.mirrorV(image)`* (_nds_)
 
-Réalise une symétrie verticale de l'image.
-  * *image* (Image): image à modifier
+RÃ©alise une symÃ©trie verticale de l'image.
+  * *image* (Image): image Ã  modifier
 
 *`Void Image.setTint(image, couleur)`* (_nds_)
 
-Définit la teinte de l'image.
-  * *image* (Image): image à modifier
+DÃ©finit la teinte de l'image.
+  * *image* (Image): image Ã  modifier
   * *couleur* (Color): couleur de l'image
 
-=== Timers (chronomètres) ===
+=== Timers (chronomÃ¨tres) ===
 
-L'unité est la milliseconde.
+L'unitÃ© est la milliseconde.
 
 *`Timer Timer.new()`* (_libs_)
 
-Crée un nouveau timer ; vous pouvez le démarrer.
+CrÃ©e un nouveau timer ; vous pouvez le dÃ©marrer.
 
 *`Number timer:time()`* (_libs_)
 
@@ -327,138 +327,138 @@ Renvoie le temps d'un timer.
 
 *`Void Timer:start()`* (_libs_)
 
-Démarre un timer.
+DÃ©marre un timer.
 
 *`Void Timer:stop()`* (_libs_)
 
-Arrête un timer.
+ArrÃªte un timer.
 
 *`Void timer:reset()`* (_libs_)
 
-Réinitialise un timer.
+RÃ©initialise un timer.
 
 === Sprites ===
 
-<wiki:comment>(succession d'images – les frames – pour créer une animation)</wiki:comment>
+<wiki:comment>(succession d'images â€“ les frames â€“ pour crÃ©er une animation)</wiki:comment>
 
 *`Sprite Sprite.new(chemin, longueurFrame, largeurFrame, destination)`* (_libs_)
 
-Crée un sprite depuis un fichier image.
-  * *chemin* (String): chemin d'accès du fichier qui contient le sprite
+CrÃ©e un sprite depuis un fichier image.
+  * *chemin* (String): chemin d'accÃ¨s du fichier qui contient le sprite
   * *longueurImage* (Number): longueur d'une frame
   * *largeurImage* (Number): largeur d'une frame
-  * *destination* (Number): destination en mémoire (`RAM` ou `VRAM`)
+  * *destination* (Number): destination en mÃ©moire (`RAM` ou `VRAM`)
 
 
 *`Void sprite:drawFrame(ecran, x, y, numFrame)`* (_libs_)
 
 Affiche une frame du sprite.
-  * *ecran* (Nombre) : écran sur lequel afficher (`SCREEN_UP` ou `SCREEN_DOWN`)
-  * *x* (Nombre) : abscisse du coin haut-gauche de la frame
-  * *y* (Nombre) : ordonnée du coin haut-gauche de la frame
-  * *numFrame* (Number): numéro de la frame à afficher
+  * *ecran* (Nombre)Â : Ã©cran sur lequel afficher (`SCREEN_UP` ou `SCREEN_DOWN`)
+  * *x* (Nombre)Â : abscisse du coin haut-gauche de la frame
+  * *y* (Nombre)Â : ordonnÃ©e du coin haut-gauche de la frame
+  * *numFrame* (Number): numÃ©ro de la frame Ã  afficher
 
 *`Void sprite:addAnimation(tabAnim, delais)`* (_libs_)
 
-Crée une animation.
+CrÃ©e une animation.
   * *tabAnim* (Table): table des frames de l'animation
-  * *delais* (Number): délais entre chaque frame
+  * *delais* (Number): dÃ©lais entre chaque frame
 
 *`Void sprite:playAnimation(ecran, x, y, numAnim)`* (_libs_)
 
-Joue une animation à l'écran.
-  * *ecran* (Number): écran sur lequel afficher (`SCREEN_UP` ou `SCREEN_DOWN`)
+Joue une animation Ã  l'Ã©cran.
+  * *ecran* (Number): Ã©cran sur lequel afficher (`SCREEN_UP` ou `SCREEN_DOWN`)
   * *x* (Number): abscisse du coin haut-gauche de l'animation
-  * *y* (Number): ordonnée du coin haut-gauche de l'animation
-  * *numAnim* (Number): numéro de l'animation à jouer
+  * *y* (Number): ordonnÃ©e du coin haut-gauche de l'animation
+  * *numAnim* (Number): numÃ©ro de l'animation Ã  jouer
 
 *`Void sprite:resetAnimation(numAnim)`* (_libs_)
 
-Réinitialise une animation.
-  * *numAnim* (Number): numéro de l'animation à réinitialiser.
+RÃ©initialise une animation.
+  * *numAnim* (Number): numÃ©ro de l'animation Ã  rÃ©initialiser.
 
 *`Void sprite:startAnimation(numAnim)`* (_libs_)
 
-Démarre une animation.
-  * *numAnim* (Number): numéro de l'animation à démarrer
+DÃ©marre une animation.
+  * *numAnim* (Number): numÃ©ro de l'animation Ã  dÃ©marrer
 
 *`Void sprite:stopAnimation(numAnimation)`* (_libs_)
 
-Arrête une animation.
-  * *numAnim* (Number) : numéro de l'animation à arrêter
+ArrÃªte une animation.
+  * *numAnim* (Number) : numÃ©ro de l'animation Ã  arrÃªter
 
 *`Boolean sprite:isAnimationAtEnd(numAnim)`* (_libs_)
 
-Renvoie `true` si l'animation a affiché la dernière frame.
-  * *numAnim* (Number): numéro de l'animation
+Renvoie `true` si l'animation a affichÃ© la derniÃ¨re frame.
+  * *numAnim* (Number): numÃ©ro de l'animation
 
 *`Table SpriteAnimation.new(tabAnim, delay)`* (_nds_)
 
-Crée une nouvelle animation de Sprite. Vous ne devez pas l'utiliser, utilisez `sprite:addAnimation()` .
+CrÃ©e une nouvelle animation de Sprite. Vous ne devez pas l'utiliser, utilisez `sprite:addAnimation()` .
   * *tabAnim* (Table): table contenant les frames de l'animations.
   * *delay* (Number): delais entre chaque frames.
 
-=== Déboguage ===
+=== DÃ©boguage ===
 
 *`Void Debug.ON()`* (_libs_)
 
-Active le mode de déboguage.
+Active le mode de dÃ©boguage.
 
 *`Void Debug.OFF()`* (_libs_)
 
-Désactive le mode déboguage.
+DÃ©sactive le mode dÃ©boguage.
 
 *`Void Debug.print(texte)`* (_libs_)
 
-Affiche une ligne de déboguage.
-  * *texte* (String): texte à afficher
+Affiche une ligne de dÃ©boguage.
+  * *texte* (String): texte Ã  afficher
 
 *`Void Debug.clear()`* (_libs_)
 
-Efface la console de déboguage.
+Efface la console de dÃ©boguage.
 
 *`Void Debug.setColor(couleur)`* (_libs_)
 
-Définit la couleur du texte de déboguage.
+DÃ©finit la couleur du texte de dÃ©boguage.
   * *couleur* (Color): couleur du texte
 
-=== Système ===
+=== SystÃ¨me ===
 
 *`String System.currentDirectory()`* (_nds_)
 
-Obtient le répertoire actuel.
+Obtient le rÃ©pertoire actuel.
 
 *`Void System.changeDirectory(chemin)`* (_nds_)
 
-Change le répertoire actuel.
+Change le rÃ©pertoire actuel.
   * *chemin* (String): chemin du dossier
 
 *`Void System.remove(nom)`* (_nds_)
 
-Supprime un fichier ou un répertoire vide.
-  * *nom* (String): nom du fichier ou du dossier à supprimer
+Supprime un fichier ou un rÃ©pertoire vide.
+  * *nom* (String): nom du fichier ou du dossier Ã  supprimer
 
 *`Void System.rename(ancienNom, nouveauNom)`* (_nds_)
 
-Renomme un fichier ou un répertoire vide.
-  * *ancienNom* (String): nom du fichier ou du dossier à renommer
+Renomme un fichier ou un rÃ©pertoire vide.
+  * *ancienNom* (String): nom du fichier ou du dossier Ã  renommer
   * *nouveauNom* (String): nouveau nom du fichier ou du dossier
 
 *`Void System.makeDirectory(nom)`* (_nds_)
 
-Crée un nouveau répertoire.
-  * *nom* (String): chemin d'accès et nom du dossier
+CrÃ©e un nouveau rÃ©pertoire.
+  * *nom* (String): chemin d'accÃ¨s et nom du dossier
 
 *`Table System.listDirectory(chemin)`* (_nds_)
 
-Liste tous les fichiers et répertoires d'un dossier.
-  * *chemin* (String): chemin d'accès du dossier à lister
+Liste tous les fichiers et rÃ©pertoires d'un dossier.
+  * *chemin* (String): chemin d'accÃ¨s du dossier Ã  lister
 
-*NOTE*: Voir les exemples pour plus de détails.
+*NOTE*: Voir les exemples pour plus de dÃ©tails.
 
 *`Number System.CurrentVramUsed()`* (_nds_)
 
-Retourne le total de VRAM utilisée (semble retourner un chiffre bizarre).
+Retourne le total de VRAM utilisÃ©e (semble retourner un chiffre bizarre).
 
 *`Number System.CurrentVramFree()`* (_nds_)
 
@@ -466,43 +466,43 @@ Retourne le total de VRAM libre.
 
 *`Number System.CurrentPalUsed()`* (_nds_)
 
-Retourne le total de 'mémoire palette' utilisée (semble retourner un chiffre bizarre).
+Retourne le total de 'mÃ©moire palette' utilisÃ©e (semble retourner un chiffre bizarre).
 
 *`Number System.CurrentPalFree()`* (_nds_)
 
-Retourne le total de 'mémoire palette' libre.
+Retourne le total de 'mÃ©moire palette' libre.
 
 
 === Polices ===
 
 *`Font Font.load(chemin)`* (_nds_)
 
-Crée une nouvelle police depuis un fichier de police (au format oslib et µLibrairy).
-  * *chemin* (String): chemin d'accès du fichier police à charger
+CrÃ©e une nouvelle police depuis un fichier de police (au format oslib et ÂµLibrairy).
+  * *chemin* (String): chemin d'accÃ¨s du fichier police Ã  charger
 
 *`Number Font.getCharHeight(police)`* (_nds_)
 
-Obtient la hauteur des caractères d'une police.
-  * *police* (Font): police à utiliser
+Obtient la hauteur des caractÃ¨res d'une police.
+  * *police* (Font): police Ã  utiliser
 
 *`Number Font.getStringWidth(police, texte)`* (_nds_)
 
-Obtient la largeur d’un texte avec une police spéciale.
-  * *police* (Font) : police à utiliser
-  * *texte* (String) : texte
+Obtient la largeur dâ€™un texte avec une police spÃ©ciale.
+  * *police* (Font)Â : police Ã  utiliser
+  * *texte* (String)Â : texte
 
 *`Void Font.destroy(police)`* (_nds_)
 
-Libère la mémoire en supprimant la police.
-  * *police* (Font) : police à supprimer de la mémoire.
+LibÃ¨re la mÃ©moire en supprimant la police.
+  * *police* (Font)Â : police Ã  supprimer de la mÃ©moire.
 
 === Cartes ===
 
 *`Map Map.new(image, fichierCarte, longueur, largeur, longueurTuile, largeurTuile)`* (_nds_)
 
-Crée une nouvelle carte à partir d'un fichier carte.
+CrÃ©e une nouvelle carte Ã  partir d'un fichier carte.
   * *image* (Image): image qui contient les tuiles
-  * *fichierCarte* (String): chemin d'accès au fichier carte (`.map`)
+  * *fichierCarte* (String): chemin d'accÃ¨s au fichier carte (`.map`)
   * *longueur* (Number): longueur de la carte en tuile
   * *largeur* (Number): largeur de la carte en tuile
   * *longueurTuile* (Number): longueur d'une tuile en pixel
@@ -510,55 +510,55 @@ Crée une nouvelle carte à partir d'un fichier carte.
 
 *`Void Map.destroy(carte)`* (_nds_)
 
-Détruit une carte.
-  * *carte* (Map): carte à détruire
+DÃ©truit une carte.
+  * *carte* (Map): carte Ã  dÃ©truire
 
 *`Void Map.draw(ecran, carte, x, y, longueur, largeur)`* (_nds_)
 
 Affiche une carte.
-  * *ecran* (Number): écran sur lequel afficher la carte (peut être `SCREEN_UP` ou `SCREEN_DOWN`)
-  * *carte* (Map): carte à afficher
+  * *ecran* (Number): Ã©cran sur lequel afficher la carte (peut Ãªtre `SCREEN_UP` ou `SCREEN_DOWN`)
+  * *carte* (Map): carte Ã  afficher
   * *x* (Number): abscisse du coin haut-gauche de la carte
-  * *y* (Number): ordonnée du coin haut-gauche de la carte
-  * *longueur* (Number): nombre de tuiles à afficher sur la longueur
-  * *largeur* (Number): nombre de tuiles à afficher sur la largeur
+  * *y* (Number): ordonnÃ©e du coin haut-gauche de la carte
+  * *longueur* (Number): nombre de tuiles Ã  afficher sur la longueur
+  * *largeur* (Number): nombre de tuiles Ã  afficher sur la largeur
 
 *`Void Map.scroll(carte, x, y)`* (_nds_)
 
-Fait défiler une carte.
-  * *carte* (Map): carte à faire défiler
-  * *x* (Number): nombre de tuiles à faire défiler sur la longueur
-  * *y* (Number): nombre de tuiles à faire défiler sur la largeur
+Fait dÃ©filer une carte.
+  * *carte* (Map): carte Ã  faire dÃ©filer
+  * *x* (Number): nombre de tuiles Ã  faire dÃ©filer sur la longueur
+  * *y* (Number): nombre de tuiles Ã  faire dÃ©filer sur la largeur
 
 *`Void Map.space(carte, x, y)`* (_nds_)
 
-Définit l'espace entre chaque tuile de la carte.
-  * *carte* (Map): carte à modifier
+DÃ©finit l'espace entre chaque tuile de la carte.
+  * *carte* (Map): carte Ã  modifier
   * *x* (Number): espace sur la longueur entre chaque tuile
   * *y* (Number): espace sur la largeur entre chaque tuile
 
 *`Void Map.setTile(carte, x, y, tuile)`* (_nds_)
 
 Change la valeur d'une tuile.
-  * *carte* (Map): carte à modifier
-  * *x* (Number): numéro de la colonne de la tuile à changer dans la carte
-  * *y* (Number): numéro de la ligne de la tuile à changer dans la carte
+  * *carte* (Map): carte Ã  modifier
+  * *x* (Number): numÃ©ro de la colonne de la tuile Ã  changer dans la carte
+  * *y* (Number): numÃ©ro de la ligne de la tuile Ã  changer dans la carte
   * *tuile* (Number): nouvelle valeur de tuile
 
 *`Number Map.getTile(carte, x ,y)`* (_nds_)
 
 Obtient une valeur de tuile.
   * *carte* (Map): carte qui contient la tuile voulue
-  * *x* (Number): numéro de la colonne de la tuile à obtenir
-  * *y* (Number): numéro de la ligne de la tuile à obtenir
+  * *x* (Number): numÃ©ro de la colonne de la tuile Ã  obtenir
+  * *y* (Number): numÃ©ro de la ligne de la tuile Ã  obtenir
 
-=== Cartes défilantes ===
+=== Cartes dÃ©filantes ===
 
 *`ScrollMap ScrollMap.new(image, fichierCarte, longueur, largeur, longueurTuile, largeurTuile)`* (_nds_)
 
-Crée une nouvelle carte défilante.
+CrÃ©e une nouvelle carte dÃ©filante.
   * *image* (Image): image qui contient les tuiles
-  * *fichierCarte* (String): chemin d'accès du fichier carte (.map)
+  * *fichierCarte* (String): chemin d'accÃ¨s du fichier carte (.map)
   * *longueur* (Number): longueur de la carte en tuile
   * *largeur* (Number): largeur de la carte en tuile
   * *longueurTuile* (Number): longueur d'une tuile en pixel
@@ -566,210 +566,210 @@ Crée une nouvelle carte défilante.
 
 *`Void ScrollMap.destroy(carteDefilante)`* (_nds_)
 
-Détruit une carte défilante.
-  * *carteDéfilante* (ScrollMap): carte défilante à détruire
+DÃ©truit une carte dÃ©filante.
+  * *carteDÃ©filante* (ScrollMap): carte dÃ©filante Ã  dÃ©truire
 
 *`Void ScrollMap.draw(carteDefilante)`* (_nds_)
 
-Affiche une carte défilante.
-  * *carteDéfilante* (ScrollMap): carte défilante à afficher
+Affiche une carte dÃ©filante.
+  * *carteDÃ©filante* (ScrollMap): carte dÃ©filante Ã  afficher
 
 *`Void ScrollMap.scroll(carteDefilante, x, y)`* (_nds_)
 
-Fait défiler une carte défilante.
-  * *carteDefilante* (ScrollMap): carte défilante à faire défiler
-  * *x* (Number): abscisse du coin haut-gauche de la map (peut être négative)
-  * *y* (Number): ordonnée du coin haut-gauche de la map (peut être négative)
+Fait dÃ©filer une carte dÃ©filante.
+  * *carteDefilante* (ScrollMap): carte dÃ©filante Ã  faire dÃ©filer
+  * *x* (Number): abscisse du coin haut-gauche de la map (peut Ãªtre nÃ©gative)
+  * *y* (Number): ordonnÃ©e du coin haut-gauche de la map (peut Ãªtre nÃ©gative)
 
 *`Void ScrollMap.setTile(carteDefilante, x, y, tuile)`* (_nds_)
 
 Change la valeur d'une tuile.
-  * *carteDefilante* (ScrollMap): carte défilante à modifier
-  * *x* (Number): numéro de la colonne de la tuile à changer dans la carte
-  * *y* (Number): numéro de la ligne de la tuile à changer dans la carte
+  * *carteDefilante* (ScrollMap): carte dÃ©filante Ã  modifier
+  * *x* (Number): numÃ©ro de la colonne de la tuile Ã  changer dans la carte
+  * *y* (Number): numÃ©ro de la ligne de la tuile Ã  changer dans la carte
   * *tuile* (Number): nouvelle valeur de tuile
 
 *`Number ScrollMap.getTile(carteDefilante, x ,y)`* (_nds_)
 
 Obtient une valeur de tuile.
-  * *carteDefilante* (ScrollMap): carte défilante qui contient la tuile voulue
-  * *x* (Number): numéro de la colonne de la tuile à obtenir
-  * *y* (Number): numéro de la ligne de la tuile à obtenir
+  * *carteDefilante* (ScrollMap): carte dÃ©filante qui contient la tuile voulue
+  * *x* (Number): numÃ©ro de la colonne de la tuile Ã  obtenir
+  * *y* (Number): numÃ©ro de la ligne de la tuile Ã  obtenir
 
 === Canevas ===
 
 *`Canvas Canvas.new()`* (_nds_)
 
-Crée un nouveau canevas.
+CrÃ©e un nouveau canevas.
 
 *`Void Canvas.destroy(canevas)`* (_nds_)
 
-Détruit un canevas. Doit être suivi de canevas = nil.
-  * *canevas* (Canvas): canevas à détruire
+DÃ©truit un canevas. Doit Ãªtre suivi de canevas = nil.
+  * *canevas* (Canvas): canevas Ã  dÃ©truire
 
 *`CanvasObject Canvas.newLine(x1, y1, x2, y2, couleur)`* (_nds_)
 
-Crée une nouvelle ligne.
-  * *x1*, *y1*, *x2*, *y2* (Number): coordonnées de la ligne
+CrÃ©e une nouvelle ligne.
+  * *x1*, *y1*, *x2*, *y2* (Number): coordonnÃ©es de la ligne
   * *couleur* (Color): couleur de la ligne
 
 *`CanvasObject Canvas.newPoint(x1, y1, couleur)`* (_nds_)
 
-Crée un nouveau point.
-  * *x1*, *y1* (Number): coordonnées du point
+CrÃ©e un nouveau point.
+  * *x1*, *y1* (Number): coordonnÃ©es du point
   * *couleur* (Color): couleur du point
 
 *`CanvasObject Canvas.newRect(x1, y1, x2, y2, couleur)`* (_nds_)
 
-Crée un nouveau rectangle.
-  * *x1*, *y1*, *x2*, *y2* (Number): coordonnées du rectangle
+CrÃ©e un nouveau rectangle.
+  * *x1*, *y1*, *x2*, *y2* (Number): coordonnÃ©es du rectangle
   * *couleur* (Color): couleur du rectangle
 
 *`CanvasObject Canvas.newFillRect(x1, y1, x2, y2, couleur)`* (_nds_)
 
-Crée un nouveau rectangle plein.
-  * *x1*, *y1*, *x2*, *y2* (Number): coordonnées du rectangle
+CrÃ©e un nouveau rectangle plein.
+  * *x1*, *y1*, *x2*, *y2* (Number): coordonnÃ©es du rectangle
   * *couleur* (Color): couleur du rectangle
 
 *`CanvasObject Canvas.newGradientRect(x1, y1, x2, y2, couleur1, couleur2, couleur3, couleur4)`* (_nds_)
 
-Crée un nouveau rectangle dégradé.
-  * *x1*, *y1*, *x2*, *y2* (Number): coordonnées du rectangle
+CrÃ©e un nouveau rectangle dÃ©gradÃ©.
+  * *x1*, *y1*, *x2*, *y2* (Number): coordonnÃ©es du rectangle
   * *couleur1*, *couleur2*, *couleur3*, *couleur4* (Color): couleurs du rectangle
 
 *`CanvasObject Canvas.newText(x, y, texte [, couleur])`* (_nds_)
 
-Crée un nouveau texte.
-  * *x* (Nombre) : abscisse du coin haut-gauche du texte
-  * *y* (Nombre) : ordonnée du coin haut-gauche du texte
+CrÃ©e un nouveau texte.
+  * *x* (Nombre)Â : abscisse du coin haut-gauche du texte
+  * *y* (Nombre)Â : ordonnÃ©e du coin haut-gauche du texte
   * *texte* (String): texte
   * *couleur* (Color): couleur du texte
 
 *`CanvasObject Canvas.newTextFont(x, y, texte, couleur, police)`* (_nds_)
 
-Crée un nouveau texte avec une police spéciale.
-  * *x* (Nombre) : abscisse du coin haut-gauche du texte
-  * *y* (Nombre) : ordonnée du coin haut-gauche du texte
+CrÃ©e un nouveau texte avec une police spÃ©ciale.
+  * *x* (Nombre)Â : abscisse du coin haut-gauche du texte
+  * *y* (Nombre)Â : ordonnÃ©e du coin haut-gauche du texte
   * *texte* (String): texte
   * *couleur* (Color): couleur du texte
-  * *police* (Font): police spéciale du texte
+  * *police* (Font): police spÃ©ciale du texte
 
 *`CanvasObject Canvas.newTextBox(x1, y1, x2 , y2, texte [, couleur])`* (_nds_)
 
-Crée une nouvelle zone de texte.
-  * *x1*, *y1*, x1, y2 (Number): coordonnées de la zone de texte
+CrÃ©e une nouvelle zone de texte.
+  * *x1*, *y1*, x1, y2 (Number): coordonnÃ©es de la zone de texte
   * *texte* (String): texte de la zone de texte
   * *couleur* (Color): couleur de la zone de texte
 
 *`CanvasObject Canvas.newImage(x1, y1, image [, x2, y2][, x3, y3])`* (_nds_)
 
-Crée une nouvelle image.
-  * *x1*, *y1* (Number): coordonnées du coin haut-gauche de l’image
+CrÃ©e une nouvelle image.
+  * *x1*, *y1* (Number): coordonnÃ©es du coin haut-gauche de lâ€™image
   * *image* (Image): image
-  * *x2*, *y2* (Number): coordonnées du coin haut-gauche du rectangle à prendre dans l'image source
-  * *x3*, *y3* (Number): longueur et largeur du rectangle à prendre dans l’image source
+  * *x2*, *y2* (Number): coordonnÃ©es du coin haut-gauche du rectangle Ã  prendre dans l'image source
+  * *x3*, *y3* (Number): longueur et largeur du rectangle Ã  prendre dans lâ€™image source
 
 *`Void Canvas.add(canevas, objet)`* (_nds_)
 
 Ajoute un CanvasObject dans un canevas.
-  * *canevas* (Canvas): canevas à modifier
-  * *objet* (CanvasObject): objet à ajouter
+  * *canevas* (Canvas): canevas Ã  modifier
+  * *objet* (CanvasObject): objet Ã  ajouter
 
 *`Void Canvas.draw(ecran, canevas, x, y,)`* (_nds_)
 
-Affiche un canevas à l'écran.
-  * *ecran* (Number): écran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
-  * *canevas* (Canvas): canevas à afficher
+Affiche un canevas Ã  l'Ã©cran.
+  * *ecran* (Number): Ã©cran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
+  * *canevas* (Canvas): canevas Ã  afficher
   * *x* (Number): abscisse du coin haut-gauche de l'image
-  * *y* (Number): ordonnée du coin haut-gauche de l'image
+  * *y* (Number): ordonnÃ©e du coin haut-gauche de l'image
 
 *`Void Canvas.setAttr(objet, nomAttr, valeurAttr)`* (_nds_)
 
-Définit la valeur d'un attribut d'un CanvasObject.
-  * *objet* (CanvasObject): objet à modifier
-  * *nomAttr* (Constant): attribut à modifier. Doit être soir la forme ATTR_XXX. Voir « Quelques variables utiles » pour de plus amples informations.
-  * *valeurAttr* (?): nouvelle valeur de l'attribut. Le type doit être le même que celui de l'attribut.
+DÃ©finit la valeur d'un attribut d'un CanvasObject.
+  * *objet* (CanvasObject): objet Ã  modifier
+  * *nomAttr* (Constant): attribut Ã  modifier. Doit Ãªtre soir la forme ATTR_XXX. Voir Â«Â Quelques variables utilesÂ Â» pour de plus amples informations.
+  * *valeurAttr* (?): nouvelle valeur de l'attribut. Le type doit Ãªtre le mÃªme que celui de l'attribut.
 
 *`? Canvas.getAttr(objet, nomAttr)`* (_nds_)
 
-Obtient la valeur d'un attribut. Le type de retour dépend de l'attribut demandé.
-  * *objet* (CanvasObject): objet à utiliser
-  * *nomAttr* (Constant | Nombre): attribut dont la valeur est demandée. Doit être sous la forme ATTR_XXX. Voir « Quelques variables utiles » pour de plus amples informations
+Obtient la valeur d'un attribut. Le type de retour dÃ©pend de l'attribut demandÃ©.
+  * *objet* (CanvasObject): objet Ã  utiliser
+  * *nomAttr* (Constant | Nombre): attribut dont la valeur est demandÃ©e. Doit Ãªtre sous la forme ATTR_XXX. Voir Â«Â Quelques variables utilesÂ Â» pour de plus amples informations
   
 *`Void Canvas.setObjOnTop(canvas, object)`* (_nds_)
 
 Fait passer un objet d'un canevas au premier plan.
   * *canvas* (Canvas) : Canevas dans lequel on travail.
-  * *object* (CanvasObject) : Objet que l'on désire faire passer au premier plan.
+  * *object* (CanvasObject) : Objet que l'on dÃ©sire faire passer au premier plan.
   
 *`Void Canvas.removeObj(canvas, object)`* (_nds_)
 
 Suppression d'un objet dans un canevas.
   * *canvas* (Canvas) : Canevas dans lequel on veut supprimer l'objet.
-  * *object* (CanvasObject) : Objet que l'on désire supprimer.
+  * *object* (CanvasObject) : Objet que l'on dÃ©sire supprimer.
 
 === Rumble ===
 
 *`Boolean Rumble.isInserted()`* (_nds_)
 
-Vérifie qu’un pack rumble (vibration) soit inséré.
+VÃ©rifie quâ€™un pack rumble (vibration) soit insÃ©rÃ©.
 
 *`Void Rumble.set(statut)`* (_nds_)
 
-Définit le statut du rumble.
-  * *statut* (Boolean) : statut du rumble (`true` : marche ; `false` : arrêt)
+DÃ©finit le statut du rumble.
+  * *statut* (Boolean)Â : statut du rumble (`true`Â : marcheÂ ; `false`Â : arrÃªt)
 
-=== Motion (détection de mouvement) ===
+=== Motion (dÃ©tection de mouvement) ===
 
 *`Boolean Motion.init()`* (_nds_)
 
-Initialise le système Motion si un périphérique Motion est détecté. Renvoie `true` si un périphérique Motion est détecté.
+Initialise le systÃ¨me Motion si un pÃ©riphÃ©rique Motion est dÃ©tectÃ©. Renvoie `true` si un pÃ©riphÃ©rique Motion est dÃ©tectÃ©.
 
 *`Void Motion.calibrate()`* (_nds_)
 
-Effectue le calibrage du système Motion.
+Effectue le calibrage du systÃ¨me Motion.
 
 *`Number Motion.readX()`* (_nds_)
 
-Renvoie l’inclinaison X du système Motion.
+Renvoie lâ€™inclinaison X du systÃ¨me Motion.
 
 *`Number Motion.readY()`* (_nds_)
 
-Renvoie l’inclinaison Y du système Motion.
+Renvoie lâ€™inclinaison Y du systÃ¨me Motion.
 
 *`Number Motion.readZ()`* (_nds_)
 
-Renvoie l’inclinaison Z du système Motion.
+Renvoie lâ€™inclinaison Z du systÃ¨me Motion.
 
 *`Number Motion.accelerationX()`* (_nds_)
 
-Retourne l’accélération X du système Motion.
+Retourne lâ€™accÃ©lÃ©ration X du systÃ¨me Motion.
 
 *`Number Motion.accelerationY()`* (_nds_)
 
-Retourne l’accélération Y du système Motion.
+Retourne lâ€™accÃ©lÃ©ration Y du systÃ¨me Motion.
 
 *`Number Motion.accelerationZ()`* (_nds_)
 
-Retourne l’accélération Z du système Motion.
+Retourne lâ€™accÃ©lÃ©ration Z du systÃ¨me Motion.
 
 *`Number Motion.readGyro()`* (_nds_)
 
-Retourne la valeur de gyro du système Motion.
+Retourne la valeur de gyro du systÃ¨me Motion.
 
 *`Number Motion.rotation()`* (_nds_)
 
-Retourne la valeur de rotation du système Motion.
+Retourne la valeur de rotation du systÃ¨me Motion.
 
 === Date et heure ===
 
 *`DateTime DateTime.new()`* (_libs_)
 
-Crée un nouvel objet DateTime.
+CrÃ©e un nouvel objet DateTime.
 
 *`DateTime DateTime.getCurrentTime()`* (_libs_)
 
-Crée un nouvel objet DateTime avec l’heure et la date courantes.
+CrÃ©e un nouvel objet DateTime avec lâ€™heure et la date courantes.
 
 *Attributs* (Numbers) :
   * *`year`* : an
@@ -779,39 +779,39 @@ Crée un nouvel objet DateTime avec l’heure et la date courantes.
   * *`minute`* : minute
   * *`second`* : seconde
 
-*NOTE*: Voir les exemples pour plus de détails.
+*NOTE*: Voir les exemples pour plus de dÃ©tails.
 
 === Wifi ===
 
 *`Void Wifi.connectWFC()`* (_nds_)
 
-Connecte la DS à la connexion Wifi. Utilise la configuration du firmware. Par conséquent, vous devez configurer votre connexion avec un jeu DS officiel.
+Connecte la DS Ã  la connexion Wifi. Utilise la configuration du firmware. Par consÃ©quent, vous devez configurer votre connexion avec un jeu DS officiel.
 
 *`Void Wifi.initDefault()`* (_nds_)
 
-Initialise le wifi de la DS. Doit être fait avant toute autre fonction Wifi. Ne pas utiliser avec la fonction Wifi.connectWFC().
+Initialise le wifi de la DS. Doit Ãªtre fait avant toute autre fonction Wifi. Ne pas utiliser avec la fonction Wifi.connectWFC().
 
 *`Void Wifi.autoConnectWFC()`* (_nds_)
 
-Identique à la fonction Wifi.connectWFC() mais s'éxécute après un Wifi.initDefault().
+Identique Ã  la fonction Wifi.connectWFC() mais s'Ã©xÃ©cute aprÃ¨s un Wifi.initDefault().
 
 *`Void Wifi.scanAP()`* (_nds_)
 
-Passe le wifi de la DS en mode detection d'Access Point (Point d'acces tel que Livebox, Freebox, Neufbox...). Une fois lancé, la DS recherche tout le temps mais n'empéche pas de faire autre chôse comme une connection ou autre.
+Passe le wifi de la DS en mode detection d'Access Point (Point d'acces tel que Livebox, Freebox, Neufbox...). Une fois lancÃ©, la DS recherche tout le temps mais n'empÃ©che pas de faire autre chÃ´se comme une connection ou autre.
 
 *`Number Wifi.getNumAP()`* (_nds_)
 
-Retourne le nombre d'AP trouvée suite à un Wifi.scanAP(). La recherche peut être longue.
+Retourne le nombre d'AP trouvÃ©e suite Ã  un Wifi.scanAP(). La recherche peut Ãªtre longue.
 
 *`Tableau Wifi.newAP()`* (_nds_)
 
-Retourne un tableau vide regroupant le squelette des données d'un Point d'Acces (AP, pour `Access Point`).
+Retourne un tableau vide regroupant le squelette des donnÃ©es d'un Point d'Acces (AP, pour `Access Point`).
 
 *Attributs* :
-  * *`ssid`* (String) : nom du réseau fourni par l'AP
+  * *`ssid`* (String) : nom du rÃ©seau fourni par l'AP
   * *`bssid`* (String) :
   * *`macaddr`* (String) : adresse Mac de l'AP.
-  * *`channel`* (Number) : numéro de canal du réseau.
+  * *`channel`* (Number) : numÃ©ro de canal du rÃ©seau.
   * *`rssi`* (Number) : force du signal.
   * *`maxrate`* (Number) : vitesse maximum de communication (1M ou 2M)
   * *`protection`* (String) : indique la protection du Wifi (NONE, WEP, WPA)
@@ -820,30 +820,30 @@ Retourne un tableau vide regroupant le squelette des données d'un Point d'Acces 
 
 *`Tableau Wifi.getAP(numap)`* (_nds_) 
 
-Retourne le tableau regroupant les données de l'AP de numéro `numap` trouvé par la fonction `Wifi.scanAP()`.
-  * *numap* (Number) : numéro de l'AP désiré.
+Retourne le tableau regroupant les donnÃ©es de l'AP de numÃ©ro `numap` trouvÃ© par la fonction `Wifi.scanAP()`.
+  * *numap* (Number) : numÃ©ro de l'AP dÃ©sirÃ©.
 
 *`Number Wifi.connectAP(numap, numkey, key)`* (_nds_)
 
-Lance une demande d'association à l'AP de numéro `numap` en utilisant le numéro de clef  `numkey` et la clef `key`.
-Si l'association se fait à un point d'accès non protégé, mettre 1 en `numkey` et une chaine vide ("") en `key`.
-`numkey` va de 1 à 4. C'est généralement la première clef qui est utilisée.
-Retourne -1 si l'association est refusée.
-  * *numap* (Number) : numéro de l'AP souhaité.
-  * *numkey* (Number) : numéro de la clef utilisée.
+Lance une demande d'association Ã  l'AP de numÃ©ro `numap` en utilisant le numÃ©ro de clef  `numkey` et la clef `key`.
+Si l'association se fait Ã  un point d'accÃ¨s non protÃ©gÃ©, mettre 1 en `numkey` et une chaine vide ("") en `key`.
+`numkey` va de 1 Ã  4. C'est gÃ©nÃ©ralement la premiÃ¨re clef qui est utilisÃ©e.
+Retourne -1 si l'association est refusÃ©e.
+  * *numap* (Number) : numÃ©ro de l'AP souhaitÃ©.
+  * *numkey* (Number) : numÃ©ro de la clef utilisÃ©e.
   * *key* (String) : clef WEP.
 
 *`Void Wifi.disconnect()`* (_nds_)
 
-Déconnecte la DS de la connexion Wifi.
+DÃ©connecte la DS de la connexion Wifi.
 
 *`Void Wifi.stop()`* (_nds_)
 
-Désengage le Wifi pour une économie de baterrie.
+DÃ©sengage le Wifi pour une Ã©conomie de baterrie.
 
 *`String Wifi.getLocalConf(choix)`* (_nds_)
 
-Retourne les données souhaitées en fonction du choix.
+Retourne les donnÃ©es souhaitÃ©es en fonction du choix.
   * *choix* (Number) : 
     * *1* Retourne l'adresse IP de la DS
     * *2* Retourne le GateWay de la DS
@@ -854,13 +854,13 @@ Retourne les données souhaitées en fonction du choix.
 
 *`Void Wifi.resetIP()`* (_nds_)
 
-Réinitialise les données IP, GateWay, SubnetMask et DNS de la DS.
-Si exécuté avant une association, la DS interroge le serveur DHCP pour récupérer ces données.
+RÃ©initialise les donnÃ©es IP, GateWay, SubnetMask et DNS de la DS.
+Si exÃ©cutÃ© avant une association, la DS interroge le serveur DHCP pour rÃ©cupÃ©rer ces donnÃ©es.
 
 *`Void Wifi.setLocalIp(ip, gateway[, subnetmask[, dns1[, dns2]]])`* (_nds_)
 
-Assigne l'adresse IP, le gateWay, le subnetMask et les DNS à la DS. Les chaine de caractères doivent être de la forme "N1.N2.N3.N4" où Nx est un entier allant de 0 à 255.
-  * *ip* (String) : adresse IP demandé.
+Assigne l'adresse IP, le gateWay, le subnetMask et les DNS Ã  la DS. Les chaine de caractÃ¨res doivent Ãªtre de la forme "N1.N2.N3.N4" oÃ¹ Nx est un entier allant de 0 Ã  255.
+  * *ip* (String) : adresse IP demandÃ©.
   * *gateway* (String) : adresse du gateWay.
   * *subnetmask* (String) : le SubnetMask.
   * *dns1* (String) : adresse du DNS principal.
@@ -868,37 +868,37 @@ Assigne l'adresse IP, le gateWay, le subnetMask et les DNS à la DS. Les chaine d
 
 *`Socket Wifi.createTCPSocket(hote, port)`* (_nds_)
 
-Crée un socket TCP vers un serveur.
-  * *hote* (String) : nom de domaine ou adresse IP du serveur
-  * *port* (Number) : port à utiliser
+CrÃ©e un socket TCP vers un serveur.
+  * *hote* (String)Â : nom de domaine ou adresse IP du serveur
+  * *port* (Number)Â : port Ã  utiliser
 
 *`Socket Wifi.createUDPSocket(hote, port)`* (_nds_)
 
-Crée un socket UDP vers un serveur.
-  * *hote* (String) : nom de domaine ou adresse IP du serveur
-  * *port* (Number) : port à utiliser
+CrÃ©e un socket UDP vers un serveur.
+  * *hote* (String)Â : nom de domaine ou adresse IP du serveur
+  * *port* (Number)Â : port Ã  utiliser
 
 *`Void Wifi.closeSocket(socket)`* (_nds_)
 
 Ferme un socket (TCP comme UDP).
-  * *socket* (Socket) : socket à fermer
+  * *socket* (Socket)Â : socket Ã  fermer
 
 *`Void Wifi.send(socket, donnees)`* (_nds_)
 
-Envoie des données à un serveur en passant par un socket.
-  * *socket* (Socket) : socket à utiliser
-  * *donnees* (String) : données à envoyer
+Envoie des donnÃ©es Ã  un serveur en passant par un socket.
+  * *socket* (Socket)Â : socket Ã  utiliser
+  * *donnees* (String)Â : donnÃ©es Ã  envoyer
   
 *`Number Wifi.checkData(socket)`* (_nds_)
 
-Vérifie si des données sont en attente dans le buffer du Wifi et retourne le nombre de caractères contenuent dans celui-ci.
-  * *socket* (Socket) : socket à vérifié.
+VÃ©rifie si des donnÃ©es sont en attente dans le buffer du Wifi et retourne le nombre de caractÃ¨res contenuent dans celui-ci.
+  * *socket* (Socket) : socket Ã  vÃ©rifiÃ©.
 
 *`String Wifi.receive(socket, longueur)`* (_nds_)
 
-Reçoit des données depuis un serveur en passant par un socket.
-  * *socket* (Socket) : socket à utiliser
-  * *longueur* (Number) : taille des données à recevoir
+ReÃ§oit des donnÃ©es depuis un serveur en passant par un socket.
+  * *socket* (Socket)Â : socket Ã  utiliser
+  * *longueur* (Number)Â : taille des donnÃ©es Ã  recevoir
 
 === Sons ===
 
@@ -906,30 +906,30 @@ Reçoit des données depuis un serveur en passant par un socket.
 
 *`Void Sound.loadBank(nomFichier)`* (_nds_)
 
-Charge une banque de son depuis un fichier en mémoire.
-  * *nomFichier* (String) : chemin du fichier à charger
+Charge une banque de son depuis un fichier en mÃ©moire.
+  * *nomFichier* (String)Â : chemin du fichier Ã  charger
 
 *`Void Sound.unloadBank()`* (_nds_)
 
-Décharge la banque de son de la mémoire.
+DÃ©charge la banque de son de la mÃ©moire.
 
 ==== Mods ====
 
 *`Void Sound.loadMod(index)`* (_nds_)
 
-Charge un module en mémoire.
-  * *index* (Number) : index du module à charger
+Charge un module en mÃ©moire.
+  * *index* (Number)Â : index du module Ã  charger
 
 *`Void Sound.unloadMod(index)`* (_nds_)
 
-Décharge un module de la mémoire.
-  * *index* (Number) : index du module à décharger
+DÃ©charge un module de la mÃ©moire.
+  * *index* (Number)Â : index du module Ã  dÃ©charger
 
 *`Void Sound.startMod(index, modeLecture)`* (_nds_)
 
-Lance la lecture d’un module déjà chargé en mémoire.
-  * *index* (Number) : index du module à jouer
-  * *modeLecture* (Number) : mode de lecture (peut être `PLAY_ONCE` – jouer une fois – ou `PLAY_LOOP` – jouer en boucle)
+Lance la lecture dâ€™un module dÃ©jÃ  chargÃ© en mÃ©moire.
+  * *index* (Number)Â : index du module Ã  jouer
+  * *modeLecture* (Number)Â : mode de lecture (peut Ãªtre `PLAY_ONCE` â€“ jouer une fois â€“ ou `PLAY_LOOP` â€“ jouer en boucle)
 
 *`Void Sound.pause()`* (_nds_)
 
@@ -941,13 +941,13 @@ Relance la lecture de tous les modules.
 
 *`Void Sound.stop()`* (_nds_)
 
-Arrête la lecture de tous les modules.
+ArrÃªte la lecture de tous les modules.
 
 *`Void Sound.setPosition(index, position)`* (_nds_)
 
-Définit la position du curseur de lecture dans un module.
-  * *index* (Number) : index du module
-  * *position* (Number) : nouvelle position du curseur
+DÃ©finit la position du curseur de lecture dans un module.
+  * *index* (Number)Â : index du module
+  * *position* (Number)Â : nouvelle position du curseur
 
 *`Boolean Sound.isActive()`* (_nds_)
 
@@ -955,95 +955,95 @@ Retourne `true` si le lecteur est actif, sinon retourne `false`.
 
 *`Void Sound.startJingle(index)`* (_nds_)
 
-Lance la lecture d’un module comme un jingle.
-  * *index* (Number) : index du volume à jouer
+Lance la lecture dâ€™un module comme un jingle.
+  * *index* (Number)Â : index du volume Ã  jouer
 
 *`Void Sound.setModVolume(volume)`* (_nds_)
 
-Définit le volume du module joué.
-  * *volume* (Number) : nouvelle valeur du volume, comprise entre 0 et 1024
+DÃ©finit le volume du module jouÃ©.
+  * *volume* (Number)Â : nouvelle valeur du volume, comprise entre 0 et 1024
 
 *`Void Sound.setJingleVolume(volume)`* (_nds_)
 
-Définit le volume du jingle joué.
-  * *volume* (Number) : nouvelle valeur du volume, comprise entre 0 et 1024
+DÃ©finit le volume du jingle jouÃ©.
+  * *volume* (Number)Â : nouvelle valeur du volume, comprise entre 0 et 1024
 
 *`Void Sound.setModTempo(tempo)`* (_nds_)
 
-Définit le tempo du lecteur de module.
-  * *tempo* (Number) : nouvelle valeur du tempo, comprise entre 512 et 2048
+DÃ©finit le tempo du lecteur de module.
+  * *tempo* (Number)Â : nouvelle valeur du tempo, comprise entre 512 et 2048
 
 *`Void Sound.setModPitch(ton)`* (_nds_)
 
-Définit le ton du lecteur de module.
-  * *ton* (Number) : nouvelle valeur du ton
-  * *SFX* (effets sonores) :
+DÃ©finit le ton du lecteur de module.
+  * *ton* (Number)Â : nouvelle valeur du ton
+  * *SFX* (effets sonores)Â :
 
 *`Void Sound.loadSFX(index)`* (_nds_)
 
-Charge un SFX dans la mémoire.
-  * *index* (Number) : index du SFX à charger
+Charge un SFX dans la mÃ©moire.
+  * *index* (Number)Â : index du SFX Ã  charger
 
 *`Void Sound.unloadSFX(index)`* (_nds_)
 
-Décharge un SFX de la mémoire.
-  * *index* (Number) : index du SFX à décharger
+DÃ©charge un SFX de la mÃ©moire.
+  * *index* (Number)Â : index du SFX Ã  dÃ©charger
 
 *`Handle Sound.startSFX(index)`* (_nds_)
 
-Démarre un effet sonore déjà chargé en mémoire. Retourne un handle de cet SFX.
-  * *index* (Number) : index du SFX à lire
+DÃ©marre un effet sonore dÃ©jÃ  chargÃ© en mÃ©moire. Retourne un handle de cet SFX.
+  * *index* (Number)Â : index du SFX Ã  lire
 
 *`Void Sound.stopSFX(handle)`* (_nds_)
 
-Arrête un SFX joué.
-  * *handle* (Handle) : handle d’un SFX, retourné par la fonction startSFX
+ArrÃªte un SFX jouÃ©.
+  * *handle* (Handle)Â : handle dâ€™un SFX, retournÃ© par la fonction startSFX
 
 *`Void Sound.releaseSFX(handle)`* (_nds_)
 
-Marque un effet en priorité faible.
-  * *handle* (Handle) : handle d’un SFX, retourné par la fonction startSFX
+Marque un effet en prioritÃ© faible.
+  * *handle* (Handle)Â : handle dâ€™un SFX, retournÃ© par la fonction startSFX
 
 *`Void Sound.stopAllSFX()`* (_nds_)
 
-Arrête tous les SFX joués.
+ArrÃªte tous les SFX jouÃ©s.
 
 *`Void Sound.setSFXVolume(handle, volume)`* (_nds_)
 
-Définit le volume d’un SFX joué.
-  * *handle* (Handle) : handle d’un SFX, retourné par la fonction startSFX
-  * *volume* (Number) : nouvelle valeur du volume, comprise entre 0 et 255 (différente de celle des mods)
+DÃ©finit le volume dâ€™un SFX jouÃ©.
+  * *handle* (Handle)Â : handle dâ€™un SFX, retournÃ© par la fonction startSFX
+  * *volume* (Number)Â : nouvelle valeur du volume, comprise entre 0 et 255 (diffÃ©rente de celle des mods)
 
 *`Void Sound.setSFXPanning(handle, balance)`* (_nds_)
 
-Définit la balance d’un SFX joué.
-  * *handle* (Handle) : handle d’un SFX, retourné par la fonction startSFX
-  * *balance* (Number) : nouvelle valeur de la balance, comprise entre 0 (gauche) et 255 (droite)
+DÃ©finit la balance dâ€™un SFX jouÃ©.
+  * *handle* (Handle)Â : handle dâ€™un SFX, retournÃ© par la fonction startSFX
+  * *balance* (Number)Â : nouvelle valeur de la balance, comprise entre 0 (gauche) et 255 (droite)
 
 *`Void Sound.setSFXPitch(handle, ton)`* (_nds_)
 
-Définit le ton d’un SFX joué.
-  * *handle* (Handle) : handle d’un SFX, retourné par la fonction startSFX
-  * *ton* : nouvelle valeur du ton
+DÃ©finit le ton dâ€™un SFX jouÃ©.
+  * *handle* (Handle)Â : handle dâ€™un SFX, retournÃ© par la fonction startSFX
+  * *ton*Â : nouvelle valeur du ton
 
 *`Void Sound.setSFXScalePitch(handle, gamme)`* (_nds_)
 
-Définit la gamme de ton d’un SFX joué.
-  * *handle* (Handle) : handle d’un SFX, retourné par la fonction startSFX
-  * *gamme* (Number) : nouvelle valeur de gamme du ton
+DÃ©finit la gamme de ton dâ€™un SFX jouÃ©.
+  * *handle* (Handle)Â : handle dâ€™un SFX, retournÃ© par la fonction startSFX
+  * *gamme* (Number)Â : nouvelle valeur de gamme du ton
 
 === Fichiers INI ===
 
 *`Table INI.load(nomFichier)`* (_libs_)
 
-Charge un fichier INI et crée une table avec son contenu.
-  * *nomFichier* (String): fichier à charger
+Charge un fichier INI et crÃ©e une table avec son contenu.
+  * *nomFichier* (String): fichier Ã  charger
 
 *`Void INI.save(nomFichier, table)`* (_libs_)
 
 Sauvegarde une table dans un fichier INI.
-  * *nomFichier* (String): fichier dans lequel la table sera sauvegardée
-  * *table* (Table): table à sauvegarder
+  * *nomFichier* (String): fichier dans lequel la table sera sauvegardÃ©e
+  * *table* (Table): table Ã  sauvegarder
 
 *Exemple :*
 
@@ -1060,8 +1060,8 @@ INI.save('monFichier.ini', tab)
 }}}
 Cet exemple change la ligne `nom=toto` en `nom=tata`.
 
-Les tables de données des fichiers INI ne peuvent contenir que des Strings !
-Si vous voulez sauvegarder des nombres, vous devez d'abord les convertir en String grâce à `tostring()`.
+Les tables de donnÃ©es des fichiers INI ne peuvent contenir que des Strings !
+Si vous voulez sauvegarder des nombres, vous devez d'abord les convertir en String grÃ¢ce Ã  `tostring()`.
 
 === Informations Utilisateurs ===
 
@@ -1071,7 +1071,7 @@ Ces fonctions ne sont pas vraiment utiles mais les variables ci-dessous les util
 
 *`Number dsUser.getColor()`* (_nds_)
 
-Retourne la couleur du théme choisie, entre 0 et 15.
+Retourne la couleur du thÃ©me choisie, entre 0 et 15.
 
 *`Number dsUser.getBirthDay()`* (_nds_)
 
@@ -1111,21 +1111,21 @@ Retourne le language choisi, entre 0 et 5.
 
 *`Boolean dsUser.getGBAScreen()`* (_nds_)
 
-Retourne l'écran choisi pour le mode GBA (`true` pour l'écran du haut, et `false` pour celui du bas).
+Retourne l'Ã©cran choisi pour le mode GBA (`true` pour l'Ã©cran du haut, et `false` pour celui du bas).
 
 *`Number dsUser.getDefaultBrightness()`* (_nds_)
 
-Retourne la luminositée par defaut (entre 0 et 3 à partir de la DSLite)
+Retourne la luminositÃ©e par defaut (entre 0 et 3 Ã  partir de la DSLite)
 
 *`Boolean dsUser.getAutoMode()`* (_nds_)
 
-Retourne la configuration de l'auto démarrage (`true si activé et `false` si désactivé).
+Retourne la configuration de l'auto dÃ©marrage (`true si activÃ© et `false` si dÃ©sactivÃ©).
 
 ==== Variables ====
 
-Elles sont définies dans _nds_.
+Elles sont dÃ©finies dans _nds_.
 
-*`(Number) dsUser.color`*: donne la couleur du théme, entre 0 et 15.
+*`(Number) dsUser.color`*: donne la couleur du thÃ©me, entre 0 et 15.
 
 *`(Number) dsUser.birthDay`*: donne le jour d'anniversaire.
 
@@ -1145,8 +1145,8 @@ Elles sont définies dans _nds_.
 
 *`(Number) dsUser.language`*: donne la langue de l'utilisateur, entre 0 et 5.
 
-*`(Boolean) dsUser.GBAScreen`*: donne l'écran choisi pour le mode GBA (`true` pour l'écran du haut, `false` pour l'écran du bas).
+*`(Boolean) dsUser.GBAScreen`*: donne l'Ã©cran choisi pour le mode GBA (`true` pour l'Ã©cran du haut, `false` pour l'Ã©cran du bas).
 
-*`(Number) dsUser.defaultBrightness`*: donne la luminausité par défaut (entre 0 et 3 pour une NDSl ou une NDSi).
+*`(Number) dsUser.defaultBrightness`*: donne la luminausitÃ© par dÃ©faut (entre 0 et 3 pour une NDSl ou une NDSi).
 
-*`(Boolean) dsUser.getAutoMode`*: donne l'état du démarrage automatique (`true` si activé, et `false` si désactivé).
+*`(Boolean) dsUser.getAutoMode`*: donne l'Ã©tat du dÃ©marrage automatique (`true` si activÃ©, et `false` si dÃ©sactivÃ©).

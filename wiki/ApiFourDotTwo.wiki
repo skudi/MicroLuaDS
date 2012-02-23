@@ -19,7 +19,7 @@ The variables or functions that you will find here may be defined in the Lua lib
   * *`ALPHA_RESET`* (_nds_): blending coefficient value to reset alpha transparency. Is equal to 100.
   * *`PLAY_LOOP`*, *`PLAY_ONCE`* (_nds_): arguments to play mods respectively loop and once.
   * Path constants (some of them are made up from precedent ones) (_nds_):
-   * *`ULUA_DIR`*: _/lua/_ (main directory of µLua)
+   * *`ULUA_DIR`*: _/lua/_ (main directory of ¬µLua)
    * *`ULUA_SCRIPTS`*: _ULUA_DIR scripts/_ (default folder for scripts)
    * *`ULUA_LIBS`*: _ULUA_DIR libs/_ (default folder for libraries)
    * *`ULUA_BOOT_FILE`*: _boot.lua_ (first loaded file)
@@ -458,7 +458,7 @@ Give the current amount of free palette memory.
 
 *`Font Font.load(path)`* (_nds_)
 
-Create a new font from a font file (oslib and µLibrary format).
+Create a new font from a font file (oslib and ¬µLibrary format).
   * *path* (String): path of the file to load
 
 *`Void Font.destroy(font)`* (_nds_)
@@ -671,14 +671,14 @@ Draw a canvas to the screen.
 
 Set an attribute value.
   * *object* (CanvasObject): object to modify
-  * *attName* (Constant): attribute to modify. Must be ATTR_XXX. See ìsome useful variablesî for more details
+  * *attName* (Constant): attribute to modify. Must be ATTR_XXX. See ‚Äúsome useful variables‚Äù for more details
   * *attrValue* (?): new value for the attribute. Must be the good type
 
 *`? Canvas.getAttr(object, attrName)`* (_nds_)
 
 Get an attribute value. Return type depends of the attribute (number, font or image).
   * *object* (CanvasObject): object to use
-  * *attName* (Constant | Number): attribute to get value. Must be ATTR_XXX. See ìsome useful variablesî for more details
+  * *attName* (Constant | Number): attribute to get value. Must be ATTR_XXX. See ‚Äúsome useful variables‚Äù for more details
   
 *`Void Canvas.setObjOnTop(canvas, object)`* (_nds_)
 
@@ -1036,9 +1036,9 @@ name=toto
 age=25
 }}}
 {{{
-tab = INI.load(ìmyfile.iniî)
-tab[ìinfosî][ìnameî] = ìtataî
-INI.save(ìmyfile.iniî, tab)
+tab = INI.load(‚Äúmyfile.ini‚Äù)
+tab[‚Äúinfos‚Äù][‚Äúname‚Äù] = ‚Äútata‚Äù
+INI.save(‚Äúmyfile.ini‚Äù, tab)
 }}}
 This exemple changes the line `name=toto` into `name=tata`.
 
