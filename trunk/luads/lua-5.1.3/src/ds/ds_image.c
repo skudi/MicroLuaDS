@@ -58,11 +58,11 @@ static int image_load(lua_State *L){
     free(buffer);
     buffer = NULL;
     if(img == NULL){
-        //luaL_error(L, "Failed to load %s", filename);
-        //return 0;
+        luaL_error(L, "Can't load %s perhaps due to a lack of memory.", filename);
+        return 0;
         // Si pas d'images chargée l'indiquer en renvoyant nil
-        lua_pushnil(L);
-        return 1;
+        //lua_pushnil(L);
+        //return 1;
     }
     lua_pushlightuserdata(L, img);
     return 1;
