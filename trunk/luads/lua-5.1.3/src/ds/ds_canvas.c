@@ -303,6 +303,7 @@ static int canvas_setAttr(lua_State *L){
             break;
         case ATTR_VISIBLE:
             co->visible = (bool)lua_toboolean(L, 3);
+            break;
         case ATTR_FONT:
             co->font = lua_touserdata(L, 3);
             break;
@@ -359,6 +360,7 @@ static int canvas_getAttr(lua_State *L){
             break;
         case ATTR_VISIBLE:
             lua_pushboolean(L, co->visible);
+            break;
         case ATTR_FONT:
             lua_pushlightuserdata(L, co->font);
             break;
