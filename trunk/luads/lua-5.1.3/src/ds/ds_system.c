@@ -46,8 +46,7 @@ static int system_currentPalFree(lua_State *L){
 }
 
 static int system_currentDirectory(lua_State *L){
-	char *path;
-    char rep[256];
+	char rep[256];
     path = getcwd(rep, 255);
 	lua_pushstring(L, rep);
 	return 1;

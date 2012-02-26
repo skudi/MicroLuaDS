@@ -14,6 +14,17 @@
 
 #include "constants.h"
 
+void print_error(char *text)
+{
+	while (1)
+	{
+		ulStartDrawing2D();
+		ulDrawTextBox(0,0,256,192,text,0);
+		ulEndDrawing();
+		ulSyncFrame();
+	}
+}
+
 int main()
 {
     // Initialization of µlibrary
@@ -35,14 +46,14 @@ int main()
     
     //Initialization libfat
 	if(fatInitDefault()== false){
-		ulDebug("\n\n\tFailed to fatInitDefault\n");
+		print_error("\n\n\tFailed to fatInitDefault\n");
 		return 0;
 	}
 	chdir("/");
     
     struct lua_State *l = lua_open();
     if (!l) {
-        ulDebug("\n\n\tFailed to create a Lua state - Push A to Exit\n");
+        print_error("\n\n\tFailed to create a Lua state - Push A to Exit\n");
         return 0;
     }
     
@@ -51,13 +62,15 @@ int main()
     
     if (luaL_loadfile(l, ULUA_BOOT_FULLPATH)) {
         if(luaL_loadfile(l, "/lua/libs/libs.lua")){
-		    ulDebug("Error Occured: Couldn't open %s\n", ULUA_BOOT_FILE);
+        	char text[256];
+        	sprintf(text,"Error Occured: Couldn't open %s\n", ULUA_BOOT_FILE);
+		    print_error(text);
 		    return 0;
 		}
     }
     
     if(lua_pcall(l,0,0,0)) {
-        ulDebug(lua_tostring(l, -1));
+        print_error(lua_tostring(l, -1));
         lua_pop(l, 1);
         return 0;
     }

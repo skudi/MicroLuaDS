@@ -14,133 +14,134 @@
 
 #include <ulib/ulib.h>
 
-// Stylus
+#include "vars.h"
 
 static int controls_read(lua_State *L){
-    ulReadKeys(0);
-    return 0;
+	ulReadKeys(0);
+	// Stylus table
+	lua_newtable(L);
+	lua_pushstring(L,"X");
+	lua_pushnumber(L,ul_keys.touch.x);
+	lua_settable(L,-3);
+	lua_pushstring(L,"Y");
+	lua_pushnumber(L,ul_keys.touch.y);
+	lua_settable(L,-3);
+	lua_pushstring(L,"held");
+	lua_pushboolean(L,ul_keys.touch.held);
+	lua_settable(L,-3);
+	lua_pushstring(L,"released");
+	lua_pushboolean(L,ul_keys.touch.released);
+	lua_settable(L,-3);
+	lua_pushstring(L,"doubleClick");
+	lua_pushboolean(L,ul_keys.touch.doubleClick);
+	lua_settable(L,-3);
+	lua_pushstring(L,"deltaX");
+	lua_pushnumber(L,ul_keys.touch.deltaX);
+	lua_settable(L,-3);
+	lua_pushstring(L,"deltaY");
+	lua_pushnumber(L,ul_keys.touch.deltaY);
+	lua_settable(L,-3);
+	lua_pushstring(L,"newPress");
+	lua_pushboolean(L,ul_keys.touch.click);
+	lua_settable(L,-3);
+	lua_setglobal(L,"Stylus");
+	// Keys table
+	lua_newtable(L);
+	lua_newtable(L);
+	lua_pushboolean(L,ul_keys.held.A);
+	lua_setfield(L,-2,"A");
+	lua_pushboolean(L,ul_keys.held.B);
+	lua_setfield(L,-2,"B");
+	lua_pushboolean(L,ul_keys.held.X);
+	lua_setfield(L,-2,"X");
+	lua_pushboolean(L,ul_keys.held.Y);
+	lua_setfield(L,-2,"Y");
+	lua_pushboolean(L,ul_keys.held.L);
+	lua_setfield(L,-2,"L");
+	lua_pushboolean(L,ul_keys.held.R);
+	lua_setfield(L,-2,"R");
+	lua_pushboolean(L,ul_keys.held.start);
+	lua_setfield(L,-2,"Start");
+	lua_pushboolean(L,ul_keys.held.select);
+	lua_setfield(L,-2,"Select");
+	lua_pushboolean(L,ul_keys.held.up);
+	lua_setfield(L,-2,"Up");
+	lua_pushboolean(L,ul_keys.held.down);
+	lua_setfield(L,-2,"Down");
+	lua_pushboolean(L,ul_keys.held.left);
+	lua_setfield(L,-2,"Left");
+	lua_pushboolean(L,ul_keys.held.right);
+	lua_setfield(L,-2,"Right");
+	lua_setfield(L,-2,"held");
+	lua_newtable(L);
+	lua_pushboolean(L,ul_keys.released.A);
+	lua_setfield(L,-2,"A");
+	lua_pushboolean(L,ul_keys.released.B);
+	lua_setfield(L,-2,"B");
+	lua_pushboolean(L,ul_keys.released.X);
+	lua_setfield(L,-2,"X");
+	lua_pushboolean(L,ul_keys.released.Y);
+	lua_setfield(L,-2,"Y");
+	lua_pushboolean(L,ul_keys.released.L);
+	lua_setfield(L,-2,"L");
+	lua_pushboolean(L,ul_keys.released.R);
+	lua_setfield(L,-2,"R");
+	lua_pushboolean(L,ul_keys.released.start);
+	lua_setfield(L,-2,"Start");
+	lua_pushboolean(L,ul_keys.released.select);
+	lua_setfield(L,-2,"Select");
+	lua_pushboolean(L,ul_keys.released.up);
+	lua_setfield(L,-2,"Up");
+	lua_pushboolean(L,ul_keys.released.down);
+	lua_setfield(L,-2,"Down");
+	lua_pushboolean(L,ul_keys.released.left);
+	lua_setfield(L,-2,"Left");
+	lua_pushboolean(L,ul_keys.released.right);
+	lua_setfield(L,-2,"Right");
+	lua_setfield(L,-2,"released");
+	lua_newtable(L);
+	lua_pushboolean(L,ul_keys.pressed.A);
+	lua_setfield(L,-2,"A");
+	lua_pushboolean(L,ul_keys.pressed.B);
+	lua_setfield(L,-2,"B");
+	lua_pushboolean(L,ul_keys.pressed.X);
+	lua_setfield(L,-2,"X");
+	lua_pushboolean(L,ul_keys.pressed.Y);
+	lua_setfield(L,-2,"Y");
+	lua_pushboolean(L,ul_keys.pressed.L);
+	lua_setfield(L,-2,"L");
+	lua_pushboolean(L,ul_keys.pressed.R);
+	lua_setfield(L,-2,"R");
+	lua_pushboolean(L,ul_keys.pressed.start);
+	lua_setfield(L,-2,"Start");
+	lua_pushboolean(L,ul_keys.pressed.select);
+	lua_setfield(L,-2,"Select");
+	lua_pushboolean(L,ul_keys.pressed.up);
+	lua_setfield(L,-2,"Up");
+	lua_pushboolean(L,ul_keys.pressed.down);
+	lua_setfield(L,-2,"Down");
+	lua_pushboolean(L,ul_keys.pressed.left);
+	lua_setfield(L,-2,"Left");
+	lua_pushboolean(L,ul_keys.pressed.right);
+	lua_setfield(L,-2,"Right");
+	lua_setfield(L,-2,"newPress");
+	lua_setglobal(L,"Keys");
+	return 0;
 }
 
-static int controls_stylusX(lua_State *L){
-    lua_pushnumber(L, ul_keys.touch.x);
-    return 1;
+static int controls_setStylusDblcFreq(lua_State *L){
+	char tempo = luaL_checknumber(L,-1);
+	assert(L, tempo>0 && tempo<30, "Must be between 0 and 30");
+	ulSetTouchpadDoubleClickDelay(tempo);
+	return 0;
 }
 
-static int controls_stylusY(lua_State *L){
-    lua_pushnumber(L, ul_keys.touch.y);
-    return 1;
-}
 
-static int controls_stylusHeld(lua_State *L){
-    lua_pushboolean(L, ul_keys.touch.held);
-    return 1;
-}
-
-static int controls_stylusReleased(lua_State *L){
-    lua_pushboolean(L, ul_keys.touch.released);
-    return 1;
-}
-
-static int controls_stylusDoubleClick(lua_State *L){
-    lua_pushboolean(L, ul_keys.touch.doubleClick);
-    return 1;
-}
-
-static int controls_stylusDeltaX(lua_State *L){
-    lua_pushnumber(L, ul_keys.touch.deltaX);
-    return 1;
-}
-
-static int controls_stylusDeltaY(lua_State *L){
-    lua_pushnumber(L, ul_keys.touch.deltaY);
-    return 1;
-}
-
-// Held
-
-static int controls_heldA(lua_State *L){
-    lua_pushboolean(L, ul_keys.held.A);
-    return 1;
-}
-
-static int controls_heldB(lua_State *L){
-    lua_pushboolean(L, ul_keys.held.B);
-    return 1;
-}
-
-static int controls_heldX(lua_State *L){
-    lua_pushboolean(L, ul_keys.held.X);
-    return 1;
-}
-
-static int controls_heldY(lua_State *L){
-    lua_pushboolean(L, ul_keys.held.Y);
-    return 1;
-}
-
-static int controls_heldStart(lua_State *L){
-    lua_pushboolean(L, ul_keys.held.start);
-    return 1;
-}
-
-static int controls_heldSelect(lua_State *L){
-    lua_pushboolean(L, ul_keys.held.select);
-    return 1;
-}
-
-static int controls_heldR(lua_State *L){
-    lua_pushboolean(L, ul_keys.held.R);
-    return 1;
-}
-
-static int controls_heldL(lua_State *L){
-    lua_pushboolean(L, ul_keys.held.L);
-    return 1;
-}
-
-static int controls_heldUp(lua_State *L){
-    lua_pushboolean(L, ul_keys.held.up);
-    return 1;
-}
-
-static int controls_heldDown(lua_State *L){
-    lua_pushboolean(L, ul_keys.held.down);
-    return 1;
-}
-
-static int controls_heldLeft(lua_State *L){
-    lua_pushboolean(L, ul_keys.held.left);
-    return 1;
-}
-
-static int controls_heldRight(lua_State *L){
-    lua_pushboolean(L, ul_keys.held.right);
-    return 1;
-}
 
 static const luaL_Reg controlslib[] = {
     // Stylus
     {"read", controls_read},
-    {"stylusX", controls_stylusX},
-    {"stylusY", controls_stylusY},
-    {"stylusHeld", controls_stylusHeld},
-    {"stylusReleased", controls_stylusReleased},
-    {"stylusDoubleClick", controls_stylusDoubleClick},
-    {"stylusDeltaX", controls_stylusDeltaX},
-    {"stylusDeltaY", controls_stylusDeltaY},
-    // Held
-    {"heldA", controls_heldA},
-    {"heldB", controls_heldB},
-    {"heldX", controls_heldX},
-    {"heldY", controls_heldY},
-    {"heldStart", controls_heldStart},
-    {"heldSelect", controls_heldSelect},
-    {"heldR", controls_heldR},
-    {"heldL", controls_heldL},
-    {"heldUp", controls_heldUp},
-    {"heldDown", controls_heldDown},
-    {"heldLeft", controls_heldLeft},
-    {"heldRight", controls_heldRight},
+    {"setStylusDblcFreq", controls_setStylusDblcFreq},
     {NULL, NULL}
 };
 

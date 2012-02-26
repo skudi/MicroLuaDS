@@ -45,7 +45,7 @@ LUALIB_API void (luaL_openlibs) (lua_State *L);
 // DS
 #define LUA_SCREENLIBNAME "screen"
 LUALIB_API int (luaopen_screen) (lua_State *L);
-#define LUA_CONTROLSLIBNAME "ds_controls"
+#define LUA_CONTROLSLIBNAME "Controls"
 LUALIB_API int (luaopen_controls) (lua_State *L);
 #define LUA_IMAGELIBNAME "Image"
 LUALIB_API int (luaopen_image) (lua_State *L);
