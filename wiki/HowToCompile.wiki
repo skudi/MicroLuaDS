@@ -12,7 +12,7 @@ packages to install, but should be relatively straightforward.
 
 == Make the default.arm7 to use Nifi ==
 
-see the wiki page : Make_ARM7
+see the wiki page : [Make_ARM7]
 
 == Windows ==
 
@@ -25,7 +25,6 @@ First download everything here and then follow the instructions below.
 
 
 === Details ===
-
 
 
 ==== DevKitPro ====
