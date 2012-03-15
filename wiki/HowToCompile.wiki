@@ -10,6 +10,10 @@ This page will guide you on how to setup the development environment
 for building the source of MicroLua. There are several steps and several
 packages to install, but should be relatively straightforward.
 
+== Make the default.arm7 to use Nifi ==
+
+see the wiki page : Make_ARM7
+
 == Windows ==
 
 First download everything here and then follow the instructions below.
@@ -21,6 +25,8 @@ First download everything here and then follow the instructions below.
 
 
 === Details ===
+
+
 
 ==== DevKitPro ====
 
@@ -129,7 +135,7 @@ Many packages are listed at the SourceForge site.  I've listed the folders and t
 
 ==== DevKitPro ====
 
-I used 'root' to build my pkgs, you may use your user accnt under your home folder, just change the devkitpro path as needed.
+I used 'root' to build my pkgs, you may use your user account under your home folder, just change the devkitpro path as needed.
 
 Make a folder to work in.  I used `/opt/devkitpro/`.
 {{{
