@@ -63,6 +63,8 @@ LUALIB_API int (luaopen_scrollmap) (lua_State *L);
 LUALIB_API int (luaopen_canvas) (lua_State *L);
 #define LUA_WIFILIBNAME "Wifi"
 LUALIB_API int (luaopen_wifi) (lua_State *L);
+#define LUA_NIFILIBNAME "Nifi"
+LUALIB_API int (luaopen_nifi) (lua_State *L);
 #define LUA_RUMBLELIBNAME "Rumble"
 LUALIB_API int (luaopen_rumble) (lua_State *L);
 #define LUA_MOTIONLIBNAME "Motion"

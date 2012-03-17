@@ -23,8 +23,9 @@
 
 #include "vars.h"
 
+//Init Wifi_init var
 u8 Wifi_init = 0;
-
+    
 static int wifi_connectWFC(lua_State *L){
 	bool res = false;
 	if(Wifi_init == 0) res = Wifi_InitDefault(WFC_CONNECT);

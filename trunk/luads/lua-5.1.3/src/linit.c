@@ -35,6 +35,7 @@ static const luaL_Reg lualibs[] = {
   {LUA_SCROLLMAPLIBNAME, luaopen_scrollmap},
   {LUA_CANVASLIBNAME, luaopen_canvas},
   {LUA_WIFILIBNAME, luaopen_wifi},  
+  {LUA_NIFILIBNAME, luaopen_nifi},
   {LUA_RUMBLELIBNAME, luaopen_rumble},
   {LUA_MOTIONLIBNAME, luaopen_motion},
   {LUA_SOUNDLIBNAME, luaopen_sound},
