@@ -41,7 +41,7 @@ LIB_O=	lauxlib.o lbaselib.o ldblib.o liolib.o lmathlib.o loslib.o ltablib.o \
 	lstrlib.o loadlib.o linit.o \
 	ds/ds_screen.o ds/ds_controls.o ds/ds_image.o ds/ds_system.o ds/ds_map.o \
 	ds/ds_font.o ds/ds_color.o ds/ds_scrollmap.o ds/ds_canvas.o \
-	ds/ds_wifi.o ds/ds_sound.o ds/ds_rumble.o ds/ds_motion.o ds/ds_user.o
+	ds/ds_wifi.o ds/ds_nifi.o ds/ds_sound.o ds/ds_rumble.o ds/ds_motion.o ds/ds_user.o
 
 
 ALL_O= $(CORE_O) $(LIB_O) 
