@@ -900,6 +900,40 @@ Reçoit des données depuis un serveur en passant par un socket.
   * *socket* (Socket) : socket à utiliser
   * *longueur* (Number) : taille des données à recevoir  
   
+=== Nifi ===
+
+*`Boolean Nifi.init(channel)`* (_nds_)  
+
+Initialise le Wifi en mode nifi et retourne true si il réussi et false sinon.  
+  * *channel* (Number): le canal sur lequel discuter (doit être entre 1 et 13).  
+  
+*`Void Nifi.changeChannel(channel)`* (_nds_)  
+
+Change le canal de discussion.
+  * *channel* (Number): Le nouveau canal (doit être entre 1 et 13).
+
+*`Void Nifi.stop()`* (_nds_)  
+
+Stop le nifi.  
+
+*`Boolean Nifi.checkMessage()`* (_nds_)  
+
+Verifie si un nouveau message est arrivé, retourne true si c'est le cas, false sinon.  
+
+*`String Nifi.getTrame()`* (_nds_)  
+
+Recupère la dernière trame reçue même si elle n'était pas adressée à la NDS.  
+Sa taille maximum est de 4096 octets.  
+
+*`Void Nifi.sendMessage(Message)`* (_nds_)  
+
+Envois un message sur le canal.  
+  * *Message* (String): Message à envoyer. La taille maximal du message est de 2048 octets.  
+
+*`String Nifi.readMessage()`* (_nds_)  
+
+Lis le dernier message reçu.  
+
 === Sons ===
 
 ==== Banques de son ====
