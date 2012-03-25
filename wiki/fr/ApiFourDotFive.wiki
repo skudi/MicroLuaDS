@@ -1,4 +1,4 @@
-#summary 4.1 API.
+#summary 4.5 API.
 
 <wiki:toc />
 
