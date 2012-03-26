@@ -569,9 +569,10 @@ Crée une nouvelle carte défilante.
 Détruit une carte défilante.
   * *carteDéfilante* (ScrollMap): carte défilante à détruire
 
-*`Void ScrollMap.draw(carteDefilante)`* (_nds_)
+*`Void ScrollMap.draw(ecran, carteDefilante)`* (_nds_)
 
 Affiche une carte défilante.
+  * *ecran* (Number): écran sur lequel afficher la carte (peut être `SCREEN_UP` ou `SCREEN_DOWN`)
   * *carteDéfilante* (ScrollMap): carte défilante à afficher
 
 *`Void ScrollMap.scroll(carteDefilante, x, y)`* (_nds_)

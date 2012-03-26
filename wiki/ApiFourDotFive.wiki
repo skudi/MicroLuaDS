@@ -556,9 +556,10 @@ Create a new ScrollMap by giving a map file.
 Destroy a ScrollMap.
   * *scrollmap* (ScrollMap): ScrollMap to destroy
 
-*`Void ScrollMap.draw(scrollmap)`* (_nds_)
+*`Void ScrollMap.draw(screen, scrollmap)`* (_nds_)
 
 Draw a ScrollMap.
+  * *screen* (Number): screen where to draw (`SCREEN_UP` or `SCREEN_DOWN`)
   * *scrollmap* (ScrollMap): ScrollMap to draw
 
 *`Void ScrollMap.scroll(scrollmap, x, y)`* (_nds_)
