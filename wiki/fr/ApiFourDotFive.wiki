@@ -676,7 +676,7 @@ Ajoute un CanvasObject dans un canevas.
   * *canevas* (Canvas): canevas à modifier
   * *objet* (CanvasObject): objet à ajouter
 
-*`Void Canvas.draw(ecran, canevas, x, y,)`* (_nds_)
+*`Void Canvas.draw(ecran, canevas, x, y)`* (_nds_)
 
 Affiche un canevas à l'écran.
   * *ecran* (Number): écran sur lequel dessiner (`SCREEN_UP` ou `SCREEN_DOWN`)
