@@ -2,28 +2,38 @@
 
 = Introduction =
 
-A release is always a lot of work, with a lot of tedious steps. Every release being similar we collect any good idea here.
-
-This page is still a work in progress for the real 3.0, please contribute and discuss...
+Those are all the steps that have to be made for the releases of MicroLua.
 
 = Before the release =
 
-Waiting for the release script...
+Waiting for the release script... 
 
-  * convert the docs to static html files
   * sources pack
-    * export sources (no .svn)
-  * bin pack
-    * compile the .nds
-  * upload to the GoogleCode download space in the deprecated section
-  * pre-announce on the forum for MicroLua members to test
+    * update ULUA_VERSION
+    * check the README
+    * clean it (remove .nds...)
+    * if it is a major version, make the .zip archive
+  * normal pack
+    * compile the .nds, move them to the directory
+    * convert the docs from wiki pages to static HTML files using the Python script; copy them to a `Documentation` folder
+    * copy the `lua` folder
+    * write (or re-use the last one) README and CHANGELOG
+      * for minor versions, put the CHANGELOG of the major version with the new one
+    * make the .zip archive
 
 = During the release =
 
-  * upload to the GoogleCode download space in the normal section
-  * Prepare the forum announce
-    * intro
-    * changes
+  * put the last version in deprecated and remove the "featured" label
+  * upload to the GoogleCode download space as "featured" and "archive" both sources and normal packages
+  * on the forum:
+    * make the release post:
+      * try to keep actual presentation
+      * give some less conventional description of the new version
+      * put the download links
+      * copy the CHANGELOG and the instructions to install MicroLua
+      * if it is a minor version, keep all of this, just add the new description and change the links.
+    * update the front page: download link, version number and image
+    * update Reylak's signature
 
 = After the release =
 
