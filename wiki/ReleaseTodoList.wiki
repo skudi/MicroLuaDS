@@ -39,7 +39,6 @@ Waiting for the release script...
 
   * Update any side pages
     * [http://fr.wikipedia.org/wiki/Micro_Lua_DS Wikipedia]  (fr)
-    * [http://www.xtreamlua.com/wiki/doku.php?id=ds xtreamlua]  (fr, not an update here, needs creation)
   * Post updates in friend forums
     * [http://www.dev-fr.org/index.php?action=forum Dev-fr.org]  (fr)    
     * [http://forum.gbadev.org/ gbadev.org]  (eng)
