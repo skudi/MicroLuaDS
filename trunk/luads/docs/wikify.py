@@ -259,8 +259,7 @@ def GoogleCode_Codeblock(wikifier, tagName=None, termRegExp=None, initRegExp=Non
             nextMatch = nextInitMatch
             tcount += 1
             matchEnd = nextMatch.end()
-        
-        wikifier.nextMatch = nextMatch.end()
+            wikifier.nextMatch = nextMatch.end()
         
     # Copy the content
     wikifier.outputText(output, matchStart, matchEnd)
