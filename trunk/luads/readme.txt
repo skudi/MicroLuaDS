@@ -1,4 +1,4 @@
-======================[[ MICROLUA 4.0.1 ]]=======================
+======================[[ MICROLUA 4.5 ]]=======================
 =========================<< SOURCES >>===========================
 
 .................................................................
@@ -144,10 +144,10 @@ MicroLua sources are of course available.
 People who must be thanked are Papymouge, at least for his great
 job on Wifi, Ced-le-pingouin, for working on the compilation
 process and for his great MLS, Grahack which have so many good
-(or not) ideas on how to drive uLua, Ghuntar, and myself Reylak,
-for this soooo beautiful README file ;) And last but not least of
-course, all the community for creating such magnificient
-homebrews and supporting us!
+(or not) ideas on how to drive uLua, Ghuntar, thomh@ck,
+thermo_nono and myself Reylak, for this soooo beautiful README
+file ;) And last but not least of course, all the community for
+creating such magnificient homebrews and supporting us!
 
 One last thing about uLua: some people confuse MicroLua with Lua.
 Lua is a language, basically used on computers either stand-alone
