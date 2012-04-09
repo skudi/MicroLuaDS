@@ -21,6 +21,7 @@ typedef struct CanvasObjectObj{
     int x1, y1, x2, y2, x3, y3;
     int color, color1, color2, color3, color4;
     char * text;
+    //char text[255];
     bool visible;
     UL_FONT * font;
     UL_IMAGE * image;
@@ -105,7 +106,8 @@ static int canvas_newText(lua_State *L){
     co->type = CANVAS_TYPE_TEXT;
     co->x1 = x1;
     co->y1 = y1;
-    co->text = text;
+    co->text = malloc(strlen(text)+1);
+    strcpy(co->text,text);
     co->color = color;
     lua_pushlightuserdata(L, co);
     return 1;
@@ -132,7 +134,8 @@ static int canvas_newTextBox(lua_State *L){
     co->y1 = y1;
     co->x2 = x2;
     co->y2 = y2;
-    co->text = text;
+    co->text = malloc(strlen(text)+1);
+    strcpy(co->text,text);
     co->color = color;
     lua_pushlightuserdata(L, co);
     return 1;
@@ -155,7 +158,8 @@ static int canvas_newTextFont(lua_State *L){
     co->type = CANVAS_TYPE_TEXTFONT;
     co->x1 = x1;
     co->y1 = y1;
-    co->text = text;
+    co->text = malloc(strlen(text)+1);
+    strcpy(co->text,text);
     co->color = color;
     co->font = font;
     lua_pushlightuserdata(L, co);
@@ -263,6 +267,7 @@ static int canvas_add(lua_State *L){
 }
 
 static int canvas_setAttr(lua_State *L){
+	char * text = NULL;
     CanvasObject * co = lua_touserdata(L, 1);
     switch((int)luaL_checknumber(L, 2)){
         case ATTR_X1:
@@ -299,7 +304,10 @@ static int canvas_setAttr(lua_State *L){
             co->color4 = (int)luaL_checknumber(L, 3);
             break;
         case ATTR_TEXT:
-            co->text = (char *)luaL_checkstring(L, 3);
+            strcpy(text,(char *)luaL_checkstring(L, 3));
+            free(co->text);
+            co->text = malloc(strlen(text)+1);
+    		strcpy(co->text,text);
             break;
         case ATTR_VISIBLE:
             co->visible = (bool)lua_toboolean(L, 3);
