@@ -14,7 +14,17 @@
 
 == Complete ==
 
-  * [http://www.siteduzero.com/tutoriel-3-174318-programmez-sur-votre-ds-avec-microlua.html Complete tutorial (in French)]
+  * [http://www.siteduzero.com/tutoriel-3-174318-programmez-sur-votre-ds-avec-microlua.html Complete tutorial (in French)]. Read at least the first chapter.
+
+== Lua ==
+
+Currently, all the links lead to French tutorials.
+
+  * [http://www.luteus.biz/Download/LoriotPro_Doc/LUA/LUA_Training_FR/Introduction_Programmation.html Lua tutorial (in French)]
+  * [http://microlua.xooit.fr/t375-Les-boucles-for-en-lua.htm "for" loops], by Quent42340
+  * [http://microlua.xooit.fr/t525-Utiliser-des-fichiers-en-Lua.htm files], by Quent42340
+  * [http://microlua.xooit.fr/t358-Les-Metatables.htm Metatables and OOP (Object Oriented Programming)], by Reylak
+  * [http://microlua.xooit.fr/t290-Les-tables-en-Lua.htm tables], by Quent42340
 
 == Sound ==
 
