@@ -1,13 +1,6 @@
 #summary Useful links for game developers.
 
-= APIs =
-
-They are sorted by MicroLua's versions:
-  * [ApiFourDotFive 4.5]
-  * [ApiFourDotTwo 4.2]
-  * [ApiFourDotOne 4.1]
-  * [ApiFourDotZero 4.0]
-  * [ApiIdeas Ideas]
+= [Apis APIs] =
 
 = Tools =
 
