@@ -1,0 +1,27 @@
+#summary Homebrew tools for Nintendo DS
+
+= Introduction =
+
+Homebrews are not necessarily games; they're sometimes applications.
+Credits go to StolenSoul for his [http://microlua.xooit.fr/t963-Programmer-un-jeu-entier-sur-ds.htm tutorial (in French)]. Here are a bunch of useful editors to make your entire game on DS.
+
+== Text ==
+
+They're for writing your game's code and other resources for your game, such as .ini and .map files. However, they're different from WYSIWYG programs such as OpenOffice Writer and Microsoft Office Word.
+  * [http://microlua.xooit.fr/t697-Application-bureautique-Editeur.htm The Master Editor] by Papymouge. Simple, complete and fast and launchable from MicroLua's starting screen: the shell.
+  * [http://microlua.xooit.fr/t18-Lua-Editor-DS-v1-0.htm Lua Editor DS (LED)] is older and abandonned, but supports syntactic coloration and names' autocompletion.
+
+== Image ==
+
+They're a lot, but they all have cons.
+  * [http://morukutsuland.free.fr/?page_id=19 PocketPixie] may be the best. It supports different sizes: 8, 16, 32, 64, 128 pixels in width and height and can save in .png. However, filenames are not customizables nor are file locations. The restricted number of images can be avoided by saving different images as frames, which are saved under different names in the same location. The last release date may say that the homebrew is not longer developped, but the sources are free to use.
+  * Tip: [http://www.dragonminded.com/ndsdev/dsorganize/ DSOrganize] can be used to move and rename files, thus images too.
+  * Colors!
+  * Phidias
+  * UAPaint
+
+== Sound ==
+
+  * [http://nitrotracker.tobw.net/index.php?cat_id=5 NitroTracker] ables to make musics in .xm files from samples, which you can find packs of in the homebrews' website. However, you won't be able to convert them to .bin files, which is for now the only supported format in MicroLua, on your DS. 
+
+== [http://www.zimbio.com/Nintendo+DS+homebrew/articles/EV_dR2FY3yQ/Most+popular+Nintendo+DS+Homebrew+list+2011 More] ==
