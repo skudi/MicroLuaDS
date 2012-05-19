@@ -12,5 +12,15 @@
 
 = Tutorials =
 
-  * [SoundTutorial Sound]
+== Complete ==
+
   * [http://www.siteduzero.com/tutoriel-3-174318-programmez-sur-votre-ds-avec-microlua.html Complete tutorial (in French)]
+
+== Sound ==
+
+  * [SoundTutorial Sound]
+
+== Map ==
+
+  * [http://microlua.xooit.fr/t714-Tutoriel-Les-Maps.htm Map]
+  * [TutoTiled Tiled Editor]
