@@ -6,3 +6,7 @@ They read programs compiled (made) for a certain type of machine in another mach
   * MicroLuaSimulator
   * [DeSmuME DeSmuME]
   * [http://dualis.1emu.net/links.html Dualis]
+
+= Versionning =
+
+  * [http://microlua.xooit.fr/t598-Utilisation-de-GIT.htm GIT], by Papymouge (in French)
