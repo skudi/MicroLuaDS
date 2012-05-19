@@ -2,10 +2,9 @@
 
 = Installation of MicroLua and some games =
 
-  * MicroLuaInstallation
-  * MicroLuaProjects
+  * [MicroLuaInstallation How to install MicroLua]
+  * [MicroLuaProjects Homebrews (games)]
 
 = Community links =
 
-  * Official forum (mostly in French but with an English section): http://microlua.xooit.fr/
-  
+  * [http://microlua.xooit.fr/ Official forum] (mostly in French, but has an English section)
