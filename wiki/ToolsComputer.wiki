@@ -1,0 +1,8 @@
+#summary Tools for computer
+
+= Emulators =
+
+They read programs compiled (made) for a certain type of machine in another machine. Some allow you to read .nds (Nintendo DS) files in your computer:
+  * MicroLuaSimulator
+  * [DeSmuME DeSmuME]
+  * [http://dualis.1emu.net/links.html Dualis]
