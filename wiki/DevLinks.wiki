@@ -11,8 +11,11 @@ They are sorted by MicroLua's versions:
 
 = Tools =
 
+== Emulators ==
+
   * MicroLuaSimulator
+  * DeSmuME
 
 = Tutorials =
 
-  * SoundTutorial
+  * [SoundTutorial Soun]
