@@ -30,6 +30,10 @@ Currently, all the links lead to French tutorials.
 
   * [http://microlua.xooit.fr/t810-Fonts-personnalisees.htm Customized fonts], by thermo_nono (in French).
 
+== Image ==
+
+  * [TutoImgFiles File formats]
+
 == Sound ==
 
   * [SoundTutorial Sound]
