@@ -35,6 +35,7 @@
   * http://fr.wikipedia.org/wiki/Micro_Lua_DS
   * Micro Lua DS v1.0.1 beta announcement: http://www.xtreamlua.com/modules.php?name=News&file=article&sid=418
   * Tutorial on "Newbies Paradise": http://www.siteduzero.com/tutoriel-3-174318-programmez-sur-votre-ds-avec-microlua.html
+  * [http://www.playeradvance.org/forum/showthread.php?p=244403#post244403 Player Advance page]
 
 === Other ===
 
