@@ -15,6 +15,7 @@ They are sorted by MicroLua's versions:
 
   * MicroLuaSimulator
   * DeSmuME
+  * [http://dualis.1emu.net/links.html Dualis]
 
 = Tutorials =
 
