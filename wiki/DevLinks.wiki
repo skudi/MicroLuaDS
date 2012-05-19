@@ -18,4 +18,5 @@ They are sorted by MicroLua's versions:
 
 = Tutorials =
 
-  * [SoundTutorial Soun]
+  * [SoundTutorial Sound]
+  * [http://www.siteduzero.com/tutoriel-3-174318-programmez-sur-votre-ds-avec-microlua.html Complete tutorial (in French)]
