@@ -10,6 +10,10 @@
 
 == [ToolsCompDS For both] ==
 
+= Libraries =
+
+Take them from [http://microlua.xooit.fr/f20-Librairies.htm here]
+
 = Tutorials =
 
 == Complete ==
