@@ -3,6 +3,7 @@
 = Introduction =
 
 MicroLua maps can be made without text editors. Tiled is a general purpose for Windows, Mac, and Linux; it perfectly fits MicroLua.
+Of course you can make your own map editor, even as a DS homebrew, and you're encouraged to, but it doesn't refrain you from using Tiled.
 
 = Installation =
 
@@ -10,7 +11,7 @@ http://www.mapeditor.org/
 
 = Use =
 
-== Creation
+== Creation ==
 
 === Create a map ===
 
