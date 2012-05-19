@@ -5,7 +5,7 @@
 
 This list is alphabetical. We will try to sort by categories automaticly when we have a better understanding of this wiki system!
 
-If the name of the project is not easy to convert to CamelCase (only one word), you can suffix it with `Project`. 
+<wiki:comment>If the name of the project is not easy to convert to CamelCase (only one word), you can suffix it with `Project`.<§wiki:comment>
 
 = Micro Lua Projects =
 
