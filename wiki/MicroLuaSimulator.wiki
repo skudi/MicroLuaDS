@@ -4,7 +4,7 @@
 
 = Introduction =
 
-MicroLuaSimulator (or abbreviate _MLS_) is a very useful utility for MicroLua developers created by a member of our community, _Ced-le-pingouin_. It allows you to test your Lua scripts for NDS directly on your computer.
+[https://code.google.com/p/microlua-sim/ MicroLuaSimulator] (or abbreviate _MLS_) is a very useful utility for MicroLua developers created by a member of our community, _Ced-le-pingouin_. It allows you to test your Lua scripts for NDS directly on your computer.
 MicroLuaSimulator also has a debug console!
 
 = Download =
