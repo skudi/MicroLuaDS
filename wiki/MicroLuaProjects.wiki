@@ -11,9 +11,10 @@ This list is alphabetical. We will try to sort by categories automaticly when we
 
 A [http://microlua.webege.com/ special website] is being created by Fantasix to store all the homebrews.
 
+== Games ==
+
   * AloufsDs
   * BigInvading 
-  * CalculatriceProject (Calculator)
   * CarPlaying (Avoid them all)
   * DigimonArenaProject
   * DrawingPlatformGame
@@ -25,8 +26,6 @@ A [http://microlua.webege.com/ special website] is being created by Fantasix to 
   * KnightmareDsProject
   * LampeProject
   * LibRpg
-  * LuaEditor
-  * LuaExplorer
   * MicroDemineurDs (Minesweeper)
   * PingPong
   * PlusOuMoins (More or Less)
@@ -45,6 +44,8 @@ A [http://microlua.webege.com/ special website] is being created by Fantasix to 
   * TankDs
   * TheBlackMageAdventure
   * TicTacTo
-  * TilesEngine
-  * TilesEngineEvolution
   * TouchOnTheBeatBaby
+
+== Accessories ==
+
+  * CalculatriceProject (Calculator)
