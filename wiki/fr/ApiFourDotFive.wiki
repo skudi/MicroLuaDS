@@ -207,13 +207,18 @@ Crée une nouvelle couleur.
 
 === Contrôles ===
 
-*`Void Controls.read()`* (_libs_)
+*`Void Controls.read()`* (_nds_)
 
 Met à jour les commandes.
 
+*`Void Controls.setStylusDblcFreq(freqDblc)`* (_nds_)
+
+Définit le délais maximum entre deux clics du Stylet pour les considérer comme un double-clic.
+  * *freqDblc* (Number): délais maximum (de 0 à 30, où 30 représente une demi-seconde et est la valeur par défaut).
+
 ==== Stylet ====
 
-Ce sont des nombres ou des booléens, tous définis dans les _libs_.
+Ce sont des nombres ou des booléens, tous définis dans les _nds_.
 
 *`Stylus.X`*: abscisse du stylet
 
@@ -233,7 +238,7 @@ Ce sont des nombres ou des booléens, tous définis dans les _libs_.
 
 ==== Boutons ====
 
-Voici des booléens. Toute cette section est définie dans les _libs_.
+Voici des booléens. Toute cette section est définie dans les _nds_.
 
 (`[KEY]` peut prendre une des valeurs suivantes:
 *`A`, `B`, `X`, `Y`, `L`, `R`, `Start`, `Select`, `Up`, `Down`, `Left`, `Right`*)
