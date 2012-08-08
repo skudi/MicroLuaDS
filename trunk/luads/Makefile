@@ -2,6 +2,7 @@
 # HISTORY
 # ??/??/??  risike, init.  from palib most likely.
 # 12/08/09 motopic, jmr, added export changes to path for linux
+# 08/08/12 Reylak removed obsolete versions (.ds.gba, etc.)
 #
 PROGNAME = Micro Lua DS
 OFILES   +=
@@ -16,8 +17,8 @@ WINDOWS := 1
 endif
 
 TEXT1 		:= Micro Lua DS
-TEXT2 		:= By Risike
-TEXT3 		:= www.microlua.risike.com
+TEXT2 		:= By Risike and Community
+TEXT3 		:= microlua.xooit.fr/
 ICON 		:= -b $(CURDIR)/../logo.bmp
 LOGO		:= -o $(CURDIR)/../logo_wifi.bmp
 
@@ -71,7 +72,7 @@ CFLAGS	:=	-g -Wall -O2 \
 CFLAGS	+=	$(INCLUDE) -DARM9
 
 ASFLAGS	:=	-g $(ARCH)
-LDFLAGS	:=	-g $(ARCH) -mno-fpu
+LDFLAGS	:=	-g $(ARCH) -mfloat-abi=softfp
 
 
 #---------------------------------------------------------------------------------
@@ -87,7 +88,7 @@ LDFLAGS	:=	-g $(ARCH) -mno-fpu
 #---------------------------------------------------------------------------------
 # the prefix on the compiler executables
 #---------------------------------------------------------------------------------
-PREFIX			:=	arm-eabi-
+PREFIX			:=	arm-none-eabi-
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
@@ -171,41 +172,22 @@ DEPENDS	:=	$(OFILES:.o=.d)
 #---------------------------------------------------------------------------------
 # main targets
 #---------------------------------------------------------------------------------
-$(OUTPUT).ds.gba	: 	$(OUTPUT).nds
-
 $(OUTPUT).nds	: 	$(OUTPUT).bin
 
 $(OUTPUT).bin	:	$(OUTPUT).elf
  
 $(OUTPUT).elf	:	$(OFILES)
- 
-#---------------------------------------------------------------------------------
-%.ds.gba: %.nds
-	@echo built ... $(notdir $@)
-	@dsbuild $< 
-	@cp $(CURDIR)/../$(notdir $@) ../$(notdir $(OUTPUT)).sc.nds 
+
 
 #---------------------------------------------------------------------------------
 %.nds: %.bin
 	ndstool -c $@ -9 $(TARGET).bin $(ARM7BIN) $(LOGO) $(ICON) "$(TEXT1);$(TEXT2);$(TEXT3)"
-	cp $(OUTPUT).nds $(OUTPUT)_tst.nds  
-	padbin 512 $(OUTPUT)_tst.nds
-ifndef WINDOWS
-	cd ../img ; sh build.sh $(OUTPUT).img ../Fat
-endif
-	cat $(OUTPUT)_tst.nds $(OUTPUT).img  > $(OUTPUT)_fs.nds
-ifndef WINDOWS
-	rm $(OUTPUT).img
-endif
-	dlditool fcsr.dldi $(OUTPUT)_fs.nds
-	## patch final file with GBAMP DLDI driver, to test in Desmume
-	#dlditool mpcf.dldi $(OUTPUT).nds
 
 #---------------------------------------------------------------------------------
 %.bin: %.elf
 	@$(OBJCOPY) -O binary $(TARGET).elf $(TARGET).bin
  
-#---------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------------
 %.elf:
 	@echo $(LD)  $(LDFLAGS) -specs=ds_arm9.specs $(OFILES) $(LIBPATHS) $(LIBS) -o $(TARGET).elf
 	@$(LD)  $(LDFLAGS) -specs=ds_arm9.specs $(OFILES) $(LIBPATHS) $(LIBS) -o $(TARGET).elf

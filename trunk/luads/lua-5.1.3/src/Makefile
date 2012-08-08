@@ -18,10 +18,10 @@ export INCLUDE	:= -I. -I.. $(foreach dir,$(LIBDIRS),-I$(dir)/include) \
 
 MACHDEP = 
 
-CC= $(DEVKITPRO)/devkitARM/bin/arm-eabi-gcc
+CC= $(DEVKITPRO)/devkitARM/bin/arm-none-eabi-gcc
 CFLAGS= -g -Wall -O2 -mcpu=arm9tdmi -mtune=arm9tdmi -fomit-frame-pointer -ffast-math -mthumb-interwork -I$(DEVKITPRO)/libnds/include $(INCLUDE) -DARM9
-AR= $(DEVKITPRO)/devkitARM/arm-eabi/bin/ar rcu
-RANLIB= $(DEVKITPRO)/devkitARM/arm-eabi/bin/ranlib
+AR= $(DEVKITPRO)/devkitARM/arm-none-eabi/bin/ar rcu
+RANLIB= $(DEVKITPRO)/devkitARM/arm-none-eabi/bin/ranlib
 RM= rm -f
 LIBS=$(MACHDEP) -lul -lpng -lm -lz -lfat -ldswifi9 -lmm9 -lnds9
 
