@@ -249,10 +249,9 @@ static int wifi_getLocalConf(lua_State *L){
 	struct in_addr submask;
 	struct in_addr dns1;
 	struct in_addr dns2;
-	int num;
 	unsigned char *buffer = NULL;
 	ip = Wifi_GetIPInfo(&gate, &submask, &dns1, &dns2);
-	num = Wifi_GetData(WIFIGETDATA_MACADDRESS, 6, buffer);
+	Wifi_GetData(WIFIGETDATA_MACADDRESS, 6, buffer);
 	// Choix = 1:ip  2:gateway  3:subnetMask  4:DNS1  5:DNS2  6:MACADDR
 	switch(choix){
 		case 1: lua_pushstring(L, inet_ntoa(ip));
