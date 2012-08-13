@@ -40,4 +40,4 @@ elseif mybootLoaded then
 end
 
 -- And finally, let's launch MicroLua :)
-dofile("/lua/libs/libs.lua")
+dofile(ULUA_LIBS .. "/libs.lua")

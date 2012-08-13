@@ -12,7 +12,7 @@
    Here is the default example of "myboot.lua".
    Please note that it is *NOT* loaded by
    "boot.lua". If you want to, rename it as
-   "myboot;lua".
+   "myboot.lua".
 
 ]]--
 
