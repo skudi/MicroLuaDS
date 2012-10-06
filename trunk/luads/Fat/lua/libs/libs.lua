@@ -22,6 +22,11 @@ stopDrawing = function()
 	end
 	-- Draw debug console
 	if Debug.isDebugOn then
+		local buffer="FPS: "..NB_FPS
+		local xx=255-(string.len(buffer)*6)
+		screen.print(SCREEN_UP,171,162,"RAM : "..math.floor(collectgarbage("count")).."o.",Debug.debugColor)
+		screen.print(SCREEN_UP,171,172,"VRAM: "..System.CurrentVramFree().."o.",Debug.debugColor)
+		screen.print(SCREEN_UP,171,182,"FPS : "..NB_FPS,Debug.debugColor)
 		screen.drawTextBox(SCREEN_DOWN, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, Debug.debugText, Debug.debugColor)
 	end
     screen.setAlpha(ALPHA_RESET)
@@ -89,7 +94,15 @@ Debug.OFF = function()
 end
 Debug.print = function(text,aff)
 	local i
-	assert(text ~= nil, "Text can't be null")
+	--assert(text ~= nil, "Text can't be null")
+	if(text == nil) then text = "<nil>"
+	elseif(text == true) then text = "TRUE"
+	elseif(text == false) then text = "FALSE"
+	elseif(type(text) == "table") then text = "<"..tostring(text).."["..table.maxn(text).."]>"
+	elseif(type(text) == "userdata") then text = "<"..tostring(text)..">"
+	elseif(type(text) == "function") then text = "<"..tostring(text)..">"
+	elseif(type(text) == "thread") then text = "<"..tostring(text)..">"
+	end
 	if(aff ~= nil) then
 		if(aff ~= true) then aff = false end
 	end
@@ -307,19 +320,20 @@ tmrFpsCounter:start()
 
 startDrawing()
 
+
 while true do
 
-	status_global_microlua_errors, err_global_microlua_errors = pcall(function ()
-		dofile(ULUA_LIBS.."shell.lua")
-	end)
+	local func = function () dofile(ULUA_LIBS.."shell.lua") end
+	status_global_microlua_errors, err_global_microlua_errors = pcall(func)
 	if err_global_microlua_errors ~= nil then
 		Debug.OFF()	
 		Controls.read()
 		while not Keys.newPress.Start do
 			Controls.read()
 			screen.drawFillRect(SCREEN_UP, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, Color.new(0, 0, 31))
+			screen.drawTextBox(SCREEN_UP,0,0,SCREEN_WIDTH,SCREEN_HEIGHT,"**** DEBUG STACK ****\n"..Debug.debugText)
 			screen.drawFillRect(SCREEN_DOWN, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, Color.new(0, 0, 31))
-			screen.drawTextBox(SCREEN_DOWN, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, "*** ERRORS OCCURED ***\n"..err_global_microlua_errors.."\n"..debug.traceback().."\n*********************\n\nPress START to continue")
+			screen.drawTextBox(SCREEN_DOWN, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, "*** ERRORS OCCURED ***\n"..err_global_microlua_errors.."\n"..debug.traceback().."\n*********************\n\nPress START to continue\n")
 			render()
 		end
 	end
