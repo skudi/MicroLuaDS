@@ -1,6 +1,8 @@
 #ifndef ds_constants_h
 #define ds_constants_h
 
+#include <nds.h>
+
 #include "lua.h"
 #include "lauxlib.h"
 #include "lualib.h"
@@ -24,6 +26,10 @@
 #define SCREEN_DOWN 0
 
 #define ALPHA_RESET 100
+
+#define LED_ON PM_LED_ON
+#define LED_SLEEP PM_LED_SLEEP
+#define LED_BLINK PM_LED_BLINK
 
 #define ATTR_X1 0
 #define ATTR_Y1 1

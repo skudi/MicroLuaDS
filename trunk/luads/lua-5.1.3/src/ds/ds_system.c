@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <malloc.h>
+#include <nds.h>
 
 #define ds_system_c
 #define LUA_LIB
@@ -238,6 +239,26 @@ static int system_getCurrentTime(lua_State *L){
 	return 1;
 }
 
+static int system_setLedBlinkMode(lua_State *L) {
+	int mode = (int)luaL_checknumber(L, 1);
+	assert(L, mode == PM_LED_ON || mode == PM_LED_SLEEP || mode == PM_LED_BLINK, "Bad led blink mode");
+	ledBlink(mode);
+	
+	return 0;
+}
+
+static int system_systemShutDown(lua_State *L) {
+	systemShutDown();
+	
+	return 0;
+}
+
+static int system_systemSleep(lua_State *L) {
+	systemSleep();
+	
+	return 0;
+}
+
 static const luaL_Reg systemlib[] = {
 	{"currentDirectory", system_currentDirectory},
 	{"changeDirectory", system_changeDirectory},
@@ -250,6 +271,9 @@ static const luaL_Reg systemlib[] = {
 	{"CurrentVramFree",system_currentVramFree},
 	{"CurrentPalUsed",system_currentPalUsed},
 	{"CurrentPalFree",system_currentPalFree},
+	{"setLedBlinkMode", system_setLedBlinkMode},
+	{"shutDown", system_systemShutDown},
+	{"sleep", system_systemSleep},
 	{NULL, NULL}
 };
 
@@ -258,5 +282,6 @@ static const luaL_Reg systemlib[] = {
 */
 LUALIB_API int luaopen_system (lua_State *L) {
     luaL_register(L, LUA_SYSTEMLIBNAME, systemlib);
+	
     return 1;
 }

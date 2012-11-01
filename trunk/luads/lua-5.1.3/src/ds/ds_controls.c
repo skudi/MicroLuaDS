@@ -72,6 +72,8 @@ static int controls_read(lua_State *L){
 	lua_setfield(L,-2,"Left");
 	lua_pushboolean(L,ul_keys.held.right);
 	lua_setfield(L,-2,"Right");
+	lua_pushboolean(L,ul_keys.held.lid);
+	lua_setfield(L, -2, "Lid");
 	lua_setfield(L,-2,"held");
 	lua_newtable(L);
 	lua_pushboolean(L,ul_keys.released.A);
@@ -98,6 +100,8 @@ static int controls_read(lua_State *L){
 	lua_setfield(L,-2,"Left");
 	lua_pushboolean(L,ul_keys.released.right);
 	lua_setfield(L,-2,"Right");
+	lua_pushboolean(L,ul_keys.released.lid);
+	lua_setfield(L, -2, "Lid");
 	lua_setfield(L,-2,"released");
 	lua_newtable(L);
 	lua_pushboolean(L,ul_keys.pressed.A);
@@ -124,6 +128,8 @@ static int controls_read(lua_State *L){
 	lua_setfield(L,-2,"Left");
 	lua_pushboolean(L,ul_keys.pressed.right);
 	lua_setfield(L,-2,"Right");
+	lua_pushboolean(L,ul_keys.pressed.lid);
+	lua_setfield(L, -2, "Lid");
 	lua_setfield(L,-2,"newPress");
 	lua_setglobal(L,"Keys");
 	return 0;

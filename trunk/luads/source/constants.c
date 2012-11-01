@@ -32,6 +32,13 @@ void uLua_pushConstants(lua_State *L) {
     
     lua_pushnumber(L, ALPHA_RESET);
     lua_setglobal(L, "ALPHA_RESET");
+	
+	lua_pushnumber(L, LED_ON);
+	lua_setglobal(L, "LED_ON");
+	lua_pushnumber(L, LED_SLEEP);
+	lua_setglobal(L, "LED_SLEEP");
+	lua_pushnumber(L, LED_BLINK);
+	lua_setglobal(L, "LED_BLINK");
     
     lua_pushnumber(L, ATTR_X1);
     lua_setglobal(L, "ATTR_X1");
