@@ -30,3 +30,7 @@ System.setScreenLight
 System.setDSLBrightness
 System.setLedBlink
 }}}
+
+=== Reylak on 03/11/2012 ===
+  * DS.setLedBlink done in r490
+  * DS.LidCLosed "added" but not useful because the console is put in sleep state before (more work needed)

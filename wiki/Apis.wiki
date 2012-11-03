@@ -1,9 +1,14 @@
 #summary APIs list
 
 The APIs are sorted by MicroLua's versions:
+  * [ApiFourDotSix 4.6]
   * [ApiFourDotFive 4.5]
   * [ApiFourDotTwo 4.2]
   * [ApiFourDotOne 4.1]
+  * [ApiFourDotZeroDotOne 4.0.1]
   * [ApiFourDotZero 4.0]
+  * [ApiThreeDotOne 3.1]
+  * [ApiThreeDotZero 3.0]
+  
 
 You can also [ApiIdeas suggest changes in the API], but it's better to do so in the [https://code.google.com/p/microlua/issues/list issues page].
