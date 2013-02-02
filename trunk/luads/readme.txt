@@ -1,4 +1,4 @@
-======================[[ MICROLUA 4.5 ]]=======================
+=======================[[ MICROLUA 4.6 ]]========================
 =========================<< SOURCES >>===========================
 
 .................................................................
@@ -42,10 +42,6 @@ This package contains the following files and directories:
 *__ like. That is to say in contains the 'lua' folder. Please do
 *__ not modify this architecture because it is needed to make the
 *__ No$GBa version of MicroLua.
-
-* <img>: here are some utils to make this No$GBA version. They
-*__ build a virtual image of the 'Fat' folder which will then be
-*__ included in the binary as a virtual filesystem.
 
 * <lua-5.1.3>: the sources of Lua, with many files modified to be
 *__ run on NDS, and many other things about compiling Lua.
