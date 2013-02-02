@@ -132,21 +132,28 @@ Debug.clear = function()
 end
 
 DateTime = {}
+DateTime.now = (System.getCurrentTime(5)+(System.getCurrentTime(4)*60)+(System.getCurrentTime(3)*3600)+(System.getCurrentTime(2)*86400))
 
 DateTime.new = function()
+	
 	local year, month, day, hour, minute, second
 	return {year = year, month = month, day = day, hour = hour, minute = minute, second = second}
 end
 
 DateTime.getCurrentTime = function()
 	local dt = DateTime.new()
+	local _nowtime = (DateTime.now*1000)+os.time()
+	local _rest
 	dt.year = System.getCurrentTime(0)
 	dt.month = System.getCurrentTime(1)
-	dt.day = System.getCurrentTime(2)
-	dt.hour = System.getCurrentTime(3)
-	dt.minute = System.getCurrentTime(4)
-	dt.second = System.getCurrentTime(5)
-	return dt
+	dt.day  = math.floor(_nowtime/86400000)
+	_rest = _nowtime % 86400000
+	dt.hour = math.floor(_rest/3600000)
+	_rest = _nowtime % 3600000
+	dt.minute = math.floor(_rest/60000)
+	_rest = _rest % 60000
+	dt.second = math.floor(_rest/1000)
+	return dt	
 end
 
 -- Declaration of the Sprite class
