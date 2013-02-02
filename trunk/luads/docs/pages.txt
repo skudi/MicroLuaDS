@@ -5,6 +5,9 @@ DevLinks
 MicroLuaDevLinks
 HowToContribute
 ExternalLinks
+LuaLinks
+CamelCase
+MicroLuaForum
 MicroLuaSimulator
 MicroLuaInstallation
 MicroLuaProjects
@@ -15,6 +18,7 @@ SoundTutorial
 GoogleCode
 DevKitPro
 EditWiki
+ApiFourDotSix
 ApiFourDotFive
 ApiFourDotOne
 ApiFourDotTwo
