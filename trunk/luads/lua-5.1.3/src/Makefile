@@ -15,6 +15,7 @@ PLAT= generic
 LIBDIRS	:=	$(DEVKITPRO)/libnds
 export INCLUDE	:= -I. -I.. $(foreach dir,$(LIBDIRS),-I$(dir)/include) \
 		    $(foreach dir,$(LIBDIRS),-I$(dir)/include/nds) \
+		    -I ../../source
 
 MACHDEP = 
 

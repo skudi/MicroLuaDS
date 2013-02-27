@@ -13,6 +13,7 @@
 #include <netinet/in.h>
 
 #include "constants.h"
+#include "efs_lib.h"
 
 void print_error(char *text)
 {
@@ -44,10 +45,10 @@ int main()
     // Use bright pink as a transparent color
     ulSetTransparentColor(RGB15(31, 0, 31));
     
-    //Initialization libfat
-	if(fatInitDefault()== false){
-		print_error("\n\n\tFailed to fatInitDefault\n");
-		return 0;
+    //Initialization libfat and EFSLib
+	if (!EFS_Init(EFS_AND_FAT, NULL)) {
+	    print_error("\n\nFailed to initialiaze embedded file system\n");
+	    return 0;
 	}
 	chdir("/");
     
@@ -60,12 +61,19 @@ int main()
     luaL_openlibs(l);
     uLua_pushConstants(l);
     
+    // First we try to load from fat:
     if (luaL_loadfile(l, ULUA_BOOT_FULLPATH)) {
-        if(luaL_loadfile(l, "/lua/libs/libs.lua")){
-        	char text[256];
-        	sprintf(text,"Error Occured: Couldn't open %s\n", ULUA_BOOT_FILE);
-		    print_error(text);
-		    return 0;
+        if (luaL_loadfile(l, ULUA_LIBS"libs.lua")) {
+            if (luaL_loadfile(l, "efs:"ULUA_BOOT_FULLPATH)) {     // Then from EFS
+                if (luaL_loadfile(l, "efs:/"ULUA_LIBS"libs.lua")) {
+                	char text[256];
+                	sprintf(text,"Error Occured: Couldn't open (efs:/)%s\n", ULUA_BOOT_FULLPATH);
+		            print_error(text);
+		            return 0;
+		        }
+		    }
+		    // Here we only have EFS, so we set it as default device
+		    chdir(EFS_DEVICE);
 		}
     }
     

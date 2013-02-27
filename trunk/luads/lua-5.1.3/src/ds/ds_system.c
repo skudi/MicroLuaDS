@@ -14,6 +14,8 @@
 #include "lauxlib.h"
 #include "lualib.h"
 
+#include "efs_lib.h"
+
 #include <fat.h>
 #include <sys/stat.h>
 #include <sys/dir.h>
@@ -122,12 +124,13 @@ static int system_listDirectory(lua_State *L){
 	char *dirname = (char *)luaL_checkstring(L,1);
 	DIR *pdir = opendir(dirname);
 	u8 index = 0;
-	if(pdir !=NULL){
+	if(pdir != NULL){
 		while((pent=readdir(pdir))!=NULL){
 			stat(pent->d_name,&statbuf);
 			tmp = malloc(sizeof(struct listtri));
 			strcpy(tmp->fstat.name,pent->d_name);
-			tmp->fstat.isDir = S_ISDIR(statbuf.st_mode);
+			// S_ISDIR is not working with EFS, so we need the right side of "||"
+			tmp->fstat.isDir = S_ISDIR(statbuf.st_mode) || opendir(pent->d_name) != NULL;
 			tmp->fstat.size = statbuf.st_size;
 			tmp->suiv = NULL;
 			if(prem == NULL) prem = tmp;
