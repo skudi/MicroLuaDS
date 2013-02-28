@@ -10,8 +10,10 @@ ADD_LIBS +=
 
 PATH 		:= $(DEVKITARM)/bin:$(PATH)
 
+EFS := $(CURDIR)/../efs
 ifeq ($(findstring Windows,$(OS)),Windows)
 WINDOWS := 1
+EFS := $(CURDIR)/../efs.exe
 endif
 
 TEXT1 		:= Micro Lua DS
@@ -167,7 +169,7 @@ endif
 #---------------------------------------------------------------------------------
 %.nds: %.arm9
 	@ndstool -c $@ -9 $< -d ../efsroot $(ARM7BIN) $(LOGO) $(ICON) "$(TEXT1);$(TEXT2);$(TEXT3)"
-	@$(CURDIR)/../efs ../$(notdir $@)
+	@$(EFS) ../$(notdir $@)
 	@echo built ... $(notdir $@)
 
 #---------------------------------------------------------------------------------
