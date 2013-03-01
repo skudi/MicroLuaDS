@@ -10,10 +10,10 @@ ADD_LIBS +=
 
 PATH 		:= $(DEVKITARM)/bin:$(PATH)
 
-EFS := $(CURDIR)/../efs
+EFS = $(CURDIR)/../efs
 ifeq ($(findstring Windows,$(OS)),Windows)
 WINDOWS := 1
-EFS := $(CURDIR)/../efs.exe
+EFS = $(CURDIR)/../efs.exe
 endif
 
 TEXT1 		:= Micro Lua DS
