@@ -2,288 +2,110 @@
 
 <wiki:toc />
 
-= How To Compile MicroLua v4.0.1 =
+= How To Compile MicroLua v4.6 =
 
 == Introduction ==
 
-This page will guide you on how to setup the development environment
-for building the source of MicroLua. There are several steps and several
-packages to install, but should be relatively straightforward.
+This page will guide you on how to setup the development environment for building the sources of MicroLua. The installation process should be quite easy now on both Windows and Linux OS.
 
-== Make the default.arm7 to use Nifi ==
+== Installation ==
 
-see the wiki page : [Make_ARM7]
-
-== Windows ==
+=== Downloads ===
 
 First download everything here and then follow the instructions below.
 
- * Several archives are in the 7z format, so you will need [http://www.7-zip.org/ 7-zip] or [http://portableapps.com/apps/utilities/peazip_portable PeaZip Portable].
- * [http://sourceforge.net/projects/devkitpro/files/Automated%20Installer/devkitProUpdater-1.5.0.exe/download devkitPro]
- * [http://brunni.palib.info/new/dl/nds/uLibrary.7z uLibrary]
- * The source code ([http://code.google.com/p/microlua/source/checkout Subversion repository] or [http://code.google.com/p/microlua/downloads/list zip]; you should download it from the repository as it is more updated than the packages)
+ # For best performances during extraction of archives, you may want to install either [http://www.7-zip.org/ 7-zip] or [http://portableapps.com/apps/utilities/peazip_portable PeaZip Portable]
+   * <u>Windows:</u> just download it from the website
+   * <u>Linux:</u> run `sudo apt-get install p7zip-full` to get 7zip
+ # [http://sourceforge.net/projects/devkitpro/files/Automated%20Installer/ devkitPro]
+   * <u>Windows:</u> download 'devkitProUpdater-x.x.x.exe'
+   * <u>Linux:</u>
+     # Download 'devkitARMupdate.pl'
+     # Allow yourself to execute it with `chmod u+x devkitARMupdate.pl`
+     # Make sure you have a Perl engine to run it later (you will most likely have it by default)
+ # [http://code.google.com/p/microlua/downloads/list µLibrary (fixed for up-to-date devkitPro)]
+ # While you are it, also get the [http://code.google.com/p/microlua/downloads/list modified libnds] (required to make Nifi working)
+ # Source code:
+   * From the [http://code.google.com/p/microlua/source/checkout Subversion repository] that you can get following GetTheCurrentSourceCode
+   * From a static [http://code.google.com/p/microlua/downloads/list zip archive]; you should however download it from the repository as it is more up-to-date than the packages
 
+=== Installing devkitPro ===
 
-=== Details ===
+We start with the set up of devkitPro, which is a compiling tool-chain to build C and C++ source code for ARM processors (the ones used by the NDS).
 
+==== Windows ====
 
-==== DevKitPro ====
+Launch 'devkitProUpdater-x.x.x.exe'.
 
-Start with DevKitPro, using the "Updater", that is an automatic downloader.
-You will only need msys and devkitARM, so you can uncheck the others unless you plan to make homebrews for PSP, NGC or Wii, or you want to use the utilities.
-This package is the compiler and binary tools for compiling ARM source code.
-Recommend to install to 'c:\devkitpro'. Just don't use spaces in any folder names.
-Hereafter we refer to your devkitpro install folder as simply '\devkitpro'.
-You might have troubles in downloading some packages, like senseless connection drop-out at the end of a download. In this case you can download all you need on the [http://sourceforge.net/projects/devkitpro/files/ devkitPro Sourceforge].
+For a minimal installation you will only need _msys_ and _devkitARM_, so you can uncheck the others unless you plan to make homebrews for PSP, NGC or Wii, or you want to use the utilities
 
-==== uLibrary ====
-
-uLibrary is a lib for low level 'OS' like stuff for ARM processors. This is built next.
-If you didn't installed devkitPro to 'c:\devkitpro', you have first to change paths in each bat files you will use here.
-  
- * Unpack to '\devkitpro\'
- * rename "uLibrary - 1.12" to uLibrary
- * cd to '\devkitpro\uLibrary\Source\'
- * Run 'build.bat'
- * Run 'Install.bat'
- * cd .. to '\devkitpro\uLibrary\'
- * Run 'Install.bat' here also (yes they do 2 different tasks!)
-
-==== MicroLua Source ====
-
- * Extract the MicroLua source to folder '\devkitpro\', or GetTheCurrentSourceCode. You only need the 'luads' directory.
- * Copy '\devkitpro\luads\img\fcsr.dldi' file to '\devkitpro\devkitarm\bin\dldi\' (make the dldi folder). This is only used to compile the No$GBA version, so if you don't care about it, you don't need to do this.
-
-==== Launch the compilation ====
-
-Now use `\devkitpro\luads\Compile All.bat` file to build. Either double click it of launch it from the command line (recommended).
-Note you need admin rights to install the Lua library after its compilation. You can launch 'Compile All.bat' as admin by right-clicking on it and choosing "Run as administrator", or throught a CMD that is already in administrator mode.
-
-=== Folders ===
-
+Check that the environment variables directing to the devkitPro folder have been successfully created:
+ # Go to Start->Control Panel->System
+ # Click on the 'Advanced' tab
+ # Click the button at the bottom: "Environment Variables"
+They should be in the bottom list "System Variables"; otherwise, add them:
 {{{
-\devkitPro
-	\devkitARM
-	\examples
-	\insight (only if you installed it)
-	\libgba
-	\libmirko
-	\libnds
-	\luads
-		\Examples
-		\Fat
-		\img
-		\lua-5.1.3
-		\source
-		\Utilities
-	\msys
-	\Other Libs
-	\Programmers Notepad (only if you installed it)
-	\uLibrary-1.12
+# Adapt the paths to your own configuration
+DEVKITPRO=c:\devkitpro
+DEVKITARM=c:\devkitpro\devkitARM
 }}}
 
-=== Notes ===
+==== Linux ====
+ 
+Execute 'devkitARMupdate.pl'. It will install devkitPro in '~' (your home) but you can change this by editing the script (first line of true code)
 
-==== Libs ====
-Once the DevKitPro, uLibrary and Lua are setup you don't have to recompile those unless one of these components is updated. The setup is complete.
-To compile only uLua (that is to say, 'source/main.c' and other files you may add here), just use 'Compile DS.bat'.
-
-==== Environment variables ====
-DevKitPro uses 2 environment variables.
-They are: 
+Then add environment variables: append the following lines to '~/.profile' so every shell you launch with your account will have them
 {{{
- DEVKITPRO=c:\devkitpro
- DEVKITARM=c:\devkitpro\devkitarm
+# Adapt the paths to your own configuration
+DEVKITPRO=/home/YOUR-NAME/devkitpro
+DEVKITARM=$DEVKITPRO/devkitARM
 }}}
 
-To do it manually: 
- Start->Control Panel->System<br>
- Then click on 'Advanced' tab<br> 
- Then click the button at the bottom 'Environment Variables'<br> 
- They should be in the bottom list, System Variables<br>
 
 
-==== Reference Package ====
-We should probably make a big package for win32 that contains all this stuff already done. This way newbies can get just one package to unzip and go. Such a package would be about 70Mb zipped.
+At this point you should be able to compile a generic source code made for NDS. But MicroLua requires two more things before compiling it...
 
-----
-== Linux ==
+=== Installing µLibrary ===
 
-First download everything here and then follow the instructions below.
+The next step is to install the µLibrary. µLibrary is a lib for low level stuff for ARM processors, such as handling drawings.
 
- * Several archives are in the 7z format, so you will need [http://www.7-zip.org/ 7-zip] 
- For debian/ubuntu use `apt-get install p7zip` or try `yum install 7z`.
+The package you downloaded actually has precompiled files that should do the work. Copy the 'libnds' folder and merge it into your devkitPro folder. That's all.
 
- * [http://sourceforge.net/projects/devkitpro/files/ Go here to get devkitpro packages] Click on "View All Files" to see the folders listed below.
+=== Setting up the custom libwifi ===
 
-Many packages are listed at the SourceForge site.  I've listed the folders and the versions I used.
-|| *Folder* || *Package* ||
-|| devkitARM/previous/DevkitARM release 30 || devkitARM_r30-i686-linux.tar.bz2 ||
-|| dswifi/previous/dswiki 0.3.12 || dswifi-0.3.12.tar.bz2 ||
-|| libnds/previous/libnds-1.4.3 || libnds-1.4.3.tar.bz2 ||
-|| filesystem/filesystem-0.9.6 || libfilesystem-0.9.6.tar.bz2 ||
-|| default arm7/previous || default_arm7-0.5.12.tar.bz2  ||
-|| maxmod/maxmod 1.0.6 || maxmod-nds-1.0.6.tar.bz2 ||
-|| libfat || libfat-nds-1.0.7.tar.bz2 ||
+Then you must copy and merge the content of the modified libnds into your devkitPro just like you did for the µLibrary. Replace the files when needed.
 
- * [http://brunni.palib.info/new/dl/nds/uLibrary.7z uLibrary]
+By doing this, you enable the Nifi system. It won't work otherwise.
 
- * GetTheCurrentSourceCode
+=== Installing the sources of MicroLua ===
 
-=== Details ===
+If you followed GetTheCurrentSourceCode, you can work directly in the 'trunk.luads' folder. Don't forget to clean it before committing if you intend to work on MicroLua.
 
-==== DevKitPro ====
+Otherwise, just extract the archive whenever you want.
 
-I used 'root' to build my pkgs, you may use your user account under your home folder, just change the devkitpro path as needed.
+In both cases, you need to create a folder called 'efsroot' inside 'luads'. It is used to create a version of MicroLua using EFSLib. If you don't understand what I am talking about, just let this folder empty and forget it.
 
-Make a folder to work in.  I used `/opt/devkitpro/`.
-{{{
- mkdir /opt/devkitpro
- cd /opt/devkitpro
-}}}
-Just don't use spaces in any folder names.
+== Compilation ==
 
-Hereafter we refer to your devkitpro install folder as simply '/devkitpro'.
+Here we are. Everything is set up, and we can compile MicroLua.
 
+=== Windows ===
 
-==== Unpack packages ====
+Windows users can directly use the two '.bat' files in the folder 'luads':
+ * 'Compile All.bat' will compile both the Lua interpreter and the MicroLua executable
+ * 'Compile DS.bat' will only compile the executable, that is to say the content of the 'source' folder
 
-Unpack the devkitARM_r30-i686-linux.tar.bz2 package into '/devkitpro'.
-{{{
- tar -jxvf devkitARM_r30-i686-linux.tar.bz2 -C /opt/devkitpro/
- tar -jxvf dswifi-0.3.12.tar.bz2 -C /opt/devkitpro/
- tar -jxvf libnds-1.4.3.tar.bz2 -C /opt/devkitpro/
- tar -jxvf libfilesystem-0.9.6.tar.bz2 -C /opt/devkitpro/
- tar -jxvf default_arm7-0.5.12.tar.bz2 -C /opt/devkitpro/
- tar -jxvf maxmod-nds-1.0.6.tar.bz2 -C /opt/devkitpro/
- tar -jxvf libfat-nds-1.0.7.tar.bz2 -C /opt/devkitpro/
- p7zip -d uLibrary.7z
- mv uLibrary\ -\ 1.12/ /opt/devkitpro/uLibrary
- }}}
+The first time, you need to run 'Compile All.bat' in order to compile the libraries of the Lua interpretor. Then 'Compile DS.bat' will do the job as long as you don't modify the content of the folder 'lua-5.1.3'.
 
-Copy files.
-{{{
- cp /opt/devkitpro/default.arm7 /opt/devkitpro/libnds/
- cp /opt/devkitpro/default.elf /opt/devkitpro/libnds/
-}}}
+=== Linux ===
 
-==== MicroLua Source ====
+There is no bash scripts for Linux users, but this remains really easy:
+ * On the first time, you have to compile the Lua libraries
+   # `cd lua-5.1.3`
+   # `make` and then `make install`
+   # you can `make clean` here to clean the folder a bit
+   # go back to 'luads' with `cd ..`
+ * Every other times, you just need to do `make` in the folder 'luads'; maybe `make clean` after this
 
- * Extract the MicroLua source to folder '/devkitpro', or GetTheCurrentSourceCode.
- * You can skip this item if you only need a `.nds` for you hardware. If you want a `.nds` to test on _No$GBA_ you'll have to rename the resulting source folder (the one containing `Examples`, `Fat`...) to 'luads'. This is because the name of a compiled file is the same as the source folder and a `luads.img` will be needed. Note that if you track the code in our repository, you'll have to rename it again to `trunk` before updates, unless you only checked out the trunk.
+As long as you don't modify the content of the folder 'lua-5.1.3', you don't need to compile the Lua intepretor again, so a single `make` in 'luads' in order to build the content of 'source' is enough. `make clean` is still useful.
 
-==== Makefiles for Linux ====
-
-Some changes had to be made to get the build system to work in Linux.
-However they are very minor.  These have been checked into svn here.
-
- * Locate the Makefile at luads/ folder, and comment out the win32 line and uncomment the linux line.
-{{{ 
- 	#if windows uncomment this 
- 	#EXPORT_DIR := /c/ndsexamples/ 
- 	#if linux uncomment this
- 	EXPORT_DIR := ./nds_examples/
-}}}
-
- * Locate the Makefile in the luads/lua-5.1.3/src folder. Add 2 includes '-I. -I.. '
-{{{
-  LIBDIRS :=      $(DEVKITPRO)/libnds
-  export INCLUDE  :=      -I. -I.. $(foreach dir,$(LIBDIRS),-I$(dir)/include) \
-                                   $(foreach dir,$(LIBDIRS),-I$(dir)/include/nds) \
-
-}}}
-
-==== Environment Variables ====
-
-export env vars: (shell dependant, BASH use export)
-{{{
- DEVKITPRO=/opt/devkitpro
- DEVKITARM=$DEVKITPRO/devkitARM
-}}}
-
-==== Launch the compilation ====
-
-First we need to make a folder that mimics the win32 setup.  Then we need to make 2 symbolic links so everything will match up.
-{{{
- mkdir /opt/devkitpro/libnds
- cd /opt/devkitpro/libnds
- ln -s ../include include
- ln -s ../lib lib
-}}}
-
-===== uLibrary =====
-
-Change to uLibrary and build the package.
-{{{
- cd /opt/devkitpro/uLibrary/Source
- make
- make install
-}}}
-Rename `include/uLib` to `include/ulib`  (lower case L !)
-{{{
- mv /opt/devkitpro/include/uLib/ /opt/devkitpro/include/ulib
-}}}
-
-===== Lua-5.1.3 =====
-
-Build the core Lua code and the Microlua extension code.
-I had to do this as root user.
-{{{
- cd /path/to/sources/lua-5.1.3
- make
- make install
-}}}
-
-===== Microlua binaries =====
-
-====== Test versions ======
-
-You can skip this section if you only need a `.nds` for you hardware. If you want a `.nds` to test on _No$GBA_ your source folder will need to be named 'luads', and you'll need to do this:
-{{{
- mkdir /opt/devkitpro/devkitARM/bin/dldi/
- cp /path/to/sources/img/fcsr.dldi /opt/devkitpro/devkitARM/bin/dldi/fcsr.dldi
- cd /path/to/sources/
- cp ./img/luads.img luads.img [hack, until someone figures the way to make this image in linux]
- make
-}}}
-
-======= Hardware versions ======
-
-{{{
- cd /path/to/sources/
- make
-}}}
-
- * Copy xxxx.nds to your linker and run.
-
-
-=== Folders ===
-
-{{{
-/opt
-   /devkitpro
-	/devkitARM
-	/include
-	/lib
-	/libnds
-	/luads
-		/Examples
-		/Fat
-		/img
-		/lua-5.1.3
-		/source
-	/uLibrary
-}}}
-
-=== Notes ===
-
-==== Tested Linux Versions ====
-
-Lets list the tested Linux OS (and OSX10.?) here.
-  * Ubuntu LTS 8.04
-  * Ubuntu LTS 9.10 
-  * Debian Squeeze as of December 4th 2009
-
-==== Libs ====
-
-Once the DevARM-`r30`, uLibrary are setup you don't have to recompile those unless one of these components is updated.  The setup is complete.

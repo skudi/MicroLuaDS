@@ -34,6 +34,9 @@ Waiting for the release script...
       * if it is a minor version, keep all of this, just add the new description and change the links.
     * update the front page: download link, version number and image
     * update Reylak's signature
+    * update related Wiki pages:
+      * HowToCompile (if major version)
+      * API
 
 = After the release =
 

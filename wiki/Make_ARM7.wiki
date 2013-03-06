@@ -1,26 +1,27 @@
-#summary One-sentence summary of this page.
+#summary How to build the custom ARM files needed by MicroLua.
 #labels Phase-Implementation
 
-= How to compile the ARM7 for use Nifi =
+= How to compile the ARM7 to use Nifi =
+
+In order to get the Nifi system working fine with MicroLua, you need to do a small modification on the libnds files.
+
+Here we refer to your devkitPro folder as 'devkitpro', whatever its location may be.
 
 ==1. Download sources==
 
-  Take this 2 files on the Devkitpro site.
+  Take those 2 files on the Devkitpro site.
 
-    * dswifi-src-x.x.xx
-    * default_arm7-src-x.x.xx 
+    * [http://sourceforge.net/projects/devkitpro/files/dswifi/ dswifi-src-x.x.xx]
+    * [http://sourceforge.net/projects/devkitpro/files/default%20arm7/ default_arm7-src-x.x.xx]
 
   (where x.x.xx is the last version number)
 
 ==2. Make dswifi lib==
 
-  # Extract dswifi-src-x.x.xx in your devkitpro folder in:
-    * for windows -> c:\devkitpro\libwifi\
-    * for linux -> ~/devkitpro/libwifi/
-  # Go to this folder and search for this file :
-    libwifi/.../arm9/source/wifi_arm9.c
-  # In this file found the function : {{{int Wifi_RawTxFrame(u16 datalen, u16 rate, u16 * data) }}}
-  # In this function replace all the line by :
+  # Extract dswifi-src-x.x.xx in your devkitpro folder in 'devkitpro\libwifi\'
+  # Go to this folder and look for this file: 'libwifi/.../arm9/source/wifi_arm9.c'
+  # In this file find the function: {{{int Wifi_RawTxFrame(u16 datalen, u16 rate, u16 * data) }}}
+  # In this function replace all the lines with:
     {{{
 int base,framelen, hdrlen, writelen;
  int copytotal, copyexpect;
@@ -101,23 +102,25 @@ int base,framelen, hdrlen, writelen;
  return 0;
     }}}
   # Save the file
-  # Open a command Line 
-    * got to the folder : devkitpro/libwifi/dswifi-src-x.x.xx/
-    * type make
-   It will create a new folder named lib
+  # Now compile the fixed libwifi:
+    * Open a command line
+    * Go to the folder 'devkitpro/libwifi/dswifi-src-x.x.xx/'
+    * Type in "make"
+   It will create a new folder named 'lib'.
 
 ==3. Make default ARM7==
 
-  # Extract default_arm7-src-x.x.xx in devkitpro/libnds folder
-  # Copy all 4 devkitpro/libwifi/dswifi-src-x.x.xx/libs/libdswifi`*`.a in devkitpro/libnds/lib/
-  # Open a command line
-    * Go to devkitpro/libnds/ folder
-    * type make
-   It will replace default.arm7 and default.elf
+  # Extract 'default_arm7-src-x.x.xx' in 'devkitpro/libnds'
+  # Copy all four 'devkitpro/libwifi/dswifi-src-x.x.xx/libs/libdswifi`*`.a' in 'devkitpro/libnds/lib/'
+  # Now compile the fixed default ARM7:
+    * Open a command line
+    * Go to 'devkitpro/libnds/'
+    * Type "make"
+   It will replace 'default.arm7' and 'default.elf'
 
 =Ok it's ready=
 
-  Now you can compile microlua normaly. 
+  Now you can compile MicroLua with its full abilities :)
 
 
 This guide was found on [http://www.youwrite.com/greenacorn/index.php?option=com_content&view=article&id=18%3Anifi-ds-to-ds-comms&catid=9%3Ands&Itemid=17&showall=1 GreenAcorn]
