@@ -1,7 +1,0 @@
-#summary Description de CamelCase
-
-CamelCase permet de créer automatiquement un lien vers une page du wiki avec un seul mot. MicroLua est un lien, mais Microlua ne l'est pas à cause du 'l' minuscule.
-
-D'après [http://en.wikipedia.org/wiki/CamelCase cet article de Wikipedia]:
-
-!CamelCase (aussi écrit "camel case") ou majuscules médianes est la pratique d'écrire des mots composés ou des phrases dans lesquels les éléments sont attachés sans espaces, avec la première lettre de chaque mot en majuscule à l'intérieur du terme, la première lettre de ce dernier pouvant être en majuscule ou en minuscule – comme dans !LaBelle, !BackColor ou !MacGyver. Le nom vient du fait que la majuscule fait une sorte de bosse au milieu du mot composé, comme les bosses d'un chameau. Cette pratique est aussi désignée par de nombreux autres noms.

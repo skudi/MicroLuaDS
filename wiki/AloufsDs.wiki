@@ -1,8 +1,0 @@
-_A game coded in Microlua3._
-
-
-= Details =
-
-In this game you will have to take one, two or three matches at time and try to never take the last one.<br>
-You can find the last version and a French description of this game here :<br>
-http://sites.google.com/site/microlua/Home/projets/aloufsds

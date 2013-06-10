@@ -1,8 +1,0 @@
-_A 301 darts game_
-
-
-= Details =
-
-Link to this project : 
-http://sites.google.com/site/microlua/flechettes<br>
-This game has been developped to test and show efficacity of the Angle-EZ library.

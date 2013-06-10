@@ -1,5 +1,0 @@
-A pong-clone game created by BALROG.
-
-= Links =
-
-Official page of the project (fr) : http://sites.google.com/site/poramadev/mes-projets/pingpong

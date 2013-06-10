@@ -1,2 +1,0 @@
-#labels Deprecated
-Ceci est la page créée par défaut.

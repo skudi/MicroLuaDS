@@ -1,7 +1,0 @@
-#summary Tutorial about image file formats
-
-Choose the one that corresponds the best to the criterias:
-  * bmp: doesn't compress the image. Don't use it.
-  * gif: compresses without damages, but supports a little set of colors, and no transparency. Animated gif don't work in MicroLua; you have to put the frames side by side in one image and split it in the code. Don't use it.
-  * png: compresses without damages. Supports transparency levels. Use it.
-  * jpg/jpeg: compresses the image to a very small size, bu damages it, which doesn't matter with photos. Use it.

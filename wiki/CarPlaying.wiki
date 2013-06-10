@@ -1,9 +1,0 @@
-An avoid-them-all game created by BALROG.
-= Introduction =
-
-You drive a car and have to dodge the dangerous monsters.
-
-
-= Links =
-
-Official website of the project (fr) : http://sites.google.com/site/poramadev/mes-projets/carplaying

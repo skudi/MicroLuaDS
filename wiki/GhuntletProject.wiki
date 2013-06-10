@@ -1,9 +1,0 @@
-#summary Gauntlet-like for Nintendo DS coded with Micro lua
-
-= Introduction =
-
-Go to this page for further informations : [http://code.google.com/p/ghuntlet/ Ghuntlet]
-
-A little Screenshot :
-
-http://ghuntlet.googlecode.com/files/Capture-uLua%20DS%20Sim%20v0.4beta2-1.png
