@@ -163,15 +163,20 @@ Sprite = {
 	-- height: height of the frames
 	-- width: width of the frames
 	-- dest: destination (RAM or VRAM)
-	new = function(path_, width_, height_, dest)
+	new = function(graph_, width_, height_, dest)
 		assert(path_ ~= nil, "Path can't be null")
 		assert(width_ > 0, "Width must be positive")
 		assert(height_ > 0, "Height must be positive")
 		assert(dest == RAM or dest == VRAM, "Destination must be RAM or VRAM")
-		local path = path_
 		local height = height_
 		local width = width_
-		local img = Image.load(path, dest)
+		if type(graph_) == "string" then
+			local path = graph_
+			local img = Image.load(path, dest)
+		elseif type(graph_) == "userdata" then
+			local img = graph_
+			local path = "" -- I don't know why I write this ...
+		end
 		local animations = {}
 		
 		-- ### Public methods ###
