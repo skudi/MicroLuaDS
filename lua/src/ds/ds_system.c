@@ -22,7 +22,6 @@
 #include <unistd.h>
 #include <dirent.h>
 #include <string.h>
-#include <time.h>
 #include <ulib/ulib.h>
 
 #include "vars.h"
@@ -203,45 +202,6 @@ static int system_listDirectory(lua_State *L){
 	else return 0;
 }
 
-static int system_getCurrentTime(lua_State *L){
-	int type = (int)luaL_checknumber(L, 1);
-	time_t unixTime = time(0);
-	struct tm* timeStruct = localtime((const time_t *)&unixTime);
-	int ret = 0;
-	switch(type){
-		case TIME_YEAR:
-			ret = timeStruct->tm_year + 1900;
-		break;
-		case TIME_MONTH:
-			ret = timeStruct->tm_mon + 1;
-		break;
-		case TIME_DAY:
-			ret = timeStruct->tm_mday;
-		break;
-		case TIME_WEEKDAY:
-			ret = timeStruct->tm_wday;
-		break;
-		case TIME_YEARDAY:
-			ret = timeStruct->tm_yday;
-		break;
-		case TIME_HOUR:
-			ret = timeStruct->tm_hour;
-		break;
-		case TIME_MINUTE:
-			ret = timeStruct->tm_min;
-		break;
-		case TIME_SECOND:
-			ret = timeStruct->tm_sec;
-		break;
-		default:
-			luaL_error(L, "Bad parameter");
-		break;
-	}
-	timeStruct = NULL;
-	lua_pushnumber(L, ret);
-	return 1;
-}
-
 static int system_setLedBlinkMode(lua_State *L) {
 	int mode = (int)luaL_checknumber(L, 1);
 	assert(L, mode == PM_LED_ON || mode == PM_LED_SLEEP || mode == PM_LED_BLINK, "Bad led blink mode");
@@ -269,7 +229,6 @@ static const luaL_Reg systemlib[] = {
 	{"rename", system_rename},
 	{"makeDirectory", system_makeDirectory},
 	{"listDirectory", system_listDirectory},
-	{"getCurrentTime", system_getCurrentTime},
 	{"CurrentVramUsed",system_currentVramUsed},
 	{"CurrentVramFree",system_currentVramFree},
 	{"CurrentPalUsed",system_currentPalUsed},

@@ -52,7 +52,7 @@ int main()
 	}
 	chdir("/");
     
-    struct lua_State *l = lua_open();
+    struct lua_State *l = luaL_newstate();
     if (!l) {
         print_error("\n\n\tFailed to create a Lua state - Push A to Exit\n");
         return 0;
