@@ -6,8 +6,10 @@ shell.readme = {}
 shell.index = {}
 shell.subMenu = false
 shell.oldDir = ""
-shell.dt = DateTime.new()
 shell.co = Color.new(0,0,0)
+
+Debug.ON()
+Debug.setColor(Color.new(30,0,0))
 
 shell.verif = function(first)
 	if(first==nil) then first = false end
@@ -62,7 +64,7 @@ end
 
 shell.init = function()
 	Dir = "/lua/scripts"
-	_VSHELL = 3.01
+	_VSHELL = 3.02
 	shell.loadLibs()
 end
 
@@ -73,20 +75,19 @@ shell.show = function()
 	screen.drawGradientRect(SCREEN_UP,0,90,256,192,Color.new(31,31,31),Color.new(31,31,31),Explore.ci,Explore.ci)
 	screen.blit(SCREEN_UP,0,0,shell.logo)
 	screen.print(SCREEN_UP,172,76,string.char(169).." RISIKE 2009",shell.co)
-	screen.print(SCREEN_UP,82,96,"Microlua community 2009-2012",shell.co)
+	screen.print(SCREEN_UP,82,96,"Microlua community 2009-2013",shell.co)
+	buff = "Based on ".._VERSION
+	screen.print(SCREEN_UP,250-(string.len(buff)*6),106,buff,shell.co)
 	buff = ULUA_VERSION
 	screen.print(SCREEN_UP,250-(string.len(buff)*6),66,buff,shell.co)
-	shell.dt = DateTime.getCurrentTime()
-	screen.print(SCREEN_UP,104,130,string.format("%02d:%02d:%02d", shell.dt.hour, shell.dt.minute, shell.dt.second),shell.co)
-	screen.print(SCREEN_UP,98,140,string.format("%02d/%02d/%d", shell.dt.day, shell.dt.month, shell.dt.year),shell.co)
+	screen.print(SCREEN_UP,104,130,os.date("%H:%M:%S"),shell.co)
+	screen.print(SCREEN_UP,98,140,os.date("%d/%m/%Y"),shell.co)
 	screen.print(SCREEN_UP,100,180,"shell v.".._VSHELL.." "..shell.name,shell.co)
-	--screen.print(SCREEN_UP,0,180,Text.COM)
 	screen.blit(SCREEN_DOWN,231,0,shell.icones,240,0,25,25)
 	screen.print(SCREEN_DOWN,242,6,"Y")
 	if(shell.subMenu) then
 		screen.drawRect(SCREEN_DOWN,0,60,256,132,Color.new(0,0,0))
 		screen.drawFillRect(SCREEN_DOWN,0,61,256,131,Color.new(31,31,31))
-		screen.drawFillRect(SCREEN_DOWN,0,65,256,127,Explore.ci)--Color.new(10,10,30))
 		if(string.sub(luaWidget.get(Explore.explore,Explore.nom,"text"),-3) == "lua" or 
 		  shell.index.exist) then
 			screen.blit(SCREEN_DOWN,8,66,shell.icones,0,0,48,48)
