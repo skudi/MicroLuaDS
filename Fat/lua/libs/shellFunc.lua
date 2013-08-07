@@ -8,9 +8,6 @@ shell.subMenu = false
 shell.oldDir = ""
 shell.co = Color.new(0,0,0)
 
-Debug.ON()
-Debug.setColor(Color.new(30,0,0))
-
 shell.verif = function(first)
 	if(first==nil) then first = false end
 	local buff = luaWidget.getSel(Explore.explore,Explore.liste)
@@ -88,6 +85,7 @@ shell.show = function()
 	if(shell.subMenu) then
 		screen.drawRect(SCREEN_DOWN,0,60,256,132,Color.new(0,0,0))
 		screen.drawFillRect(SCREEN_DOWN,0,61,256,131,Color.new(31,31,31))
+		screen.drawFillRect(SCREEN_DOWN,0,65,256,127,Explore.ci)
 		if(string.sub(luaWidget.get(Explore.explore,Explore.nom,"text"),-3) == "lua" or 
 		  shell.index.exist) then
 			screen.blit(SCREEN_DOWN,8,66,shell.icones,0,0,48,48)
