@@ -8,15 +8,6 @@
 #define LUA_RAM  0
 #define LUA_VRAM  1
 
-#define TIME_YEAR 0
-#define TIME_MONTH 1
-#define TIME_DAY 2
-#define TIME_HOUR 3
-#define TIME_MINUTE 4
-#define TIME_SECOND 5
-#define TIME_WEEKDAY 6
-#define TIME_YEARDAY 7
-
 #define CANVAS_TYPE_LINE 0
 #define CANVAS_TYPE_POINT 1
 #define CANVAS_TYPE_RECT 2

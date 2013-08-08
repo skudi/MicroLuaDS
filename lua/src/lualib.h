@@ -92,6 +92,9 @@ LUALIB_API int (luaopen_sound) (lua_State *L);
 #define LUA_USERLIBNAME "dsUser"
 LUALIB_API int (luaopen_user) (lua_State *l);
 
+#define LUA_TIMERLIBNAME "Timer"
+LUALIB_API int (luaopen_timer) (lua_State *L);
+
 
 
 #if !defined(lua_assert)

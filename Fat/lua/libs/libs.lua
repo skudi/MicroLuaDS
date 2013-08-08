@@ -39,46 +39,6 @@ render = function()
 	startDrawing()
 end
 
-Timer = {
-	new = function()
-		local t = os.time()
-		local isStarted = false
-		local tick = 0
-	
-		local time = function(self)
-			if isStarted then return os.time() - t
-			else return tick end
-		end
-	
-		local stop = function(self)
-			if isStarted then
-				isStarted = false
-				tick = os.time() - t
-			end
-		end
-		
-		local start = function(self)
-			if not isStarted then
-				isStarted = true
-				t = os.time() - tick 	
-			end
-		end
-		
-		local reset = function(self)
-			t = os.time()
-			isStarted = false
-			tick = 0				
-		end
-	
-		return{
-			time = time,
-			stop = stop,
-			start = start,
-			reset = reset
-		}
-	end
-}
-
 Debug = {}
 Debug.isDebugOn = false
 Debug.listText = {}
