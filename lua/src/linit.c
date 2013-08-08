@@ -59,6 +59,7 @@ static const luaL_Reg loadedDSlibs[] = {
   {LUA_MOTIONLIBNAME, luaopen_motion},
   {LUA_SOUNDLIBNAME, luaopen_sound},
   {LUA_USERLIBNAME, luaopen_user},
+  {LUA_TIMERLIBNAME, luaopen_timer},
   {NULL, NULL}
 };
 
