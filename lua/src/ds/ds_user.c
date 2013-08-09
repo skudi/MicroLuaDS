@@ -28,15 +28,7 @@ static int user_birthDay(lua_State* l) {
 }
 
 static int user_name(lua_State* l) {
-    u8 name[21];
-    u8 i;
-    
-    for (i = 0; i < PersonalData->nameLen; i++)
-        name[i] = PersonalData->name[i];
-
-    name[i] = '\0';
-    
-    lua_pushstring(l, name);
+	lua_pushlstring(l, (const char*)PersonalData->name, PersonalData->nameLen);
         
     return 1;
 }
@@ -48,15 +40,7 @@ static int user_nameLength(lua_State* l) {
 }
 
 static int user_message(lua_State* l) {
-    u8 msg[53];
-    u8 i;
-
-    for (i = 0; i < PersonalData->messageLen; i++)
-        msg[i] = PersonalData->message[i];
-	
-    msg[i] = '\0';
-    
-    lua_pushstring(l, msg);
+	lua_pushlstring(l, (const char*)PersonalData->message, PersonalData->messageLen);
         
     return 1;
 }
