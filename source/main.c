@@ -15,7 +15,7 @@
 #include "constants.h"
 #include "efs_lib.h"
 
-void print_error(char *text)
+void print_error(const char *text)
 {
 	while (1)
 	{
