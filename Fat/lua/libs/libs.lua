@@ -14,7 +14,7 @@ stopDrawing = function()
 	else
 		mustCountFPS = true
 	end
-	if tmrFpsCounter:time() >= 1000 then
+	if tmrFpsCounter:getTime() >= 1000 then
 		NB_FPS = NB_FPS_COUNTER
 		NB_FPS_COUNTER = 0
 		tmrFpsCounter:reset()
