@@ -428,7 +428,7 @@ Explore.held = function()
 			Explore.showMenu = false
 		end
 		if(Explore.showMenu) then 
-			if(Explore.timer:time() > 150) then 
+			if(Explore.timer:getTime() > 150) then 
 				if(Keys.newPress.Up or Keys.held.Up) then
 					luaWidget.set(Explore.menu,Explore.lMeOpt[Explore.menuSel],"cFond",Explore.oldColor)
 					Explore.menuSel = Explore.menuSel+1
@@ -476,7 +476,7 @@ Explore.held = function()
 			end
 		else
 			luaWidget.held(Explore.explore)
-			--if(Explore.timer:time() > 150) then 
+			if(Explore.timer:getTime() > 150) then 
 				if(Keys.newPress.Up or Keys.held.Up) then
 					pos = luaWidget.get(Explore.explore,Explore.liste,"pos")-1
 					if(pos < 1) then pos = luaWidget.get(Explore.explore,Explore.liste,"max") end
@@ -495,11 +495,11 @@ Explore.held = function()
 					Explore.changeDir("..")
 				end
 				if(reset) then
-			--		Explore.timer:reset()
-			--		Explore.timer:start()
+					Explore.timer:reset()
+					Explore.timer:start()
 					Explore.modif = true
 				end
-			--end
+			end
 			if(luaWidget.get(Explore.explore,Explore.liste,"doubleClick")) then
 				luaWidget.set(Explore.explore,Explore.bOk,"check",true)
 				luaWidget.set(Explore.explore,Explore.liste,"doubleClick",false)
