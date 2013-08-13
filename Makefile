@@ -57,11 +57,13 @@ LOGO		:= -o $(CURDIR)/../logo_wifi.bmp
 # BUILD is the directory where object files & intermediate files will be placed
 # SOURCES is a list of directories containing source code
 # INCLUDES is a list of directories containing extra header files
+# EXPORT_DIR is the folder where to copy the output file when asked 'make export'
 #---------------------------------------------------------------------------------
 TARGET		:= MicroLua
 BUILD		:= build
 SOURCES		:= gfx source data
 INCLUDES	:= include build
+EXPORT_DIR	:= 
 #---------------------------------------------------------------------------------
 
 #---------------------------------------------------------------------------------
@@ -120,21 +122,29 @@ export LIBPATHS	:= $(foreach dir,$(LIBDIRS),-L$(dir)/lib)
 #---------------------------------------------------------------------------------
  
 #---------------------------------------------------------------------------------
-.PHONY: $(BUILD) clean export
+.PHONY: $(BUILD) all clean cleanall export
 #---------------------------------------------------------------------------------
  
 #---------------------------------------------------------------------------------
 $(BUILD):
 	@[ -d $@ ] || mkdir -p $@
 	@make --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
- 
+
+all:
+	@make -C lua
+	@make install -C lua
+	@make
+
 clean:
-	@echo Cleaning...
+	@echo Cleaning MicroLua...
 	@rm -fr $(BUILD) *.elf *.bin
+
+cleanall: clean
+	make clean -C lua
  
 export:
 	@echo Exporting...
-	@cp *.nds $(EXPORT_DIR)/$(TARGET).nds
+	@[ -z $(EXPORT_DIR) ] && echo 'Please set EXPORT_DIR in the Makefile before trying to export.' || cp $(TARGET).nds $(EXPORT_DIR)/
 #---------------------------------------------------------------------------------
 
 else

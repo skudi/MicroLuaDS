@@ -14,7 +14,7 @@ stopDrawing = function()
 	else
 		mustCountFPS = true
 	end
-	if tmrFpsCounter:time() >= 1000 then
+	if tmrFpsCounter:getTime() >= 1000 then
 		NB_FPS = NB_FPS_COUNTER
 		NB_FPS_COUNTER = 0
 		tmrFpsCounter:reset()
@@ -24,7 +24,7 @@ stopDrawing = function()
 	if Debug.isDebugOn then
 		local buffer="FPS: "..NB_FPS
 		local xx=255-(string.len(buffer)*6)
-		screen.print(SCREEN_UP,171,162,"RAM : "..math.floor(collectgarbage("count")).."o.",Debug.debugColor)
+		screen.print(SCREEN_UP,171,162,"RAM : "..math.floor(collectgarbage("count")).."ko.",Debug.debugColor)
 		screen.print(SCREEN_UP,171,172,"VRAM: "..System.CurrentVramFree().."o.",Debug.debugColor)
 		screen.print(SCREEN_UP,171,182,"FPS : "..NB_FPS,Debug.debugColor)
 		screen.drawTextBox(SCREEN_DOWN, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, Debug.debugText, Debug.debugColor)
@@ -38,46 +38,6 @@ render = function()
 	stopDrawing()
 	startDrawing()
 end
-
-Timer = {
-	new = function()
-		local t = os.time()
-		local isStarted = false
-		local tick = 0
-	
-		local time = function(self)
-			if isStarted then return os.time() - t
-			else return tick end
-		end
-	
-		local stop = function(self)
-			if isStarted then
-				isStarted = false
-				tick = os.time() - t
-			end
-		end
-		
-		local start = function(self)
-			if not isStarted then
-				isStarted = true
-				t = os.time() - tick 	
-			end
-		end
-		
-		local reset = function(self)
-			t = os.time()
-			isStarted = false
-			tick = 0				
-		end
-	
-		return{
-			time = time,
-			stop = stop,
-			start = start,
-			reset = reset
-		}
-	end
-}
 
 Debug = {}
 Debug.isDebugOn = false

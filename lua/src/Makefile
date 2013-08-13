@@ -33,7 +33,8 @@ MYLDFLAGS= $(INCLUDE) $(LIBPATHS)
 MYLIBS= -lul -lpng -lz -lfat -ldswifi9 -lmm9 -lnds9
 MYOBJS= ds/ds_screen.o ds/ds_controls.o ds/ds_image.o ds/ds_system.o ds/ds_map.o \
 	ds/ds_font.o ds/ds_color.o ds/ds_scrollmap.o ds/ds_canvas.o ds/ds_wifi.o \
-	ds/ds_nifi.o ds/ds_sound.o ds/ds_rumble.o ds/ds_motion.o ds/ds_user.o
+	ds/ds_nifi.o ds/ds_sound.o ds/ds_rumble.o ds/ds_motion.o ds/ds_user.o \
+	ds/ds_timer.o
 
 # == END OF USER SETTINGS -- NO NEED TO CHANGE ANYTHING BELOW THIS LINE =======
 
@@ -211,3 +212,5 @@ ds/ds_sound.o: ds/ds_sound.c lua.h luaconf.h lauxlib.h lualib.h
 ds/ds_rumble.o: ds/ds_rumble.c lua.h luaconf.h lauxlib.h lualib.h
 ds/ds_motion.o: ds/ds_motion.c lua.h luaconf.h lauxlib.h lualib.h
 ds/ds_user.o: ds/ds_user.c lua.h luaconf.h lauxlib.h lualib.h
+ds/ds_timer.o: ds/ds_timer.c lua.h luaconf.h lauxlib.h lualib.h
+

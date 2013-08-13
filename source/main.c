@@ -15,7 +15,7 @@
 #include "constants.h"
 #include "efs_lib.h"
 
-void print_error(char *text)
+void print_error(const char *text)
 {
 	while (1)
 	{
@@ -45,12 +45,16 @@ int main()
     // Use bright pink as a transparent color
     ulSetTransparentColor(RGB15(31, 0, 31));
     
-    //Initialization libfat and EFSLib
-	if (!EFS_Init(EFS_AND_FAT, NULL)) {
-	    print_error("\n\nFailed to initialiaze embedded file system\n");
-	    return 0;
-	}
-	chdir("/");
+    /* Initialization of libfat and EFSLib
+    ** First we try both, and if it fails (e.g because the binary
+    ** hasn't been patched) we try FAT alone */
+    if (!EFS_Init(EFS_AND_FAT, NULL)) {
+        if (!fatInitDefault()) {
+            print_error("Failed to initialize Embedded File System\nand FAT together, and FAT alone");
+            return 0;
+        }
+    }
+    chdir("/");
     
     struct lua_State *l = luaL_newstate();
     if (!l) {
@@ -66,15 +70,15 @@ int main()
         if (luaL_loadfile(l, ULUA_LIBS"libs.lua")) {
             if (luaL_loadfile(l, "efs:"ULUA_BOOT_FULLPATH)) {     // Then from EFS
                 if (luaL_loadfile(l, "efs:/"ULUA_LIBS"libs.lua")) {
-                	char text[256];
-                	sprintf(text,"Error Occured: Couldn't open (efs:/)%s\n", ULUA_BOOT_FULLPATH);
-		            print_error(text);
-		            return 0;
-		        }
-		    }
-		    // Here we only have EFS, so we set it as default device
-		    chdir(EFS_DEVICE);
-		}
+                    char text[256];
+                    sprintf(text,"Error Occured: Couldn't open (efs:/)%s\n", ULUA_BOOT_FULLPATH);
+                    print_error(text);
+                    return 0;
+                }
+            }
+            // Here we only have EFS, so we set it as default device
+            chdir(EFS_DEVICE);
+        }
     }
     
     if(lua_pcall(l,0,0,0)) {
