@@ -98,7 +98,7 @@ Sprite = {
 	-- width: width of the frames
 	-- dest: destination (RAM or VRAM)
 	new = function(graph_, width_, height_, dest)
-		assert(path_ ~= nil, "Path can't be null")
+		assert(graph_ ~= nil, "Path can't be null")
 		assert(width_ > 0, "Width must be positive")
 		assert(height_ > 0, "Height must be positive")
 		assert(dest == RAM or dest == VRAM, "Destination must be RAM or VRAM")
@@ -106,10 +106,13 @@ Sprite = {
 		local width = width_
 		if type(graph_) == "string" then
 			local path = graph_
-			local img = Image.load(path, dest)
+			img = Image.load(graph_, dest)
+			assert(img, "Image not found: "..graph_)
 		elseif type(graph_) == "userdata" then
-			local img = graph_
+			img = graph_
 			local path = "" -- I don't know why I write this ...
+		else
+			error("bad graph type.")
 		end
 		local animations = {}
 		
