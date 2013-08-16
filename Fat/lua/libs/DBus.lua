@@ -1,5 +1,5 @@
 DBus = {}
-_VDBUS = 0.11
+_VDBUS = 0.12
 
 DBus.listMess = {}
 -- DBus.listMess.name = Nom de la variable
@@ -16,12 +16,13 @@ DBus.newMess = function(name, value, life)
 	assert(value ~= nil, "value ne peut pas etre nil")
 	assert(life ~= nil, "life ne peut pas etre nil")
 	local buff = {}
-	local date = DateTime.getCurrentTime()
+	--local date = DateTime.getCurrentTime()
 	buff.name = name
 	buff.value = value
-	buff.born = {}
-	buff.born.minute = date.minute
-	buff.born.second = date.second
+	buff.born = os.time()
+	--buff.born = {}
+	--buff.born.minute = date.minute
+	--buff.born.second = date.second
 	if(life > DBus.MAX) then life = DBus.MAX end
 	buff.life = life
 	table.insert(DBus.listMess,buff)
@@ -30,16 +31,18 @@ end
 DBus.readMess = function(name)
 	assert(name ~= nil, "name ne peut pas etre nil")
 	local i, t1, t2, num
-	local date = DateTime.getCurrentTime()
+	--local date = DateTime.getCurrentTime()
 	i = 1
 	while(i <= #DBus.listMess) do
 		if(DBus.listMess[i].life > -1) then
-			t1 = ((DBus.listMess[i].born.minute * 60)+ DBus.listMess[i].born.second )
-				+ DBus.listMess[i].life
-			t2 = (date.minute * 60)+ date.second
+			--t1 = ((DBus.listMess[i].born.minute * 60)+ DBus.listMess[i].born.second )
+			--	+ DBus.listMess[i].life
+			--t2 = (date.minute * 60)+ date.second
+			t1 = DBus.listMess[i].born + DBus.listMess[i].life
+			t2 = os.time()
 		else
-		t2 = 1
-		t1 = 2
+			t2 = 1
+			t1 = 2
 		end
 		if(t2 > t1) then DBus.delMess(DBus.listMess[i].name) 
 		else i = i+1 end

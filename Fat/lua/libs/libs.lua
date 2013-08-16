@@ -24,8 +24,9 @@ stopDrawing = function()
 	if Debug.isDebugOn then
 		local buffer="FPS: "..NB_FPS
 		local xx=255-(string.len(buffer)*6)
-		screen.print(SCREEN_UP,171,162,"RAM : "..math.floor(collectgarbage("count")).."ko.",Debug.debugColor)
-		screen.print(SCREEN_UP,171,172,"VRAM: "..System.CurrentVramFree().."o.",Debug.debugColor)
+		screen.print(SCREEN_UP,171,152,"RAM : "..math.floor(collectgarbage("count")).."ko.",Debug.debugColor)
+		screen.print(SCREEN_UP,171,162,"VRAM: "..System.CurrentVramFree().."o.",Debug.debugColor)
+		screen.print(SCREEN_UP,171,172,"PRAM: "..System.CurrentPalFree().."o.",Debug.debugColor)
 		screen.print(SCREEN_UP,171,182,"FPS : "..NB_FPS,Debug.debugColor)
 		screen.drawTextBox(SCREEN_DOWN, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, Debug.debugText, Debug.debugColor)
 	end

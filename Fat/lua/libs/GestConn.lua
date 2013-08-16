@@ -322,7 +322,7 @@ end
 -- ********************************************************
 while(not quit)do
 	Controls.read()				-- Lecture de l'état des touches
-	if(tps:time() > 500) then	-- On met à jour la liste des AP toutes les 500ms 
+	if(tps:getTime() > 500) then	-- On met à jour la liste des AP toutes les 500ms 
 		lAP = listeWifiAP()
 		tps:reset()
 		tps:start()
