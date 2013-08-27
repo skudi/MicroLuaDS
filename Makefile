@@ -131,6 +131,7 @@ $(BUILD):
 	@make --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
 
 all:
+	@make clean				# Clean MicroLua so we are sure it is rebuilt with the newest liblua
 	@make -C lua
 	@make install -C lua
 	@make
