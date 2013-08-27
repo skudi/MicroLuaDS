@@ -26,6 +26,9 @@
 
 #include "vars.h"
 
+#define lua_geti(L, index, i) lua_pushnumber(L, i); lua_gettable(L, index);
+#define lua_seti(L, index, i) lua_pushnumber(L, i); lua_pushvalue(L, -2); lua_settable(L, index); lua_pop(L, 1);
+
 static int system_currentVramUsed(lua_State *L) {
 	lua_pushnumber(L, (unsigned int) ulGetTexVramUsedMemory());
 	return 1;
@@ -79,127 +82,86 @@ static int system_makeDirectory(lua_State *L){
 	return 0;
 }
 
-/*static int system_listDirectory(lua_State *L){
-	if(dirListed == 0){
-		dirListed = 1;
-		dirname = (char *)luaL_checkstring(L, 1);
-		pdir = opendir(dirname);
-	}
-	char filename[768];
-	if((pent=readdir(pdir))!=NULL){
-		stat(pent->d_name,&statbuf);
-		if(S_ISDIR(statbuf.st_mode)){ // Is directory
-			sprintf(filename, "*%s", pent->d_name);
-			lua_pushstring(L, filename);
-		}else{ // Is not directory
-			lua_pushstring(L, pent->d_name);
-		}
-	}else{ // End
-		dirListed = 0;
-		closedir(pdir);
-		lua_pushstring(L, "##");
-	}
-	return 1;
-}*/
-
-static int system_listDirectory(lua_State *L){
-	struct dirent *pent;
-	struct stat statbuf;
-	bool cont = true;
-	struct filestat {
-		char name[255];
-		bool isDir;
-		int size;
-	};
-	struct listtri{
-		struct filestat fstat;
-		struct listtri *suiv;
-	} *prem, *prec, *tmp, *tmp2;
-	prem = NULL;
-	prec = NULL;
-	tmp = NULL;
-	char str1[255];
-	char str2[255];
-	char *dirname = (char *)luaL_checkstring(L,1);
-	DIR *pdir = opendir(dirname);
-	u8 index = 0;
-	if(pdir != NULL){
-		while((pent=readdir(pdir))!=NULL){
-			stat(pent->d_name,&statbuf);
-			tmp = malloc(sizeof(struct listtri));
-			strcpy(tmp->fstat.name,pent->d_name);
-			// S_ISDIR is not working with EFS, so we need the right side of "||"
-			tmp->fstat.isDir = S_ISDIR(statbuf.st_mode) || opendir(pent->d_name) != NULL;
-			tmp->fstat.size = statbuf.st_size;
-			tmp->suiv = NULL;
-			if(prem == NULL) prem = tmp;
-			else{
-				tmp2 = prem;
-				prec = prem;
-				cont = true;
-				while(cont){
-					strcpy(str1,tmp2->fstat.name);
-					strcpy(str2,tmp->fstat.name);
-					if(strcmp(strlwr(str1),strlwr(str2)) > 0){
-						if(prec != prem) prec->suiv = tmp;
-						else prem = tmp;
-						tmp->suiv = tmp2;
-						cont = false;
-					}
-					else{
-						prec = tmp2;
-						tmp2 = tmp2->suiv;
-					}
-					if(tmp2 == NULL){
-						prec->suiv = tmp;
-						cont = false;
-					}
-				}
-			}                       
-		}
-		closedir(pdir);
-		tmp = prem;
-		lua_newtable(L);
-		while(tmp != NULL){  //On commence par les dossiers
-			if(tmp->fstat.isDir){
-				lua_pushnumber(L,index++); //clef 
-				lua_newtable(L);        //value = table
-				lua_pushstring(L,"name"); //key
-				lua_pushstring(L,tmp->fstat.name); //value
-				lua_settable(L,-3); //enregistre la ligne
-				lua_pushstring(L,"isDir"); //key
-				lua_pushboolean(L,tmp->fstat.isDir); //value
-				lua_settable(L,-3); //enregistre la ligne
-				lua_pushstring(L,"size"); //key
-				lua_pushnumber(L,tmp->fstat.size); //value
-				lua_settable(L,-3); //enregistre la ligne
-				lua_settable(L,-3);
-			}
-			tmp = tmp->suiv;
-		}
-		tmp = prem;
-		while(tmp != NULL){  // On fait la meme pour les fichiers
-			if(!tmp->fstat.isDir){
-				lua_pushnumber(L,index++); //clef 
-				lua_newtable(L);        //value = table
-				lua_pushstring(L,"name"); //key
-				lua_pushstring(L,tmp->fstat.name); //value
-				lua_settable(L,-3); //enregistre la ligne
-				lua_pushstring(L,"isDir"); //key
-				lua_pushboolean(L,tmp->fstat.isDir); //value
-				lua_settable(L,-3); //enregistre la ligne
-				lua_pushstring(L,"size"); //key
-				lua_pushnumber(L,tmp->fstat.size); //value
-				lua_settable(L,-3); //enregistre la ligne
-				lua_settable(L,-3);
-			}
-			prec = tmp;
-			tmp = tmp->suiv;
-			free(prec);
-		}
-		return 1;
-	}
-	else return 0;
+static int system_listDirectory(lua_State *L) {
+    int mustSwap(lua_State *L, int dirList, int i) {
+        // Special function to sort the final table putting folders first
+        int isDir1, isDir2, nameCmp;
+        char *name1, *name2;
+        
+        lua_geti(L, dirList, i);
+        lua_getfield(L, -1, "isDir");
+        isDir1 = lua_toboolean(L, -1);
+        lua_getfield(L, -2, "name");
+        name1 = (char *)lua_tostring(L, -1);
+        lua_pop(L, 3);                      // Removes elem[i], its 'isDir' and its 'name'
+        lua_geti(L, dirList, i+1);
+        lua_getfield(L, -1, "isDir");
+        isDir2 = lua_toboolean(L, -1);
+        lua_getfield(L, -2, "name");
+        name2 = (char *)lua_tostring(L, -1);
+        lua_pop(L, 3);                      // Idem
+        
+        nameCmp = strcmp(strlwr(name1), strlwr(name2));
+        
+        return (!isDir1 && isDir2) || ((nameCmp > 0) && (isDir1 == isDir2));
+    }
+    
+    
+    struct dirent *elem;
+    struct stat st;
+    int i = 1, nbItems = 0;
+    int swapped = 1;                // Used for sorting the final table
+    int dirList = 0;                // Hold the absolute index of the resulting table in the stack
+    char cwd[255];                  // Hold the current working directory
+    
+    const char *dirName = luaL_checkstring(L, 1);
+    getcwd(cwd, 255);               // We save the CWD...
+    // ... because we set the folder to list as the CWD before listing
+    // (it may avoid a libfat bug that makes stat() not working properly)
+    chdir(dirName);
+    DIR *dir = opendir(dirName);
+    if (!dir) luaL_error(L, "cannot open folder %s", dirName);
+    
+    lua_newtable(L);        // Will hold the entire content of the folder (this is the return value)
+    dirList = lua_gettop(L);
+    
+    while ((elem = readdir(dir))) {             // This traverses the folder
+        lua_pushnumber(L, i);                   // Will be the index of this element
+        lua_newtable(L);                        // Element of the resulting table in Lua
+        // Fill the element
+        lua_pushstring(L, elem->d_name);
+        lua_setfield(L, -2, "name");
+        lua_pushboolean(L, elem->d_type == DT_DIR);
+        lua_setfield(L, -2, "isDir");
+        stat(elem->d_name, &st);
+        lua_pushnumber(L, st.st_size);
+        lua_setfield(L, -2, "size");
+        // Add the element to the resulting table
+        lua_settable(L, dirList);
+        i++;
+    }
+    nbItems = i - 1;
+    
+    // Now we need to sort the table (we will use modified bubble sorting)
+    // We use a custom function to put folders at the top of the table
+    while (swapped) {
+        swapped = 0;
+        
+        for (i = 1; i <= nbItems-1; i++) {
+            if (mustSwap(L, dirList, i)) {
+                lua_geti(L, dirList, i);
+                lua_geti(L, dirList, i+1);
+                lua_seti(L, dirList, i);
+                lua_seti(L, dirList, i+1);
+                swapped = 1;
+            }
+        }
+    }
+    
+    closedir(dir);
+    chdir(cwd);
+    
+    return 1;
 }
 
 static int system_setLedBlinkMode(lua_State *L) {
