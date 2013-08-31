@@ -7,6 +7,8 @@
 #include "lauxlib.h"
 #include "lualib.h"
 
+// The same value as in ds_timer.c
+#define TIMER_ID 0
 
 #define ULUA_VERSION "4.6.1_a [EFS]"
 

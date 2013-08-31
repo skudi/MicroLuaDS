@@ -56,6 +56,8 @@ int main()
     }
     chdir("/");
     
+    timerStart(TIMER_ID, ClockDivider_1024, 0, NULL);
+    
     struct lua_State *l = luaL_newstate();
     if (!l) {
         print_error("\n\n\tFailed to create a Lua state - Push A to Exit\n");
