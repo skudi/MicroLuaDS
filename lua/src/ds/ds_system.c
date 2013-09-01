@@ -86,19 +86,19 @@ static int system_listDirectory(lua_State *L) {
     int mustSwap(lua_State *L, int dirList, int i) {
         // Special function to sort the final table putting folders first
         int isDir1, isDir2, nameCmp;
-        char *name1, *name2;
+        char *name1 = NULL, *name2 = NULL;
         
         lua_geti(L, dirList, i);
         lua_getfield(L, -1, "isDir");
         isDir1 = lua_toboolean(L, -1);
         lua_getfield(L, -2, "name");
-        name1 = (char *)lua_tostring(L, -1);
+        strcpy(name1, (char *)lua_tostring(L, -1));
         lua_pop(L, 3);                      // Removes elem[i], its 'isDir' and its 'name'
         lua_geti(L, dirList, i+1);
         lua_getfield(L, -1, "isDir");
         isDir2 = lua_toboolean(L, -1);
         lua_getfield(L, -2, "name");
-        name2 = (char *)lua_tostring(L, -1);
+        strcpy(name2, (char *)lua_tostring(L, -1));
         lua_pop(L, 3);                      // Idem
         
         nameCmp = strcmp(strlwr(name1), strlwr(name2));
