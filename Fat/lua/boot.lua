@@ -39,5 +39,8 @@ elseif mybootLoaded then
     if msg ~= "continue" then os.exit() end
 end
 
+msg = nil
+mybootLoaded = nil
+
 -- And finally, let's launch MicroLua :)
 dofile(ULUA_LIBS .. "/libs.lua")
