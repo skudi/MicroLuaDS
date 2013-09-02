@@ -3,7 +3,7 @@
 
 -- Trim a string
 function stringTrim(s)
- assert(s ~= nil, "String can't be nil")
+ assert(type(s) == "string", "bar argument #1 to 'stringTrim' (string expected, got " .. type(s) .. ")")
  local toret = (string.gsub(s, "^%s*(.-)%s*$", "%1"))
  local i = #toret
  while string.sub(toret, i, i) == " " and i > 0 do --remove end spaces
@@ -20,8 +20,8 @@ INI = {}
 -- path: path of the file to write
 -- tab: table to save
 INI.save = function(path, tab)
- assert(path ~= nil, "Path can't be nil")
- assert(type(tab) == "table", "Second parameter must be a table")
+ assert(type(path) == "string", "bad argument #1 to 'INI.save' (string expected, got " .. type(path) .. ")")
+ assert(type(tab) == "table", "bad argument #2 to 'INI.save' (table expected, got " .. type(tab) .. ")")
  local f = io.open(path, "w")
  local i = 0
  local structure
@@ -32,7 +32,7 @@ INI.save = function(path, tab)
   --if value is a table
   if type(value) == "table" then
    structure = (structure or "table")
-   assert(structure == "table", "bad table structure.")
+   assert(structure == "table", "'INI.save' cannot save mixed table structure")
    f:write("["..key.."]".."\n")
    for key2, value2 in pairs(tab[key]) do
     key2 = stringTrim(key2)
@@ -46,7 +46,7 @@ INI.save = function(path, tab)
   --if value is an other value (what ???)
   else
    structure = (structure or "simple")
-   assert(structure == "simple", "bad table structure.")
+   assert(structure == "simple", "'INI.save' cannot save mixed table structure")
    key, value = stringTrim(key), stringTrim(tostring(value))
    f:write(key.."="..value)
   end
@@ -58,9 +58,9 @@ end
 
 -- Load an INI file
 -- path: path of the file to read
--- mode (boolean): use simple INI structure
-INI.load = function(path, mode)
- assert(path ~= nil, "Path can't be nil")
+-- simpleStruct (boolean): use simple INI structure
+INI.load = function(path, simpleStruct)
+ assert(type(path) == "string", "bad argument #1 to 'INI.load' (string expected, got " .. type(path) .. ")")
  local f = io.open(path, "r")
  if not f then return nil end
  local tab = {}
@@ -68,7 +68,7 @@ INI.load = function(path, mode)
  local newLine
  local pos = 0
  --default loading mode
- if not mode then
+ if not simpleStruct then
   local i
   local currentTag = nil
   local found = false
@@ -97,9 +97,7 @@ INI.load = function(path, mode)
     -- Find key and values
     if not found and line ~= "" then            
      pos = line:find("=")            
-     if pos == nil then
-      error("Bad INI file structure")
-     end
+     assert(pos, "bad INI file structure")
      line = line:gsub("#_!36!_#", ";")
      line = line:gsub("#_!71!_#", "=")
      tab[currentTag][stringTrim(line:sub(1, pos-1))] = stringTrim(line:sub(pos+1, line:len()))
@@ -116,7 +114,7 @@ INI.load = function(path, mode)
    --remove comments
    newline = line
    line = ""
-   for i = 1, #line do
+   for i = 1, #newline do
     if newline:sub(i, i) == ";" then
 	 break
 	else
@@ -126,7 +124,7 @@ INI.load = function(path, mode)
    --get the value
    if string.gsub(line, " ", "") ~= "" then
     pos = string.find(line, "=")
-	assert(pos, "bad INI file structure")
+	assert(pos, "bad simple INI file structure")
 	tab[line:sub(1, pos-1)] = line:sub(pos+1, -1)
    end
    --
@@ -141,8 +139,8 @@ end
 -- tab: table to crypt
 -- key: number to use
 function table.crypt(tab, key)
- assert(type(tab) == "table", "First parameter must be a table")
- assert(type(key) == "number", "Key must be a number")
+ assert(type(tab) == "table", "bad argument #1 to 'table.script' (table expected, got " .. type(tab) .. ")")
+ assert(type(key) == "number", "bad argument #2 to 'table.crypt' (number expected, got " .. type(key) .. ")")
  local tcrypt = {}
  for k, v in pairs(tab) do
   if type(v) == "table" then
