@@ -35,14 +35,15 @@
 #if !defined(lua_checkmode)
 
 /*
-** Check whether 'mode' matches '[rwa]%+?b?'.
+** [MICROLUA 4.7 (Reylak)] Add acceptance for 't'.
+** Check whether 'mode' matches '[rwa]%+?[bt]?'.
 ** Change this macro to accept other modes for 'fopen' besides
 ** the standard ones.
 */
 #define lua_checkmode(mode) \
 	(*mode != '\0' && strchr("rwa", *(mode++)) != NULL &&	\
 	(*mode != '+' || ++mode) &&  /* skip if char is '+' */	\
-	(*mode != 'b' || ++mode) &&  /* skip if char is 'b' */	\
+	((strchr("bt", *mode) == NULL) || ++mode) &&  /* skip if char is 'b' or 't' */	\
 	(*mode == '\0'))
 
 #endif
