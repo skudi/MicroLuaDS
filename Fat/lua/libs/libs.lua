@@ -170,7 +170,7 @@ Sprite = {
 		-- noAnim: number of the animation
 		local isAnimationAtEnd = function(self, noAnim)
 			assert(noAnim > 0, "Animation number must be 1 or more")
-			return math.floor(animations[noAnim].tmr:time()/animations[noAnim].delay+1) >= table.getn(animations[noAnim].tabAnim)
+			return math.floor(animations[noAnim].tmr:getTime()/animations[noAnim].delay+1) >= table.getn(animations[noAnim].tabAnim)
 		end
 		
 		-- Play an animation
@@ -188,11 +188,11 @@ Sprite = {
 				animations[noAnim].tmr:start()
 				animations[noAnim].isPlayed = true
 			end
-			if math.floor(animations[noAnim].tmr:time()/animations[noAnim].delay) >= table.getn(animations[noAnim].tabAnim) then
+			if math.floor(animations[noAnim].tmr:getTime()/animations[noAnim].delay) >= table.getn(animations[noAnim].tabAnim) then
 				resetAnimation(self, noAnim)
 				startAnimation(self, noAnim)
 			end
-			animToDraw = animations[noAnim].tabAnim[math.floor(animations[noAnim].tmr:time()/animations[noAnim].delay)+1]
+			animToDraw = animations[noAnim].tabAnim[math.floor(animations[noAnim].tmr:getTime()/animations[noAnim].delay)+1]
 			if animToDraw ~= nil then
 				drawFrame(self, scr, x, y, animToDraw)
 			end
