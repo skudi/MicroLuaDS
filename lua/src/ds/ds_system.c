@@ -26,8 +26,17 @@
 
 #include "vars.h"
 
-#define lua_geti(L, index, i) lua_pushnumber(L, i); lua_gettable(L, index);
-#define lua_seti(L, index, i) lua_pushnumber(L, i); lua_pushvalue(L, -2); lua_settable(L, index); lua_pop(L, 1);
+#define lua_geti(L, index, i) \
+    lua_pushnumber(L, i); \
+    lua_gettable(L, index);
+#define lua_seti(L, index, i) \
+    lua_pushnumber(L, i); \
+    lua_pushvalue(L, -2); \
+    lua_settable(L, index); \
+    lua_pop(L, 1);
+#define isRelative(path) \
+    path[0] != '/' && \
+    !strncmp("efs:/", path, 5) && !strncmp("fat:/", path, 5)
 
 static int system_currentVramUsed(lua_State *L) {
 	lua_pushnumber(L, (unsigned int) ulGetTexVramUsedMemory());
@@ -82,64 +91,82 @@ static int system_makeDirectory(lua_State *L){
 	return 0;
 }
 
+int mustSwap(lua_State *L, int dirList, int i) {
+    // Special function to sort the final table placing folders first
+    int isDir1, isDir2, nameCmp;
+    char *name1 = malloc(256*sizeof(char)), *name2 = malloc(256*sizeof(char));
+    
+    lua_geti(L, dirList, i);
+    lua_getfield(L, -1, "isDir");
+    isDir1 = lua_toboolean(L, -1);
+    lua_getfield(L, -2, "name");
+    strcpy(name1, lua_tostring(L, -1));
+    lua_pop(L, 3);                      // Removes elem[i], its 'isDir' and its 'name'
+    lua_geti(L, dirList, i+1);
+    lua_getfield(L, -1, "isDir");
+    isDir2 = lua_toboolean(L, -1);
+    lua_getfield(L, -2, "name");
+    strcpy(name2, lua_tostring(L, -1));
+    lua_pop(L, 3);                      // Idem
+    
+    nameCmp = strcmp(strlwr(name1), strlwr(name2));
+    
+    return (!isDir1 && isDir2) || ((nameCmp > 0) && (isDir1 == isDir2));
+}
+
 static int system_listDirectory(lua_State *L) {
-    int mustSwap(lua_State *L, int dirList, int i) {
-        // Special function to sort the final table putting folders first
-        int isDir1, isDir2, nameCmp;
-        char *name1 = malloc(256*sizeof(char)), *name2 = malloc(256*sizeof(char));
-        
-        lua_geti(L, dirList, i);
-        lua_getfield(L, -1, "isDir");
-        isDir1 = lua_toboolean(L, -1);
-        lua_getfield(L, -2, "name");
-        strcpy(name1, lua_tostring(L, -1));
-        lua_pop(L, 3);                      // Removes elem[i], its 'isDir' and its 'name'
-        lua_geti(L, dirList, i+1);
-        lua_getfield(L, -1, "isDir");
-        isDir2 = lua_toboolean(L, -1);
-        lua_getfield(L, -2, "name");
-        strcpy(name2, lua_tostring(L, -1));
-        lua_pop(L, 3);                      // Idem
-        
-        nameCmp = strcmp(strlwr(name1), strlwr(name2));
-        
-        return (!isDir1 && isDir2) || ((nameCmp > 0) && (isDir1 == isDir2));
-    }
-    
-    
-    struct dirent *elem;
+    const char *askedPath = luaL_checkstring(L, 1);
+    char path[PATH_MAX] = "";
+    struct dirent *entry;
     struct stat st;
-    int i = 1, nbItems = 0;
-    int swapped = 1;                // Used for sorting the final table
-    int dirList = 0;                // Hold the absolute index of the resulting table in the stack
-    char cwd[255];                  // Hold the current working directory
+    DIR *dir;
+    // entryName points to the end of the absolute path leading to the folder (and to the start of the name of the entry in the path)
+    char *entryName, *end = path + sizeof(path) - 1;
+    int i = 1, nbItems;
+    int dirList;            // Hold the index of the resulting table in the stack
+    int swapped = 1;
     
-    const char *dirName = luaL_checkstring(L, 1);
-    getcwd(cwd, 255);               // We save the CWD...
-    // ... because we set the folder to list as the CWD before listing
-    // (it may avoid a libfat bug that makes stat() not working properly)
-    chdir(dirName);
-    DIR *dir = opendir(dirName);
-    if (!dir) luaL_error(L, "cannot open folder %s", dirName);
+    if (isRelative(askedPath))
+        if (getcwd(path, sizeof(path)) == NULL) luaL_error(L, "couldn't get the current working directory");
+    if (strlen(path) + strlen(askedPath) >= sizeof(path)) luaL_error(L, "path is too long");
+    strcpy(path + strlen(path), askedPath);
     
-    lua_newtable(L);        // Will hold the entire content of the folder (this is the return value)
+    // We will append each entry's name there to the path
+    entryName = path + strlen(path);
+    
+    // Make sure there's a trailing slash
+    if (entryName[-1] != '/' && entryName < end)
+        *entryName++ = '/';     // Also move the beginning of the entry's name to the right
+    
+    if ((dir = opendir(askedPath)) == NULL) luaL_error(L, "couldn't open folder %s", askedPath);
+    
+    lua_newtable(L);        // This is the return table listing the folder
     dirList = lua_gettop(L);
     
-    while ((elem = readdir(dir))) {             // This traverses the folder
+    while ((entry = readdir(dir)) != NULL) {    // Loop through the folder
+        if (entryName + strlen(entry->d_name) >= end) luaL_error(L, "path is too long");
+        
+        strcpy(entryName, entry->d_name);
+        
+        if (stat(path, &st) != 0) luaL_error(L, "couldn't stat the entry %s", entry->d_name);
+        
+        // From now everything is okay
         lua_pushnumber(L, i);                   // Will be the index of this element
-        lua_newtable(L);                        // Element of the resulting table in Lua
+        lua_newtable(L);                        // Entry's table
         // Fill the element
-        lua_pushstring(L, elem->d_name);
+        lua_pushstring(L, entry->d_name);
         lua_setfield(L, -2, "name");
-        lua_pushboolean(L, elem->d_type == DT_DIR);
+        lua_pushboolean(L, entry->d_type == DT_DIR);
         lua_setfield(L, -2, "isDir");
-        stat(elem->d_name, &st);
         lua_pushnumber(L, st.st_size);
         lua_setfield(L, -2, "size");
         // Add the element to the resulting table
         lua_settable(L, dirList);
         i++;
     }
+    
+    closedir(dir);
+    
     nbItems = i - 1;
     
     // Now we need to sort the table (we will use modified bubble sorting)
@@ -157,9 +184,6 @@ static int system_listDirectory(lua_State *L) {
             }
         }
     }
-    
-    closedir(dir);
-    chdir(cwd);
     
     return 1;
 }
