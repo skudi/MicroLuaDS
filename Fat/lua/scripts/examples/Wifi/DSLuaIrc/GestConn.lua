@@ -309,7 +309,7 @@ end
 -- ********************************************************
 while(not quit)do
 	Controls.read()				-- Read keys state
-	if(tps:time() > 500) then	-- Update AP list every 500ms
+	if(tps:getTime() > 500) then	-- Update AP list every 500ms
 		lAP = listeWifiAP()
 		tps:reset()
 		tps:start()

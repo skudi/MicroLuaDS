@@ -50,7 +50,7 @@ while not Keys.newPress.Start do
 		Image.scale(img, newWidth, newHeight)
 	end	
     
-    if inertiaTimer:time() > 80 then                                                                                                                                                         -- Some code to handle inertia
+    if inertiaTimer:getTime() > 80 then                                                                                                                                                         -- Some code to handle inertia
         inertiaTimer:reset()
         inertiaTimer:start()
         

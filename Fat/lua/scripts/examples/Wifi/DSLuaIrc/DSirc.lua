@@ -317,8 +317,7 @@ irc.commande = function(texte)
 		opt1 = string.sub(texte,i+1,-1)
 
 		if(comm == "PING") then
-			local tps = DateTime.getCurrentTime()
-			opt2 = (tps.hour*3600)+(tps.minute*60)+tps.second
+			local opt1 = os.time()
 			opt1 = opt1.." :"..string.char(1)..comm.." "..opt2..string.char(1)
 			comm = "PRIVMSG"
 		elseif(comm == "ME") then
@@ -355,12 +354,10 @@ end
 -- the pause the script is frozen
 -------------------------------------------------
 irc.pause = function(seconde)
-	local tps = DateTime.getCurrentTime()
-	local tpsb1 = (tps.hour*3600)+(tps.minute*60)+tps.second
+	local tpsb1 = os.time()
 	local tpsb2 = tpsb1+seconde
 	while(tpsb1 < tpsb2) do
-		tps = DateTime.getCurrentTime()
-		tpsb1 = (tps.hour*3600)+(tps.minute*60)+tps.second
+		tpsb1 = os.time()
 	end
 end
 
@@ -507,8 +504,7 @@ while(not irc.quit) do
 			Wifi.send(irc.socket,"PONG "..irc.buffer.param.norm.."\n")
 			irc.cptping = irc.cptping+1
 		elseif(irc.buffer.command == "PONG") then
-			local tps = DateTime.getCurrentTime()
-			local tpsp = (tps.hour*3600)+(tps.minute*60)+tps.second
+			local tpsp = os.time()
 			tps = tonumber(irc.buffer.param[1])
 			if(tps == nil) then tps = 0 end
 			tpsp = tpsp - tps

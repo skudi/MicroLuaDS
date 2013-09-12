@@ -18,7 +18,7 @@ while not Keys.newPress.Start do
 	if Keys.newPress.B then tmr:start() end
 	if Keys.newPress.X then tmr:reset() end         -- Reset the timer
 
-	tmrTime = tmr:time()                                     -- Get the timer's time
+	tmrTime = tmr:getTime()                                     -- Get the timer's time
     
     -- Extract informations from the time
 	hour = math.floor(tmrTime/3600000)
