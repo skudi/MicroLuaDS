@@ -111,6 +111,9 @@ int mustSwap(lua_State *L, int dirList, int i) {
     
     nameCmp = strcmp(strlwr(name1), strlwr(name2));
     
+    free(name1);
+    free(name2);
+    
     return (!isDir1 && isDir2) || ((nameCmp > 0) && (isDir1 == isDir2));
 }
 
