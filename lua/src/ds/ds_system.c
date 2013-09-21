@@ -186,6 +186,8 @@ static int system_listDirectory(lua_State *L) {
                 swapped = 1;
             }
         }
+        
+        nbItems--;
     }
     
     return 1;
