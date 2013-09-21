@@ -39,6 +39,8 @@ static int user_name(lua_State* l) {
     
     lua_pushstring(l, name);
     
+    free(name);
+    
     return 1;
 }
 
@@ -59,6 +61,8 @@ static int user_message(lua_State* l) {
     msg[i] = '\0';
     
     lua_pushstring(l, msg);
+    
+    free(msg);
     
     return 1;
 }
