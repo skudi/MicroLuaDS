@@ -2,3 +2,5 @@ efsroot/*
 MicroLua.nds
 *~
 lua/out
+*.o
+
