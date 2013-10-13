@@ -34,6 +34,7 @@
 #include "constants.h"
 #include "efs_lib.h"
 
+
 void print_error(const char *text)
 {
 	while (1)
@@ -64,29 +65,34 @@ int main()
     // Use bright pink as a transparent color
     ulSetTransparentColor(RGB15(31, 0, 31));
     
-    /* Initialization of libfat and EFSLib
-    ** First we try both, and if it fails (e.g because the binary
-    ** hasn't been patched) we try FAT alone */
-    if (!EFS_Init(EFS_AND_FAT, NULL)) {
+    /*  Initialization of libfat and EFSLib
+    *   According to the macro EFS defined upon compilation,
+    *   MicroLua will init FAT alone, or EFS and FAT */
+    if (!EFS) {
         if (!fatInitDefault()) {
-            print_error("Failed to initialize Embedded File System\nand FAT together, and FAT alone");
-            return 0;
+            print_error("Failed to initialize FAT library");
+            return 1;
+        }
+    } else {
+        if (!EFS_Init(EFS_AND_FAT, NULL)) {
+            print_error("Failed to initialize EFS library");
+            return 1;
         }
     }
-    chdir("/");
     
     timerStart(TIMER_ID, ClockDivider_1024, 0, NULL);
     
     struct lua_State *l = luaL_newstate();
     if (!l) {
         print_error("\n\n\tFailed to create a Lua state - Push A to Exit\n");
-        return 0;
+        return 1;
     }
     
     luaL_openlibs(l);
     uLua_pushConstants(l);
     
     // First we try to load from fat:
+    chdir("fat:/");
     if (luaL_loadfile(l, ULUA_BOOT_FULLPATH)) {
         if (luaL_loadfile(l, ULUA_LIBS"libs.lua")) {
             if (luaL_loadfile(l, "efs:"ULUA_BOOT_FULLPATH)) {     // Then from EFS
@@ -94,7 +100,7 @@ int main()
                     char text[256];
                     sprintf(text,"Error Occured: Couldn't open (efs:/)%s\n", ULUA_BOOT_FULLPATH);
                     print_error(text);
-                    return 0;
+                    return 1;
                 }
             }
             // Here we only have EFS, so we set it as default device
@@ -105,7 +111,7 @@ int main()
     if(lua_pcall(l,0,0,0)) {
         print_error(lua_tostring(l, -1));
         lua_pop(l, 1);
-        return 0;
+        return 1;
     }
     
     lua_close(l);

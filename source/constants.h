@@ -71,6 +71,12 @@
 #define PLAY_LOOP 0
 #define PLAY_ONCE 1
 
+#ifdef EFS
+#define EFS 1
+#else
+#define EFS 0
+#endif
+
 void uLua_pushConstants(lua_State *L);
 
 #endif

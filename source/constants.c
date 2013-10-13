@@ -206,4 +206,9 @@ void uLua_pushConstants(lua_State *L) {
 	lua_setfield(L,-2,"Right");
 	lua_setfield(L,-2,"newPress");
 	lua_setglobal(L,"Keys");
+	
+    // Availability of EFS
+    lua_getglobal(L, LUA_SYSTEMLIBNAME);
+    lua_pushboolean(L, EFS);
+    lua_setfield(L, -2, "EFS");
 }

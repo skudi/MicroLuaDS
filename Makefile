@@ -32,12 +32,13 @@ include $(DEVKITARM)/base_rules
 #---------------------------------------------------------------------------------
 # EFS is the path to the EFS binary
 # EFSROOT is the path to the folder to the included as the filesystem
+#	Leave empty to disable EFS
 #---------------------------------------------------------------------------------
-EFS		:= $(CURDIR)/../efs
+EFS 		:= $(CURDIR)/../efs
 ifeq ($(WINDOWS),1)
-EFS		:= $(CURDIR)/../efs.exe
+EFS 		:= $(CURDIR)/../efs.exe
 endif
-EFSROOT		:= ../efsroot
+EFSROOT 	:= 
 #---------------------------------------------------------------------------------
 
 #---------------------------------------------------------------------------------
@@ -78,6 +79,10 @@ CFLAGS		:= -g -Wall -O2 \
 		-ffast-math \
 		$(ARCH) \
 		$(INCLUDE) -DARM9
+ifneq ($(strip $(EFSROOT)),)
+CFLAGS		:= $(CFLAGS) -DEFS
+NDSFLAGS 	:= -d ../$(EFSROOT)
+endif
 CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions
 ASFLAGS		:= -g $(ARCH)
 LDFLAGS		:= -specs=ds_arm9.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
@@ -102,7 +107,6 @@ ifneq ($(BUILD),$(notdir $(CURDIR)))
 export OUTPUT	:= $(CURDIR)/$(TARGET)
 export VPATH	:= $(foreach dir,$(SOURCES),$(CURDIR)/$(dir))
 export DEPSDIR  := $(CURDIR)/$(BUILD)
-export LD       := $(CXX)
 
 #---------------------------------------------------------------------------------
 # Use CXX for linking C++ projects, CC for standard C
@@ -172,14 +176,8 @@ endif
 
 #---------------------------------------------------------------------------------
 %.nds: %.arm9
-	@if [ ! -d $(EFSROOT) ]; then \
-		ndstool -c $@ -9 $< $(ARM7BIN) $(LOGO) $(ICON) \
-			"$(TEXT1);$(TEXT2);$(TEXT3)"; \
-	else \
-		ndstool -c $@ -d $(EFSROOT) -9 $< $(ARM7BIN) $(LOGO) $(ICON) \
-			"$(TEXT1);$(TEXT2);$(TEXT3)"; \
-		$(EFS) ../$(notdir $@); \
-	fi
+	ndstool -c $@ $(NDSFLAGS) -9 $< $(ARM7BIN) $(LOGO) $(ICON) "$(TEXT1);$(TEXT2);$(TEXT3)"
+	@if [ ! -z $(EFSROOT) ]; then $(EFS) $@; fi
 	@echo Built $(notdir $@)!
 #---------------------------------------------------------------------------------
 
@@ -197,6 +195,6 @@ endif
 
 #---------------------------------------------------------------------------------
 %.elf:
-	@$(LD)  $(LDFLAGS) $(OFILES) $(LIBPATHS) $(LIBS) -o $@
+	@$(LD) $(LDFLAGS) $(OFILES) $(LIBPATHS) $(LIBS) -o $@
 	@echo Linked $(notdir $@)...
 #---------------------------------------------------------------------------------

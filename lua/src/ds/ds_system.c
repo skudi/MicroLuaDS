@@ -14,17 +14,13 @@
 #include "lauxlib.h"
 #include "lualib.h"
 
-#include "efs_lib.h"
-
 #include <fat.h>
-#include <sys/stat.h>
-#include <sys/dir.h>
 #include <unistd.h>
-#include <dirent.h>
 #include <string.h>
 #include <ulib/ulib.h>
 
 #include "vars.h"
+#include "efs_lib.h"
 
 #define lua_geti(L, index, i) \
     lua_pushnumber(L, i); \
@@ -36,7 +32,7 @@
     lua_pop(L, 1);
 #define isRelative(path) \
     path[0] != '/' && \
-    !strncmp("efs:/", path, 5) && !strncmp("fat:/", path, 5)
+    !strncmp(EFS_DEVICE, path, EFS_PREFIX_LEN) && !strncmp("fat:", path, 4)
 
 static int system_currentVramUsed(lua_State *L) {
 	lua_pushnumber(L, (unsigned int) ulGetTexVramUsedMemory());
@@ -119,7 +115,7 @@ int mustSwap(lua_State *L, int dirList, int i) {
 
 static int system_listDirectory(lua_State *L) {
     const char *askedPath = luaL_checkstring(L, 1);
-    char path[PATH_MAX] = "";
+    char path[PATH_MAX] = "";           // Full path
     struct dirent *entry;
     struct stat st;
     DIR *dir;
@@ -141,7 +137,7 @@ static int system_listDirectory(lua_State *L) {
     if (entryName[-1] != '/' && entryName < end)
         *entryName++ = '/';     // Also move the beginning of the entry's name to the right
     
-    if ((dir = opendir(askedPath)) == NULL) luaL_error(L, "couldn't open folder %s", askedPath);
+    if ((dir = opendir(path)) == NULL) luaL_error(L, "couldn't open folder %s", path);
     
     lua_newtable(L);        // This is the return table listing the folder
     dirList = lua_gettop(L);
@@ -151,7 +147,8 @@ static int system_listDirectory(lua_State *L) {
         
         strcpy(entryName, entry->d_name);
         
-        if (stat(path, &st) != 0) luaL_error(L, "couldn't stat the entry %s", entry->d_name);
+        // stat wouldn't work properly on a folder in EFS
+        if (entry->d_type != DT_DIR && stat(path, &st) != 0) luaL_error(L, "couldn't stat the entry %s", path);
         
         // From now everything is okay
         lua_pushnumber(L, i);                   // Will be the index of this element
@@ -161,7 +158,7 @@ static int system_listDirectory(lua_State *L) {
         lua_setfield(L, -2, "name");
         lua_pushboolean(L, entry->d_type == DT_DIR);
         lua_setfield(L, -2, "isDir");
-        lua_pushnumber(L, st.st_size);
+        if (entry->d_type != DT_DIR) { lua_pushnumber(L, st.st_size); } else { lua_pushnumber(L, 0); }
         lua_setfield(L, -2, "size");
         // Add the element to the resulting table
         lua_settable(L, dirList);
