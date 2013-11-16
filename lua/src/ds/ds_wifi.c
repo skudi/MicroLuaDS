@@ -25,7 +25,7 @@
 
 //Init Wifi_init var
 u8 Wifi_init = 0;
-    
+
 static int wifi_connectWFC(lua_State *L){
 	bool res = false;
 	if(Wifi_init == 0) res = Wifi_InitDefault(WFC_CONNECT);
@@ -96,7 +96,7 @@ static int wifi_getAP(lua_State *L){
 	else if (ap.flags & WFLAG_APDATA_WPA) sprintf(protection,"WPA");
 	bool adhoc = ap.flags & WFLAG_APDATA_ADHOC ? true:false;
 	bool actif = ap.flags & WFLAG_APDATA_ACTIVE ? true:false;
-    //creation du tableau
+	//creation du tableau
 	lua_newtable(L);
 	lua_pushstring(L,"ssid"); //key
 	lua_pushstring(L,ap.ssid); //value
@@ -301,82 +301,223 @@ static int wifi_setLocalIP(lua_State *L){
 	return 0;
 }
 
-static int wifi_createTCPSocket(lua_State *L){
-	char * url = (char *)luaL_checkstring(L, 1);
-	int port = (int)luaL_checknumber(L, 2);
-	assert(L, url != NULL, "Url can't be null");
-	assert(L, port >= 0 && port <= 65565, "Port number must be betweem 0 and 65565");
-	struct hostent * myhost = gethostbyname(url);
-	int my_socket;
-	my_socket = socket(AF_INET, SOCK_STREAM, 0);
-	assert(L, my_socket >= 0, "Impossible to create the socket");
-	struct sockaddr_in sain;
-	sain.sin_family = AF_INET;
-	sain.sin_port = htons(port);
-	sain.sin_addr.s_addr= *((unsigned long *)(myhost->h_addr_list[0]));
-	connect(my_socket,(struct sockaddr *)&sain, sizeof(sain));
-	lua_pushnumber(L, my_socket);
-	return 1;
-}
+// UDP & TCP sockets objects
+typedef enum {
+	unconnectedSocket,
+	connectedSocket
+} SocketState;
 
-static int wifi_createUDPSocket(lua_State *L){
-	char * url = (char *)luaL_checkstring(L, 1);
-	int port = (int)luaL_checknumber(L, 2);
-	assert(L, url != NULL, "Url can't be null");
-	assert(L, port >= 0 && port <= 65565, "Port number must be betweem 0 and 65565");
-	struct hostent * myhost = gethostbyname(url);
-	int my_socket;
-	my_socket = socket(AF_INET, SOCK_DGRAM, 0);
-	assert(L, my_socket >= 0, "Impossible to create the socket");
-	struct sockaddr_in sain;
-	sain.sin_family = AF_INET;
-	sain.sin_port = htons(port);
-	sain.sin_addr.s_addr= *((unsigned long *)(myhost->h_addr_list[0]));
-	connect(my_socket,(struct sockaddr *)&sain, sizeof(sain));
-	lua_pushnumber(L, my_socket);
-	return 1;
-}
+typedef struct SocketObj {
+	int socket;
+	SocketState state;
+} Socket;
 
-static int wifi_closeSocket(lua_State *L){
-	int my_socket = (int)luaL_checknumber(L, 1);
-	assert(L, my_socket >= 0, "Invalid socket");
-	shutdown(my_socket, 0);
-	closesocket(my_socket);
+static int socket_close(lua_State *L){
+	Socket* sock = (Socket*)lua_touserdata(L, 1);
+
+	shutdown(sock->socket, 0);
+	closesocket(sock->socket);
 	return 0;
 }
 
-static int wifi_send(lua_State *L){
-	int my_socket = (int)luaL_checknumber(L, 1);
-	unsigned int length;
-	char * buffer = (char *)luaL_checklstring(L, 2, &length);
-	assert(L, my_socket >= 0, "Invalid socket");
-	assert(L, buffer != NULL, "Buffer can't be null");
-	send(my_socket, buffer, length, 0);
-	return 0;
-}
+static int socket_checkData(lua_State *L){
+	Socket* sock = (Socket*)lua_touserdata(L, 1);
 
-static int wifi_checkData(lua_State *L){
 	unsigned long available;
-	int my_socket = (int)luaL_checknumber(L, 1);
-	assert(L, my_socket >= 0, "Invalid socket");
-	ioctl(my_socket, FIONREAD, &available);
+	ioctl(sock->socket, FIONREAD, &available);
 	lua_pushnumber(L, available);
 	return 1;
 }
 
-static int wifi_receive(lua_State *L){
-	int my_socket = (int)luaL_checknumber(L, 1);
+// TCP Sockets
+typedef struct TcpSocketObj {
+	int socket;
+	SocketState state;
+} TcpSocket;
+
+static int wifi_createTCPSocket(lua_State *L) {
+	int my_socket;
+	my_socket = socket(AF_INET, SOCK_STREAM, 0);
+	assert(L, my_socket >= 0, "Impossible to create the socket");
+
+	TcpSocket* tcp = (TcpSocket*)lua_newuserdata(L, sizeof(TcpSocket));
+	tcp->socket = my_socket;
+	tcp->state = unconnectedSocket;
+	luaL_setmetatable(L, "TcpSocketMetatable");
+
+	return 1;
+}
+
+static int tcp_connect(lua_State *L) {
+	TcpSocket* tcp = (TcpSocket*)lua_touserdata(L, 1);
+
+	char* url = (char *)luaL_checkstring(L, 2);
+	int port = (int)luaL_checknumber(L, 3);
+	assert(L, port >= 0 && port <= 65565, "Port number must be betweem 0 and 65565");
+	struct hostent* myhost = gethostbyname(url);
+
+	struct sockaddr_in sain;
+	sain.sin_family = AF_INET;
+	sain.sin_port = htons(port);
+	sain.sin_addr.s_addr= *((unsigned long *)(myhost->h_addr_list[0]));
+	connect(tcp->socket, (struct sockaddr *)&sain, sizeof(sain));
+	
+	tcp->state = connectedSocket;
+
+	return 1;
+}
+
+static int tcp_send(lua_State *L) {
+	TcpSocket* tcp = (TcpSocket*)lua_touserdata(L, 1);
+
+	assert(L, tcp->state == connectedSocket, "The socket must be connected to a server");
+
+	unsigned int length;
+	char* buffer = (char *)luaL_checklstring(L, 2, &length);
+
+	send(tcp->socket, buffer, length, 0);
+	return 0;
+}
+
+static int tcp_receive(lua_State *L) {
+	TcpSocket* tcp = (TcpSocket*)lua_touserdata(L, 1);
+
+	assert(L, tcp->state == connectedSocket, "The socket must be connected to a server");
+
 	int length = (int)luaL_checknumber(L, 2);
-	assert(L, my_socket >= 0, "Invalid socket");
 	assert(L, length > 0, "Length must be > 0");
 	char buffer[length];
-	int recv_len = recv(my_socket, buffer, length, 0);
-	if(recv_len > 0){
+	int recv_len = recv(tcp->socket, buffer, length, 0);
+
+	if(recv_len > 0) {
 		lua_pushlstring(L, buffer,recv_len);
 		return 1;
-	}else{
+	} else {
 		return 0;
 	}	
+}
+
+// UDP sockets
+typedef struct UdpSocketObj {
+	int socket;
+	SocketState state;
+	struct sockaddr_in peer;
+} UdpSocket;
+
+static int wifi_createUDPSocket(lua_State *L) {
+	int my_socket;
+	my_socket = socket(AF_INET, SOCK_DGRAM, 0);
+	assert(L, my_socket >= 0, "Impossible to create the socket");
+
+	UdpSocket* udp = (UdpSocket*)lua_newuserdata(L, sizeof(UdpSocket));
+	udp->socket = my_socket;
+	udp->state = unconnectedSocket;
+	udp->peer.sin_family = AF_INET;
+	luaL_setmetatable(L, "UdpSocketMetatable");
+
+	return 1;
+}
+
+static int udp_sendTo(lua_State *L) {
+	UdpSocket* udp = (UdpSocket*)lua_touserdata(L, 1);
+
+	unsigned int length;
+	char* buffer = (char *)luaL_checklstring(L, 2, &length);
+
+	// Server addr
+	char* url = (char *)luaL_checkstring(L, 3);
+	int port = (int)luaL_checknumber(L, 4);
+	assert(L, port >= 0 && port <= 65565, "Port number must be betweem 0 and 65565");
+	struct hostent * myhost = gethostbyname(url);
+
+	struct sockaddr_in sain;
+	sain.sin_family = AF_INET;
+	sain.sin_port = htons(port);
+	sain.sin_addr.s_addr= *((unsigned long *)(myhost->h_addr_list[0]));
+
+	sendto(udp->socket, buffer, length, 0, (struct sockaddr *)&sain, sizeof(sain));
+	return 0;
+}
+
+static int udp_receiveFrom(lua_State *L) {
+	UdpSocket* udp = (UdpSocket*)lua_touserdata(L, 1);
+
+	int length = (int)luaL_checknumber(L, 2);
+	assert(L, length > 0, "Length must be > 0");
+	char buffer[length];
+
+	struct sockaddr_in sain;
+
+	int recv_len = recvfrom(udp->socket, buffer, length, 0, (struct sockaddr *)&sain, (int*)sizeof(sain));
+
+	if (recv_len > 0) {
+		// Received message
+		lua_pushlstring(L, buffer, recv_len);
+		// Server ip
+		lua_pushstring(L, inet_ntoa(sain.sin_addr));
+		// Server port
+		lua_pushnumber(L, ntohs(sain.sin_port));
+		return 3;
+	} else {
+		return 0;
+	}	
+}
+
+static int udp_setPeerName(lua_State *L) {
+	UdpSocket* udp = (UdpSocket*)lua_touserdata(L, 1);
+
+	// Peer addr
+	char* url = (char*)luaL_checkstring(L, 2);
+	int port = (int)luaL_checknumber(L, 3);
+	assert(L, port >= 0 && port <= 65565, "Port number must be betweem 0 and 65565");
+	struct hostent* myhost = gethostbyname(url);
+
+	udp->state = connectedSocket;
+	udp->peer.sin_port = htons(port);
+	udp->peer.sin_addr.s_addr= *((unsigned long*)(myhost->h_addr_list[0]));
+
+	return 0;
+}
+
+static int udp_send(lua_State *L) {
+	UdpSocket* udp = (UdpSocket*)lua_touserdata(L, 1);
+
+	assert(L, udp->state == connectedSocket, "No peer name specified");
+
+	unsigned int length;
+	char * buffer = (char *)luaL_checklstring(L, 2, &length);
+
+	sendto(udp->socket, buffer, length, 0, (struct sockaddr*)&udp->peer, sizeof(udp->peer));
+
+	return 0;
+}
+
+static int udp_receive(lua_State *L) {
+	UdpSocket* udp = (UdpSocket*)lua_touserdata(L, 1);
+
+	assert(L, udp->state == connectedSocket, "No peer name specified");
+
+	int length = (int)luaL_checknumber(L, 2);
+	assert(L, length > 0, "Length must be > 0");
+	char buffer[length];
+
+	struct sockaddr_in sain;
+
+	// Wait for a message from the specified peer
+	while (true) {
+		int recv_len = recvfrom(udp->socket, buffer, length, 0, (struct sockaddr *)&sain, (int *)sizeof(sain));
+
+		if (recv_len > 0) {
+			// Only return messages from the specified peer
+			if (inet_ntoa(sain.sin_addr) == inet_ntoa(udp->peer.sin_addr) && ntohs(sain.sin_port) == ntohs(udp->peer.sin_port)) {
+				lua_pushlstring(L, buffer, recv_len);
+				return 1;
+			}
+
+		} else {
+			return 0;
+		}
+	}
 }
 
 static const luaL_Reg wifilib[] = {
@@ -384,7 +525,6 @@ static const luaL_Reg wifilib[] = {
 	{"connectWFC", wifi_connectWFC},
 	{"autoConnectWFC", wifi_autoConnectWFC},
 	{"getLocalConf", wifi_getLocalConf},
-	{"checkData", wifi_checkData},
 	{"resetIP", wifi_resetIP},
 	{"scanAP", wifi_scanAP},
 	{"getNumAP", wifi_getNumAP},
@@ -398,9 +538,28 @@ static const luaL_Reg wifilib[] = {
 	{"setLocalIP", wifi_setLocalIP},
 	{"createTCPSocket", wifi_createTCPSocket},
 	{"createUDPSocket", wifi_createUDPSocket},
-	{"closeSocket", wifi_closeSocket},
-	{"send", wifi_send},
-	{"receive", wifi_receive},
+	{NULL, NULL}
+};
+
+static const luaL_Reg tcp_methods[] = {
+	{"connect", tcp_connect},
+	{"send", tcp_send},
+	{"receive", tcp_receive},
+
+	{"checkData", socket_checkData},
+	{"close", socket_close},
+	{NULL, NULL}
+};
+
+static const luaL_Reg udp_methods[] = {
+	{"sendTo", udp_sendTo},
+	{"receiveFrom", udp_receiveFrom},
+	{"setPeerName", udp_setPeerName},
+	{"send", udp_send},
+	{"receive", udp_receive},
+
+	{"checkData", socket_checkData},
+	{"close", socket_close},
 	{NULL, NULL}
 };
 
@@ -408,11 +567,18 @@ static const luaL_Reg wifilib[] = {
 ** Open infos library
 */
 LUALIB_API int luaopen_wifi (lua_State *L) {
-  luaL_register(L, LUA_WIFILIBNAME, wifilib);
-  return 1;
+	// Create TCP sockets metatable
+	luaL_newmetatable(L, "TcpSocketMetatable");
+	lua_pushliteral(L, "__index");
+	luaL_newlib(L, tcp_methods);
+	lua_rawset(L, -3);
+
+	// Create UDP sockets metatable
+	luaL_newmetatable(L, "UdpSocketMetatable");
+	lua_pushliteral(L, "__index");
+	luaL_newlib(L, udp_methods);
+	lua_rawset(L, -3);
+
+	luaL_newlib(L, wifilib);
+	return 1;
 }
-
-
-
-
-
