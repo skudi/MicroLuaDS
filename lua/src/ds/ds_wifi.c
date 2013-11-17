@@ -364,7 +364,7 @@ static int tcp_connect(lua_State *L) {
 	
 	tcp->state = connectedSocket;
 
-	return 1;
+	return 0;
 }
 
 static int tcp_send(lua_State *L) {
