@@ -19,6 +19,122 @@
 
 #include "vars.h"
 
+#include <nds.h>
+
+//the record sample rate
+#define sample_rate  8000
+
+//buffer to hold sound data for playback
+//u16* sound_buffer = 0;
+
+//buffer which is written to by the arm7
+//u16* mic_buffer = 0;
+
+//the length of the current data
+//u32 data_length = 0;
+
+//enough hold 5 seconds of 16bit audio
+//u32 sound_buffer_size = sample_rate * 2 * 5;
+
+//the mic buffer sent to the arm7 is a double buffer
+//every time it is half full the arm7 signals us so we can read the
+//data.  I want the buffer to swap about once per frame so i chose a
+//buffer size large enough to hold two frames of 16bit mic data
+//u32 mic_buffer_size = sample_rate * 2 / 30;
+
+
+typedef struct soundSample{
+	u32 length;
+	u16 *s_buffer;
+	u16 *m_buffer;
+	u16 s_rate;
+	u32 s_size;
+	u32 m_size;
+	bool record;
+	bool stereo;
+}s_sample;
+
+static int sound_initMic(lua_State *L){
+	s_sample *sd = NULL;
+	sd = malloc(sizeof(s_sample));
+	sd->length = 0;
+	sd->s_rate = sample_rate;
+	sd->s_size = (sd->s_rate) * 2 * 5;
+	sd->m_size = (sd->s_rate) * 2 / 30;
+	sd->s_buffer = (u16*)malloc(sd->s_size);
+	sd->m_buffer = (u16*)malloc(sd->m_size);
+	sd->record = false;
+	lua_pushlightuserdata(L, sd);
+	return 1;
+}
+
+static int sound_micLength(lua_State *L){
+	s_sample *sd = lua_touserdata(L, 1);
+	lua_pushnumber(L, sd->length);
+	return 1;
+}
+
+s_sample *sd_buff = NULL;
+//mic stream handler
+void micHandler(void* data, int length){
+	if(!sd_buff->s_buffer || sd_buff->length > sd_buff->s_size) return;
+			
+	DC_InvalidateRange(data, length);
+	dmaCopy(data, ((u8*)sd_buff->s_buffer) + sd_buff->length, length);
+		
+	sd_buff->length += length;    
+}
+
+static int sound_micStartRecord(lua_State *L){
+	s_sample *sd = lua_touserdata(L, 1);
+	if (!sd->record){
+		sd_buff = sd;
+		sd->length = 0;
+		sd->record = true;
+		soundMicRecord(sd->m_buffer, sd->m_size, MicFormat_12Bit, sd->s_rate, micHandler);
+	}	
+	return 0;
+}
+
+static int sound_micStop(lua_State *L){
+	s_sample *sd = lua_touserdata(L, 1);
+	sd->record = false;
+	soundMicOff();
+	return 0;
+}
+
+static int sound_playSample(lua_State *L){
+	s_sample *sd = lua_touserdata(L, 1);
+    soundEnable();
+    soundPlaySample(sd->s_buffer, SoundFormat_16Bit, sd->length, sd->s_rate, 127, 64, false, 0);
+	return 0;
+}
+
+static int sound_playNoise(lua_State *L){
+	u16 freq = (u16)luaL_checknumber(L, 1);
+	u8 vol = (u8)luaL_checknumber(L, 2);
+	u8 pan = (u8)luaL_checknumber(L,3);
+	u8 sound = soundPlayNoise (freq, vol, pan);
+	lua_pushnumber(L, sound);
+	return 1;
+}
+
+static int sound_playPSG(lua_State *L){
+	u8 DC = (u8)luaL_checknumber(L, 1);
+	u16 freq = (u16)luaL_checknumber(L, 2);
+	u8 vol = (u8)luaL_checknumber(L, 3);
+	u8 pan = (u8)luaL_checknumber(L,4);
+	u8 sound = soundPlayPSG (DC, freq, vol, pan);
+	lua_pushnumber(L, sound);
+	return 1;
+}
+
+static int sound_stopNoise(lua_State *L){
+	u8 sound = (u8)luaL_checknumber(L, 1);
+	soundKill(sound);
+	return 0;
+}
+
 // ########## BANKS ##########
 
 static int sound_loadBank(lua_State *L){
@@ -197,6 +313,14 @@ static int sound_stopAllSFX(lua_State *L){
 }
 
 static const luaL_Reg soundlib[] = {
+	{"micStartRecord", sound_micStartRecord},
+	{"playSample", sound_playSample},
+	{"playNoise", sound_playNoise},
+	{"playPSG", sound_playPSG},
+	{"stopNoise", sound_stopNoise},
+	{"initMic", sound_initMic},
+	{"micStop", sound_micStop},
+	{"micLength", sound_micLength},
     // Banks
     {"loadBank", sound_loadBank},
     {"unloadBank", sound_unloadBank},
