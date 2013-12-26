@@ -29,7 +29,7 @@
 // The same value as in ds_timer.c
 #define TIMER_ID 0
 
-#define ULUA_VERSION "4.7"
+#define ULUA_VERSION "4.7.1"
 
 #define ULUA_DIR "/lua/"
 #define ULUA_SCRIPTS ULUA_DIR "/scripts/"
