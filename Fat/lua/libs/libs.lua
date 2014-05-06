@@ -113,28 +113,27 @@ end
 -- Declaration of the Sprite class
 Sprite = {
 
-	-- path: path of the file which contains the sprite
+	-- graph: path of the image which contains the sprite, or a image object
 	-- height: height of the frames
 	-- width: width of the frames
 	-- dest: destination (RAM or VRAM)
-	new = function(graph_, width_, height_, dest)
-		assert(graph_ ~= nil, "Path can't be null")
-		assert(width_ > 0, "Width must be positive")
-		assert(height_ > 0, "Height must be positive")
-		assert(dest == RAM or dest == VRAM, "Destination must be RAM or VRAM")
-		local height = height_
-		local width = width_
-		if type(graph_) == "string" then
-			local path = graph_
-			img = Image.load(graph_, dest)
-			assert(img, "Image not found: "..graph_)
-		elseif type(graph_) == "userdata" then
-			img = graph_
-			local path = "" -- I don't know why I write this ...
-		else
-			error("bad graph type.")
-		end
+	new = function(graph, width, height, dest)
+		assert(graph ~= nil, "Graph can't be null")
+		assert(width > 0, "Width must be positive")
+		assert(height > 0, "Height must be positive")
+
+		local img
 		local animations = {}
+
+		if type(graph) == "string" then
+			assert(dest == RAM or dest == VRAM, "Destination must be RAM or VRAM")
+			img = Image.load(graph, dest)
+			assert(img, "Image not found: "..graph)
+		elseif type(graph) == "userdata" then
+			img = graph
+		else
+			error("Bad graph type")
+		end
 		
 		-- ### Public methods ###
 		
@@ -144,13 +143,13 @@ Sprite = {
 		-- y: Y-coordinate where to draw the frame
 		-- noFrame: number of the frame to draw
 		local drawFrame = function(self, scr, x, y, noFrame)
-			assert(scr == SCREEN_UP or scr == SCREEN_DOWN or scr == SCREEN_BOTH, "Bad screen number")
+			assert(scr == SCREEN_UP or scr == SCREEN_DOWN, "Bad screen number")
 			assert(x ~= nil, "X can't be null")
 			assert(y ~= nil, "Y can't be null")
 			assert(noFrame ~= nil, "Frame number can't be null")
-			boardWidth = Image.width(img) / width
-			yy = math.floor(noFrame / boardWidth)
-			xx = noFrame - (yy * boardWidth)
+			local boardWidth = Image.width(img) / width
+			local yy = math.floor(noFrame / boardWidth)
+			local xx = noFrame - (yy * boardWidth)
 			screen.blit(scr, x, y, img, xx*width, yy*height, width, height)
 		end
 		
@@ -160,8 +159,7 @@ Sprite = {
 		local addAnimation = function(self, tabAnim, delay)
 			assert(tabAnim ~= nil, "Table can't be null")
 			assert(delay >= 0, "Delay  must be positive")
-			tmp = SpriteAnimation.new(tabAnim,delay)
-			table.insert(animations, tmp)
+			table.insert(animations, SpriteAnimation.new(tabAnim, delay))
 		end
 		
 		-- Reset an animation
@@ -198,7 +196,7 @@ Sprite = {
 		-- y: Y-coordinate where to draw the animation
 		-- noAnim: number of the animation to draw
 		local playAnimation = function(self, scr, x, y, noAnim)
-			assert(scr == SCREEN_UP or scr == SCREEN_DOWN or scr == SCREEN_BOTH, "Bad screen number")
+			assert(scr == SCREEN_UP or scr == SCREEN_DOWN, "Bad screen number")
 			assert(x ~= nil, "X can't be null")
 			assert(y ~= nil, "Y can't be null")
 			assert(noAnim > 0, "Animation number must be 1 or more")
@@ -211,7 +209,7 @@ Sprite = {
 				resetAnimation(self, noAnim)
 				startAnimation(self, noAnim)
 			end
-			animToDraw = animations[noAnim].tabAnim[math.floor(animations[noAnim].tmr:getTime()/animations[noAnim].delay)+1]
+			local animToDraw = animations[noAnim].tabAnim[math.floor(animations[noAnim].tmr:getTime()/animations[noAnim].delay)+1]
 			if animToDraw ~= nil then
 				drawFrame(self, scr, x, y, animToDraw)
 			end
@@ -226,8 +224,7 @@ Sprite = {
 		end
 		
 		local destroy = function(self)
-			local key, value
-			for key, value in pairs(animations) do
+			for _, value in pairs(animations) do
 				value = nil
 			end
 			Image.destroy(img)
@@ -237,7 +234,6 @@ Sprite = {
 		-- ### Returns ###
 		
 		return {
-			path = path,
 			getWidth = getWidth,
 			getHeight = getHeight,
 			drawFrame = drawFrame,
@@ -249,7 +245,6 @@ Sprite = {
 			isAnimationAtEnd = isAnimationAtEnd,
 			destroy = destroy
 		}
-
 	end
 
 }
@@ -259,16 +254,12 @@ SpriteAnimation = {
 
 	-- tabAnim: the table of the animation frames
 	-- delay: delay between each frame
-	new = function(tabAnim_, delay_)			
-			local tabAnim = tabAnim_
-			local delay = delay_
-			local tmr = Timer.new()
-			local isPlayed = false
+	new = function(tabAnim, delay)
 			return {
 				tabAnim = tabAnim,
 				delay = delay,
-				tmr = tmr,
-				isPlayed = isPlayed
+				tmr = Timer.new(),
+				isPlayed = false
 			}
 	end
 	
